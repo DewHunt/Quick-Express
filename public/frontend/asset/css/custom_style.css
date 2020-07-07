@@ -1,0 +1,146 @@
+.chosen-container-multi .chosen-choices {
+  height: 50px !important;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice {
+    display: inline-block !important;
+}
+
+.chosen-choices .search-field{
+  display: contents !important;
+}
+.search-choice span{
+    color: #333 !important;
+}
+.content_page{
+	background-color: rgba(246, 246, 246, 0.92);
+    margin-bottom: 50px;
+}
+
+.sidebar_link{
+	padding: 10px 0px 10px 15px;
+}
+
+.sidebar_link h4{
+	margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.sidebar_link ul li a{
+	font-size: 13px;
+    color: #10988c;
+    text-transform: uppercase;
+}
+
+.card{
+	border-radius: unset;
+    height: 100%;
+}
+
+.cart-grid-body{
+	/*padding-left: 0px;
+    border: 1px solid rgba(0, 0, 0, .125);*/
+    border: none;
+}
+
+.cart-grid-body .card{
+    border: none;
+} 
+
+.card-header{
+	background: unset;
+    padding: 0px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.profile_link_title{
+    border-bottom: 1px solid #f8a555;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.customer_table thead tr{
+	background: #00656d;
+	text-align: center;
+}
+
+.customer_table thead:first-child tr th{
+	font-weight: bold; vertical-align: middle;
+}
+
+.customer_table thead th{
+	color: #fff;
+	padding: 2px 0px 2px 6px;
+	font-size: 14px;
+	text-align: left;
+}
+
+.customer_table tbody td{
+	color: #333;
+    font-size: 14px;
+    padding-right: 0px;
+    padding: 6px;
+}
+
+.edit_link{
+	color: #0db50d;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.crud_form{
+	border: 1px solid #f1cca9;
+    padding: 15px;
+}
+
+.booking_info thead th{
+	font-size: 15px;
+    background: #4e4e4e !important;
+    color: #fff;
+}
+
+.booking_info th {
+    font-size: 14px;
+    color: #0c0c0c;
+    width: 170px;
+}
+
+.booking_info td {
+    font-size: 14px;
+    color: #333;
+}
+
+.booking_info .delivery_status {
+    width: 10px;
+}
+
+.booking_info .head_colon {
+    text-align: center;
+    width: 10px;
+}
+
+.dataTables_length{
+	float: left;
+    font-size: 13px;
+}
+
+.dataTables_length select{
+	padding: 4px;
+}
+
+.dataTable_filter{
+	font-size: 15px;
+}
+
+#dataTable_filter input{
+	padding: 4px;
+}
+
+.pending{
+    color: red;
+}
+
+.done{
+    color: green;
+}
