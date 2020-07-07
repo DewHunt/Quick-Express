@@ -3,7 +3,9 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="copyright-block">
-					<p>&copy; 2020 <a href="index.html" title="exelsure courier service">Excelsure</a>. All Rights Reserved.</p>
+					<p>
+						&copy; {{ date('Y') }} All Rights Reserved By <a href="index.html" title="exelsure courier service">{{ @$website_information->website_name }}</a>.
+					</p>
 				</div>
 			</div>
 			<div class="col-md-6 text-right">
@@ -15,8 +17,6 @@
 						<li class="dropdown">
 							<a href="#" data-toggle="dropdown" title="English"><i class="las la-globe"></i>English<i class="las la-caret-square-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#" title="French">French</a></li>
-								<li><a href="#" title="Germany">Germany</a></li>
 								<li><a href="#" title="Urdu">Bengali</a></li>
 							</ul>
 						</li>

@@ -63,7 +63,7 @@
 						<li class="call">
 							<i class="las la-phone-volume"></i>
 							Call us at: 
-							<a href="tel:" title="">1900-900-8899</a>
+							<a href="tel:" title="">{{ $website_information->phone_one }}</a>
 						</li>
 						@foreach ($social_link_list as $social_link)
 							<li>

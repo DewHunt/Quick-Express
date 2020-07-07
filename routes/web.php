@@ -85,6 +85,13 @@ Route::prefix('admin')->group(function()
 			Route::post('/website-information-save','Admin\WebsiteInformationController@save')->name('websiteInformation.save');
 			Route::get('/website-information-edit/{id}','Admin\WebsiteInformationController@edit')->name('websiteInformation.edit');
 			Route::post('/website-information-update','Admin\WebsiteInformationController@update')->name('websiteInformation.update');
+		
+			//Admin Information section
+			Route::get('/admin-panel-information','Admin\AdminPanelInformationController@index')->name('adminPanelInformation.index');
+			Route::get('/admin-panel-information-add','Admin\AdminPanelInformationController@add')->name('adminPanelInformation.add');
+			Route::post('/admin-panel-information-save','Admin\AdminPanelInformationController@save')->name('adminPanelInformation.save');
+			Route::get('/admin-panel-information-edit/{id}','Admin\AdminPanelInformationController@edit')->name('adminPanelInformation.edit');
+			Route::post('/admin-panel-information-update','Admin\AdminPanelInformationController@update')->name('adminPanelInformation.update');
 
 			// User Menu 
 			Route::get('/front-end-menu','Admin\FrontEndMenuController@index')->name('frontEndMenu.index');

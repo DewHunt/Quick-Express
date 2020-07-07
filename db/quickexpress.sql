@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2020 at 07:52 PM
+-- Generation Time: Jul 07, 2020 at 03:04 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -115,6 +115,41 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_admin_panel_information`
+--
+
+CREATE TABLE `tbl_admin_panel_information` (
+  `id` int(11) NOT NULL,
+  `website_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `prefix_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo_one` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo_one_width` int(11) DEFAULT NULL,
+  `logo_one_height` int(11) DEFAULT NULL,
+  `logo_two` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo_two_width` int(11) DEFAULT NULL,
+  `logo_two_height` int(11) DEFAULT NULL,
+  `fav_icon` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fav_icon_width` int(11) DEFAULT NULL,
+  `fav_icon_height` int(11) DEFAULT NULL,
+  `developed_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_admin_panel_information`
+--
+
+INSERT INTO `tbl_admin_panel_information` (`id`, `website_name`, `prefix_title`, `website_title`, `logo_one`, `logo_one_width`, `logo_one_height`, `logo_two`, `logo_two_width`, `logo_two_height`, `fav_icon`, `fav_icon_width`, `fav_icon_height`, `developed_by`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(2, 'Quick Express', '|', 'Quick Express', 'public/uploads/admin_logo/logo1/105643874_571111206863795_2713819376116015751_n_34110256212.jpg', 456, 168, 'public/uploads/admin_logo/logo2/website_favicon_26561815396_28168193593.png', 123, 106, 'public/uploads/admin_logo/fav_icon/website_favicon_26561815396_138924398086.png', 123, 106, 'Techno Park Bangladesh', 1, 4, '2020-07-07 06:07:47', NULL, '2020-07-07 06:33:12');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_agents`
 --
 
@@ -142,6 +177,31 @@ CREATE TABLE `tbl_agents` (
 INSERT INTO `tbl_agents` (`id`, `user_id`, `user_role_id`, `name`, `district`, `phone`, `email`, `nid`, `address`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (8, 24, 8, 'Agent One', 'Dhaka', '01317243494', 'agentone@gmail.com', '5098768831', 'Road - 12', 1, 4, '2020-07-04 01:41:03', NULL, '2020-07-04 01:41:03'),
 (9, 25, 8, 'Agent Two', 'Mymensing', '01317243494', 'agenttwo@gmail.com', '5389567031', 'Road - 12', 1, 4, '2020-07-04 01:42:04', NULL, '2020-07-04 01:42:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_area`
+--
+
+CREATE TABLE `tbl_area` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `order_by` int(11) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_area`
+--
+
+INSERT INTO `tbl_area` (`id`, `name`, `description`, `status`, `order_by`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'Mirpur - 11', 'Mirpur - 11 assigns as a area for Quick Express Courier Company.', 1, 1, 4, '2020-07-06 07:11:42', NULL, '2020-07-06 07:11:53');
 
 -- --------------------------------------------------------
 
@@ -195,7 +255,8 @@ CREATE TABLE `tbl_booking_orders` (
 
 INSERT INTO `tbl_booking_orders` (`id`, `order_no`, `date`, `booked_type`, `sender_id`, `sender_name`, `sender_phone`, `sender_zone_type`, `sender_zone_id`, `sender_address`, `receiver_name`, `receiver_phone`, `receiver_zone_type`, `receiver_zone_id`, `receiver_address`, `courier_type_id`, `courier_unit_price`, `delivery_type_id`, `delivery_unit_price`, `uom`, `delivery_charge`, `collection_man_id`, `collection_status`, `sender_goods_receieve_status`, `host_warehouse_id`, `host_warehouse_goods_receieve_status`, `destination_warehouse_id`, `destination_warehouse_goods_receieve_status`, `receiver_issue_status`, `receiver_goods_receieve_status`, `delivery_man_id`, `delivery_status`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (18, 'co-200704-00001', '2020-07-04', 'Client', 3, 'Dew Hunt', '01317243494', 'Agent', 8, 'Mirpur - 11', 'Salman Sabbir', '01317463487', 'Agent', 9, 'Gulshan', 4, '200', 1, '120', '1', '320', NULL, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, 1, 4, '2020-07-04 11:38:17', NULL, '2020-07-04 11:38:17'),
-(19, 'co-200704-00002', '2020-07-04', 'Client', 10, 'Hira Moni Ahmed', '01317243499', 'Subagent', 4, 'Banani', 'Rakhi', '01725847560', 'Subagent', 5, 'Mohamdpur', 2, '250', 2, '100', '1', '350', NULL, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, 1, 4, '2020-07-04 11:40:38', NULL, '2020-07-04 11:50:56');
+(19, 'co-200704-00002', '2020-07-04', 'Client', 10, 'Hira Moni Ahmed', '01317243499', 'Subagent', 4, 'Banani', 'Rakhi', '01725847560', 'Subagent', 5, 'Mohamdpur', 2, '250', 2, '100', '1', '350', NULL, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, 1, 4, '2020-07-04 11:40:38', NULL, '2020-07-04 11:50:56'),
+(20, 'co-200705-00001', '2020-07-05', 'Client', 13, 'Salam', '01317243490', 'Agent', 8, 'Kazipara', 'Iru', '01317243494', 'Subagent', 4, 'Gulshan', 2, '250', 4, '130', '1', '380', NULL, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, 1, 4, '2020-07-05 05:44:56', NULL, '2020-07-05 05:44:56');
 
 -- --------------------------------------------------------
 
@@ -205,13 +266,16 @@ INSERT INTO `tbl_booking_orders` (`id`, `order_no`, `date`, `booked_type`, `send
 
 CREATE TABLE `tbl_clients` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `user_role_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `verification_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -223,11 +287,12 @@ CREATE TABLE `tbl_clients` (
 -- Dumping data for table `tbl_clients`
 --
 
-INSERT INTO `tbl_clients` (`id`, `user_id`, `user_role_id`, `name`, `phone`, `nid`, `email`, `address`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(3, 33, 4, 'Dew Hunt', '01317243494', '5089768831', 'dewhunt@gmail.com', 'Mirpur - 11', 1, 4, '2020-07-04 01:50:55', NULL, '2020-07-04 01:50:55'),
-(4, 34, 4, 'Mamunur Rashid', '01317243495', '3059962831', 'mamun@gmail.com', 'Gulshan', 1, 4, '2020-07-04 01:51:59', NULL, '2020-07-04 01:51:59'),
-(5, 36, 4, 'Mira', '01317243496', '7889768831', 'mira@gmail.com', 'Badda', 1, 4, '2020-07-04 01:53:13', NULL, '2020-07-04 01:53:13'),
-(10, 41, 4, 'Hira Moni Ahmed', '01317243499', NULL, NULL, NULL, 1, 4, '2020-07-04 11:40:38', NULL, '2020-07-04 11:50:56');
+INSERT INTO `tbl_clients` (`id`, `user_role_id`, `name`, `phone`, `nid`, `email`, `address`, `birth_date`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(3, 4, 'Dew Hunt', '01317243494', '5089768831', 'dewhunt@gmail.com', 'Mirpur - 11', NULL, NULL, NULL, NULL, 1, 4, '2020-07-04 01:50:55', NULL, '2020-07-04 01:50:55'),
+(4, 4, 'Mamunur Rashid', '01317243495', '3059962831', 'mamun@gmail.com', 'Gulshan', NULL, NULL, NULL, NULL, 1, 4, '2020-07-04 01:51:59', NULL, '2020-07-04 01:51:59'),
+(5, 4, 'Mira', '01317243496', '7889768831', 'mira@gmail.com', 'Badda', NULL, NULL, NULL, NULL, 1, 4, '2020-07-04 01:53:13', NULL, '2020-07-04 01:53:13'),
+(10, 4, 'Hira Moni Ahmed', '01317243499', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 4, '2020-07-04 11:40:38', NULL, '2020-07-04 11:50:56'),
+(13, 4, 'Salam', '01317243490', NULL, NULL, NULL, NULL, '$2y$10$wN.tPQtIQjwVuVlHUYa62uLXUj4e6DYhWealuuSt/EpXF6EBYtPFe', NULL, NULL, 1, 4, '2020-07-05 05:44:56', NULL, '2020-07-05 05:44:56');
 
 -- --------------------------------------------------------
 
@@ -270,6 +335,7 @@ CREATE TABLE `tbl_delivery_men` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `user_role_id` int(11) DEFAULT NULL,
+  `area_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `width` int(11) DEFAULT NULL,
@@ -278,6 +344,11 @@ CREATE TABLE `tbl_delivery_men` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `driving_licence` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bike_registration_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `verification_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -289,9 +360,9 @@ CREATE TABLE `tbl_delivery_men` (
 -- Dumping data for table `tbl_delivery_men`
 --
 
-INSERT INTO `tbl_delivery_men` (`id`, `user_id`, `user_role_id`, `name`, `image`, `width`, `height`, `phone`, `email`, `nid`, `address`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 22, 14, 'Delivery Man Shihab', 'public/uploads/profile_image/delivery_man/avatar-cutout_11428319470.png', 600, 600, '01716967610', 'shihab@gmail.com', '3059962831', 'Mirpur', 1, 4, '2020-06-22 03:42:35', 4, '2020-06-22 04:06:14'),
-(2, 23, 14, 'Delivery Man Dhiman', 'public/uploads/profile_image/delivery_man/images_76654677558.jpg', NULL, NULL, '01617243491', 'dhiman@gmail.com', '30519642831', 'Road - 12', 1, 4, '2020-06-22 04:20:41', 4, '2020-07-04 01:37:27');
+INSERT INTO `tbl_delivery_men` (`id`, `user_id`, `user_role_id`, `area_id`, `name`, `image`, `width`, `height`, `phone`, `email`, `nid`, `address`, `driving_licence`, `bike_registration_no`, `password`, `token`, `verification_code`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 22, 14, NULL, 'Delivery Man Shihab', 'public/uploads/profile_image/delivery_man/avatar-cutout_11428319470.png', 600, 600, '01716967610', 'shihab@gmail.com', '3059962831', 'Mirpur', NULL, NULL, NULL, NULL, NULL, 1, 4, '2020-06-22 03:42:35', 4, '2020-06-22 04:06:14'),
+(2, 23, 14, NULL, 'Delivery Man Dhiman', 'public/uploads/profile_image/delivery_man/images_76654677558.jpg', NULL, NULL, '01617243491', 'dhiman@gmail.com', '30519642831', 'Road - 12', NULL, NULL, NULL, NULL, NULL, 1, 4, '2020-06-22 04:20:41', 4, '2020-07-04 01:37:27');
 
 -- --------------------------------------------------------
 
@@ -515,7 +586,9 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (32, '29', 'Agent Receive', 'receiveFormAgent.index', 'fa fa-caret', 3, '1', '2020-07-01 05:06:42', '2020-07-04 05:40:35'),
 (33, '29', 'Issue Warehouse', 'issueToWarehouse.index', NULL, 4, '1', '2020-07-01 05:07:57', '2020-07-04 05:41:28'),
 (34, '29', 'Issue Agent', 'issueToAgent.index', NULL, 6, '1', '2020-07-01 05:50:00', '2020-07-04 05:41:41'),
-(36, '29', 'Warehouse Receive', 'receiveFromWarehouse.index', 'fa fa-caret', 5, '1', '2020-07-04 04:06:39', '2020-07-04 05:41:00');
+(36, '29', 'Warehouse Receive', 'receiveFromWarehouse.index', 'fa fa-caret', 5, '1', '2020-07-04 04:06:39', '2020-07-04 05:41:00'),
+(37, '13', 'Area Setup', 'areaSetup.index', NULL, 9, '1', '2020-07-06 07:04:45', '2020-07-06 07:04:45'),
+(38, '1', 'Admin Information', 'adminPanelInformation.index', 'fa fa-bars', 5, '1', '2020-07-07 03:46:55', '2020-07-07 03:55:31');
 
 -- --------------------------------------------------------
 
@@ -623,7 +696,13 @@ INSERT INTO `tbl_menu_actions` (`id`, `parent_menu_id`, `menu_type`, `action_nam
 (99, 32, 8, 'View', 'receiveFormAgent.view', 1, 1, '2020-07-01 05:08:30', '2020-07-01 05:09:28'),
 (100, 33, 8, 'View', 'issueToWarehouse.view', 1, 1, '2020-07-01 05:09:57', '2020-07-01 05:09:57'),
 (101, 34, 8, 'View', 'issueToAgent.view', 1, 1, '2020-07-01 05:54:00', '2020-07-01 05:54:00'),
-(103, 36, 8, 'View', 'receiveFromWarehouse.view', 1, 1, '2020-07-04 04:07:08', '2020-07-04 04:07:08');
+(103, 36, 8, 'View', 'receiveFromWarehouse.view', 1, 1, '2020-07-04 04:07:08', '2020-07-04 04:07:08'),
+(104, 37, 1, 'Add', 'areaSetup.add', 1, 1, '2020-07-06 07:05:12', '2020-07-06 07:05:12'),
+(105, 37, 2, 'Edit', 'areaSetup.edit', 2, 1, '2020-07-06 07:05:23', '2020-07-06 07:05:23'),
+(106, 37, 3, 'Status', 'areaSetup.status', 3, 1, '2020-07-06 07:05:40', '2020-07-06 07:05:40'),
+(107, 37, 4, 'Delete', 'areaSetup.delete', 4, 1, '2020-07-06 07:05:50', '2020-07-06 07:05:50'),
+(108, 38, 1, 'Add', 'adminPanelInformation.add', 1, 1, '2020-07-07 03:52:28', '2020-07-07 03:52:28'),
+(109, 38, 2, 'Edit', 'adminPanelInformation.edit', 2, 1, '2020-07-07 03:52:38', '2020-07-07 03:52:38');
 
 -- --------------------------------------------------------
 
@@ -1360,7 +1439,7 @@ CREATE TABLE `tbl_user_roles` (
 --
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
-(2, 'Super User', NULL, 1, 1, '1,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,19,20,25,21,22', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,89,90,91,92,84,85,88,86,87', '2019-04-17 00:50:05', '2020-06-22 01:42:10'),
+(2, 'Super User', NULL, 1, 1, '1,2,3,4,5,38,6,7,8,10,11,12,13,14,15,16,17,18,19,20,25,37,21,22', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,89,90,91,92,104,105,106,107,84,85,88,86,87', '2019-04-17 00:50:05', '2020-07-07 03:55:08'),
 (3, 'Admin', NULL, 1, 1, '1,2,3,5', '2,3,4,11,12,13,14,15,21,22,23,24,25,26', '2019-04-17 00:52:54', '2020-06-10 23:31:43'),
 (4, 'Client', NULL, 1, 1, '', '', '2020-03-07 00:49:33', '2020-06-23 00:59:21'),
 (8, 'Agent', NULL, 1, 1, '21,23,24', '93,94', '2020-06-10 06:39:37', '2020-06-22 04:26:20'),
@@ -1411,6 +1490,9 @@ CREATE TABLE `tbl_website_information` (
   `website_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `prefix_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `website_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_one` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_two` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_three` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `logo_one` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `logo_two` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fav_icon` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1429,8 +1511,8 @@ CREATE TABLE `tbl_website_information` (
 -- Dumping data for table `tbl_website_information`
 --
 
-INSERT INTO `tbl_website_information` (`id`, `website_name`, `prefix_title`, `website_title`, `logo_one`, `logo_two`, `fav_icon`, `developed_by`, `meta_title`, `meta_keyword`, `meta_description`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'Dew Hunt', '|', 'Portfolio', 'public/uploads/site_logo/logo1/apollo-beast-making-of-2_193381422103.jpg', 'public/uploads/site_logo/logo2/Apollo-Tyres-Beast-Kampagne_188041158179.jpg', 'public/uploads/site_logo/fav_icon/67081606_2571169809589456_136986895279194112_n_38406452410.jpg', 'Dew Hunt', 'meta title', NULL, 'meta description', 1, 4, '2020-04-17 08:33:15', NULL, '2020-04-18 05:22:54');
+INSERT INTO `tbl_website_information` (`id`, `website_name`, `prefix_title`, `website_title`, `phone_one`, `phone_two`, `phone_three`, `logo_one`, `logo_two`, `fav_icon`, `developed_by`, `meta_title`, `meta_keyword`, `meta_description`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'Quick Express', '|', 'Quick Express', '+880 1916 304 877', NULL, NULL, 'public/uploads/site_logo/logo1/105643874_571111206863795_2713819376116015751_n_8188589146.jpg', 'public/uploads/site_logo/logo2/website_logo_transparent_00_32584348296.png', 'public/uploads/site_logo/fav_icon/website_favicon_26561815396_99212463332.png', 'Techno Park Bangladesh', 'Courier Service', NULL, 'Courier Service.', 1, 4, '2020-04-17 08:33:15', NULL, '2020-07-07 03:33:08');
 
 -- --------------------------------------------------------
 
@@ -1503,9 +1585,21 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `tbl_admin_panel_information`
+--
+ALTER TABLE `tbl_admin_panel_information`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_agents`
 --
 ALTER TABLE `tbl_agents`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_area`
+--
+ALTER TABLE `tbl_area`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1658,22 +1752,34 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `tbl_admin_panel_information`
+--
+ALTER TABLE `tbl_admin_panel_information`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tbl_agents`
 --
 ALTER TABLE `tbl_agents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `tbl_area`
+--
+ALTER TABLE `tbl_area`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tbl_booking_orders`
 --
 ALTER TABLE `tbl_booking_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_clients`
 --
 ALTER TABLE `tbl_clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_courier_types`
@@ -1715,13 +1821,13 @@ ALTER TABLE `tbl_marchants`
 -- AUTO_INCREMENT for table `tbl_menus`
 --
 ALTER TABLE `tbl_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_actions`
 --
 ALTER TABLE `tbl_menu_actions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_action_type`

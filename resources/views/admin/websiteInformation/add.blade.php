@@ -42,6 +42,27 @@
 
         <div class="row">
             <div class="col-md-4">
+                <label for="phone-number-one">Phone Number One</label>
+                <div class="form-group {{ $errors->has('phoneNumberOne') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" name="phoneNumberOne" value="" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="phone-number-two">Phone Number Two</label>
+                <div class="form-group {{ $errors->has('phoneNumberOne') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" name="phoneNumberTwo" value="" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="phone-number-three">Phone Number Three</label>
+                <div class="form-group {{ $errors->has('phoneNumberOne') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" name="phoneNumberThree" value="" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
             	<label for="website-logo">Website Logo - 1</label>
                 <div class="form-group {{ $errors->has('siteLogo1') ? ' has-danger' : '' }}">
                     <input type="file" class="form-control" id="siteLogo1" aria-describedby="fileHelp" name="siteLogo1">

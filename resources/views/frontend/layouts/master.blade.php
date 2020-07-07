@@ -21,8 +21,8 @@
 
 	{{-- website title --}}
 	<title>
-		{{@$website_information->website_name}} 
-		@if(@$title) {{@$website_information->prefix_title}} @endif {{ @$title }}
+		{{ @$website_information->website_name }} 
+		@if(@$title) {{ @$website_information->prefix_title }} @endif {{ @$title }}
 	</title>
 
 	@include('frontend.element.header.header_asset')

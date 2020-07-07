@@ -25,12 +25,12 @@
                 <div class="col-md-6"><h4 class="card-title">{{ $title }}</h4></div>
                 <div class="col-md-6">  
                     <span class="shortlink">
-                        @if ($websiteInformationCount == 0)
-                            <a style="font-size: 16px;" class="btn btn-outline-info btn-lg" href="{{ route('websiteInformation.add') }}">
+                        @if ($adminInformationCount == 0)
+                            <a style="font-size: 16px;" class="btn btn-outline-info btn-lg" href="{{ route('adminPanelInformation.add') }}">
                                 <i class="fa fa-plus-circle"></i> Add New
                             </a>
                         @else
-                            <a style="font-size: 16px;" class="btn btn-outline-info btn-lg" href="{{ route('websiteInformation.edit',$websiteInformation->id) }}">
+                            <a style="font-size: 16px;" class="btn btn-outline-info btn-lg" href="{{ route('adminPanelInformation.edit',$adminInformation->id) }}">
                                 <i class="fa fa-edit"></i> Edit
                             </a>
                         @endif
@@ -43,7 +43,7 @@
             <table class="table table-borderless table-sm">
                 <thead class="thead-dark">
                     <tr>
-                        <th colspan="6">Website Information</th>
+                        <th colspan="6">Admin Information</th>
                     </tr>
                 </thead>
 
@@ -51,61 +51,25 @@
                 	<tr>
                 		<td class="head_name">Website Name</td>
                 		<td class="head_colon">:</td>
-                		<td>{{ $websiteInformation->website_name }}</td>
+                		<td>{{ @$adminInformation->website_name }}</td>
                 	</tr>
 
                 	<tr>
                 		<td class="head_name">Website Prefix Title</td>
                 		<td class="head_colon">:</td>
-                		<td>{{ $websiteInformation->prefix_title }}</td>
+                		<td>{{ @$adminInformation->prefix_title }}</td>
                 	</tr>
 
                 	<tr>
                 		<td class="head_name">Website Title</td>
                 		<td class="head_colon">:</td>
-                		<td>{{ $websiteInformation->website_title }}</td>
+                		<td>{{ @$adminInformation->website_title }}</td>
                 	</tr>
-
-                    <tr>
-                        <td class="head_name">Phone Number One</td>
-                        <td class="head_colon">:</td>
-                        <td>{{ $websiteInformation->phone_one }}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="head_name">Phone Number Two</td>
-                        <td class="head_colon">:</td>
-                        <td>{{ $websiteInformation->phone_two }}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="head_name">Phone Number Three</td>
-                        <td class="head_colon">:</td>
-                        <td>{{ $websiteInformation->phone_three }}</td>
-                    </tr>
 
                 	<tr>
                 		<td class="head_name">Developed By</td>
                 		<td class="head_colon">:</td>
-                		<td>{{ $websiteInformation->developed_by }}</td>
-                	</tr>
-                	
-                	<tr>
-                		<td class="head_name">Meta Title</td>
-                		<td class="head_colon">:</td>
-                		<td>{{ $websiteInformation->meta_title }}</td>
-                	</tr>
-
-                	<tr>
-                		<td class="head_name">Meta Keyword</td>
-                		<td class="head_colon">:</td>
-                		<td>{{ $websiteInformation->meta_keyword }}</td>
-                	</tr>
-
-                	<tr>
-                		<td class="head_name">Meta Description</td>
-                		<td class="head_colon">:</td>
-                		<td>{{ $websiteInformation->meta_description }}</td>
+                		<td>{{ @$adminInformation->developed_by }}</td>
                 	</tr>
                 </tbody>
             </table>
@@ -120,13 +84,13 @@
             	<tbody align="center">
             		<tr>
             			<td>
-            				<img src="{{ asset($websiteInformation->logo_one) }}" width="150px" height="150px">
+            				<img src="{{ asset(@$adminInformation->logo_one) }}" width="150px" height="150px">
             			</td>
             			<td>
-            				<img src="{{ asset($websiteInformation->logo_two) }}" width="150px" height="150px">
+            				<img src="{{ asset(@$adminInformation->logo_two) }}" width="150px" height="150px">
             			</td>
             			<td>
-            				<img src="{{ asset($websiteInformation->fav_icon) }}" width="150px" height="150px">
+            				<img src="{{ asset(@$adminInformation->fav_icon) }}" width="150px" height="150px">
             			</td>
             		</tr>
 

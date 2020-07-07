@@ -61,6 +61,9 @@ class WebsiteInformationController extends Controller
             'website_name' => $request->siteName,
             'prefix_title' => $request->titlePrefix,
             'website_title' => $request->siteTitle,
+            'phone_one' => $request->phoneNumberOne,
+            'phone_two' => $request->phoneNumberTwo,
+            'phone_three' => $request->phoneNumberThree,
             'logo_one' => $logoOne,
             'logo_two' => $logoTwo,
             'fav_icon' => $favIcon,
@@ -130,6 +133,9 @@ class WebsiteInformationController extends Controller
             'website_name' => $request->siteName,
             'prefix_title' => $request->titlePrefix,
             'website_title' => $request->siteTitle,
+            'phone_one' => $request->phoneNumberOne,
+            'phone_two' => $request->phoneNumberTwo,
+            'phone_three' => $request->phoneNumberThree,
             'logo_one' => $logoOne,
             'logo_two' => $logoTwo,
             'fav_icon' => $favIcon,
@@ -140,6 +146,6 @@ class WebsiteInformationController extends Controller
             'created_by' => $this->userId,
         ]);
 
-        return redirect(route('websiteInformation.index'))->with('msg','Company Successfuly Updated');
+        return redirect(route('websiteInformation.index'))->with('msg','Website Information Successfuly Updated');
     }
 }

@@ -1,4 +1,4 @@
-@php    
+@php
     use Illuminate\Support\Facades\URL;
     $userId =  Auth::user()->id;
 @endphp
@@ -7,11 +7,11 @@
     <div class="navbar-header">
         <a class="navbar-brand logo-link" href="{{url('/admin')}}">
             <span class="small-logo">
-                <img src="{{asset('/')}}public/uploads/admin_logo/logo_small.png"  alt="mini" />
+                <img src="{{ asset($adminInformation->logo_two) }}"  alt="mini" />
             </span>
 
             <span class="logo-lg">
-                <img src="{{asset('/')}}public/uploads/images/2019_10_22/2019_10_22_13_06_15_000000-uNX0NHMGHBSRk08I9Bke.jpg" class="light-logo large-logo" alt="large" />
+                <img src="{{ asset($adminInformation->logo_one) }}" class="light-logo large-logo" alt="large" />
             </span>
         </a>
     </div>

@@ -3,7 +3,9 @@
 				<div class="col-lg-3 col-sm-6">
 					<div class="about-widget footer-widget">
 						<div class="logo-footer">
-							<a href="index.html" title="logo"><img src="{{ asset('public/frontend/asset') }}/images/logo-white.png" alt="logo"></a>
+							<a href="index.html" title="logo">
+								<img src="{{ asset(@$website_information->logo_two) }}" alt="logo">
+							</a>
 						</div>
 						<p>There anyone who loves or pursues not some great to have pleasure.</p>
 						<div class="row">

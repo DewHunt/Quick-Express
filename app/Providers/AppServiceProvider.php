@@ -8,6 +8,7 @@ use View;
 use DB;
 
 use App\WebsiteInformation;
+use App\AdminPanelInformation;
 use App\Menu;
 use App\MenuAction;
 use App\SocialLinks;
@@ -67,9 +68,15 @@ class AppServiceProvider extends ServiceProvider
             $backLink->with('goBackLink',@$link); 
         });
 
+        //Link Admin Panel information
+        View::composer('*',function($adminInfo){
+            $adminInformation = AdminPanelInformation::first();
+            $adminInfo->with('adminInformation',$adminInformation);
+        });
+
         //Link Frontend information
         View::composer('*',function($siteInfo){
-            $website_information = WebsiteInformation::where('id',1)->first();
+            $website_information = WebsiteInformation::first();
             $siteInfo->with('website_information',$website_information);
         });
 

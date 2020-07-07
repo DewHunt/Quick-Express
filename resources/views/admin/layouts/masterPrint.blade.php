@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="icon" type="image/png" sizes="20x20" href="{{asset('/')}}public/uploads/admin_logo/logo_small.png">
-        <title>{{ $title }}</title>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($adminInformation->fav_icon) }}">
+
+        <title>{{ $adminInformation->website_name }} {{ $adminInformation->prefix_title }} Print {{ $adminInformation->prefix_title }}  {{ $title }}</title>
+
         <style>
             #report-table {
                 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
