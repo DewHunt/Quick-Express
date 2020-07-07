@@ -363,3 +363,5 @@ Route::prefix('merchant')->group(function(){
 	});
 
 });
+
+Route::any('/test-url', 'MerchantAuthController@login')->name('merchant.login');
