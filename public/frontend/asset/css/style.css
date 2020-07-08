@@ -182,7 +182,7 @@ ul {
 	font-family: 'Poppins', sans-serif;
 	font-size: 14px;
 	font-weight: 600px;
-	padding: 14px 28px;
+	/*padding: 14px 28px;*/
 	border: 1px solid #F8A555;
 	text-transform: uppercase;
 	-webkit-transition: none;
@@ -1981,7 +1981,8 @@ select.form-control:not([size]):not([multiple]) {
 
 .quotation-form label {
 	font-family: 'Poppins', sans-serif;
-	color: #232;
+    color: #464444;
+    font-size: 14px;
 }
 
 .request-button .btn-primary {

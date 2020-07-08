@@ -55,6 +55,10 @@ return [
             'driver' => 'session',
             'provider' => 'tbl_delivery_men',
         ],
+        'merchant' => [
+            'driver' => 'session',
+            'provider' => 'tbl_marchants',
+        ],
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -96,6 +100,10 @@ return [
         'tbl_delivery_men' => [
             'driver' => 'eloquent',
             'model' => App\DeliveryMan::class,
+        ],
+        'tbl_marchants' => [
+            'driver' => 'eloquent',
+            'model' => App\Marchant::class,
         ],
 
         'admins' => [
@@ -139,6 +147,11 @@ return [
         ],
         'tbl_delivery_men' => [
             'provider' => 'tbl_delivery_men',
+            'table' => 'password_resets',
+            'expire' => 120,
+        ],
+        'tbl_marchants' => [
+            'provider' => 'tbl_marchants',
             'table' => 'password_resets',
             'expire' => 120,
         ],

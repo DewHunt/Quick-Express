@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Biker;
+namespace App\Http\Controllers\Auth\Merchant;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,55 +8,46 @@ use Illuminate\Support\Facades\Validator;
 use Auth;
 use DB;
 
-use App\DeliveryMan;
 use App\Admin;
+use App\Marchant;
 use App\WebsiteInformation;
-use App\AreaSetup;
 
-class BikerAuthController extends Controller
+class MerchantAuthController extends Controller
 {   public function __construct()
     {
-        $this->middleware('guest:biker')->except('logout');
+        $this->middleware('guest:merchant')->except('logout');
     }
 
     public function registration(){
-        $title = 'Create Biker Account';
-        $area_list = AreaSetup::where('status',1)->orderBy('order_by','asc')->get();
+        $title = 'Create Merchant Account';
         if(count(request()->all()) > 0){
             $this->validate(request(), [
                 'name' => ['required', 'string', 'max:255'],
-                'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tbl_delivery_men'],
-                'phone' => ['required', 'string', 'max:255', 'unique:tbl_delivery_men'],
-                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'area_id' => ['required'],
-                'driving_licence' => ['required', 'string', 'max:255', 'unique:tbl_delivery_men'],
-                'bike_registration_no' => ['required', 'string', 'max:255', 'unique:tbl_delivery_men'],
+
+                'contact_person_name' => ['required', 'string', 'max:255'],
+
+                'contact_person_phone' => ['required', 'string', 'max:255', 'unique:tbl_marchants'],
+
+                'contact_person_email' => ['nullable', 'string', 'email', 'max:255', 'unique:tbl_marchants'],
+
+                'trade_licence_no' => ['required', 'string', 'max:255', 'unique:tbl_marchants'],
+
                 'password' => ['required', 'string', 'min:6', 'same:confirm_password'],
+
                 'confirm_password' => ['required', 'string', 'min:6'],
             ]);
 
-            if(request()->image)
-            {
-                $width = '600';
-                $height = '600';
-                $image = \App\HelperClass::UploadImage(request()->image,'tbl_delivery_men','public/uploads/profile_image/delivery_man/',@$width,@$height);
-            }
-
-            if(request()->area_id){
-               request()->area_id = implode(',', request()->area_id); 
-            }
-
-            if(request()->email != ''){
+            if(request()->contact_person_email != ''){
                 $random_code = rand(10000000000000,99999999999999);
-                $verification_code = $random_code.base64_encode(request()->email);
+                $verification_code = $random_code.base64_encode(request()->contact_person_email);
                 $username = explode(' ',trim(request()->name));
-                $existAdmin = Admin::where('email',request()->email)->first();
+                $existAdmin = Admin::where('email',request()->contact_person_email)->first();
                 if(!@$existAdmin){
                     $admin = Admin::create( [           
-                        'role' => '14',     
+                        'role' => '12',     
                         'name' => request()->name,               
-                        'phone' => request()->phone,              
-                        'email' => request()->email,           
+                        'phone' => request()->contact_person_phone,              
+                        'email' => request()->contact_person_email,           
                         'username' => $username[0],           
                         'password' => bcrypt(request()->password),                      
                     ]);
@@ -64,28 +55,24 @@ class BikerAuthController extends Controller
                     $admin = $existAdmin;
                 }
 
-                $biker = DeliveryMan::create([
+                $merchant = Marchant::create([
                     'user_id' => $admin->id ,
                     'user_role_id' => $admin->role,
                     'name' => request()->name,
-                    'image' => $image,
-                    'width' => @$width,
-                    'height' => @$height,
-                    'phone' => request()->phone,
-                    'email' => request()->email,
-                    'address' => request()->address,
-                    'driving_licence' => request()->driving_licence,
-                    'bike_registration_no' => request()->bike_registration_no,
-                    'area_id' => request()->area_id,
+                    'contact_person_name' => request()->contact_person_name,
+                    'contact_person_phone' => request()->contact_person_phone,
+                    'contact_person_email' => request()->contact_person_email,
+                    'trade_licence_no' => request()->trade_licence_no,
+                    'address' => request()->address,        
+                    'password' => bcrypt(request()->password),
                     'token'=> request()->_token,
-                    'verification_code'=> $verification_code,        
-                    'password' => bcrypt(request()->password), 
+                    'verification_code'=> $verification_code, 
                     'status'=>'0'
                 ]);
                 
-                $to = request()->email;
+                $to = request()->contact_person_email;
                 $subject = "Email Verification";
-                $verification_link = route('biker.verificationLink',['token'=>request()->_token,'email'=>request()->email,'code'=>$verification_code,'pwd'=>base64_encode(request()->password)]);
+                $verification_link = route('merchant.verificationLink',['token'=>request()->_token,'email'=>request()->contact_person_email,'code'=>$verification_code,'pwd'=>base64_encode(request()->password)]);
                 $message_body = $this->verifyEmailBodyTemplate(request()->name,$verification_link);
                 
                 // Always set content-type when sending HTML email
@@ -96,60 +83,56 @@ class BikerAuthController extends Controller
                 $headers .= 'From:Quick Express <support@technoparkbd.com>' . "\r\n";
                 $headers .= 'Cc: support@technoparkbd.com' . "\r\n";
                 
-                if(@$biker){
+                if(@$merchant){
                     mail($to, $subject, $message_body, $headers);
-                    return redirect(route('biker.registration'))->with('message','Your registation complete, Check your email inbox/spam for confimation. It may be take some time');
+                    return redirect(route('merchant.registration'))->with('message','Your registation complete, Check your email inbox/spam for confimation. It may be take some time');
                 }
             }else{
-                request()->email = str_replace(' ', '_', request()->name).substr(request()->phone, -3).'@gmail.com';
+                request()->contact_person_email = str_replace(' ', '_', request()->name).substr(request()->phone, -3).'@gmail.com';
                 $username = explode(' ',trim(request()->name));
-                $existAdmin = Admin::where('email',request()->email)->first();
+                $existAdmin = Admin::where('email',request()->contact_person_email)->first();
                 if(!@$existAdmin){
                     $admin = Admin::create( [           
-                        'role' => '14',     
+                        'role' => '12',     
                         'name' => request()->name,               
-                        'phone' => request()->phone,              
-                        'email' => request()->email,           
+                        'phone' => request()->contact_person_phone,              
+                        'email' => request()->contact_person_email,           
                         'username' => $username[0],           
-                        'password' => bcrypt(request()->password),                      
+                        'password' => bcrypt(request()->password),                       
                     ]);
                 }else{
                     $admin = $existAdmin;
                 }
 
-                $biker = DeliveryMan::create([
+                $merchant = Marchant::create([
                     'user_id' => $admin->id ,
                     'user_role_id' => $admin->role,
                     'name' => request()->name,
-                    'image' => $image,
-                    'width' => @$width,
-                    'height' => @$height,
-                    'phone' => request()->phone,
-                    'address' => request()->address,
-                    'driving_licence' => request()->driving_licence,
-                    'bike_registration_no' => request()->bike_registration_no,
-                    'area_id' => request()->area_id,       
-                    'password' => bcrypt(request()->password),  
-                    'status'=>'1'
+                    'contact_person_name' => request()->contact_person_name,
+                    'contact_person_phone' => request()->contact_person_phone,
+                    'trade_licence_no' => request()->trade_licence_no,
+                    'address' => request()->address,        
+                    'password' => bcrypt(request()->password),
+                    'status'=>'0'
 
                 ]);
 
-                if(@$biker){
-                    return redirect(route('biker.registration'))->with('message','Your registation complete');
+                if(@$merchant){
+                    return redirect(route('merchant.registration'))->with('message','Your registation complete');
                 }
             }
         }
-       return view('frontend.biker.auth.registration')->with(compact('title','area_list')); 
+       return view('frontend.merchant.auth.registration')->with(compact('title')); 
     }
 
     public function completeRegistration(){
         $title = 'Complete Your Registration';
         $password = base64_decode(request()->pwd);
 
-        if(Auth::guard('biker')->attempt(['email'=> request()->email,'password'=>$password,'token'=>request()->token,'verification_code'=>request()->code]))
+        if(Auth::guard('merchant')->attempt(['email'=> request()->contact_person_email,'password'=>$password,'token'=>request()->token,'verification_code'=>request()->code]))
         {   
-            $biker = DeliveryMan::find(Auth::guard('biker')->user()->id);
-            $biker->update([
+            $merchant = Marchant::find(Auth::guard('merchant')->user()->id);
+            $merchant->update([
                 'verification_code'=>'',
                 'status'=>'1'
             ]);
@@ -167,27 +150,27 @@ class BikerAuthController extends Controller
 
         if(count(request()->all()) > 0){
             if (is_numeric(request()->email)) {
-                $field = 'phone';
+                $field = 'contact_person_phone';
             } elseif (filter_var(request()->email, FILTER_VALIDATE_EMAIL)) {
-                $field = 'email';
+                $field = 'contact_person_email';
             }
 
-            $biker = DeliveryMan::where($field,request()->email)->first();
-            if(@$biker && $biker->status == 0){
-                return redirect(route('biker.login'))->withErrors([
+            $merchant = Marchant::where($field,request()->email)->first();
+            if(@$merchant && $merchant->status == 0){
+                return redirect(route('merchant.login'))->withErrors([
                     'error' => 'You are not active member',
                 ])->withInput();
-            }elseif(Auth::guard('biker')->attempt([$field => request()->email, 'password'=> request()->password]))
+            }elseif(Auth::guard('merchant')->attempt([$field => request()->email, 'password'=> request()->password]))
             {
                 return redirect()->intended(url('/'));
             }else{
-                return redirect(route('biker.login'))->withErrors([
+                return redirect(route('merchant.login'))->withErrors([
                     'error' => 'These credentials do not match our records.',
                 ])->withInput();
             }
         }
 
-        return view('frontend.biker.auth.login')->with(compact('title'));
+        return view('frontend.merchant.auth.login')->with(compact('title'));
     }
 
     public function verifyEmailBodyTemplate($name,$verification_link){
@@ -241,7 +224,7 @@ class BikerAuthController extends Controller
 
     public function logout()
     {
-        Auth::logout('biker');
+        Auth::logout('merchant');
 
         return redirect(url('/'));
     }
