@@ -130,12 +130,10 @@
 					</div>
 
 					<div class="row">
-						<div class="col-lg-8">
-							<a class="btn btn-success" href="{{ route('user.login') }}">
+						<div class="col-lg-12 text-right">
+							<a class="btn btn-success" href="{{ route('biker.login') }}">
 								Already Have Account ? Login Here
 							</a>
-						</div>
-						<div class="col-lg-4 text-right">
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>

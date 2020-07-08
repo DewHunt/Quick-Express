@@ -31,7 +31,7 @@
 		                </div>
 		            @endif
 					<div class="quotation-block">
-						<form action="{{ route('biker.login') }}" class="quotation-form" method="post">
+						<form action="{{ route('merchant.login') }}" class="quotation-form" method="post">
 							{{ csrf_field() }}
 							<div class="row">
 								<div class="col-lg-12">
@@ -79,10 +79,10 @@
 
 							<div class="row">
 								<div class="col-lg-12 text-center">
-									<a class="btn btn-success" href="{{ route('biker.registration') }}">
+									<a class="btn btn-success" href="{{ route('merchant.registration') }}">
 										Create Acount
 									</a>
-									<a class="btn btn-info" href="{{ route('biker.registration') }}">
+									<a class="btn btn-info" href="{{ route('merchant.registration') }}">
 										Forget Password ?
 									</a>
 									<button type="submit" class="btn btn-primary">Login</button>

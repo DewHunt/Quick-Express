@@ -18,7 +18,7 @@ class CustomerAuthController extends Controller
     }
 
     public function registration(Request $request){
-        $title = 'Create Your Account';
+        $title = 'Create User Account';
 
         if(count($request->all()) > 0){
             $this->validate(request(), [

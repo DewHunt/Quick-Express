@@ -307,13 +307,6 @@ Route::get('/','FrontendController@index');
 
 //code for custom/user
 Route::prefix('user')->group(function(){
-	Route::namespace('Auth\Customer')->group(function () { 
-		Route::match(['GET', 'POST'], '/registration', 'CustomerAuthController@registration')->name('user.registration');
-		Route::match(['GET'], '/verification', 'CustomerAuthController@completeRegistration')->name('user.verificationLink');
-
-		Route::match(['GET', 'POST'], '/login', 'CustomerAuthController@login')->name('user.login');
-	});
-
 	//authentication for customer
 	Route::middleware('auth:customer')->group(function(){
 		Route::any('/dashboard', 'CustomerController@dashboard')->name('user.dashboard');
@@ -331,13 +324,6 @@ Route::prefix('user')->group(function(){
 
 //code for biker
 Route::prefix('biker')->group(function(){
-	Route::namespace('Auth\Biker')->group(function () { 
-		Route::any('/registration', 'BikerAuthController@registration')->name('biker.registration');
-		Route::any('/verification', 'BikerAuthController@completeRegistration')->name('biker.verificationLink');
-
-		Route::any('/login', 'BikerAuthController@login')->name('biker.login');
-	});
-
 	//authentication for biker
 	Route::middleware('auth:biker')->group(function(){
 		Route::any('/dashboard', 'BikerController@dashboard')->name('biker.dashboard');
@@ -350,18 +336,44 @@ Route::prefix('biker')->group(function(){
 
 //code for merchant
 Route::prefix('merchant')->group(function(){
-	Route::namespace('Auth\Merchant')->group(function () { 
-		Route::any('/registration', 'MerchantAuthController@registration')->name('merchant.registration');
-		Route::any('/verification', 'MerchantAuthController@completeRegistration')->name('merchant.verificationLink');
-
-		Route::any('/login', 'MerchantAuthController@login')->name('merchant.login');
-	});
-
 	//authentication for merchant
 	Route::middleware('auth:merchant')->group(function(){
-		
+		Route::any('/dashboard', 'MerchantController@dashboard')->name('merchant.dashboard');
+		Route::any('/profile', 'MerchantController@profile')->name('merchant.profile');
+		Route::any('/profile-edit', 'MerchantController@editProfile')->name('merchant.editProfile');
+		Route::any('/logout', 'Auth\Merchant\MerchantAuthController@logout')->name('merchant.logout');
 	});
 
 });
 
-Route::any('/test-url', 'MerchantAuthController@login')->name('merchant.login');
+Route::middleware('IfNotLoggedIn')->group(function(){
+	//code for customer/user
+	Route::prefix('user')->group(function(){
+		Route::namespace('Auth\Customer')->group(function () { 
+			Route::match(['GET', 'POST'], '/registration', 'CustomerAuthController@registration')->name('user.registration');
+			Route::match(['GET'], '/verification', 'CustomerAuthController@completeRegistration')->name('user.verificationLink');
+
+			Route::match(['GET', 'POST'], '/login', 'CustomerAuthController@login')->name('user.login');
+		});
+	});
+
+	//code for biker
+	Route::prefix('biker')->group(function(){
+		Route::namespace('Auth\Biker')->group(function () { 
+			Route::any('/registration', 'BikerAuthController@registration')->name('biker.registration');
+			Route::any('/verification', 'BikerAuthController@completeRegistration')->name('biker.verificationLink');
+
+			Route::any('/login', 'BikerAuthController@login')->name('biker.login');
+		});
+	});
+
+	//code for merchant
+	Route::prefix('merchant')->group(function(){
+		Route::namespace('Auth\Merchant')->group(function () { 
+			Route::any('/registration', 'MerchantAuthController@registration')->name('merchant.registration');
+			Route::any('/verification', 'MerchantAuthController@completeRegistration')->name('merchant.verificationLink');
+
+			Route::any('/login', 'MerchantAuthController@login')->name('merchant.login');
+		});
+	});
+});

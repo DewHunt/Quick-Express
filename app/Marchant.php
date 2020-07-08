@@ -2,14 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Marchant extends Model
-{
+class Marchant extends Authenticatable
+{	use Notifiable;
 	protected $table = "tbl_marchants";
 
     protected $fillable = [
-    	'user_id','user_role_id','name','contact_person','phone','email','address','status','created_by','updated_by'
+    	'user_id','user_role_id','name','contact_person_name','contact_person_phone','contact_person_email','trade_licence_no','address','password','token','verification_code','status','created_by','updated_by'
     ];
 
 	protected $hidden = [

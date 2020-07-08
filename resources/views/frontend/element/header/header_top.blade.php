@@ -17,6 +17,19 @@
 								</a>
 							</li>
 
+						{{-- when login a merchant man --}}
+						@elseif(Auth::guard('merchant')->user())
+							<li class="login">
+								<a href="{{ route('merchant.dashboard') }}" title="Login">
+									<i class="las la-share-square"></i> Dashboard 
+								</a>
+							</li>
+							<li>
+								<a href="{{ route('merchant.logout') }}" title="Create an account">
+									<i class="las la-user"></i> Logout
+								</a>
+							</li>
+
 						{{-- when login a delivery man --}}
 						@elseif(Auth::guard('biker')->user())
 							<li class="login">
@@ -43,7 +56,7 @@
 							</li>
 
 							<li class="login">
-								<a href="{{ route('user.registration') }}" title="Create an account">
+								<a href="{{ route('merchant.registration') }}" title="Create an account">
 									<i class="las la-user"></i> Merchant Registration
 								</a>
 							</li>
