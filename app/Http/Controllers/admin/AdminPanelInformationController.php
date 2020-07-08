@@ -63,6 +63,8 @@ class AdminPanelInformationController extends Controller
             'website_name' => $request->siteName,
             'prefix_title' => $request->titlePrefix,
             'website_title' => $request->siteTitle,
+            'developed_by' => $request->developedBy,
+            'developer_website_link' => $request->developerWebsiteLink,
             'logo_one' => $logoOne,
             'logo_one_width' => $request->siteLogo1Width,
             'logo_one_height' => $request->siteLogo1Height,
@@ -72,7 +74,6 @@ class AdminPanelInformationController extends Controller
             'fav_icon' => $favIcon,
             'fav_icon_width' => $request->sitefavIconWidth,
             'fav_icon_height' => $request->sitefavIconHeight,
-            'developed_by' => $request->developedBy,
             'created_by' => $this->userId,
         ]);
 
@@ -144,9 +145,8 @@ class AdminPanelInformationController extends Controller
             'website_name' => $request->siteName,
             'prefix_title' => $request->titlePrefix,
             'website_title' => $request->siteTitle,
-            'phone_one' => $request->phoneNumberOne,
-            'phone_two' => $request->phoneNumberTwo,
-            'phone_three' => $request->phoneNumberThree,
+            'developed_by' => $request->developedBy,
+            'developer_website_link' => $request->developerWebsiteLink,
             'logo_one' => $logoOne,
             'logo_one_width' => $siteLogo1Width,
             'logo_one_height' => $siteLogo1Height,
@@ -156,11 +156,7 @@ class AdminPanelInformationController extends Controller
             'fav_icon' => $favIcon,
             'fav_icon_width' => $sitefavIconWidth,
             'fav_icon_height' => $sitefavIconHeight,
-            'developed_by' => $request->developedBy,
-            'meta_title' => $request->metaTitle,
-            'meta_keyword' => $request->metaKeyword,
-            'meta_description' => $request->metaDescription,
-            'created_by' => $this->userId,
+            'updated_by' => $this->userId,
         ]);
 
         return redirect(route('adminPanelInformation.index'))->with('msg','Admin Information Successfuly Updated');

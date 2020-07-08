@@ -92,7 +92,7 @@
 
             <!-- footer -->
             <footer class="footer">
-                © {{ date('Y') }} Developed by <a target="_blank" href="http://www.technoparkbd.com/">Techno Park</a>           
+                © {{ date('Y') }} Developed by <a target="_blank" href="{{ $adminInformation->developer_website_link }}">{{ $adminInformation->developed_by }}</a>
             </footer>
             <!-- End footer -->
 

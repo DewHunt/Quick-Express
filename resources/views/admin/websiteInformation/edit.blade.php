@@ -15,33 +15,47 @@
     	</div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group {{ $errors->has('siteName') ? ' has-danger' : '' }}">
                     <label for="siteName">Website Name</label>
                         <input type="text" class="form-control form-control-danger" name="siteName" value="{{ $websiteInformation->website_name }}" required>
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
             	<label for="titlePrefix">Prefix of Title</label>
                 <div class="form-group {{ $errors->has('titlePrefix') ? ' has-danger' : '' }}">
                 	<input type="text" class="form-control form-control-danger" name="titlePrefix" value="{{ $websiteInformation->prefix_title }}" required>
                 </div>
             </div>
+
+            <div class="col-md-4">
+                <label for="siteTitle">Website Title</label>
+                <div class="form-group {{ $errors->has('siteTitle') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" name="siteTitle" value="{{ $websiteInformation->website_title }}" required>
+                </div>
+            </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row">            
+            <div class="col-md-4">
+                <label for="website-link">Website Link</label>
+                <div class="form-group {{ $errors->has('websiteLink') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" name="websiteLink" value="{{ $websiteInformation->developer_website_link }}" required>
+                </div>
+            </div>
+
+            <div class="col-md-4">
             	<label for="develpoed-by">Developed By</label>
                 <div class="form-group {{ $errors->has('developedBy') ? ' has-danger' : '' }}">
                 	<input type="text" class="form-control" name="developedBy" value="{{ $websiteInformation->developed_by }}" required>
                 </div>
             </div>
-
-            <div class="col-md-6">
-            	<label for="siteTitle">Website Title</label>
-                <div class="form-group {{ $errors->has('siteTitle') ? ' has-danger' : '' }}">
-                	<input type="text" class="form-control" name="siteTitle" value="{{ $websiteInformation->website_title }}" required>
+            
+            <div class="col-md-4">
+                <label for="developer-website-link">Developer Website Link</label>
+                <div class="form-group {{ $errors->has('developerWebsiteLink') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" name="developerWebsiteLink" value="{{ $websiteInformation->developer_website_link }}" required>
                 </div>
             </div>            
         </div>

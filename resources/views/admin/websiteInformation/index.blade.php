@@ -4,7 +4,7 @@
 	<style type="text/css">
 		.head_name {
 			font-weight: bold;
-			width: 160px;
+			width: 170px;
 		}
 
 		.head_colon {
@@ -67,6 +67,12 @@
                 	</tr>
 
                     <tr>
+                        <td class="head_name">Website Link</td>
+                        <td class="head_colon">:</td>
+                        <td>{{ $websiteInformation->website_link }}</td>
+                    </tr>
+
+                    <tr>
                         <td class="head_name">Phone Number One</td>
                         <td class="head_colon">:</td>
                         <td>{{ $websiteInformation->phone_one }}</td>
@@ -89,6 +95,12 @@
                 		<td class="head_colon">:</td>
                 		<td>{{ $websiteInformation->developed_by }}</td>
                 	</tr>
+
+                    <tr>
+                        <td class="head_name">Developer Website Link</td>
+                        <td class="head_colon">:</td>
+                        <td>{{ $websiteInformation->developer_website_link }}</td>
+                    </tr>
                 	
                 	<tr>
                 		<td class="head_name">Meta Title</td>

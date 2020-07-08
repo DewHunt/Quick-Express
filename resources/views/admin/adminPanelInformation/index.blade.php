@@ -4,7 +4,7 @@
 	<style type="text/css">
 		.head_name {
 			font-weight: bold;
-			width: 160px;
+			width: 170px;
 		}
 
 		.head_colon {
@@ -71,6 +71,12 @@
                 		<td class="head_colon">:</td>
                 		<td>{{ @$adminInformation->developed_by }}</td>
                 	</tr>
+
+                    <tr>
+                        <td class="head_name">Developer Website Link</td>
+                        <td class="head_colon">:</td>
+                        <td>{{ @$adminInformation->developer_website_link }}</td>
+                    </tr>
                 </tbody>
             </table>
 
