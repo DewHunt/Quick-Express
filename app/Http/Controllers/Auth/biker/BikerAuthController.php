@@ -153,7 +153,7 @@ class BikerAuthController extends Controller
                 'verification_code'=>'',
                 'status'=>'1'
             ]);
-            return redirect()->intended(url('/'));
+            return redirect()->intended(route('biker.dashboard'));
         }
         else
         {   
@@ -179,7 +179,7 @@ class BikerAuthController extends Controller
                 ])->withInput();
             }elseif(Auth::guard('biker')->attempt([$field => request()->email, 'password'=> request()->password]))
             {
-                return redirect()->intended(url('/'));
+                return redirect()->intended(route('biker.dashboard'));
             }else{
                 return redirect(route('biker.login'))->withErrors([
                     'error' => 'These credentials do not match our records.',

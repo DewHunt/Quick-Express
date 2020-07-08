@@ -15,6 +15,14 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                @if(file_exists($profile->image))
+                    <img src="{{ asset($profile->image) }}" style="height: 120px;">
+                @endif
+            </div>
+        </div>
+
         <div class="table-responsive">
             <table class="table table-bordered table-sm booking_info">
                 <tbody>

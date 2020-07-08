@@ -1,11 +1,11 @@
 @extends('frontend.layouts.master') 
 
 @section('content')
-<style type="text/css">
-	textarea{
-		height: unset !important;
-	}
-</style>
+	<style type="text/css">
+		textarea{
+			height: unset !important;
+		}
+	</style>
 	<div id="quotation" class="quotation-main-block" style="background-image: url('{{ asset('public/frontend') }}images/bg/consult-bg.jpg')">
 		<div class="container">
 			<div class="section text-center">
@@ -37,10 +37,10 @@
 					<div class="row">
 						<div class="col-lg-6 col-sm-6">
 							<div class="form-group">
-								<label for="name">Owner Name 
+								<label for="name">Business Name 
 									<span>*</span>
 								</label>
-								<input type="text" name="name" class="form-control" id="name" placeholder="owner name of merchant" value="{{ old('name') }}" required>
+								<input type="text" name="name" class="form-control" id="name" placeholder="business name of merchant" value="{{ old('name') }}" required>
 							</div>
 						</div>
 						<div class="col-lg-6 col-sm-6">

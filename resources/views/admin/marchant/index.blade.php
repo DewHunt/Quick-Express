@@ -30,8 +30,8 @@
                 		<tr class="row_{{ $marchant->id }}">
                 			<td>{{ $sl++ }}</td>
                 			<td>{{ $marchant->name }}</td>
-                			<td>{{ $marchant->contact_person }}</td>
-                            <td>{{ $marchant->phone }}</td>
+                			<td>{{ $marchant->contact_person_name }}</td>
+                            <td>{{ $marchant->contact_person_phone }}</td>
                 			<td>
                                 @php
                                     echo \App\Link::status($marchant->id,$marchant->status);

@@ -25,9 +25,17 @@ class CustomerAuthController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tbl_clients'],
                 'phone' => ['required', 'string', 'max:255', 'unique:tbl_clients'],
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'password' => ['required', 'string', 'min:6', 'same:confirm_password'],
                 'confirm_password' => ['required', 'string', 'min:6'],
             ]);
+
+            if(request()->image)
+            {
+                $width = '600';
+                $height = '600';
+                $image = \App\HelperClass::UploadImage(request()->image,'tbl_clients','public/uploads/profile_image/client/',@$width,@$height);
+            }
 
             if($request->email != ''){
                 $random_code = rand(10000000000000,99999999999999);
@@ -36,7 +44,8 @@ class CustomerAuthController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                     'phone' => $request->phone,
-                    'address' => $request->address,          
+                    'address' => $request->address,
+                    'image' => @$image,          
                     'password' => bcrypt($request->password),
                     'token'=>$request->_token,
                     'verification_code'=>$verification_code,
@@ -63,7 +72,8 @@ class CustomerAuthController extends Controller
                 $user = Client::create([
                     'name' => $request->name,
                     'phone' => $request->phone,
-                    'address' => $request->address,          
+                    'address' => $request->address,
+                    'image' => @$image,          
                     'password' => bcrypt($request->password),
                     'token'=>$request->_token,
                     'verification_code'=>'',
@@ -89,7 +99,7 @@ class CustomerAuthController extends Controller
                 'verification_code'=>'',
                 'status'=>'1'
             ]);
-            return redirect()->intended(url('/'));
+            return redirect()->intended(route('user.dashboard'));
         }
         else
         {   
@@ -115,7 +125,7 @@ class CustomerAuthController extends Controller
                 ])->withInput();
             }elseif(Auth::guard('customer')->attempt([$field => request()->email, 'password'=> request()->password]))
             {
-                return redirect()->intended(url('/'));
+                return redirect()->intended(route('user.dashboard'));
             }else{
                 return redirect(route('user.login'))->withErrors([
                     'error' => 'These credentials do not match our records.',

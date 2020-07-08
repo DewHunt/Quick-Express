@@ -317,7 +317,7 @@ Route::prefix('user')->group(function(){
 	//authentication for customer
 	Route::middleware('auth:customer')->group(function(){
 		Route::any('/dashboard', 'CustomerController@dashboard')->name('user.dashboard');
-		Route::any('/profile', 'CustomerController@profile')->name('user.profile');
+		Route::any('/profile', 'CustomerController@profile')->name('user.customerProfile');
 		Route::any('/profile-edit', 'CustomerController@editProfile')->name('user.editProfile');
 		Route::any('/booking', 'BookingController@index')->name('user.booking');
 		Route::any('/booking/create', 'BookingController@create')->name('user.bookingCreate');
