@@ -381,7 +381,7 @@ Route::middleware('IfNotLoggedIn')->group(function(){
 			Route::any('/verification', 'MerchantAuthController@completeRegistration')->name('merchant.verificationLink');
 
 			Route::any('/login', 'MerchantAuthController@login')->name('merchant.login');
-			Route::any('/login-testi', 'MerchantAuthController@login')->name('merchant.login');
+			Route::any('/login-test', 'MerchantAuthController@login')->name('merchant.login');
 		});
 	});
 });
