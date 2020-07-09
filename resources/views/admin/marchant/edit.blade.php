@@ -27,7 +27,7 @@
             <div class="col-md-6">
                 <label for="contact-person-name">Contact Person Name</label>
                 <div class="form-group {{ $errors->has('contactPerson') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Contact Person Name" name="contactPerson" value="{{ $marchant->contact_person }}">
+                    <input type="text" class="form-control" placeholder="Contact Person Name" name="contactPerson" value="{{ $marchant->contact_person_name }}">
                     @if ($errors->has('contactPerson'))
                         @foreach($errors->get('contactPerson') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -41,7 +41,7 @@
             <div class="col-md-6">
                 <label for="Phone">Phone</label>
                 <div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Menu link" name="phone" value="{{ $marchant->phone }}">
+                    <input type="text" class="form-control" placeholder="Menu link" name="phone" value="{{ $marchant->contact_person_phone }}">
                     @if ($errors->has('phone'))
                         @foreach($errors->get('phone') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -78,7 +78,7 @@
             <div class="col-md-6">
                 <label for="email">Email</label>
                 <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="fa fa-icon" name="email" value="{{ $marchant->email }}">
+                    <input type="text" class="form-control" placeholder="fa fa-icon" name="email" value="{{ $marchant->contact_person_email }}">
                     @if ($errors->has('email'))
                         @foreach($errors->get('email') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>

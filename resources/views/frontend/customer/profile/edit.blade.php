@@ -22,41 +22,64 @@
                 </div>
 
                 <div class="col-lg-6 col-sm-6">
-                    <div class="form-group">
-                        <label for="nid">Date of Birth</label>
-                        <input type="text" name="birth_date" class="form-control datepicker" value="{{ $birth_date  }}" required="">
-                    </div>
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="nid">Date of Birth</label>
+                                <input type="text" name="birth_date" class="form-control datepicker" value="{{ $birth_date  }}" required="">
+                            </div>
+                        </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="phone">Phone No
-                        </label>
-                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone No." value="{{ $profile->phone }}" required>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="phone">Phone No
+                                </label>
+                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone No." value="{{ $profile->phone }}" required>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{ $profile->email }}">
-                    </div>
+                    
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-6 col-sm-6">
-                    <div class="form-group">
-                        <label for="nid">National ID No</label>
-                        <input type="number" name="nid" class="form-control" placeholder="nid no" value="{{ $profile->nid }}" required="">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{ $profile->email }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="nid">National ID No</label>
+                                <input type="number" name="nid" class="form-control" placeholder="nid no" value="{{ $profile->nid }}" required="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="image">Profile Picture</label>
+                                <input type="file" name="image" class="form-control" id="image" value="{{ old('image') }}" style="padding: 4px;">
+                                @if (file_exists($profile->image))
+                                    <img src="{{ asset($profile->image) }}" height="100px">
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="address">Address
                         </label>
-                        <input type="text" name="address" class="form-control" id="address" placeholder="your address" value="{{ $profile->address }}" required>
+                        <textarea name="address" class="form-control" id="address" required rows="8">{{ $profile->address }}</textarea>
                     </div>
                 </div>
             </div>

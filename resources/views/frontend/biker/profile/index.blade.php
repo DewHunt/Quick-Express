@@ -17,7 +17,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                @if(!file_exists($profile->image))
+                @if(file_exists($profile->image))
                     <img src="{{ asset($profile->image) }}" style="height: 120px;">
                 @endif
             </div>

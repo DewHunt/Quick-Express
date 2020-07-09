@@ -22,18 +22,13 @@
 									<a href="{{ url('/') }}" title="Home">Home</a>
 								</li>
 								
-								<li><a href="#" title="blog">Blog +</a>
+								{{-- <li><a href="#" title="blog">Blog +</a>
 									<ul>
 										<li><a href="blog.html" title="Blog">Blog</a></li>
 									</ul>
-								</li>
+								</li> --}}
 							</ul>
 						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-2">
-					<div class="navigation-btn">
-						<a href="#" class="btn btn-primary" title="get quotes">Get Quotes</a>
 					</div>
 				</div>
 			</div>

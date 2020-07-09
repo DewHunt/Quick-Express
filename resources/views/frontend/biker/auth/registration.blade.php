@@ -1,6 +1,11 @@
 @extends('frontend.layouts.master') 
 
 @section('content')
+	<style type="text/css">
+		textarea{
+			height: unset !important;
+		}
+	</style>
 	<div id="quotation" class="quotation-main-block" style="background-image: url('{{ asset('public/frontend') }}images/bg/consult-bg.jpg')">
 		<div class="container">
 			<div class="section text-center">
@@ -48,11 +53,41 @@
 
 					<div class="row">
 						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="phone">Phone No 
-									<span>*</span>
-								</label>
-								<input type="text" name="phone" class="form-control" id="phone" placeholder="Phone No." value="{{ old('phone') }}" required>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="phone">Phone No 
+											<span>*</span>
+										</label>
+										<input type="text" name="phone" class="form-control" id="phone" placeholder="Phone No." value="{{ old('phone') }}" required>
+									</div>
+								</div>
+
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="image">Profile Picture
+											<span>*</span>
+										</label>
+										<input type="file" name="image" class="form-control" id="image" value="{{ old('image') }}" style="padding: 10px;" required>
+										<span style="color: red;font-size:15px">Image size should be 600*600 px</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<label for="area_id">Preferred Area
+											<span>*</span>
+										</label>
+										<select class="form-control chosen-select" name="area_id[]" required multiple>
+											<option value="">Select Area</option>
+											@foreach ($area_list as $area)
+												<option value="{{$area->id}}">{{$area->name}}</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
 							</div>
 						</div>
 
@@ -61,31 +96,7 @@
 								<label for="address">Address 
 									<span>*</span>
 								</label>
-								<input type="text" name="address" class="form-control" id="address" placeholder="your address" value="{{ old('address') }}" required>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="image">Profile Image
-									<span>*</span>
-								</label>
-								<input type="file" name="image" class="form-control" id="image" value="{{ old('image') }}" style="padding: 10px;" required>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="area_id">Preferred Area
-									<span>*</span>
-								</label>
-								<select class="form-control chosen-select" name="area_id[]" required multiple>
-									<option value="">Select Area</option>
-									@foreach ($area_list as $area)
-										<option value="{{$area->id}}">{{$area->name}}</option>
-									@endforeach
-								</select>
+								<textarea name="address" class="form-control" id="address" rows="6">{{ old('address') }}</textarea>
 							</div>
 						</div>
 					</div>

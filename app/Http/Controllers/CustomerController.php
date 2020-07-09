@@ -23,7 +23,17 @@ class CustomerController extends Controller
     	$title = "Edit Profile";
     	$profile = Client::find(\Auth::guard('customer')->user()->id);
     	if(count(request()->all()) > 0){
+
             request()->birth_date = date('Y-m-d',strtotime(request()->birth_date));
+            if(request()->image)
+            {
+                $width = '600';
+                $height = '600';
+                $image = \App\HelperClass::UploadImage(request()->image,'tbl_clients','public/uploads/profile_image/client/',@$width,@$height);
+                $profile->update([
+                    'image' => $image,
+                ]);
+            }
     		$profile->update([
                 'name' => request()->name,
                 'phone' => request()->phone,
@@ -33,7 +43,7 @@ class CustomerController extends Controller
                 'birth_date' => request()->birth_date,
             ]);
 
-            return redirect(route('user.profile'))->with('message','Your Profile Updated');
+            return redirect(route('user.customerProfile'))->with('message','Your Profile Updated');
     	}
     	return view('frontend.customer.profile.edit')->with(compact('title','profile'));
     }

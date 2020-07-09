@@ -27,7 +27,7 @@
             @endif
 
 			<div class="quotation-block">
-				<form action="{{ route('user.registration') }}" class="quotation-form" method="post">
+				<form action="{{ route('user.registration') }}" class="quotation-form" method="post" enctype="multipart/form-data">
 					{{ csrf_field() }}
 					<div class="row">
 						<div class="col-lg-6 col-sm-6">
@@ -68,22 +68,36 @@
 
 					<div class="row">
 						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="password">Password 
-									<span>*</span>
-								</label>
-								<input type="password" name="password" class="form-control" id="password" required>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="password">Password 
+											<span>*</span>
+										</label>
+										<input type="password" name="password" class="form-control" id="password" required>
+									</div>
+								</div>
+
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="confirm_password">Confirm Password 
+											<span>*</span>
+										</label>
+										<input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
+									</div>
+								</div>
 							</div>
 						</div>
 
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label for="confirm_password">Confirm Password 
-									<span>*</span>
+								<label for="image">Profile Picture
 								</label>
-								<input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
+								<input type="file" name="image" class="form-control" id="image" style="padding: 10px;" required>
+								<span style="color: red;font-size:15px">Image size should be 600*600 px</span>
 							</div>
 						</div>
+						
 					</div>
 
 					<div class="row">

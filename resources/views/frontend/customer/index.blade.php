@@ -34,7 +34,7 @@
 							    <h5 class="profile_link_title">Profile Link</h5>
 							    <ul class="profileLink">
 							        <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
-							        <li><a href="{{ route('user.profile') }}">Profile</a></li>
+							        <li><a href="{{ route('user.customerProfile') }}">Profile</a></li>
 							        <li><a href="{{ route('user.booking') }}">Booking Order</a></li>
 							        <li><a href="{{ route('user.logout') }}">Logout</a></li>
 							    </ul>       
