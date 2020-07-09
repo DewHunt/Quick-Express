@@ -106,7 +106,7 @@ class AdminPanelInformationController extends Controller
        {
             $siteLogo1Width = $request->siteLogo1Width;
             $siteLogo1Height = $request->siteLogo1Height;
-            $logoOne = \App\HelperClass::UploadImage($request->siteLogo1,'tbl_admin_panel_information','public/uploads/admin_logo/logo1/',@$width,@$height);
+            $logoOne = \App\HelperClass::UploadImage($request->siteLogo1,'tbl_admin_panel_information','public/uploads/admin_logo/logo1/',@$siteLogo1Width,@$siteLogo1Height);
         }
         else
         {
@@ -119,7 +119,7 @@ class AdminPanelInformationController extends Controller
        {
             $siteLogo2Width = $request->siteLogo2Width;
             $siteLogo2Height = $request->siteLogo2Height;
-            $logoTwo = \App\HelperClass::UploadImage($request->siteLogo2,'tbl_admin_panel_information','public/uploads/admin_logo/logo2/',@$width,@$height);
+            $logoTwo = \App\HelperClass::UploadImage($request->siteLogo2,'tbl_admin_panel_information','public/uploads/admin_logo/logo2/',@$siteLogo2Width,@$siteLogo2Height);
         }
         else
         {
@@ -132,7 +132,7 @@ class AdminPanelInformationController extends Controller
         {
             $sitefavIconWidth = $request->sitefavIconWidth;
             $sitefavIconHeight = $request->sitefavIconHeight;
-            $favIcon = \App\HelperClass::UploadImage($request->sitefavIcon,'tbl_admin_panel_information','public/uploads/admin_logo/fav_icon/',@$width,@$height);
+            $favIcon = \App\HelperClass::UploadImage($request->sitefavIcon,'tbl_admin_panel_information','public/uploads/admin_logo/fav_icon/',@$sitefavIconWidth,@$sitefavIconHeight);
         }
         else
         {

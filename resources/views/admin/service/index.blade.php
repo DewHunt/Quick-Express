@@ -16,7 +16,6 @@
                     <tr>
                         <th width="20px">SL</th>
                         <th width="200px">Name</th>
-                        <th width="80px">Charge</th>
                         <th>Description</th>
                         <th width="90px">Order By</th>
                         <th width="20px">Status</th>
@@ -27,21 +26,20 @@
                 	@php
                 		$sl = 1;
                 	@endphp
-                	@foreach ($deliveryTypes as $deliveryType)
-                		<tr class="row_{{ $deliveryType->id }}">
+                	@foreach ($services as $service)
+                		<tr class="row_{{ $service->id }}">
                 			<td>{{ $sl++ }}</td>
-                			<td>{{ $deliveryType->name }}</td>
-                            <td>{{ $deliveryType->charge }}</td>
-                            <td>{{ $deliveryType->description }}</td>
-                			<td>{{ $deliveryType->order_by }}</td>
+                			<td>{{ $service->name }}</td>
+                            <td>{{ $service->description }}</td>
+                			<td>{{ $service->order_by }}</td>
                 			<td>
                                 @php
-                                    echo \App\Link::status($deliveryType->id,$deliveryType->status);
+                                    echo \App\Link::status($service->id,$service->status);
                                 @endphp
                 			</td>
                 			<td>
                     			@php
-                    				echo \App\Link::action($deliveryType->id);
+                    				echo \App\Link::action($service->id);
                     			@endphp                				
                 			</td>
                 		</tr>
@@ -65,7 +63,7 @@
                   }
                 });
 
-                deliveryTypeId = $(this).parent().data('id');
+                serviceId = $(this).parent().data('id');
                 var tableRow = this;
                 swal({   
                     title: "Are you sure?",   
@@ -82,8 +80,8 @@
                     if (isConfirm) {
                         $.ajax({
                             type: "POST",
-                            url : "{{ route('deliveryType.delete') }}",
-                            data : {deliveryTypeId:deliveryTypeId},
+                            url : "{{ route('service.delete') }}",
+                            data : {serviceId:serviceId},
                            
                             success: function(response) {
                                 swal({
@@ -93,7 +91,7 @@
                                     timer: 1000,
                                     html: true,
                                 });
-                                $('.row_'+deliveryTypeId).remove();
+                                $('.row_'+serviceId).remove();
                             },
                             error: function(response) {
                                 error = "Failed.";
@@ -122,14 +120,14 @@
         });
                 
         //ajax status change code
-        function statusChange(deliveryTypeId) {
+        function statusChange(serviceId) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: "post",
-                url: "{{ route('deliveryType.status') }}",
-                data: {deliveryTypeId:deliveryTypeId},
+                url: "{{ route('service.status') }}",
+                data: {serviceId:serviceId},
                 success: function(response) {
                     swal({
                         title: "<small class='text-success'>Success!</small>", 

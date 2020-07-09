@@ -25,10 +25,10 @@
 
         <div style="padding-bottom: 10px;"></div>
 
-        @foreach ($userMenus as $mainMenu)
+        @foreach ($userMenus as $rootMenu)
 	        @php
 	            $rolePermission = explode(',', $userRoles->permission);
-	            if (in_array($mainMenu->id, $rolePermission))
+	            if (in_array($rootMenu->id, $rolePermission))
 	            {
 	                $checked = "checked";
 	            }
@@ -38,21 +38,21 @@
 	            }                                       
 	        @endphp
 
-            @if ($mainMenu->parent_menu == NULL)
+            @if ($rootMenu->parent_menu == NULL)
                 @php
-                    $subMenus = Menu::where('parent_menu',$mainMenu->id)->get();
+                    $parentMenus = Menu::where('parent_menu',$rootMenu->id)->get();
                 @endphp
                 <div class="row parentMenuBlock">
                     <div class="col-md-12">
-                        <input class="parentMenu_{{ $mainMenu->parent_menu }} menu" type="checkbox" name="usermenu[]" value="{{ $mainMenu->id }}" {{ $checked }}  data-id="{{ $mainMenu->id }}" @if ($mainMenu->id == 1) onclick="return false" checked @endif>
-                        <span>{{ $mainMenu->menu_name }}</span>
+                        <input class="parentMenu_{{ $rootMenu->parent_menu }} menu" type="checkbox" name="usermenu[]" value="{{ $rootMenu->id }}" {{ $checked }}  data-id="{{ $rootMenu->id }}" @if ($rootMenu->id == 1) onclick="return false" checked @endif>
+                        <span>{{ $rootMenu->menu_name }}</span>
                       
-                        <div class="row" style="padding-left: 60px;">
-                            @foreach ($subMenus as $menu)
+                        <div class="row" style="padding-left: 30px;">
+                            @foreach ($parentMenus as $parentMenu)
                                 @php
-                                    $userMenuAction = MenuAction::where('status',1)->orderBy('order_by','ASC')->where('parent_menu_id',$menu->id)->get();
+                                    $userMenuAction = MenuAction::where('status',1)->orderBy('order_by','ASC')->where('parent_menu_id',$parentMenu->id)->get();
                                     $rolePermission = explode(',', $userRoles->permission);
-                                    if (in_array($menu->id, $rolePermission))
+                                    if (in_array($parentMenu->id, $rolePermission))
                                     {
                                         $checked = "checked";
                                     }
@@ -62,9 +62,9 @@
                                     }                                            
                                 @endphp
 
-                                <div class="col-md-3" style="margin-bottom: 12px;">
-                                    <input class="parentMenu_{{ $menu->parent_menu }} menu" type="checkbox" name="usermenu[]" value="{{ $menu->id }}" {{ $checked }}  data-id="{{ $menu->id }}">
-                                    <span>{{ $menu->menu_name }}</span>
+                                <div class="col-md-3">
+                                    <input class="parentMenu_{{ $parentMenu->parent_menu }} menu" type="checkbox" name="usermenu[]" value="{{ $parentMenu->id }}" {{ $checked }}  data-id="{{ $parentMenu->id }}">
+                                    <span>{{ $parentMenu->menu_name }}</span>
                                     <div style="margin-left: 26px;margin-top: 3px;">
                                         @foreach ($userMenuAction as $action)
                                             @php
@@ -79,6 +79,47 @@
                                                 }                                                    
                                             @endphp
                                             <input class="childMenu_{{ $action->parent_menu_id }}" type="checkbox" name="usermenuAction[]" value="{{ $action->id }}" style="margin-bottom: 8px;" {{ $actionChecked }}> {{ $action->action_name }} <br>
+                                        @endforeach
+                                    </div>
+                      
+                                    <div class="row" style="padding-left: 30px;">
+                                        @php
+                                            $subMenus = Menu::where('parent_menu',$parentMenu->id)->get();
+                                        @endphp
+                                        @foreach ($subMenus as $subMenu)
+                                            @php
+                                                $userMenuAction = MenuAction::where('status',1)->orderBy('order_by','ASC')->where('parent_menu_id',$subMenu->id)->get();
+                                                $rolePermission = explode(',', $userRoles->permission);
+                                                if (in_array($subMenu->id, $rolePermission))
+                                                {
+                                                    $checked = "checked";
+                                                }
+                                                else
+                                                {
+                                                    $checked = "";
+                                                }                                            
+                                            @endphp
+
+                                            <div class="col-md-12">
+                                                <input class="parentMenu_{{ $subMenu->parent_menu }} menu" type="checkbox" name="usermenu[]" value="{{ $subMenu->id }}" {{ $checked }}  data-id="{{ $subMenu->id }}">
+                                                <span>{{ $subMenu->menu_name }}</span>
+                                                <div style="margin-left: 26px;margin-top: 3px;">
+                                                    @foreach ($userMenuAction as $action)
+                                                        @php
+                                                            $actionPermission = explode(',', $userRoles->action_permission);
+                                                            if (in_array($action->id, $actionPermission))
+                                                            {
+                                                                $actionChecked = "checked";
+                                                            }
+                                                            else
+                                                            {
+                                                                $actionChecked = "";
+                                                            }                                                    
+                                                        @endphp
+                                                        <input class="childMenu_{{ $action->parent_menu_id }}" type="checkbox" name="usermenuAction[]" value="{{ $action->id }}" style="margin-bottom: 8px;" {{ $actionChecked }}> {{ $action->action_name }} <br>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>

@@ -195,23 +195,23 @@ Route::prefix('admin')->group(function()
 			Route::post('/deliveryMan-status','Admin\DeliveryManController@status')->name('deliveryMan.status');
 			Route::post('/deliveryMan-delete','Admin\DeliveryManController@delete')->name('deliveryMan.delete');
 
-			// Courier Type 
-			Route::get('/courierType','Admin\CourierTypeController@index')->name('courierType.index');
-			Route::get('/courierType-add','Admin\CourierTypeController@add')->name('courierType.add');
-			Route::post('/courierType-save','Admin\CourierTypeController@save')->name('courierType.save');
-			Route::get('/courierType-edit/{id}','Admin\CourierTypeController@edit')->name('courierType.edit');
-			Route::post('/courierType-update','Admin\CourierTypeController@update')->name('courierType.update');
-			Route::post('/courierType-status','Admin\CourierTypeController@status')->name('courierType.status');
-			Route::post('/courierType-delete','Admin\CourierTypeController@delete')->name('courierType.delete');
+			// Service 
+			Route::get('/service','Admin\ServiceController@index')->name('service.index');
+			Route::get('/service-add','Admin\ServiceController@add')->name('service.add');
+			Route::post('/service-save','Admin\ServiceController@save')->name('service.save');
+			Route::get('/service-edit/{id}','Admin\ServiceController@edit')->name('service.edit');
+			Route::post('/service-update','Admin\ServiceController@update')->name('service.update');
+			Route::post('/service-status','Admin\ServiceController@status')->name('service.status');
+			Route::post('/service-delete','Admin\ServiceController@delete')->name('service.delete');
 
-			// Delivery Type 
-			Route::get('/deliveryType','Admin\DeliveryTypeController@index')->name('deliveryType.index');
-			Route::get('/deliveryType-add','Admin\DeliveryTypeController@add')->name('deliveryType.add');
-			Route::post('/deliveryType-save','Admin\DeliveryTypeController@save')->name('deliveryType.save');
-			Route::get('/deliveryType-edit/{id}','Admin\DeliveryTypeController@edit')->name('deliveryType.edit');
-			Route::post('/deliveryType-update','Admin\DeliveryTypeController@update')->name('deliveryType.update');
-			Route::post('/deliveryType-status','Admin\DeliveryTypeController@status')->name('deliveryType.status');
-			Route::post('/deliveryType-delete','Admin\DeliveryTypeController@delete')->name('deliveryType.delete');
+			// Service Type 
+			Route::get('/serviceType','Admin\ServiceTypeController@index')->name('serviceType.index');
+			Route::get('/serviceType-add','Admin\ServiceTypeController@add')->name('serviceType.add');
+			Route::post('/serviceType-save','Admin\ServiceTypeController@save')->name('serviceType.save');
+			Route::get('/serviceType-edit/{id}','Admin\ServiceTypeController@edit')->name('serviceType.edit');
+			Route::post('/serviceType-update','Admin\ServiceTypeController@update')->name('serviceType.update');
+			Route::post('/serviceType-status','Admin\ServiceTypeController@status')->name('serviceType.status');
+			Route::post('/serviceType-delete','Admin\ServiceTypeController@delete')->name('serviceType.delete');
 
 			// Area Setup
 			Route::get('/areaSetup','Admin\AreaSetupController@index')->name('areaSetup.index');

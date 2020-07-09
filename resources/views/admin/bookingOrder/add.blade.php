@@ -26,7 +26,29 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label for="sender-type">Sender Type</label>
+                        <div class="form-group {{ $errors->has('senderType') ? ' has-danger' : '' }}">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" value="Client" id="Client" name="senderType" class="senderType" required> client
+                                </label>
+                            </div>
+
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" value="Merchant" id="Merchant" name="senderType" class="senderType"> Merchant
+                                </label>
+                            </div>
+                            @if ($errors->has('senderType'))
+                                @foreach($errors->get('senderType') as $error)
+                                    <div class="form-control-feedback">{{ $error }}</div>
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
                         <label for="sender-phone-number">Sender Phone Number</label>
                         <div class="form-group {{ $errors->has('senderPhoneNumber') ? ' has-danger' : '' }}">
                             <input type="number" class="form-control" placeholder="Sender Phone Number" id="senderPhoneNumber" name="senderPhoneNumber" value="{{ old('senderPhoneNumber') }}" oninput="getClientInfo()">
@@ -37,6 +59,7 @@
                             @endif
                         </div>
                         <input class="form-control" type="hidden" id="clientId" name="clientId" value="">
+                        <input class="form-control" type="hidden" id="clientUserRoleId" name="clientUserRoleId" value="">
                     </div>
                 </div>
 
@@ -144,19 +167,19 @@
 
         <div class="row">
             <div class="col-md-4">
-                <label for="courier-type">Courier Type</label>
+                <label for="courier-type">Service Name</label>
                 <div class="form-group {{ $errors->has('courierTypeId') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select courierType" id="courierType" name="courierType">
                         <option value="">Select A Courier Type</option>
-                        @foreach ($courierTypes as $courierType)
-                            <option value="{{ $courierType->id }}">{{ $courierType->name }}</option>
+                        @foreach ($services as $service)
+                            <option value="{{ $service->id }}">{{ $service->name }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
 
             <div class="col-md-2">
-                <label for="courier-type-unit">Courier Type Unit</label>
+                <label for="courier-type-unit">Service Name Unit</label>
                 <div class="form-group {{ $errors->has('courierTypeUnit') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Unit Price" id="courierTypeUnit" name="courierTypeUnit" oninput="findDeliveryCharge()" value="0">
                     @if ($errors->has('courierTypeUnit'))
@@ -172,8 +195,8 @@
                 <div class="form-group {{ $errors->has('deliveryTypeId') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select deliveryType" id="deliveryType" name="deliveryTypeId">
                         <option value="">Select A Delivery Type</option>
-                        @foreach ($deliveryTypes as $deliveryType)
-                            <option value="{{ $deliveryType->id }}">{{ $deliveryType->name }}</option>
+                        @foreach ($serviceTypes as $serviceType)
+                            <option value="{{ $serviceType->id }}">{{ $serviceType->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -240,6 +263,23 @@
                     $('#senderName').val(data.senderName);
                     $('#senderAddress').val(data.senderAddress);
                     $('#clientId').val(data.clientId);
+                    $('#clientUserRoleId').val(data.clientUserRoleId);
+
+                    if (data.clientType == '')
+                    {
+                        $( ".senderType" ).prop( "checked", false );
+                    }
+                    else
+                    {
+                        if (data.clientType == 'Client')
+                        {
+                            $( "#Client" ).prop( "checked", true );
+                        }
+                        else
+                        {
+                            $( "#Merchant" ).prop( "checked", true );
+                        }
+                    }
                 }
             });
         }

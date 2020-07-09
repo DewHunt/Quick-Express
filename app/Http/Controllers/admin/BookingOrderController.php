@@ -9,9 +9,10 @@ use App\BookingOrder;
 use App\Agent;
 use App\Subagent;
 use App\Warehouse;
-use App\CourierType;
-use App\DeliveryType;
+use App\Service;
+use App\ServiceType;
 use App\Client;
+use App\Marchant;
 use App\Admin;
 use App\UserRoles;
 
@@ -37,8 +38,8 @@ class BookingOrderController extends Controller
     	$formLink = "bookingOrder.save";
     	$buttonName = "Save";
 
-    	$courierTypes = CourierType::orderBy('name','asc')->get();
-    	$deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+    	$services = Service::orderBy('name','asc')->get();
+    	$serviceTypes = ServiceType::orderBy('name','asc')->get();
 
     	$zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
 
@@ -59,7 +60,7 @@ class BookingOrderController extends Controller
 
         // echo $orderNo; exit();
 
-    	return view('admin.bookingOrder.add')->with(compact('title','formLink','buttonName','courierTypes','deliveryTypes','zones','orderNo'));
+    	return view('admin.bookingOrder.add')->with(compact('title','formLink','buttonName','services','serviceTypes','zones','orderNo'));
     }
 
     public function save(Request $request)
@@ -89,14 +90,35 @@ class BookingOrderController extends Controller
         }
         else
         {
-            $client = Client::create([
-                'user_role_id' => 4,
-                'name' => $request->senderName,
-                'phone' => $request->senderPhoneNumber,
-                'address' => $request->address,
-                'password' => bcrypt('123456'),
-                'created_by' => $this->userId,
-            ]);
+            if ($request->senderType == "Client")
+            {            
+                $client = Client::create([
+                    'user_role_id' => 4,
+                    'name' => $request->senderName,
+                    'phone' => $request->senderPhoneNumber,
+                    'address' => $request->address,
+                    'password' => bcrypt('123456'),
+                    'created_by' => $this->userId,
+                ]);
+            }
+            else
+            {
+                $user = Admin::create( [           
+                    'role' => 12,     
+                    'name' => $request->senderName,
+                    'phone' => $request->senderPhoneNumber,
+                    'password' => bcrypt('123456'),                      
+                ]);
+
+                $client = Marchant::create([
+                    'user_id' => $user->id,
+                    'user_role_id' => 12,
+                    'name' => $request->senderName,
+                    'contact_person_phone' => $request->senderPhoneNumber,
+                    'address' => $request->address,
+                    'created_by' => $this->userId,
+                ]);
+            }
 
             $senderId = $client->id;
         }        
@@ -104,7 +126,7 @@ class BookingOrderController extends Controller
         BookingOrder::create([
             'order_no' => $request->orderNo,
             'date' => $bookingDate,
-            'booked_type' => 'Client',
+            'booked_type' => $request->senderType,
             'sender_id' => $senderId,
             'sender_name' => $request->senderName,
             'sender_phone' => $request->senderPhoneNumber,
@@ -136,11 +158,11 @@ class BookingOrderController extends Controller
 
         $bookedOrder = BookingOrder::where('id',$bookedOrderId)->first();
 
-    	$courierTypes = CourierType::orderBy('name','asc')->get();
-    	$deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+    	$services = Service::orderBy('name','asc')->get();
+    	$serviceTypes = ServiceType::orderBy('name','asc')->get();
     	$zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
 
-    	return view('admin.bookingOrder.edit')->with(compact('title','formLink','buttonName','bookedOrder','courierTypes','deliveryTypes','zones'));
+    	return view('admin.bookingOrder.edit')->with(compact('title','formLink','buttonName','bookedOrder','services','serviceTypes','zones'));
     }
 
     public function update(Request $request)
@@ -235,21 +257,31 @@ class BookingOrderController extends Controller
         $senderPhoneNumber = $request->senderPhoneNumber;
 
         // $clientInfo = Client::where('phone',$senderPhoneNumber)->first();
-        $clientInfo = Client::where('phone','like','%'.$senderPhoneNumber.'%')->first();
+        // $clientInfo = Client::where('phone','like','%'.$senderPhoneNumber.'%')->first();
+
+        $clientInfo = DB::table('view_clients')
+            ->select('view_clients.*')
+            ->where('clientPhone',$senderPhoneNumber)
+            // ->where('clientPhone','like','%'.$senderPhoneNumber.'%')
+            ->first();
 
         // dd($clientInfo);
 
         if ($clientInfo)
         {
-            $senderName = $clientInfo->name;
-            $senderAddress = $clientInfo->address;
-            $clientId = $clientInfo->id;
+            $senderName = $clientInfo->clientName;
+            $senderAddress = $clientInfo->clientAddress;
+            $clientId = $clientInfo->clientId;
+            $clientType = $clientInfo->clientType;
+            $clientUserRoleId = $clientInfo->clientUserRoleId;
         }
         else
         {
             $senderName = "";
             $senderAddress = "";
             $clientId = "";
+            $clientType = "";
+            $clientUserRoleId = "";
         }
         
         if($request->ajax())
@@ -258,6 +290,8 @@ class BookingOrderController extends Controller
                 'senderName' => $senderName,
                 'senderAddress'=> $senderAddress,
                 'clientId'=> $clientId,
+                'clientType'=> $clientType,
+                'clientUserRoleId'=> $clientUserRoleId,
             ]);
         }
     }

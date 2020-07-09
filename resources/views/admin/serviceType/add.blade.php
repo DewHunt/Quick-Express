@@ -6,7 +6,7 @@
             <div class="col-md-6">
                 <label for="name">Name</label>
                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Courier Type Name" name="name" value="{{ old('name') }}">
+                    <input type="text" class="form-control" placeholder="Delivery Charge Name" name="name" value="{{ old('name') }}">
                     @if ($errors->has('name'))
                         @foreach($errors->get('name') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -15,19 +15,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <label for="charge">Charges</label>
-                <div class="form-group {{ $errors->has('charge') ? ' has-danger' : '' }}">
-                    <input type="number" class="form-control" placeholder="Charge" name="charge" value="{{ old('charge') }}">
-                    @if ($errors->has('charge'))
-                        @foreach($errors->get('charge') as $error)
-                            <div class="form-control-feedback">{{ $error }}</div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <label for="order-by">Order By</label>
                 <div class="form-group {{ $errors->has('orderBy') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Order By" name="orderBy" value="{{ old('orderBy') }}">
@@ -44,7 +32,7 @@
             <div class="col-md-12">
                 <label for="description">Description</label>
                 <div class="form-group {{ $errors->has('description') ? ' has-danger' : '' }}">
-                    <textarea class="form-control" rows="5" placeholder="Courier Type Description" name="description"></textarea>
+                    <textarea class="form-control" rows="5" placeholder="Delivery Charge Description" name="description"></textarea>
                     @if ($errors->has('description'))
                         @foreach($errors->get('description') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
