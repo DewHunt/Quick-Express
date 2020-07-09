@@ -249,11 +249,8 @@ Route::prefix('admin')->group(function()
 			Route::post('/merchant-booking-order-update','Admin\MerchantBookingOrderController@update')->name('merchantBookingOrder.update');
 
 			Route::post('/merchant-booking-order-status','Admin\MerchantBookingOrderController@status')->name('merchantBookingOrder.status');
-
+			
 			Route::post('/merchant-booking-order-delete','Admin\MerchantBookingOrderController@delete')->name('merchantBookingOrder.delete');
-
-			//Merchant booking order status
-			Route::get('/merchant-booking-order-list','Admin\MerchantBookingOrderController@orderList')->name('merchantBookingOrder.orderList');
 
 
 			// Sender Orders 
