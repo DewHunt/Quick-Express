@@ -40,7 +40,7 @@
                                 <?php echo \App\Link::status($user->id,$user->status)?>
                             </td>
                             <td class="text-nowrap">
-                            <?php echo \App\Link::action($user->id)?>
+                                <?php echo \App\Link::action($user->id)?>
                             </td>
                         </tr>
                 	@endforeach

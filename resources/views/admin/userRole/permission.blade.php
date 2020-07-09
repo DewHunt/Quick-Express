@@ -44,7 +44,7 @@
                 @endphp
                 <div class="row parentMenuBlock">
                     <div class="col-md-12">
-                        <input class="parentMenu_{{ $mainMenu->parent_menu }} menu" type="checkbox" name="usermenu[]" value="{{ $mainMenu->id }}" {{ $checked }}  data-id="{{ $mainMenu->id }}">
+                        <input class="parentMenu_{{ $mainMenu->parent_menu }} menu" type="checkbox" name="usermenu[]" value="{{ $mainMenu->id }}" {{ $checked }}  data-id="{{ $mainMenu->id }}" @if ($mainMenu->id == 1) onclick="return false" checked @endif>
                         <span>{{ $mainMenu->menu_name }}</span>
                       
                         <div class="row" style="padding-left: 60px;">

@@ -18,15 +18,16 @@
 			@elseif ($userRole == 4)
 				<h1 style="text-align: center">User</h1>
 			@elseif ($userRole == 8)
-				@include('admin/customerRegistraionSetup/element/add/personal_information')
+				<h1 style="text-align: center">Agent</h1>
+				{{-- @include('admin/customerRegistraionSetup/element/add/personal_information') --}}
 			@elseif ($userRole == 10)
 				<h1 style="text-align: center">Subagent</h1>
 			@elseif ($userRole == 11)
 				<h1 style="text-align: center">Warehouse</h1>
 			@elseif ($userRole == 12)
 				<h1 style="text-align: center">Marchant</h1>
-			@else
+			{{-- @else --}}
 			@endif
 		</div>
 	</div>
-@endsection
+{{-- @endsection --}}

@@ -123,7 +123,7 @@ class UserRoleController extends Controller
         $formLink = "userRole.permissionUpdate";
         $buttonName = "Update";
 
-        $userMenus = Menu::orderBy('id','ASC')->where('status',1)->get();
+        $userMenus = Menu::orderBy('order_by','ASC')->where('status',1)->get();
         $userRoles = UserRoles::where('id',$userRoleid)->first();
         return view('admin.userRole.permission')->with(compact('title','formLink','buttonName','userRoles','userMenus'));
     }
