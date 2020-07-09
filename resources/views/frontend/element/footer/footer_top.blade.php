@@ -1,13 +1,12 @@
 <div class="container">
 			<div class="row text-white">
-				<div class="col-lg-3 col-sm-6">
+				<div class="col-lg-4 col-sm-6">
 					<div class="about-widget footer-widget">
 						<div class="logo-footer">
 							<a href="index.html" title="logo">
 								<img src="{{ asset(@$website_information->logo_two) }}" alt="logo">
 							</a>
 						</div>
-						<p>There anyone who loves or pursues not some great to have pleasure.</p>
 						<div class="row">
 							<div class="col-lg-2">
 								<div class="footer-icon">
@@ -32,22 +31,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="courier-type-widget footer-widget mrg-btm-30">
-						<h6 class="footer text-white">Courier Types</h6>
-						<div class="footer-list">
-							<ul>
-								<li><a href="services-details.html" title="link"><i class="las la-arrow-circle-right"></i> Standard</a></li>
-								<li><a href="services-details.html" title="link"><i class="las la-arrow-circle-right"></i> Express</a></li>
-								<li><a href="services-details.html" title="link"><i class="las la-arrow-circle-right"></i>International</a></li>
-								<li><a href="services-details.html" title="link"><i class="las la-arrow-circle-right"></i>Ware Housing</a></li>
-								<li><a href="services-details.html" title="link"><i class="las la-arrow-circle-right"></i>Overnight</a></li>
-								<li><a href="services-details.html" title="link"><i class="las la-arrow-circle-right"></i>Pallet</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
+				<div class="col-lg-4 col-sm-6">
 					<div class="recent-news-widget footer-widget mrg-btm-30">
 						<h6 class="footer text-white">Recent News</h6>
 						<div class="row">
@@ -83,7 +67,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-sm-6">
+				<div class="col-lg-4 col-sm-6">
 					<div class="news-widget footer-widget mrg-btm-30">
 						<h6 class="footer text-white">Newsletter</h6>
 						<p>Sign up to our courier point for surveys recent updates &amp; offers.</p>
