@@ -24,6 +24,14 @@ class MerchantController extends Controller
     	$title = "Edit Merchant Profile";
     	$profile = Marchant::find(\Auth::guard('merchant')->user()->id);
     	if(count(request()->all()) > 0){
+            $this->validate(request(), [
+                'name' => ['required', 'string', 'max:255'],
+
+                'contact_person_name' => ['required', 'string', 'max:255'],
+
+                'contact_person_phone' => ['required','numeric']
+            ]);
+
             request()->birth_date = date('Y-m-d',strtotime(request()->birth_date));
     		$profile->update([
                 'name' => request()->name,

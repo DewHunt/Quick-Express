@@ -23,7 +23,12 @@ class CustomerController extends Controller
     	$title = "Edit Profile";
     	$profile = Client::find(\Auth::guard('customer')->user()->id);
     	if(count(request()->all()) > 0){
-
+            $this->validate(request(), [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['nullable', 'string', 'email', 'max:255'],
+                'phone' => ['required','numeric'],
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
             request()->birth_date = date('Y-m-d',strtotime(request()->birth_date));
             if(request()->image)
             {

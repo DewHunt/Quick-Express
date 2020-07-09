@@ -81,9 +81,9 @@ class AdminController extends Controller
     {
         $this->validate(request(), [
             'role' => 'required',
-            'name' => 'required',
+            'name' => 'required',/*
             'email' => 'required',
-            'username' => 'required',            
+            'username' => 'required',*/            
         ]);
 
         $userId = $request->userId;
@@ -142,14 +142,9 @@ class AdminController extends Controller
 
     public function changeUserStatus(Request $request)
     {
-        $userId = $request->userId;
-        $status = $request->status;
+        $users = Admin::find($request->userId);
 
-        $userInfo = Admin::where('id',$userId)->first();
-
-        $users = Admin::find($userId);
-
-        if ($status == 0)
+        if ($users->status == 0)
         {
             $users->update( [               
                 'status' => 1,                

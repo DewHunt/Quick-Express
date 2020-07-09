@@ -26,7 +26,7 @@ class BikerAuthController extends Controller
             $this->validate(request(), [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tbl_delivery_men'],
-                'phone' => ['required', 'string', 'max:255', 'unique:tbl_delivery_men'],
+                'phone' => ['required','numeric', 'unique:tbl_delivery_men'],
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'area_id' => ['required'],
                 'driving_licence' => ['required', 'string', 'max:255', 'unique:tbl_delivery_men'],
@@ -170,6 +170,10 @@ class BikerAuthController extends Controller
                 $field = 'phone';
             } elseif (filter_var(request()->email, FILTER_VALIDATE_EMAIL)) {
                 $field = 'email';
+            }else{
+                return redirect(route('biker.login'))->withErrors([
+                    'error' => 'These credentials do not match our records.',
+                ])->withInput();
             }
 
             $biker = DeliveryMan::where($field,request()->email)->first();

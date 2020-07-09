@@ -24,7 +24,7 @@ class CustomerAuthController extends Controller
             $this->validate(request(), [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tbl_clients'],
-                'phone' => ['required', 'string', 'max:255', 'unique:tbl_clients'],
+                'phone' => ['required','numeric', 'unique:tbl_clients'],
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'password' => ['required', 'string', 'min:6', 'same:confirm_password'],
                 'confirm_password' => ['required', 'string', 'min:6'],
@@ -116,6 +116,10 @@ class CustomerAuthController extends Controller
                 $field = 'phone';
             } elseif (filter_var(request()->email, FILTER_VALIDATE_EMAIL)) {
                 $field = 'email';
+            }else{
+                return redirect(route('user.login'))->withErrors([
+                    'error' => 'These credentials do not match our records.',
+                ])->withInput();
             }
 
             $customer = Client::where($field,request()->email)->first();
