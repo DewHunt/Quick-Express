@@ -315,18 +315,6 @@ class BookingOrderController extends Controller
         }
     }
 
-    public function getClientTypeInfo(Request $request)
-    {
-    	$courierType = CourierType::where('id',$request->courierTypeId)->first();
-    	
-        if($request->ajax())
-        {
-            return response()->json([
-                'courierTypeUnitPrice'=>$courierType->charge,
-            ]);
-        }
-    }
-
     public function getChargeInfo(Request $request)
     {
         if ($request->senderType == 'Merchant' && $request->clientId != '')

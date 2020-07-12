@@ -16,14 +16,14 @@
                     <tr style="background: #00c292; text-align: center;">
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="10px">SL</th>
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="80px">Date</th>
-                        <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="130px">Order No</th>
+                        <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="110px">Order No</th>
                         <th style="font-weight: bold; vertical-align: middle;" colspan="3">Receiver</th>
-                        <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="100px">Delivery Type</th>
+                        <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="105px">Service Type</th>
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="50px">Charge</th>
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="70px">Action</th>
                     </tr>
                     <tr>
-                        <th>Name</th>
+                        <th width="130px">Name</th>
                         <th width="60px">Phone</th>
                         <th>Address</th>
                     </tr>
@@ -40,7 +40,7 @@
                             <td>{{ $bookingOrder->receiver_name }}</td>
                             <td>{{ $bookingOrder->receiver_phone }}</td>
                             <td>{{ $bookingOrder->receiver_address }}</td>
-                            <td>{{ $bookingOrder->deliveryTypeName }}</td>
+                            <td>{{ $bookingOrder->serviceTypeName }}</td>
                 			<td>{{ $bookingOrder->delivery_charge }}</td>
                 			<td>
                     			@php

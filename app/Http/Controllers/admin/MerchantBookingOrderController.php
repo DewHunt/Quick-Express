@@ -9,12 +9,15 @@ use App\BookingOrder;
 use App\Agent;
 use App\Subagent;
 use App\Warehouse;
-use App\CourierType;
-use App\DeliveryType;
+use App\Service;
+use App\ServiceType;
 use App\Client;
+use App\Marchant;
 use App\Admin;
 use App\UserRoles;
-use App\Marchant;
+use App\ChargeForClient;
+use App\ChargeForMerchant;
+use App\DeliveryType;
 
 use DB;
 
@@ -24,10 +27,10 @@ class MerchantBookingOrderController extends Controller
     {
     	$title = "Booking Your Order";
 
-    	$bookingOrders = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_marchants.user_id')
+    	$bookingOrders = BookingOrder::select('tbl_booking_orders.*','tbl_service_types.name as serviceTypeName','tbl_marchants.user_id')
             ->join('tbl_marchants','tbl_booking_orders.sender_id','=','tbl_marchants.id')
-    		->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
-            ->Where('tbl_marchants.user_id',\Auth::user()->id)
+    		->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->Where('tbl_marchants.user_id',$this->userId)
             ->Where('booked_type','Merchant')
     		->orderBy('id','desc')
     		->get();
@@ -41,10 +44,14 @@ class MerchantBookingOrderController extends Controller
     	$formLink = "merchantBookingOrder.save";
     	$buttonName = "Save";
 
-        $merchant_info = Marchant::where('user_id',\Auth::user()->id)->first();
+        $merchant_info = Marchant::where('user_id',$this->userId)->first();
 
-    	$courierTypes = CourierType::orderBy('name','asc')->get();
-    	$deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+    	// $courierTypes = CourierType::orderBy('name','asc')->get();
+    	// $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+
+        $services = Service::orderBy('name','asc')->get();
+        $serviceTypes = ServiceType::orderBy('name','asc')->get();
+        $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
 
     	$zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
 
@@ -65,7 +72,7 @@ class MerchantBookingOrderController extends Controller
 
         // echo $orderNo; exit();
 
-    	return view('admin.merchantBookingOrder.add')->with(compact('title','formLink','buttonName','merchant_info','courierTypes','deliveryTypes','zones','orderNo'));
+    	return view('admin.merchantBookingOrder.add')->with(compact('title','formLink','buttonName','merchant_info','services','serviceTypes','zones','orderNo','deliveryTypes'));
     }
 
     public function save(Request $request)
@@ -104,12 +111,15 @@ class MerchantBookingOrderController extends Controller
             'receiver_zone_type' => $receiverZoneType,
             'receiver_zone_id' => $receiverZoneId,
             'receiver_address' => $request->receiverAddress,
+            'remarks' => $request->remarks,
             'courier_type_id' => $request->courierType,
-            'courier_unit_price' => $request->courierTypeUnit,
             'delivery_type_id' => $request->deliveryTypeId,
-            'delivery_unit_price' => $request->deliveryTypeUnit,
+            'charge_name' => $request->chargeName,
+            'delivery_charge_unit' => $request->deliveryChargeUnit,
             'uom' => $request->uom,
             'delivery_charge' => $request->deliveryCharge,
+            'cod' => $request->cod,
+            'delivery_duration_id' => $request->deliveryTypeId,
             'created_by' => $this->userId,
         ]);
 
@@ -122,13 +132,30 @@ class MerchantBookingOrderController extends Controller
     	$formLink = "merchantBookingOrder.update";
     	$buttonName = "Update";
 
+        $services = Service::orderBy('name','asc')->get();
+        $serviceTypes = ServiceType::orderBy('name','asc')->get();
+        $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+
+        $zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
+
+        $toDayDate = date("Y-m-d");
+        $orderPrefix = "co-".date('ymd')."-";
+
+        $maxOrderNo = BookingOrder::where('date',$toDayDate)->where('booked_type','Merchant')->max('order_no');
+
+        if ($maxOrderNo)
+        {
+            $maxOrderNo = substr($maxOrderNo, strlen($orderPrefix));
+            $orderNo = $orderPrefix.str_pad($maxOrderNo + 1, 5, '0', STR_PAD_LEFT);
+        }
+        else
+        {
+            $orderNo = $orderPrefix."00001";
+        }
+
         $bookedOrder = BookingOrder::where('id',$bookedOrderId)->first();
 
-    	$courierTypes = CourierType::orderBy('name','asc')->get();
-    	$deliveryTypes = DeliveryType::orderBy('name','asc')->get();
-    	$zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
-
-    	return view('admin.merchantBookingOrder.edit')->with(compact('title','formLink','buttonName','bookedOrder','courierTypes','deliveryTypes','zones'));
+    	return view('admin.merchantBookingOrder.edit')->with(compact('title','formLink','buttonName','bookedOrder','services','serviceTypes','zones','orderNo','deliveryTypes'));
     }
 
     public function update(Request $request)
@@ -167,13 +194,16 @@ class MerchantBookingOrderController extends Controller
             'receiver_zone_type' => $receiverZoneType,
             'receiver_zone_id' => $receiverZoneId,
             'receiver_address' => $request->receiverAddress,
+            'remarks' => $request->remarks,
             'courier_type_id' => $request->courierType,
-            'courier_unit_price' => $request->courierTypeUnit,
             'delivery_type_id' => $request->deliveryTypeId,
-            'delivery_unit_price' => $request->deliveryTypeUnit,
+            'charge_name' => $request->chargeName,
+            'delivery_charge_unit' => $request->deliveryChargeUnit,
             'uom' => $request->uom,
             'delivery_charge' => $request->deliveryCharge,
-            'created_by' => $this->userId,
+            'cod' => $request->cod,
+            'delivery_duration_id' => $request->deliveryTypeId,
+            'updated_by' => $this->userId,
         ]);
 
         return redirect(route('merchantBookingOrder.index'))->with('msg','Your Booking Updated Successfully');
@@ -183,12 +213,13 @@ class MerchantBookingOrderController extends Controller
     {
     	$title = "View Booked Order";
 
-    	$bookedOrder = BookingOrder::select('tbl_booking_orders.*','tbl_courier_types.name as courierTypeName','tbl_delivery_types.name as deliveryTypeName')
-    		->leftJoin('tbl_courier_types','tbl_courier_types.id','=','tbl_booking_orders.courier_type_id')
-    		->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
-    		->where('tbl_booking_orders.id',$bookedOrderId)
-    		->orderBy('id','desc')
-    		->first();
+        $bookedOrder = BookingOrder::select('tbl_booking_orders.*','tbl_services.name as serviceName','tbl_service_types.name as serviceTypeName','tbl_delivery_types.name as deliveryTypeName')
+            ->leftJoin('tbl_services','tbl_services.id','=','tbl_booking_orders.courier_type_id')
+            ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_duration_id')
+            ->where('tbl_booking_orders.id',$bookedOrderId)
+            ->orderBy('id','desc')
+            ->first();
 
     	$senderInfo = DB::table('view_zones')
     		->select('view_zones.*')
@@ -207,35 +238,34 @@ class MerchantBookingOrderController extends Controller
     	return view('admin.merchantBookingOrder.view')->with(compact('title','bookedOrder','senderInfo','receiverInfo'));
     }
 
-
-    public function getClientTypeInfo(Request $request)
+    public function getChargeInfo(Request $request)
     {
-    	$courierType = CourierType::where('id',$request->courierTypeId)->first();
-    	
+        $merchant = Marchant::where('user_id',$this->userId)->first();
+
+        $charge = ChargeForMerchant::where('merchant_id',$merchant->id)
+            ->where('service_type_id',$request->serviceTypeId)
+            ->where('service_id',$request->serviceId)
+            ->first();
+
+        if ($charge)
+        {
+            $chargeName = $charge->name;
+            $charge = $charge->charge;
+        }
+        else
+        {
+            $chargeName = "";
+            $charge = "";
+        }
+        
+        
         if($request->ajax())
         {
             return response()->json([
-                'courierTypeUnitPrice'=>$courierType->charge,
+                'chargeName'=>$chargeName,
+                'charge'=>$charge,
             ]);
         }
-    }
-
-    public function getDeliveryTypeInfo(Request $request)
-    {
-    	$deliveryType = DeliveryType::where('id',$request->deliveryTypeId)->first();
-
-    	
-        if($request->ajax())
-        {
-            return response()->json([
-                'deliveryTypeUnitPrice'=>$deliveryType->charge,
-            ]);
-        }
-    }
-
-    public function getOrderNo(Request $request)
-    {
-
     }
 
     public function delete(Request $request)

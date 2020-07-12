@@ -179,7 +179,7 @@
             </div>
 
             <div class="col-md-4">
-                <label for="courier-type">Service Name</label>
+                <label for="service-name">Service Name</label>
                 <div class="form-group {{ $errors->has('serviceId') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select service" id="service" name="serviceId" onchange="findCharge()">
                         <option value="">Select A Courier Type</option>

@@ -50,7 +50,7 @@ class ChargeForMerchantController extends Controller
             'created_by' => $this->userId,
         ]);
 
-        return redirect(route('chargeForMerchant.index'))->with('msg',"Merchant's Charge Added Successfully");
+        return redirect(route('chargeForMerchant.add'))->with('msg',"Merchant's Charge Added Successfully");
     }
 
     public function edit($chargeId)

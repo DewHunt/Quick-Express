@@ -285,6 +285,7 @@ Route::prefix('admin')->group(function()
 			Route::post('/merchant-booking-order-status','Admin\MerchantBookingOrderController@status')->name('merchantBookingOrder.status');
 			
 			Route::post('/merchant-booking-order-delete','Admin\MerchantBookingOrderController@delete')->name('merchantBookingOrder.delete');
+			Route::post('/merchant-booking-order-get-charge-info','Admin\MerchantBookingOrderController@getChargeInfo')->name('merchantBookingOrder.getChargeInfo');
 
 
 			// Sender Orders 
