@@ -45,7 +45,7 @@
 	                            $sl = 0;
 	                        @endphp
 
-	                        <table class="table table-bordered table-striped dataTable" width="100%" name="areaTable">
+	                        <table class="table table-bordered table-striped dataTable" width="100%">
 	                            <thead>
 	                                <tr style="background: #00c292; text-align: center;">
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="10px">SL</th>
@@ -73,7 +73,7 @@
 	                            $sl = 0;
 	                        @endphp
 
-	                        <table class="table table-bordered table-striped dataTable" width="100%" name="areaTable">
+	                        <table class="table table-bordered table-striped dataTable" width="100%">
 	                            <thead>
 	                                <tr style="background: #00c292; text-align: center;">
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="10px">SL</th>
@@ -101,7 +101,7 @@
 	                            $sl = 0;
 	                        @endphp
 
-	                        <table class="table table-bordered table-striped dataTable" width="100%" name="areaTable">
+	                        <table class="table table-bordered table-striped dataTable" width="100%">
 	                            <thead>
 	                                <tr style="background: #00c292; text-align: center;">
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="10px">SL</th>
