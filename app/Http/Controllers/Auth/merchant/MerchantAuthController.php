@@ -26,7 +26,7 @@ class MerchantAuthController extends Controller
 
                 'contact_person_name' => ['required', 'string', 'max:255'],
 
-                'contact_person_phone' => ['required', 'string', 'max:255', 'unique:tbl_marchants'],
+                'contact_person_phone' => ['required','numeric', 'unique:tbl_marchants'],
 
                 'contact_person_email' => ['nullable', 'string', 'email', 'max:255', 'unique:tbl_marchants'],
 
@@ -45,9 +45,9 @@ class MerchantAuthController extends Controller
                 if(!@$existAdmin){
                     $admin = Admin::create( [           
                         'role' => '12',     
-                        'name' => request()->name,               
-                        'phone' => request()->contact_person_phone,              
+                        'name' => request()->contact_person_name,               
                         'email' => request()->contact_person_email,           
+                        'phone' => request()->contact_person_phone,           
                         'username' => $username[0],           
                         'password' => bcrypt(request()->password),                      
                     ]);
@@ -88,16 +88,12 @@ class MerchantAuthController extends Controller
                     return redirect(route('merchant.registration'))->with('message','Your registation complete, Check your email inbox/spam for confimation. It may be take some time');
                 }
             }else{
-                request()->contact_person_email = str_replace(' ', '_', request()->name).substr(request()->phone, -3).'@gmail.com';
-                $username = explode(' ',trim(request()->name));
-                $existAdmin = Admin::where('email',request()->contact_person_email)->first();
+                $existAdmin = Admin::where('phone',request()->contact_person_phone)->first();
                 if(!@$existAdmin){
                     $admin = Admin::create( [           
                         'role' => '12',     
-                        'name' => request()->name,               
-                        'phone' => request()->contact_person_phone,              
-                        'email' => request()->contact_person_email,           
-                        'username' => $username[0],           
+                        'name' => request()->contact_person_name,               
+                        'phone' => request()->contact_person_phone,           
                         'password' => bcrypt(request()->password),                       
                     ]);
                 }else{
@@ -149,20 +145,35 @@ class MerchantAuthController extends Controller
         $title = 'Login Your Account';
 
         if(count(request()->all()) > 0){
+
             if (is_numeric(request()->email)) {
                 $field = 'contact_person_phone';
+                $admin_filed = 'phone';
             } elseif (filter_var(request()->email, FILTER_VALIDATE_EMAIL)) {
                 $field = 'contact_person_email';
+                $admin_filed = 'email';
+            }else{
+                return redirect(route('merchant.login'))->withErrors([
+                    'error' => 'These credentials do not match our records.',
+                ])->withInput();
             }
 
             $merchant = Marchant::where($field,request()->email)->first();
+            $admin = Admin::where($admin_filed,request()->email)->first();
+
             if(@$merchant && $merchant->status == 0){
                 return redirect(route('merchant.login'))->withErrors([
                     'error' => 'You are not active member',
                 ])->withInput();
-            }elseif(Auth::guard('merchant')->attempt([$field => request()->email, 'password'=> request()->password]))
+
+            }elseif(@$admin && $admin->status == 0){
+                return redirect(route('merchant.login'))->withErrors([
+                    'error' => 'You are not active member',
+                ])->withInput();
+
+            }elseif(Auth::guard('admin')->attempt([$admin_filed => request()->email, 'password'=> request()->password]))
             {
-                return redirect()->intended(url('/'));
+                return redirect()->intended(route('admin.index'));
             }else{
                 return redirect(route('merchant.login'))->withErrors([
                     'error' => 'These credentials do not match our records.',

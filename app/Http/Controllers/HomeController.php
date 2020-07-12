@@ -58,10 +58,42 @@ class HomeController extends Controller
             return view('admin.index.warehouse')->with(compact('title'));
         }
         elseif ($userRole == 12)
-        {
+        {   
             $title = "Marchant Dashboard";
+
+            $new_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_marchants.user_id')
+            ->join('tbl_marchants','tbl_booking_orders.sender_id','=','tbl_marchants.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',0)
+            ->where('booked_type','Merchant')
+            ->Where('tbl_marchants.user_id',\Auth::user()->id)
+            ->Where('booked_type','Merchant')
+            ->orderBy('id','desc')
+            ->get();
+
+            $running_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_marchants.user_id')
+            ->join('tbl_marchants','tbl_booking_orders.sender_id','=','tbl_marchants.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',1)
+            ->where('delivery_status',0)
+            ->where('booked_type','Merchant')
+            ->Where('tbl_marchants.user_id',\Auth::user()->id)
+            ->Where('booked_type','Merchant')
+            ->orderBy('id','desc')
+            ->get();
+
+            $complete_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_marchants.user_id')
+            ->join('tbl_marchants','tbl_booking_orders.sender_id','=','tbl_marchants.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',1)
+            ->where('delivery_status',1)
+            ->where('booked_type','Merchant')
+            ->Where('tbl_marchants.user_id',\Auth::user()->id)
+            ->Where('booked_type','Merchant')
+            ->orderBy('id','desc')
+            ->get();
             
-            return view('admin.index.marchant')->with(compact('title'));
+            return view('admin.index.marchant')->with(compact('title','new_order_list','running_order_list','complete_order_list'));
         }
         elseif ($userRole == 14)
         {

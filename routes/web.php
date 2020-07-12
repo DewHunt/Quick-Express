@@ -270,6 +270,23 @@ Route::prefix('admin')->group(function()
 			Route::post('/bookingOrder-get-client-info','Admin\BookingOrderController@getClientInfo')->name('bookingOrder.getClientInfo');
 			Route::post('/bookingOrder-get-charge-info','Admin\BookingOrderController@getChargeInfo')->name('bookingOrder.getChargeInfo');
 
+
+			//Booking Order For Merchant
+			Route::get('/merchant-booking-order','Admin\MerchantBookingOrderController@index')->name('merchantBookingOrder.index');
+
+			Route::get('/merchant-booking-order-add','Admin\MerchantBookingOrderController@add')->name('merchantBookingOrder.add');
+			Route::post('/merchant-booking-order-add-save','Admin\MerchantBookingOrderController@save')->name('merchantBookingOrder.save');
+
+			Route::get('/merchant-booking-order-view/{id}','Admin\MerchantBookingOrderController@view')->name('merchantBookingOrder.view');
+
+			Route::get('/merchant-booking-order-edit/{id}','Admin\MerchantBookingOrderController@edit')->name('merchantBookingOrder.edit');
+			Route::post('/merchant-booking-order-update','Admin\MerchantBookingOrderController@update')->name('merchantBookingOrder.update');
+
+			Route::post('/merchant-booking-order-status','Admin\MerchantBookingOrderController@status')->name('merchantBookingOrder.status');
+			
+			Route::post('/merchant-booking-order-delete','Admin\MerchantBookingOrderController@delete')->name('merchantBookingOrder.delete');
+
+
 			// Sender Orders 
 			Route::get('/senderOrder','Admin\SenderOrderController@index')->name('senderOrder.index');
 			Route::get('/senderOrder-view/{id}','Admin\SenderOrderController@view')->name('senderOrder.view');
@@ -415,7 +432,6 @@ Route::middleware('IfNotLoggedIn')->group(function(){
 			Route::any('/verification', 'MerchantAuthController@completeRegistration')->name('merchant.verificationLink');
 
 			Route::any('/login', 'MerchantAuthController@login')->name('merchant.login');
-			Route::any('/login-test', 'MerchantAuthController@login')->name('merchant.login');
 		});
 	});
 });

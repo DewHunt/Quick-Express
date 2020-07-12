@@ -26,6 +26,13 @@ class BikerController extends Controller
     	$profile = DeliveryMan::find(\Auth::guard('biker')->user()->id);
         $area_list = AreaSetup::where('status',1)->orderBy('order_by','asc')->get();
     	if(count(request()->all()) > 0){
+            $this->validate(request(), [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['nullable', 'string', 'email', 'max:255'],
+                'phone' => ['required','numeric'],
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+
             request()->birth_date = date('Y-m-d',strtotime(request()->birth_date));
             if(request()->area_id){
                request()->area_id = implode(',', request()->area_id); 
