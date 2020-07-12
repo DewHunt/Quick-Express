@@ -44,10 +44,12 @@ class GoodsDeliveryController extends Controller
     {
         $title = "View Goods Collection Info";
 
-        $bookedOrder = BookingOrder::select('tbl_booking_orders.*','tbl_courier_types.name as courierTypeName','tbl_delivery_types.name as deliveryTypeName','tbl_delivery_men.name as deliveryManName','tbl_delivery_men.phone as deliveryManPhone','tbl_delivery_men.address as deliveryManAddress','tbl_delivery_men.image as deliveryManImage')
-            ->leftJoin('tbl_courier_types','tbl_courier_types.id','=','tbl_booking_orders.courier_type_id')
-            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+        $bookedOrder = BookingOrder::select('tbl_booking_orders.*','tbl_services.name as serviceName','tbl_service_types.id as deliveryTypeId','tbl_service_types.name as deliveryTypeName','tbl_delivery_men.name as deliveryManName','tbl_delivery_types.name as deliveryTypeName','tbl_delivery_men.phone as deliveryManPhone','tbl_delivery_men.address as deliveryManAddress','tbl_delivery_men.image as deliveryManImage','tbl_warehouses.name as hostWarehouseName','tbl_warehouses.contact_person as hostWarehouseContactPerson','tbl_warehouses.phone as hostWarehousePhone','tbl_warehouses.address as hostWarehouseAddress')
+            ->leftJoin('tbl_services','tbl_services.id','=','tbl_booking_orders.courier_type_id')
+            ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_duration_id')
             ->leftJoin('tbl_delivery_men','tbl_delivery_men.id','=','tbl_booking_orders.delivery_man_id')
+            ->leftJoin('tbl_warehouses','tbl_warehouses.id','=','tbl_booking_orders.host_warehouse_id')
             ->where('tbl_booking_orders.id',$bookedOrderId)
             ->orderBy('id','desc')
             ->first();

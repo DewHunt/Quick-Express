@@ -195,6 +195,15 @@ Route::prefix('admin')->group(function()
 			Route::post('/deliveryMan-status','Admin\DeliveryManController@status')->name('deliveryMan.status');
 			Route::post('/deliveryMan-delete','Admin\DeliveryManController@delete')->name('deliveryMan.delete');
 
+			// Delivery Type 
+			Route::get('/deliveryType','Admin\DeliveryTypeController@index')->name('deliveryType.index');
+			Route::get('/deliveryType-add','Admin\DeliveryTypeController@add')->name('deliveryType.add');
+			Route::post('/deliveryType-save','Admin\DeliveryTypeController@save')->name('deliveryType.save');
+			Route::get('/deliveryType-edit/{id}','Admin\DeliveryTypeController@edit')->name('deliveryType.edit');
+			Route::post('/deliveryType-update','Admin\DeliveryTypeController@update')->name('deliveryType.update');
+			Route::post('/deliveryType-status','Admin\DeliveryTypeController@status')->name('deliveryType.status');
+			Route::post('/deliveryType-delete','Admin\DeliveryTypeController@delete')->name('deliveryType.delete');
+
 			// Service 
 			Route::get('/service','Admin\ServiceController@index')->name('service.index');
 			Route::get('/service-add','Admin\ServiceController@add')->name('service.add');
@@ -204,7 +213,7 @@ Route::prefix('admin')->group(function()
 			Route::post('/service-status','Admin\ServiceController@status')->name('service.status');
 			Route::post('/service-delete','Admin\ServiceController@delete')->name('service.delete');
 
-			// Service Type 
+			// Service Type
 			Route::get('/serviceType','Admin\ServiceTypeController@index')->name('serviceType.index');
 			Route::get('/serviceType-add','Admin\ServiceTypeController@add')->name('serviceType.add');
 			Route::post('/serviceType-save','Admin\ServiceTypeController@save')->name('serviceType.save');
@@ -212,6 +221,33 @@ Route::prefix('admin')->group(function()
 			Route::post('/serviceType-update','Admin\ServiceTypeController@update')->name('serviceType.update');
 			Route::post('/serviceType-status','Admin\ServiceTypeController@status')->name('serviceType.status');
 			Route::post('/serviceType-delete','Admin\ServiceTypeController@delete')->name('serviceType.delete');
+
+			// Charge For Client
+			Route::get('/chargeForClient','Admin\ChargeForClientController@index')->name('chargeForClient.index');
+			Route::get('/chargeForClient-add','Admin\ChargeForClientController@add')->name('chargeForClient.add');
+			Route::post('/chargeForClient-save','Admin\ChargeForClientController@save')->name('chargeForClient.save');
+			Route::get('/chargeForClient-edit/{id}','Admin\ChargeForClientController@edit')->name('chargeForClient.edit');
+			Route::post('/chargeForClient-update','Admin\ChargeForClientController@update')->name('chargeForClient.update');
+			Route::post('/chargeForClient-status','Admin\ChargeForClientController@status')->name('chargeForClient.status');
+			Route::post('/chargeForClient-delete','Admin\ChargeForClientController@delete')->name('chargeForClient.delete');
+
+			// Charge For Merchant
+			Route::get('/chargeForMerchant','Admin\ChargeForMerchantController@index')->name('chargeForMerchant.index');
+			Route::get('/chargeForMerchant-add','Admin\ChargeForMerchantController@add')->name('chargeForMerchant.add');
+			Route::post('/chargeForMerchant-save','Admin\ChargeForMerchantController@save')->name('chargeForMerchant.save');
+			Route::get('/chargeForMerchant-edit/{id}','Admin\ChargeForMerchantController@edit')->name('chargeForMerchant.edit');
+			Route::post('/chargeForMerchant-update','Admin\ChargeForMerchantController@update')->name('chargeForMerchant.update');
+			Route::post('/chargeForMerchant-status','Admin\ChargeForMerchantController@status')->name('chargeForMerchant.status');
+			Route::post('/chargeForMerchant-delete','Admin\ChargeForMerchantController@delete')->name('chargeForMerchant.delete');
+
+			// Charge For Delivery Men
+			Route::get('/chargeForDeliveryMen','Admin\ChargeForDeliveryMenController@index')->name('chargeForDeliveryMen.index');
+			Route::get('/chargeForDeliveryMen-add','Admin\ChargeForDeliveryMenController@add')->name('chargeForDeliveryMen.add');
+			Route::post('/chargeForDeliveryMen-save','Admin\ChargeForDeliveryMenController@save')->name('chargeForDeliveryMen.save');
+			Route::get('/chargeForDeliveryMen-edit/{id}','Admin\ChargeForDeliveryMenController@edit')->name('chargeForDeliveryMen.edit');
+			Route::post('/chargeForDeliveryMen-update','Admin\ChargeForDeliveryMenController@update')->name('chargeForDeliveryMen.update');
+			Route::post('/chargeForDeliveryMen-status','Admin\ChargeForDeliveryMenController@status')->name('chargeForDeliveryMen.status');
+			Route::post('/chargeForDeliveryMen-delete','Admin\ChargeForDeliveryMenController@delete')->name('chargeForDeliveryMen.delete');
 
 			// Area Setup
 			Route::get('/areaSetup','Admin\AreaSetupController@index')->name('areaSetup.index');
@@ -231,10 +267,8 @@ Route::prefix('admin')->group(function()
 			Route::post('/bookingOrder-status','Admin\BookingOrderController@status')->name('bookingOrder.status');
 			Route::get('/bookingOrder-view/{id}','Admin\BookingOrderController@view')->name('bookingOrder.view');
 			Route::post('/bookingOrder-delete','Admin\BookingOrderController@delete')->name('bookingOrder.delete');
-			Route::post('/bookingOrder-client-type-info','Admin\BookingOrderController@getClientTypeInfo')->name('bookingOrder.getClientTypeInfo');
-			Route::post('/bookingOrder-delivery-type-info','Admin\BookingOrderController@getDeliveryTypeInfo')->name('bookingOrder.getDeliveryTypeInfo');
-			Route::post('/bookingOrder-delivery-type-info','Admin\BookingOrderController@getDeliveryTypeInfo')->name('bookingOrder.getDeliveryTypeInfo');
 			Route::post('/bookingOrder-get-client-info','Admin\BookingOrderController@getClientInfo')->name('bookingOrder.getClientInfo');
+			Route::post('/bookingOrder-get-charge-info','Admin\BookingOrderController@getChargeInfo')->name('bookingOrder.getChargeInfo');
 
 			// Sender Orders 
 			Route::get('/senderOrder','Admin\SenderOrderController@index')->name('senderOrder.index');

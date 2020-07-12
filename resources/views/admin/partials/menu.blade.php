@@ -98,11 +98,11 @@
 
                                                 <li class="{{$activeChildMenu}}">
                                                     @if (count($secondChildMenuList) > 0)
-                                                        <a href="javascript:void(0)" class="{{$activeChildMenu}}">
+                                                        <a class="waves-effect waves-dark has-arrow {{ $activeChildMenu }}" href="javascript:void(0)">
                                                             <i class="fa fa-plus-circle"></i><span class="hide-menu"> {{ $menuChild->menu_name }}</span>
                                                         </a>
                                                     @else
-                                                        <a href="{{ route($childMenuLink) }}" class="{{$activeChildMenu}}">
+                                                        <a class="waves-effect waves-dark" href="{{ route($childMenuLink) }}">
                                                             <i class="fa fa-caret-right"></i><span class="hide-menu"> {{ $menuChild->menu_name }}</span>
                                                         </a>
                                                     @endif
@@ -119,16 +119,16 @@
 
                                                                     if (@$childMenuRoute->menu_link == $secondChildMenu->menu_link)
                                                                     {
-                                                                        $activeChildMenu = 'active';
+                                                                        $activeMenu = 'active';
                                                                     }
                                                                     else
                                                                     {
-                                                                        $activeChildMenu = '';
+                                                                        $activeMenu = '';
                                                                     }                                                                
                                                                 @endphp
 
-                                                                <li class="{{$activeChildMenu}}">
-                                                                    <a href="{{ route($childMenuLink) }}" class="{{$activeChildMenu}}">
+                                                                <li class="{{$activeMenu}}">
+                                                                    <a href="{{ route($childMenuLink) }}" class="{{$activeMenu}}">
                                                                         <i class="fa fa-caret-right"></i><span class="hide-menu"> {{$secondChildMenu->menu_name}}</span>
                                                                     </a>
                                                                 </li>

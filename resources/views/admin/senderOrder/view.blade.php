@@ -21,11 +21,11 @@
             </thead>
 
             <tbody>
-            	<tr>
-            		<td style="font-weight: bold;">Name</td>
-            		<td>{{ $bookedOrder->sender_name }}</td>
-            		<td>{{ $bookedOrder->receiver_name }}</td>
-            		<td rowspan="6" style="text-align: center;">
+                <tr>
+                    <td style="font-weight: bold;">Name</td>
+                    <td>{{ $bookedOrder->sender_name }}</td>
+                    <td>{{ $bookedOrder->receiver_name }}</td>
+                    <td rowspan="8" style="text-align: center;">
                         <div class="button-margin">
                             @if (empty($bookedOrder->collection_man_id))
                                 @if ($bookedOrder->deliveryTypeId == 1 || $bookedOrder->deliveryTypeId == 2)
@@ -43,44 +43,57 @@
                                 </a>
                             @endif
                         </div>
-            		</td>
-            	</tr>
+                    </td>
+                </tr>
 
-            	<tr>
-            		<td style="font-weight: bold;">Phone</td>
-            		<td>{{ $bookedOrder->sender_phone }}</td>
-            		<td>{{ $bookedOrder->receiver_phone }}</td>
-            	</tr>
+                <tr>
+                    <td style="font-weight: bold;">Phone</td>
+                    <td>{{ $bookedOrder->sender_phone }}</td>
+                    <td>{{ $bookedOrder->receiver_phone }}</td>
+                </tr>
 
-            	<tr>
-            		<td style="font-weight: bold;">Zone</td>
-            		<td>{{ $senderInfo->zone_name }}</td>
-            		<td>{{ $receiverInfo->zone_name }}</td>
-            	</tr>
+                <tr>
+                    <td style="font-weight: bold;">Zone</td>
+                    <td>{{ $senderInfo->zone_name }}</td>
+                    <td>{{ $receiverInfo->zone_name }}</td>
+                </tr>
 
-            	<tr>
-            		<td style="font-weight: bold;">Address</td>
-            		<td>{{ $bookedOrder->sender_address }}</td>
-            		<td>{{ $bookedOrder->receiver_address }}</td>
-            	</tr>
+                <tr>
+                    <td style="font-weight: bold;">Address</td>
+                    <td>{{ $bookedOrder->sender_address }}</td>
+                    <td>{{ $bookedOrder->receiver_address }}</td>
+                </tr>
 
-            	<tr>
-            		<td style="font-weight: bold;">Courier Type</td>
-            		<td>{{ $bookedOrder->courierTypeName }}</td>
-            		<td rowspan="2">
-            			<span style="font-weight: bold;">Total Delivery Charge:</span> {{ $bookedOrder->delivery_charge }} Taka
-            			<br>
-            			@php
-            				$inWords = \App\HelperClass::numberToWords($bookedOrder->delivery_charge);
-            			@endphp
-            			<span style="font-weight: bold;">In Words:</span> {{ $inWords }} Taka Only
-            		</td>
-            	</tr>
+                <tr>
+                    <td style="font-weight: bold;">Service Name</td>
+                    <td>{{ $bookedOrder->serviceName }}</td>
+                    <td rowspan="3" style="vertical-align: middle;">
+                        <span style="font-weight: bold;">Total Delivery Charge:</span> {{ $bookedOrder->delivery_charge }} Taka
+                        @if ($bookedOrder->cod == 'Yes')
+                            <span style="color: red;">(Cash On Delivery)</span>
+                        @endif
+                        <br>
+                        @php
+                            $inWords = \App\HelperClass::numberToWords($bookedOrder->delivery_charge);
+                        @endphp
+                        <span style="font-weight: bold;">In Words:</span> {{ $inWords }} Taka Only
+                    </td>
+                </tr>
 
-            	<tr>
-            		<td style="font-weight: bold;">Delivery Type</td>
-            		<td>{{ $bookedOrder->deliveryTypeName }}</td>
-            	</tr>
+                <tr>
+                    <td style="font-weight: bold;">Service Type</td>
+                    <td>{{ $bookedOrder->serviceTypeName }}</td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold;">Delivery Type</td>
+                    <td>{{ $bookedOrder->deliveryTypeName }}</td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight: bold;">Remarks</td>
+                    <td colspan="2" style="text-align: justify;">{{ $bookedOrder->remarks }}</td>
+                </tr>
             </tbody>
         </table>
 
