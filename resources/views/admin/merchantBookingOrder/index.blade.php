@@ -20,7 +20,6 @@
                         <th style="font-weight: bold; vertical-align: middle;" colspan="3">Receiver</th>
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="100px">Delivery Type</th>
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="50px">Charge</th>
-                        <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="60px">Status</th>
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="70px">Action</th>
                     </tr>
                     <tr>
@@ -43,11 +42,6 @@
                             <td>{{ $bookingOrder->receiver_address }}</td>
                             <td>{{ $bookingOrder->deliveryTypeName }}</td>
                 			<td>{{ $bookingOrder->delivery_charge }}</td>
-                			<td>
-                                @php
-                                    echo \App\Link::status($bookingOrder->id,$bookingOrder->status);
-                                @endphp
-                			</td>
                 			<td>
                     			@php
                     				echo \App\Link::action($bookingOrder->id);
@@ -129,36 +123,6 @@
                 });
             });
         });
-                
-        //ajax status change code
-        function statusChange(merchantBookingOrderId) {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: "post",
-                url: "{{ route('merchantBookingOrder.status') }}",
-                data: {merchantBookingOrderId:merchantBookingOrderId},
-                success: function(response) {
-                    swal({
-                        title: "<small class='text-success'>Success!</small>", 
-                        type: "success",
-                        text: "Status Successfully Updated!",
-                        timer: 1000,
-                        html: true,
-                    });
-                },
-                error: function(response) {
-                    error = "Failed.";
-                    swal({
-                        title: "<small class='text-danger'>Error!</small>", 
-                        type: "error",
-                        text: error,
-                        timer: 2000,
-                        html: true,
-                    });
-                }
-            });
-        }
+       
     </script>
 @endsection
