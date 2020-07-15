@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Admin;
 use App\UserRoles;
+use App\AreaSetup;
 
 class ClientController extends Controller
 {
@@ -28,8 +29,9 @@ class ClientController extends Controller
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
+        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
-    	return view('admin.client.add')->with(compact('title','formLink','buttonName','userRoles'));
+    	return view('admin.client.add')->with(compact('title','formLink','buttonName','userRoles','area_list'));
     }
 
     public function save(Request $request)
@@ -46,13 +48,14 @@ class ClientController extends Controller
         }
 
         Client::create([
-            'user_role_id' => $request->role,
+            'user_role_id' => 4,
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,
             'address' => $request->address,
             'birth_date' => $dob,
+            'area' => $request->area,
             'password' => bcrypt($request->password),
             'created_by' => $this->userId,
         ]);
@@ -68,10 +71,11 @@ class ClientController extends Controller
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
+        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
     	$client = Client::where('id',$clientId)->first();
 
-    	return view('admin.client.edit')->with(compact('title','formLink','buttonName','client','userRoles'));
+    	return view('admin.client.edit')->with(compact('title','formLink','buttonName','client','userRoles','area_list'));
     }
 
     public function update(Request $request)
@@ -95,6 +99,7 @@ class ClientController extends Controller
             'email' => $request->email,
             'nid' => $request->nid,
             'address' => $request->address,
+            'area' => $request->area,
             'birth_date' => $dob,
             'updated_by' => $this->userId,
         ]);

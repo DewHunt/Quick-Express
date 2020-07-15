@@ -1,6 +1,9 @@
 @extends('admin.layouts.masterIndex')
 
 @section('card_body')
+@php 
+    use App\AreaSetup;
+@endphp
     <div class="card-body">
         {{-- <div align='center'>
             <font size='7' text-align='center' color='green' face='Comic sans MS'>This Page Is Now Under Construction</font>
@@ -16,9 +19,10 @@
                     <tr>
                         <th width="20px">SL</th>
                         <th>Name</th>
-                        <th width="100px">DOB</th>
                         <th width="100px">Phone</th>
                         <th width="200px">Email</th>
+                        <th width="200px">Address</th>
+                        <th width="200px">Area</th>
                         <th width="20px">Status</th>
                         <th width="80px">Action</th>
                     </tr>
@@ -28,12 +32,17 @@
                 		$sl = 1;
                 	@endphp
                 	@foreach ($clients as $client)
+                    @php
+                        $getArea = AreaSetup::where('id',$client->area)->first();
+                    @endphp
                 		<tr class="row_{{ $client->id }}">
                 			<td>{{ $sl++ }}</td>
                 			<td>{{ $client->name }}</td>
-                            <td style="text-align: center;">{{ $client->birth_date == '' ? '---' : date('d-m-Y', strtotime($client->birth_date)) }}</td>
+                            
                 			<td>{{ $client->phone }}</td>
                             <td>{{ $client->email }}</td>
+                            <td>{{ $client->address }}</td>
+                            <td>{{ @$getArea->name }}</td>
                 			<td>
                                 @php
                                     echo \App\Link::status($client->id,$client->status);

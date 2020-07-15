@@ -33,7 +33,7 @@
                         @endphp                        	
                     	<tr class="row_{{ $user->id }}">
                             <td>{{ $sl }}</td>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->username }}</td>
                             <td>{{ $user->userRoleName }}</td>
                             <td>{{ $user->email }}</td>
                             <td>

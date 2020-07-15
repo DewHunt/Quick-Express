@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\DeliveryMan;
 use App\Admin;
 use App\UserRoles;
+use App\AreaSetup;
 
 class DeliveryManController extends Controller
 {
@@ -28,8 +29,9 @@ class DeliveryManController extends Controller
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
+        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
-    	return view('admin.deliveryMan.add')->with(compact('title','formLink','buttonName','userRoles'));
+    	return view('admin.deliveryMan.add')->with(compact('title','formLink','buttonName','userRoles','area_list'));
     }
 
     public function save(Request $request)
@@ -37,7 +39,8 @@ class DeliveryManController extends Controller
     	// dd($request->all());
 
         $user = Admin::create( [           
-            'role' => $request->role,     
+            'role' => '14
+            ',     
             'name' => $request->name,           
             'username' => $request->username,          
             'email' => $request->email,           
@@ -55,16 +58,21 @@ class DeliveryManController extends Controller
     		$image = \App\HelperClass::UploadImage($request->image,'tbl_delivery_men','public/uploads/profile_image/delivery_man/',@$width,@$height);
     	}
 
+        if($request->area){
+            $request->area = implode(',', $request->area);
+        }
+
         DeliveryMan::create([
             'user_id' => $user->id ,
-            'user_role_id' => $request->role,
+            'user_role_id' => '14',
             'name' => $request->name,
-            'image' => $image,
-            'width' => $width,
-            'height' => $height,
+            'image' => @$image,
+            'width' => @$width,
+            'height' => @$height,
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,
+            'area_id' => $request->area,
             'address' => $request->address,
             'created_by' => $this->userId,
         ]);
@@ -80,11 +88,12 @@ class DeliveryManController extends Controller
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
+        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
     	$deliveryMan = DeliveryMan::where('id',$deliveryManId)->first();
         $user = Admin::where('id',$deliveryMan->user_id)->first();
 
-    	return view('admin.deliveryMan.edit')->with(compact('title','formLink','buttonName','deliveryMan','userRoles','user'));
+    	return view('admin.deliveryMan.edit')->with(compact('title','formLink','buttonName','deliveryMan','userRoles','user','area_list'));
     }
 
     public function update(Request $request)
@@ -95,7 +104,7 @@ class DeliveryManController extends Controller
         $user = Admin::find($request->userId);
 
         $user->update([           
-            'role' => $request->role,     
+            'role' => '14',     
             'name' => $request->name,           
             'username' => $request->username,          
             'email' => $request->email,                     
@@ -118,16 +127,21 @@ class DeliveryManController extends Controller
             $height = $request->previousHeight;
     	}
 
+        if($request->area){
+            $request->area = implode(',', $request->area);
+        }
+
         $deliveryMan->update([
             'user_id' => $user->id ,
-            'user_role_id' => $request->role,
+            'user_role_id' => '14',
             'name' => $request->name,
-            'image' => $image,
-            'width' => $width,
-            'height' => $height,
+            'image' => @$image,
+            'width' => @$width,
+            'height' => @$height,
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,
+            'area_id' => $request->area,
             'address' => $request->address,
             'updated_by' => $this->userId,
         ]);
