@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Marchant;
 use App\Admin;
 use App\UserRoles;
+use App\AreaSetup;
 
 class MarchantController extends Controller
 {
@@ -28,8 +29,9 @@ class MarchantController extends Controller
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
+        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
-    	return view('admin.marchant.add')->with(compact('title','formLink','buttonName','userRoles'));
+    	return view('admin.marchant.add')->with(compact('title','formLink','buttonName','userRoles','area_list'));
     }
 
     public function save(Request $request)
@@ -37,7 +39,7 @@ class MarchantController extends Controller
     	// dd($request->all());
 
         $user = Admin::create( [           
-            'role' => $request->role,     
+            'role' => '12',     
             'name' => $request->name,           
             'username' => $request->username,          
             'email' => $request->email,           
@@ -46,13 +48,14 @@ class MarchantController extends Controller
 
         Marchant::create([
             'user_id' => $user->id ,
-            'user_role_id' => $request->role,
+            'user_role_id' => '12',
             'name' => $request->name,
             'contact_person_name' => $request->contactPerson,
             'contact_person_phone' => $request->phone,
             'contact_person_email' => $request->email,/*
             'trade_licence_no' => $request->trade_licence_no,*/
             'address' => $request->address,
+            'area' => $request->area,
             'created_by' => $this->userId,
         ]);
 
@@ -67,11 +70,12 @@ class MarchantController extends Controller
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
+        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
     	$marchant = Marchant::where('id',$marchantId)->first();
         $user = Admin::where('id',$marchant->user_id)->first();
 
-    	return view('admin.marchant.edit')->with(compact('title','formLink','buttonName','marchant','userRoles','user'));
+    	return view('admin.marchant.edit')->with(compact('title','formLink','buttonName','marchant','userRoles','user','area_list'));
     }
 
     public function update(Request $request)
@@ -82,7 +86,7 @@ class MarchantController extends Controller
         $user = Admin::find($request->userId);
 
         $user->update([           
-            'role' => $request->role,     
+            'role' => '12',     
             'name' => $request->name,           
             'username' => $request->username,          
             'email' => $request->email,                     
@@ -90,13 +94,14 @@ class MarchantController extends Controller
 
         $marchant->update([
             'user_id' => $user->id ,
-            'user_role_id' => $request->role,
+            'user_role_id' => '12',
             'name' => $request->name,
             'contact_person_name' => $request->contactPerson,
             'contact_person_phone' => $request->phone,
             'contact_person_email' => $request->email,/*
             'trade_licence_no' => $request->trade_licence_no,*/
             'address' => $request->address,
+            'area' => $request->area,
             'created_by' => $this->userId,
         ]);
 

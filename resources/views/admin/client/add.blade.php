@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4"> 
+            {{-- <div class="col-md-4"> 
                 <div class="form-group {{ $errors->has('parent') ? ' has-danger' : '' }}">
                     <label for="role">User Role</label>
                     <select class="form-control" name="role" required>
@@ -57,6 +57,24 @@
                             <option value="{{$role->id}}">{{$role->name}}</option>
                         @endforeach
                     </select>
+                </div>                                       
+            </div> --}}
+
+            <div class="col-md-4"> 
+                <div class="form-group {{ $errors->has('area') ? ' has-danger' : '' }}">
+                    <label for="area">Home Area</label>
+                    <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
+                        <select class="form-control chosen-select" name="area">
+                            @foreach ($area_list as $area)
+                                <option value="{{$area->id}}">{{$area->name}}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('area'))
+                            @foreach($errors->get('area') as $error)
+                                <div class="form-control-feedback">{{ $error }}</div>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>                                       
             </div>
         </div>

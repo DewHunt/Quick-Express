@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Agent;
 use App\Admin;
 use App\UserRoles;
+use App\Warehouse;
+use App\AreaSetup;
 
 class AgentController extends Controller
 {
@@ -27,14 +29,22 @@ class AgentController extends Controller
     	$buttonName = "Save";
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
-        $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
+        $userRoles = UserRoles::where('id',8)->get();
+        $warehouse_list = Warehouse::orderBy('name','asc')->where('status',1)->get();
+        $area_list = AreaSetup::where('status',1)
+                    ->orderBy('name','asc')
+                    ->get();
 
-    	return view('admin.agent.add')->with(compact('title','formLink','buttonName','userRoles'));
+    	return view('admin.agent.add')->with(compact('title','formLink','buttonName','userRoles','warehouse_list','area_list'));
     }
 
     public function save(Request $request)
     {
     	// dd($request->all());
+
+        if($request->area){
+            $request->area = implode(',', $request->area);
+        }
 
         $user = Admin::create( [           
             'role' => $request->role,     
@@ -48,11 +58,13 @@ class AgentController extends Controller
             'user_id' => $user->id ,
             'user_role_id' => $request->role,
             'name' => $request->name,
-            'district' => $request->district,
+            'contact_person' => $request->contact_person,
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,
+            'supporting_warehouse' => $request->supporting_warehouse,
             'address' => $request->address,
+            'area' => $request->area,
             'created_by' => $this->userId,
         ]);
 
@@ -67,11 +79,13 @@ class AgentController extends Controller
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
+        $warehouse_list = Warehouse::orderBy('name','asc')->where('status',1)->get();
+        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
     	$agent = Agent::where('id',$agentId)->first();
         $user = Admin::where('id',$agent->user_id)->first();
 
-    	return view('admin.agent.edit')->with(compact('title','formLink','buttonName','agent','userRoles','user'));
+    	return view('admin.agent.edit')->with(compact('title','formLink','buttonName','agent','userRoles','user','warehouse_list','area_list'));
     }
 
     public function update(Request $request)
@@ -88,13 +102,19 @@ class AgentController extends Controller
             'email' => $request->email,                     
         ]);
 
+        if($request->area){
+            $request->area = implode(',', $request->area);
+        }
+
         $agent->update([
             'name' => $request->name,
-            'district' => $request->district,
+            'contact_person' => $request->contact_person,
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,
+            'supporting_warehouse' => $request->supporting_warehouse,
             'address' => $request->address,
+            'area' => $request->area,
             'updated_by' => $this->userId,
         ]);
 

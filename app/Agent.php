@@ -9,7 +9,7 @@ class Agent extends Model
 	protected $table = "tbl_agents";
 
     protected $fillable = [
-    	'user_id','user_role_id','name','district','phone','email','nid','address','status','created_by','updated_by'
+    	'user_id','user_role_id','name','contact_person','district','phone','email','nid','supporting_warehouse','address','area','status','created_by','updated_by'
     ];
 
 	protected $hidden = [

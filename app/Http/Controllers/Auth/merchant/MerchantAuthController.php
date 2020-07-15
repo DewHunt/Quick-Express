@@ -40,7 +40,7 @@ class MerchantAuthController extends Controller
             if(request()->contact_person_email != ''){
                 $random_code = rand(10000000000000,99999999999999);
                 $verification_code = $random_code.base64_encode(request()->contact_person_email);
-                $username = explode(' ',trim(request()->name));
+                $username = str_replace(' ', '_', request()->name));
                 $existAdmin = Admin::where('email',request()->contact_person_email)->first();
                 if(!@$existAdmin){
                     $admin = Admin::create( [           
@@ -48,7 +48,7 @@ class MerchantAuthController extends Controller
                         'name' => request()->contact_person_name,               
                         'email' => request()->contact_person_email,           
                         'phone' => request()->contact_person_phone,           
-                        'username' => $username[0],           
+                        'username' => $username,           
                         'password' => bcrypt(request()->password),                      
                     ]);
                 }else{
@@ -90,9 +90,11 @@ class MerchantAuthController extends Controller
             }else{
                 $existAdmin = Admin::where('phone',request()->contact_person_phone)->first();
                 if(!@$existAdmin){
+                     $username = str_replace(' ', '_', request()->name));
                     $admin = Admin::create( [           
                         'role' => '12',     
-                        'name' => request()->contact_person_name,               
+                        'name' => request()->contact_person_name, 
+                        'username' => $username,               
                         'phone' => request()->contact_person_phone,           
                         'password' => bcrypt(request()->password),                       
                     ]);
