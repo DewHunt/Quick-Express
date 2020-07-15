@@ -69,6 +69,18 @@
                                                 <td style="font-weight: bold;" width="10px">:</td>
                                                 <td style="color: blue;">{{ $pendingCollection->sender_address }}</td>
                                             </tr>
+
+                                            <tr>
+                                                <td style="font-weight: bold;" width="80px">Type</td>
+                                                <td style="font-weight: bold;" width="10px">:</td>
+                                                <td style="color: blue;">{{ $pendingCollection->deliveryTypeName }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="font-weight: bold;" width="80px">Charge</td>
+                                                <td style="font-weight: bold;" width="10px">:</td>
+                                                <td style="color: blue;">{{ $pendingCollection->delivery_charge }} {{ $pendingCollection->cod == 'Yes' ? '(Cash On Delivery)' : '' }}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -121,6 +133,18 @@
                                                 <td style="font-weight: bold;" width="80px">Address</td>
                                                 <td style="font-weight: bold;" width="10px">:</td>
                                                 <td style="color: blue;">{{ $approvedCollection->sender_address }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="font-weight: bold;" width="80px">Type</td>
+                                                <td style="font-weight: bold;" width="10px">:</td>
+                                                <td style="color: blue;">{{ $approvedCollection->deliveryTypeName }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="font-weight: bold;" width="80px">Charge</td>
+                                                <td style="font-weight: bold;" width="10px">:</td>
+                                                <td style="color: blue;">{{ $approvedCollection->delivery_charge }} {{ $approvedCollection->cod == 'Yes' ? '(Cash On Delivery)' : '' }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

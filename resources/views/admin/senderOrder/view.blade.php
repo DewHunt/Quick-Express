@@ -37,10 +37,18 @@
                         </div>
 
                         <div class="button-margin">
-                            @if (!empty($bookedOrder->collection_man_id) && empty($bookedOrder->host_warehouse_id))
-                                <a class="btn btn-outline-info btn-sm" href="{{ route('senderOrder.transferToHostWarehouse',$bookedOrder->id) }}">
-                                    Transfer To Host Warehouse
-                                </a>
+                            @if ($bookedOrder->deliveryTypeId == 3 || $bookedOrder->deliveryTypeId == 4)
+                                @if (empty($bookedOrder->host_warehouse_id) && $bookedOrder->sender_goods_receieve_status == 1)
+                                    <a class="btn btn-outline-info btn-sm" href="{{ route('senderOrder.transferToHostWarehouse',$bookedOrder->id) }}">
+                                        Transfer To Host Warehouse
+                                    </a>
+                                @endif
+                            @else
+                                @if (!empty($bookedOrder->collection_man_id) && empty($bookedOrder->host_warehouse_id) && $bookedOrder->collection_status == 1 && $bookedOrder->sender_goods_receieve_status == 1)
+                                    <a class="btn btn-outline-info btn-sm" href="{{ route('senderOrder.transferToHostWarehouse',$bookedOrder->id) }}">
+                                        Transfer To Host Warehouse
+                                    </a>
+                                @endif
                             @endif
                         </div>
                     </td>

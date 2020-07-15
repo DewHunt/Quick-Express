@@ -37,8 +37,8 @@ class SenderOrderController extends Controller
         	$zoneType = "Marchant";
         }
 
-        $senderOrders = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.id as deliveryTypeId','tbl_delivery_types.name as deliveryTypeName')
-            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+        $senderOrders = BookingOrder::select('tbl_booking_orders.*','tbl_service_types.id as deliveryTypeId','tbl_service_types.name as deliveryTypeName')
+            ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
             ->where('tbl_booking_orders.sender_zone_type',$zoneType)
             ->where('tbl_booking_orders.sender_zone_id',$searchId->id)
             ->orderBy('tbl_booking_orders.date','desc')

@@ -42,8 +42,8 @@ class ReceiverOrderController extends Controller
         	$zoneType = "Marchant";
         }
 
-        $receiverOrders = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.id as deliveryTypeId','tbl_delivery_types.name as deliveryTypeName')
-            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+        $receiverOrders = BookingOrder::select('tbl_booking_orders.*','tbl_service_types.id as deliveryTypeId','tbl_service_types.name as deliveryTypeName')
+            ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
             ->where('tbl_booking_orders.receiver_zone_type',$zoneType)
             ->where('tbl_booking_orders.receiver_zone_id',$agentId->id)
             ->where('tbl_booking_orders.receiver_issue_status',1)

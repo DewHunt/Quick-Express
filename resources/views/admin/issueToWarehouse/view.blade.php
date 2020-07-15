@@ -27,9 +27,11 @@
             		<td>{{ $bookedOrder->receiver_zone_type }}</td>
             		<td rowspan="8" style="text-align: center;">
                         <div class="button-margin">
-                            <a class="btn btn-outline-info btn-sm" href="{{ route('issueToWarehouse.issueToWarehouse',$bookedOrder->id) }}">
-                                Issue To Warehouse
-                            </a>
+                            @if (empty($bookedOrder->destination_warehouse_id))
+                                <a class="btn btn-outline-info btn-sm" href="{{ route('issueToWarehouse.issueToWarehouse',$bookedOrder->id) }}">
+                                    Issue To Warehouse
+                                </a>
+                            @endif
                         </div>
             		</td>
             	</tr>
