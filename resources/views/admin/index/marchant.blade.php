@@ -135,8 +135,8 @@
 		                <div class="col-md-2">
 		                	<div class="d-flex no-block align-items-center">
 		                        <div class="ml-auto">
-		                            <h3 class="counter text-primary"><a href="">{{count($new_order_list) + count($running_order_list)}}</a></h3>
-		                            <h3 class="counter text-primary"><a href="">{{count($running_order_list)}}</a></h3>
+		                            <h3 class="counter text-primary"><a href="javascript:0">{{count($new_order_list) + count($running_order_list)}}</a></h3>
+		                            <h3 class="counter text-primary"><a href="javascript:0">{{count($running_order_list)}}</a></h3>
 		                        </div>
 		                    </div>
 		                </div>
@@ -165,8 +165,8 @@
 		                	<div class="d-flex no-block align-items-center">
 		                        <div class="ml-auto">
 		                            <h3 class="counter text-primary">
-		                            	<a href="">{{count($complete_order_list)}}</a>
-		                            	<a href="">0</a>
+		                            	<a href="javascript:0">{{count($complete_order_list)}}</a>
+		                            	<a href="javascript:0">0</a>
 		                            </h3>
 		                        </div>
 		                    </div>
@@ -195,8 +195,8 @@
 		                <div class="col-md-2">
 		                	<div class="d-flex no-block align-items-center">
 		                        <div class="ml-auto">
-		                            <h3 class="counter text-primary"><a href="">1000</a></h3>
-		                            <h3 class="counter text-primary"><a href="">0</a></h3>
+		                            <h3 class="counter text-primary"><a href="javascript:0">{{$total_amount}}</a></h3>
+		                            <h3 class="counter text-primary"><a href="javascript:0">0</a></h3>
 		                        </div>
 		                    </div>
 		                </div>

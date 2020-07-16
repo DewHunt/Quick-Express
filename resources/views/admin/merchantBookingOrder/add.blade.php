@@ -1,7 +1,7 @@
 @extends('admin.layouts.masterAddEdit')
 
 @section('card_body')
-    <input class="form-control" type="hidden" id="senderId" name="senderId" value="{{$merchant_info->id}}">
+    <input class="form-control" type="hidden" id="senderId" name="senderId" value="{{@$merchant_info->id}}">
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
