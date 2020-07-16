@@ -43,7 +43,7 @@ class SubagentController extends Controller
     	// dd($request->all());
 
         $user = Admin::create( [           
-            'role' => $request->role,     
+            'role' => '10',     
             'name' => $request->name,           
             'username' => $request->username,          
             'email' => $request->email,           
@@ -52,10 +52,10 @@ class SubagentController extends Controller
 
         Subagent::create([
             'user_id' => $user->id ,
-            'user_role_id' => $request->role,
+            'user_role_id' => '10',
             'agent_id' => $request->agentId,
             'name' => $request->name,
-            'upazila' => $request->upazila,
+            'contact_person' => $request->contactPerson,
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,
@@ -91,7 +91,7 @@ class SubagentController extends Controller
         $user = Admin::find($request->userId);
 
         $user->update([           
-            'role' => $request->role,     
+            'role' => '10',     
             'name' => $request->name,           
             'username' => $request->username,          
             'email' => $request->email,                     
@@ -100,7 +100,7 @@ class SubagentController extends Controller
         $subagent->update([
             'agent_id' => $request->agentId,
             'name' => $request->name,
-            'upazila' => $request->upazila,
+            'contact_person' => $request->contactPerson,
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,

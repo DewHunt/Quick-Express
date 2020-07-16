@@ -36,8 +36,6 @@ class ClientController extends Controller
 
     public function save(Request $request)
     {
-    	// dd($request->all());
-
         if ($request->dob)
         {
             $dob = date('Y-m-d',strtotime($request->dob));
@@ -47,14 +45,26 @@ class ClientController extends Controller
             $dob = "";
         }
 
+        $this->validate(request(), [
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if($request->image)
+        {
+            $width = $request->width;
+            $height = $request->height;
+            $image = \App\HelperClass::UploadImage($request->image,'tbl_delivery_men','public/uploads/profile_image/client/',@$width,@$height);
+        }
+
         Client::create([
-            'user_role_id' => 4,
+            'user_role_id' => '4',
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,
             'address' => $request->address,
             'birth_date' => $dob,
+            'image' => $image,
             'area' => $request->area,
             'password' => bcrypt($request->password),
             'created_by' => $this->userId,
@@ -80,8 +90,6 @@ class ClientController extends Controller
 
     public function update(Request $request)
     {
-    	// dd($request->all());
-
         if ($request->dob)
         {
             $dob = date('Y-m-d',strtotime($request->dob));

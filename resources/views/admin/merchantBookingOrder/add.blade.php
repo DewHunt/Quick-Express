@@ -40,7 +40,7 @@
             <div class="col-md-6">
                 <label for="receiver-phone-number">Receiver Phone Number</label>
                 <div class="form-group {{ $errors->has('receiverPhoneNumber') ? ' has-danger' : '' }}">
-                    <input type="number" class="form-control" placeholder="Receiver Phone Number" name="receiverPhoneNumber" value="{{ old('receiverPhoneNumber') }}" required>
+                    <input type="number" class="form-control" placeholder="Receiver Phone Number" id="receiverPhoneNumber" name="receiverPhoneNumber" value="{{ old('receiverPhoneNumber') }}" oninput="getReceiverInfo()" required>
                     @if ($errors->has('receiverPhoneNumber'))
                         @foreach($errors->get('receiverPhoneNumber') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -66,7 +66,7 @@
             <div class="col-md-6">
                 <label for="receiver-name">Receiver Name</label>
                 <div class="form-group {{ $errors->has('receiverName') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Receiver Name" name="receiverName" value="{{ old('receiverName') }}" required>
+                    <input type="text" class="form-control" placeholder="Receiver Name" id="receiverName" name="receiverName" value="{{ old('receiverName') }}" required>
                     @if ($errors->has('receiverName'))
                         @foreach($errors->get('receiverName') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -92,7 +92,7 @@
             <div class="col-md-6">
                 <label for="receiver-detail-address">Receiver Details Address</label>
                 <div class="form-group {{ $errors->has('receiverAddress') ? ' has-danger' : '' }}">
-                    <textarea class="form-control" rows="3" placeholder="Receiver Details Address" name="receiverAddress" required></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Receiver Details Address" id="receiverAddress" name="receiverAddress" required></textarea>
                     @if ($errors->has('receiverAddress'))
                         @foreach($errors->get('receiverAddress') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -118,7 +118,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="sender-zone">Sender Zone</label>
+                <label for="sender-area">Sender Area</label>
                 <div class="form-group {{ $errors->has('senderZone') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select" name="senderZone">
                         <option value="">Select A Zone</option>
@@ -130,9 +130,9 @@
             </div>
 
             <div class="col-md-6">
-                <label for="receiver-zone">Receiver Zone</label>
+                <label for="receiver-area">Receiver Area</label>
                 <div class="form-group {{ $errors->has('receiverZone') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="receiverZone">
+                    <select class="form-control chosen-select" id="receiverZone" name="receiverZone">
                         <option value="">Select A Zone</option>
                         @foreach ($zones as $zone)
                             <option value="{{ $zone->zone_id }},{{ $zone->zone_type }}">{{ $zone->zone_name }}</option>
@@ -143,7 +143,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="service-type">Service Type</label>
                 <div class="form-group {{ $errors->has('deliveryTypeId') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select serviceType" id="serviceType" name="deliveryTypeId" onchange="findCharge()">
@@ -155,7 +155,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="service-name">Service Name</label>
                 <div class="form-group {{ $errors->has('courierType') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select service" id="service" name="courierType" onchange="findCharge()">
@@ -167,10 +167,10 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="charge-name">Charge Name</label>
                 <div class="form-group {{ $errors->has('chargeName') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Charge Name" id="chargeName" name="chargeName">
+                    <input type="text" class="form-control" placeholder="Charge Name" id="chargeName" name="chargeName" readonly>
                     @if ($errors->has('chargeName'))
                         @foreach($errors->get('chargeName') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -178,10 +178,22 @@
                     @endif
                 </div>
             </div>
+
+            <div class="col-md-3">
+                <label for="delivery-type">Delivery Type</label>
+                <div class="form-group {{ $errors->has('deliveryTypeId') ? ' has-danger' : '' }}">
+                    <select class="form-control chosen-select" name="deliveryTypeId">
+                        <option value="">Select A Delivery Type</option>
+                        @foreach ($deliveryTypes as $deliveryType)
+                            <option title="{{ $deliveryType->description }}" value="{{ $deliveryType->id }}">{{ $deliveryType->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         </div>
 
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="delivery-type-unit">Delivery Charge Unit</label>
                 <div class="form-group {{ $errors->has('deliveryChargeUnit') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Unit Price" id="deliveryChargeUnit" name="deliveryChargeUnit" oninput="findDeliveryCharge()" value="0">
@@ -193,7 +205,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="qty-kg-lit">Kg/Litre</label>
                 <div class="form-group {{ $errors->has('uom') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Qunatity/KG/Litre" id="uom" name="uom" oninput="findDeliveryCharge()" value="1" readonly>
@@ -205,7 +217,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="delivery-charge">Delivery Charge</label>
                 <div class="form-group {{ $errors->has('deliveryCharge') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Delivery Charge" id="deliveryCharge" name="deliveryCharge" value="0">
@@ -238,24 +250,65 @@
                     @endif
                 </div>
             </div>
-
-            <div class="col-md-3">
-                <label for="delivery-type">Delivery Type</label>
-                <div class="form-group {{ $errors->has('deliveryTypeId') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="deliveryTypeId">
-                        <option value="">Select A Delivery Type</option>
-                        @foreach ($deliveryTypes as $deliveryType)
-                            <option title="{{ $deliveryType->description }}" value="{{ $deliveryType->id }}">{{ $deliveryType->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
         </div>
     </div>
 @endsection
 
 @section('custom-js')
     <script type="text/javascript">
+        function getReceiverInfo()
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var receiverPhoneNumber = $('#receiverPhoneNumber').val();
+
+            $.ajax({
+                type:'post',
+                url:'{{ route('merchantBookingOrder.getReceiverInfo') }}',
+                data:{receiverPhoneNumber:receiverPhoneNumber},
+                success:function(data){
+                    $('#receiverName').val(data.receiverName);
+                    $('#receiverAddress').val(data.receiverAddress);
+
+                    if (data.receiverName)
+                    {
+                        $('#receiverName').prop('readonly',true);
+                    }
+                    else
+                    {
+                        $('#receiverName').prop('readonly',false);
+                    }
+
+                    // $('#receiverZone').selectmenu("refresh", true);
+
+                    if (data.receiverZoneName)
+                    {
+                        $('#receiverZone option').filter(function () {
+                            return $(this).val() == "";
+                        }).attr('selected', false).trigger('chosen:updated');
+
+                        $('#receiverZone option').filter(function () {
+                            return $(this).html() == data.receiverZoneName;
+                        }).attr('selected', true).trigger('chosen:updated');
+                    }
+                    else
+                    {
+                        $('#receiverZone option').filter(function () {
+                            return $(this).html() == $('#receiverZone option:selected').text();
+                        }).attr('selected', false).trigger('chosen:updated');
+
+                        $('#receiverZone option').filter(function () {
+                            return $(this).val() == "";
+                        }).attr('selected', true).trigger('chosen:updated');
+                    }
+                },
+            });
+        }
+
         function findCharge()
         {
             $.ajaxSetup({

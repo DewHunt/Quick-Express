@@ -61,15 +61,14 @@
         setTimeout(function () { //$(".message").hide('blind', {}, 500)); 
             $(".message").slideUp(1000).hide(1000);
         }, 5000);
+
         tinymce.init({
             selector: '.tinymce',
             forced_root_block: ''
         });
-    });
-</script>
 
-<script type="text/javascript">
-	$(".chosen-select").chosen({search_contains: true});
+        $(".chosen-select").chosen({search_contains: true});
+    });
 </script>
 
 

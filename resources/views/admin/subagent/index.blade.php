@@ -17,7 +17,7 @@
                         <th width="20px">SL</th>
                         <th>Name</th>
                         <th>Agent</th>
-                        <th>Upazila</th>
+                        <th>Contact Person</th>
                         <th>Phone</th>
                         <th width="20px">Status</th>
                         <th width="80px">Action</th>
@@ -32,7 +32,7 @@
                 			<td>{{ $sl++ }}</td>
                 			<td>{{ $subagent->name }}</td>
                             <td>{{ $subagent->agentName }}</td>
-                			<td>{{ $subagent->upazila }}</td>
+                			<td>{{ $subagent->contact_person }}</td>
                             <td>{{ $subagent->phone }}</td>
                 			<td>
                                 @php

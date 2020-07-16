@@ -237,6 +237,41 @@ class MerchantBookingOrderController extends Controller
 
     	return view('admin.merchantBookingOrder.view')->with(compact('title','bookedOrder','senderInfo','receiverInfo'));
     }
+    
+    public function getReceiverInfo(Request $request)
+    {
+
+        $receiverInfo = BookingOrder::select('tbl_booking_orders.*','view_zones.zone_name as receiverZoneName')
+            ->leftJoin('view_zones',function($leftJoin){
+                $leftJoin->on('tbl_booking_orders.receiver_zone_id','=','view_zones.zone_id');
+                $leftJoin->on('tbl_booking_orders.receiver_zone_type','=','view_zones.zone_type');
+            })
+            ->where('tbl_booking_orders.receiver_phone',$request->receiverPhoneNumber)
+            ->orderBy('tbl_booking_orders.id','desc')
+            ->first();
+
+        if ($receiverInfo)
+        {
+            $receiverName = $receiverInfo->receiver_name;
+            $receiverAddress = $receiverInfo->receiver_address;
+            $receiverZoneName = $receiverInfo->receiverZoneName;
+        }
+        else
+        {
+            $receiverName = "";
+            $receiverAddress = "";
+            $receiverZoneName = "";
+        }
+        
+        if($request->ajax())
+        {
+            return response()->json([
+                'receiverName' => $receiverName,
+                'receiverAddress'=> $receiverAddress,
+                'receiverZoneName' =>$receiverZoneName
+            ]);
+        }
+    }
 
     public function getChargeInfo(Request $request)
     {

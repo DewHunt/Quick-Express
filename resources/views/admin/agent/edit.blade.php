@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="agent-name">Agent Name</label>
                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
                     <input type="text" class="form-control" placeholder="Agent Name" name="name" value="{{ $agent->name }}">
@@ -27,7 +27,21 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
+                <label for="national-id">NID</label>
+                <div class="form-group {{ $errors->has('nid') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" placeholder="National ID" name="nid" value="{{ $agent->nid }}">
+                    @if ($errors->has('nid'))
+                        @foreach($errors->get('nid') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
                 <label for="contact_person">Contact Person</label>
                 <div class="form-group {{ $errors->has('contact_person') ? ' has-danger' : '' }}">
                     <input type="text" class="form-control" placeholder="Cntact Person Name" name="contact_person" value="{{ $agent->contact_person }}" required>
@@ -39,7 +53,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="Phone">Contact No</label>
                 <div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
                     <input type="text" class="form-control" placeholder="Contact Person Phone No" name="phone" value="{{ $agent->phone }}" required>
@@ -53,31 +67,7 @@
         </div>
 
          <div class="row">
-            <div class="col-md-4">
-                <label for="email">Email Address</label>
-                <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Email" name="email" value="{{ $agent->email }}">
-                    @if ($errors->has('email'))
-                        @foreach($errors->get('email') as $error)
-                            <div class="form-control-feedback">{{ $error }}</div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <label for="national-id">NID</label>
-                <div class="form-group {{ $errors->has('nid') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="National ID" name="nid" value="{{ $agent->nid }}">
-                    @if ($errors->has('nid'))
-                        @foreach($errors->get('nid') as $error)
-                            <div class="form-control-feedback">{{ $error }}</div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="supporting_warehouse">Supporting Warehouse</label>
                 <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select" name="supporting_warehouse" required>
@@ -99,24 +89,8 @@
                     @endif
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <label for="address">Address</label>
-                <div class="form-group {{ $errors->has('address') ? ' has-danger' : '' }}">
-                    <textarea class="form-control" rows="5" placeholder="Agent's Address" name="address">{{ $agent->address }}</textarea>
-                    @if ($errors->has('address'))
-                        @foreach($errors->get('address') as $error)
-                            <div class="form-control-feedback">{{ $error }}</div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <label for="area">Preffered Area</label>
                 <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select" name="area[]" multiple required>
@@ -125,23 +99,51 @@
                         @endphp
                         @foreach ($area_list as $area)
                             @php
-                                if(in_array($area->id, $area_array)){
+                                if(in_array($area->id, $area_array))
+                                {
                                     $selected = 'selected';
-                                }else{
+                                }
+                                else
+                                {
                                     $selected = '';
                                 }
                                 $exist_area = Agent::whereRaw('FIND_IN_SET(?,area)', [$area->id])->get();
                                 $exist_own_area = explode(',', $agent->area);
-                                if(in_array($area->id, $exist_own_area) || count($exist_area) < 1){
                             @endphp
-                            <option {{$selected}} value="{{$area->id}}">{{$area->name}}</option>
-                            @php
-                                }
-                            @endphp
+
+                            @if (in_array($area->id, $exist_own_area) || count($exist_area) < 1)
+                                <option {{$selected}} value="{{$area->id}}">{{$area->name}}</option>
+                            @endif
                         @endforeach
                     </select>
                     @if ($errors->has('area'))
                         @foreach($errors->get('area') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="email">Email Address</label>
+                <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" placeholder="Email" name="email" value="{{ $agent->email }}">
+                    @if ($errors->has('email'))
+                        @foreach($errors->get('email') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="address">Address</label>
+                <div class="form-group {{ $errors->has('address') ? ' has-danger' : '' }}">
+                    <textarea class="form-control" rows="5" placeholder="Agent's Address" name="address">{{ $agent->address }}</textarea>
+                    @if ($errors->has('address'))
+                        @foreach($errors->get('address') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
                         @endforeach
                     @endif

@@ -39,8 +39,7 @@ class DeliveryManController extends Controller
     	// dd($request->all());
 
         $user = Admin::create( [           
-            'role' => '14
-            ',     
+            'role' => '14',     
             'name' => $request->name,           
             'username' => $request->username,          
             'email' => $request->email,           
@@ -58,8 +57,13 @@ class DeliveryManController extends Controller
     		$image = \App\HelperClass::UploadImage($request->image,'tbl_delivery_men','public/uploads/profile_image/delivery_man/',@$width,@$height);
     	}
 
-        if($request->area){
-            $request->area = implode(',', $request->area);
+        if($request->area)
+        {
+            $area = implode(',', $request->area);
+        }
+        else
+        {
+            $area = '';
         }
 
         DeliveryMan::create([
@@ -72,7 +76,7 @@ class DeliveryManController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,
-            'area_id' => $request->area,
+            'area_id' => $area,
             'address' => $request->address,
             'created_by' => $this->userId,
         ]);
@@ -127,8 +131,13 @@ class DeliveryManController extends Controller
             $height = $request->previousHeight;
     	}
 
-        if($request->area){
-            $request->area = implode(',', $request->area);
+        if($request->area)
+        {
+            $area = implode(',', $request->area);
+        }
+        else
+        {
+            $area = '';
         }
 
         $deliveryMan->update([
@@ -141,7 +150,7 @@ class DeliveryManController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'nid' => $request->nid,
-            'area_id' => $request->area,
+            'area_id' => $area,
             'address' => $request->address,
             'updated_by' => $this->userId,
         ]);

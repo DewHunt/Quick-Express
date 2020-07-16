@@ -6,7 +6,7 @@
 			height: unset !important;
 		}
 	</style>
-	<div id="quotation" class="quotation-main-block" style="background-image: url('{{ asset('public/frontend') }}images/bg/consult-bg.jpg')">
+	<div id="quotation" class="quotation-main-block" style="background-image: url('{{ asset('public/frontend/asset/images/bg/best-bg.jpg') }}')">
 		<div class="container">
 			<div class="section text-center">
 				<h1 class="section-heading">{{$title}}</h1>
@@ -37,17 +37,13 @@
 					<div class="row">
 						<div class="col-lg-6 col-sm-6">
 							<div class="form-group">
-								<label for="name">Business Name 
-									<span>*</span>
-								</label>
+								<label for="name">Business Name <span>*</span></label>
 								<input type="text" name="name" class="form-control" id="name" placeholder="business name of merchant" value="{{ old('name') }}" required>
 							</div>
 						</div>
 						<div class="col-lg-6 col-sm-6">
 							<div class="form-group">
-								<label for="contact_person_name">Contact Person Name 
-									<span>*</span>
-								</label>
+								<label for="contact_person_name">Contact Person Name <span>*</span></label>
 								<input type="text" name="contact_person_name" class="form-control" id="contact_person_name" placeholder="contact person name" value="{{ old('contact_person_name') }}" required>
 							</div>
 						</div>
@@ -56,15 +52,13 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label for="contact_person_phone">Contact Person Phone No 
-									<span>*</span>
-								</label>
+								<label for="contact_person_phone">Contact Person Phone No <span>*</span></label>
 								<input type="text" name="contact_person_phone" class="form-control" id="contact_person_phone" placeholder="phone no." value="{{ old('contact_person_phone') }}" required>
 							</div>
 						</div>
 						<div class="col-lg-6 col-sm-6">
 							<div class="form-group">
-								<label for="contact_person_email">Contact Person contact_person_email</label>
+								<label for="contact_person_email">Contact Person Email</label>
 								<input type="contact_person_email" name="contact_person_email" class="form-control" id="contact_person_email" placeholder="contact person email" value="{{ old('contact_person_email') }}">
 							</div>
 						</div>
@@ -75,10 +69,8 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label for="trade_licence_no">Trade Licence No 
-											<span>*</span>
-										</label>
-										<input type="text" name="trade_licence_no" class="form-control" id="trade_licence_no" placeholder="trade licence no" value="{{ old('trade_licence_no') }}" required>
+										<label for="trade_licence_no">Trade Licence No</label>
+										<input type="text" name="trade_licence_no" class="form-control" id="trade_licence_no" placeholder="trade licence no" value="{{ old('trade_licence_no') }}">
 									</div>
 								</div>
 							</div>
@@ -86,18 +78,14 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group">
-										<label for="password">Password 
-											<span>*</span>
-										</label>
+										<label for="password">Password <span>*</span></label>
 										<input type="password" name="password" class="form-control" id="password" required>
 									</div>
 								</div>
 
 								<div class="col-lg-6">
 									<div class="form-group">
-										<label for="confirm_password">Confirm Password 
-											<span>*</span>
-										</label>
+										<label for="confirm_password">Confirm Password <span>*</span></label>
 										<input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
 									</div>
 								</div>
@@ -106,9 +94,7 @@
 
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label for="address">Address 
-									<span>*</span>
-								</label>
+								<label for="address">Address <span>*</span></label>
 								<textarea name="address" class="form-control" id="address" rows="5" required>{{ old('address') }}</textarea>
 							</div>
 						</div>

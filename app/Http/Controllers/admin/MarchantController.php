@@ -52,8 +52,8 @@ class MarchantController extends Controller
             'name' => $request->name,
             'contact_person_name' => $request->contactPerson,
             'contact_person_phone' => $request->phone,
-            'contact_person_email' => $request->email,/*
-            'trade_licence_no' => $request->trade_licence_no,*/
+            'contact_person_email' => $request->email,
+            'trade_licence_no' => $request->tradeLicenseNo,
             'address' => $request->address,
             'area' => $request->area,
             'created_by' => $this->userId,
@@ -98,8 +98,8 @@ class MarchantController extends Controller
             'name' => $request->name,
             'contact_person_name' => $request->contactPerson,
             'contact_person_phone' => $request->phone,
-            'contact_person_email' => $request->email,/*
-            'trade_licence_no' => $request->trade_licence_no,*/
+            'contact_person_email' => $request->email,
+            'trade_licence_no' => $request->tradeLicenseNo,
             'address' => $request->address,
             'area' => $request->area,
             'created_by' => $this->userId,

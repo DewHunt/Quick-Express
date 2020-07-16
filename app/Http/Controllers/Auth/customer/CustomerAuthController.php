@@ -10,6 +10,7 @@ use Auth;
 use App\Client;
 use App\Admin;
 use App\WebsiteInformation;
+use App\AreaSetup;
 
 class CustomerAuthController extends Controller
 {   public function __construct()
@@ -17,10 +18,13 @@ class CustomerAuthController extends Controller
         $this->middleware('guest:customer')->except('logout');
     }
 
-    public function registration(Request $request){
+    public function registration(Request $request)
+    {
         $title = 'Create User Account';
+        $areaLists = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
-        if(count($request->all()) > 0){
+        if(count($request->all()) > 0)
+        {
             $this->validate(request(), [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['nullable', 'string', 'email', 'max:255', 'unique:tbl_clients'],
@@ -37,10 +41,12 @@ class CustomerAuthController extends Controller
                 $image = \App\HelperClass::UploadImage(request()->image,'tbl_clients','public/uploads/profile_image/client/',@$width,@$height);
             }
 
-            if($request->email != ''){
+            if($request->email != '')
+            {
                 $random_code = rand(10000000000000,99999999999999);
                 $verification_code = $random_code.base64_encode($request->email);
                 $user = Client::create([
+                    'area' => $request->area,
                     'name' => $request->name,
                     'email' => $request->email,
                     'phone' => $request->phone,
@@ -64,12 +70,17 @@ class CustomerAuthController extends Controller
                 // More headers
                 $headers .= 'From:Quick Express <support@technoparkbd.com>' . "\r\n";
                 $headers .= 'Cc: support@technoparkbd.com' . "\r\n";
-                if(@$user){
+
+                if(@$user)
+                {
                     mail($to, $subject, $message_body, $headers);
                     return redirect(route('user.registration'))->with('message','Your registation complete, Check your email for confimation');
                 }
-            }else{
+            }
+            else
+            {
                 $user = Client::create([
+                    'area' => $request->area,
                     'name' => $request->name,
                     'phone' => $request->phone,
                     'address' => $request->address,
@@ -80,12 +91,14 @@ class CustomerAuthController extends Controller
                     'status'=>'1'
                 ]);
 
-                if(@$admin && @$user){
+                if(@$admin && @$user)
+                {
                     return redirect(route('user.registration'))->with('message','Your registation complete, Check your email inbox/spam for confimation. It may be take some time');
                 }
             }
         }
-       return view('frontend.customer.auth.registration')->with(compact('title')); 
+
+        return view('frontend.customer.auth.registration')->with(compact('title','areaLists')); 
     }
 
     public function completeRegistration(){

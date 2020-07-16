@@ -42,12 +42,17 @@ class AgentController extends Controller
     {
     	// dd($request->all());
 
-        if($request->area){
-            $request->area = implode(',', $request->area);
+        if($request->area)
+        {
+            $area = implode(',', $request->area);
+        }
+        else
+        {
+            $area = '';
         }
 
         $user = Admin::create( [           
-            'role' => $request->role,     
+            'role' => '8',     
             'name' => $request->name,           
             'username' => $request->username,          
             'email' => $request->email,           
@@ -56,7 +61,7 @@ class AgentController extends Controller
 
         Agent::create([
             'user_id' => $user->id ,
-            'user_role_id' => $request->role,
+            'user_role_id' => '8',
             'name' => $request->name,
             'contact_person' => $request->contact_person,
             'phone' => $request->phone,
@@ -64,7 +69,7 @@ class AgentController extends Controller
             'nid' => $request->nid,
             'supporting_warehouse' => $request->supporting_warehouse,
             'address' => $request->address,
-            'area' => $request->area,
+            'area' => $area,
             'created_by' => $this->userId,
         ]);
 
@@ -96,14 +101,19 @@ class AgentController extends Controller
         $user = Admin::find($request->userId);
 
         $user->update([           
-            'role' => $request->role,     
+            'role' => '8',     
             'name' => $request->name,           
             'username' => $request->username,          
             'email' => $request->email,                     
         ]);
 
-        if($request->area){
-            $request->area = implode(',', $request->area);
+        if($request->area)
+        {
+            $area = implode(',', $request->area);
+        }
+        else
+        {
+            $area = '';
         }
 
         $agent->update([
@@ -114,7 +124,7 @@ class AgentController extends Controller
             'nid' => $request->nid,
             'supporting_warehouse' => $request->supporting_warehouse,
             'address' => $request->address,
-            'area' => $request->area,
+            'area' => $area,
             'updated_by' => $this->userId,
         ]);
 

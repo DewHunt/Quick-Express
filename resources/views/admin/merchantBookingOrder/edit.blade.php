@@ -45,7 +45,7 @@
             <div class="col-md-6">
                 <label for="receiver-phone-number">Receiver Phone Number</label>
                 <div class="form-group {{ $errors->has('receiverPhoneNumber') ? ' has-danger' : '' }}">
-                    <input type="number" class="form-control" placeholder="Receiver Phone Number" name="receiverPhoneNumber" value="{{ $bookedOrder->receiver_phone }}">
+                    <input type="number" class="form-control" placeholder="Receiver Phone Number" id="receiverPhoneNumber" name="receiverPhoneNumber" value="{{ $bookedOrder->receiver_phone }}" oninput="getReceiverInfo()" required>
                     @if ($errors->has('receiverPhoneNumber'))
                         @foreach($errors->get('receiverPhoneNumber') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -71,7 +71,7 @@
             <div class="col-md-6">
                 <label for="receiver-name">Receiver Name</label>
                 <div class="form-group {{ $errors->has('receiverName') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Receiver Name" name="receiverName" value="{{ $bookedOrder->receiver_name }}">
+                    <input type="text" class="form-control" placeholder="Receiver Name" id="receiverName" name="receiverName" value="{{ $bookedOrder->receiver_name }}">
                     @if ($errors->has('receiverName'))
                         @foreach($errors->get('receiverName') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -97,7 +97,7 @@
             <div class="col-md-6">
                 <label for="receiver-detail-address">Receiver Details Address</label>
                 <div class="form-group {{ $errors->has('receiverAddress') ? ' has-danger' : '' }}">
-                    <textarea class="form-control" rows="3" placeholder="Receiver Details Address" name="receiverAddress">{{ $bookedOrder->receiver_address }}</textarea>
+                    <textarea class="form-control" rows="3" placeholder="Receiver Details Address" id="receiverAddress" name="receiverAddress">{{ $bookedOrder->receiver_address }}</textarea>
                     @if ($errors->has('receiverAddress'))
                         @foreach($errors->get('receiverAddress') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -147,7 +147,7 @@
             <div class="col-md-6">
                 <label for="receiver-zone">Receiver Zone</label>
                 <div class="form-group {{ $errors->has('receiverZone') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="receiverZone">
+                    <select class="form-control chosen-select" id="receiverZone" name="receiverZone">
                         <option value="">Select A Zone</option>
                         @foreach ($zones as $zone)
                             @php
@@ -217,7 +217,7 @@
             <div class="col-md-4">
                 <label for="charge-name">Charge Name</label>
                 <div class="form-group {{ $errors->has('chargeName') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Charge Name" id="chargeName" name="chargeName" value="{{ $bookedOrder->charge_name }}">
+                    <input type="text" class="form-control" placeholder="Charge Name" id="chargeName" name="chargeName" value="{{ $bookedOrder->charge_name }}" readonly>
                     @if ($errors->has('chargeName'))
                         @foreach($errors->get('chargeName') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -313,6 +313,63 @@
 
 @section('custom-js')
     <script type="text/javascript">
+        function getReceiverInfo()
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var receiverPhoneNumber = $('#receiverPhoneNumber').val();
+
+            $.ajax({
+                type:'post',
+                url:'{{ route('merchantBookingOrder.getReceiverInfo') }}',
+                data:{receiverPhoneNumber:receiverPhoneNumber},
+                success:function(data){
+                    $('#receiverName').val(data.receiverName);
+                    $('#receiverAddress').val(data.receiverAddress);
+
+                    if (data.receiverName)
+                    {
+                        $('#receiverName').prop('readonly',true);
+                    }
+                    else
+                    {
+                        $('#receiverName').prop('readonly',false);
+                    }
+
+                    // $('#receiverZone').selectmenu("refresh", true);
+
+                    if (data.receiverZoneName)
+                    {
+                        $('#receiverZone option').filter(function () {
+                            return $(this).html() == $('#receiverZone option:selected').text();
+                        }).attr('selected', false).trigger('chosen:updated');
+                        
+                        $('#receiverZone option').filter(function () {
+                            return $(this).val() == "";
+                        }).attr('selected', false).trigger('chosen:updated');
+
+                        $('#receiverZone option').filter(function () {
+                            return $(this).html() == data.receiverZoneName;
+                        }).attr('selected', true).trigger('chosen:updated');
+                    }
+                    else
+                    {
+                        $('#receiverZone option').filter(function () {
+                            return $(this).html() == $('#receiverZone option:selected').text();
+                        }).attr('selected', false).trigger('chosen:updated');
+
+                        $('#receiverZone option').filter(function () {
+                            return $(this).val() == "";
+                        }).attr('selected', true).trigger('chosen:updated');
+                    }
+                },
+            });
+        }
+
         function findCharge()
         {
             $.ajaxSetup({

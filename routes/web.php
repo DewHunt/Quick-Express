@@ -268,6 +268,7 @@ Route::prefix('admin')->group(function()
 			Route::get('/bookingOrder-view/{id}','Admin\BookingOrderController@view')->name('bookingOrder.view');
 			Route::post('/bookingOrder-delete','Admin\BookingOrderController@delete')->name('bookingOrder.delete');
 			Route::post('/bookingOrder-get-client-info','Admin\BookingOrderController@getClientInfo')->name('bookingOrder.getClientInfo');
+			Route::post('/bookingOrder-get-receiver-info','Admin\BookingOrderController@getReceiverInfo')->name('bookingOrder.getReceiverInfo');
 			Route::post('/bookingOrder-get-charge-info','Admin\BookingOrderController@getChargeInfo')->name('bookingOrder.getChargeInfo');
 
 
@@ -285,6 +286,7 @@ Route::prefix('admin')->group(function()
 			Route::post('/merchant-booking-order-status','Admin\MerchantBookingOrderController@status')->name('merchantBookingOrder.status');
 			
 			Route::post('/merchant-booking-order-delete','Admin\MerchantBookingOrderController@delete')->name('merchantBookingOrder.delete');
+			Route::post('/merchant-booking-order-get-receiver-info','Admin\MerchantBookingOrderController@getReceiverInfo')->name('merchantBookingOrder.getReceiverInfo');
 			Route::post('/merchant-booking-order-get-charge-info','Admin\MerchantBookingOrderController@getChargeInfo')->name('merchantBookingOrder.getChargeInfo');
 
 

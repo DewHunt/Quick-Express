@@ -4,7 +4,7 @@
 @php
 	$loginAs = array('user.login'=>'Customer','merchant.login'=>'Merchant','biker.login'=>'Biker');
 @endphp
-	<div id="quotation" class="quotation-main-block" style="background-image: url('{{ asset('public/frontend') }}images/bg/consult-bg.jpg')">
+	<div id="quotation" class="quotation-main-block" style="background-image: url('{{ asset('public/frontend/asset/images/bg/best-bg.jpg') }}')">
 		<div class="container">
 			<div class="section text-center">
 				<h1 class="section-heading">{{$title}}</h1>
