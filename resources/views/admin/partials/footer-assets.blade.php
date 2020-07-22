@@ -7,8 +7,11 @@
 <!-- Jquery for multi select or choose -->
 <script src="{{ asset('/public/admin-elite/dist/js/chosen.jquery.js') }}"></script>
 
+{{-- Page Plugins --}}
+<script src="{{ asset('public/admin-elite/assets/node_modules/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+
 <!-- date picker jquery -->
-<!-- <script src="{{ asset('/public/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script> -->
+{{-- <script src="{{ asset('/public/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script> --}}
 
 
 <!-- Bootstrap popper Core JavaScript -->
@@ -22,6 +25,10 @@
 <script src="{{ asset('/public/admin-elite/dist/js/sidebarmenu.js') }}"></script>
 <!--Custom JavaScript -->
 <script src="{{ asset('/public/admin-elite/dist/js/custom.min.js') }}"></script>
+
+<!-- icheck -->
+<script src="{{ asset('public/admin-elite/assets/node_modules/icheck/icheck.min.js') }}"></script>
+<script src="{{ asset('public/admin-elite/assets/node_modules/icheck/icheck.init.js') }}"></script>
 
 <!--stickey kit -->
 <script src="{{ asset('/public/admin-elite/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
@@ -56,6 +63,7 @@
 <script src="{{ asset('/public/admin-elite/assets/node_modules/datatables/jquery.dataTables.min.js') }}"></script>
 
 <script src="{{ asset('/public/admin-elite/js/tinymce/tinymce.min.js') }}"></script>
+
  <script>
     $(document).ready(function () {
         setTimeout(function () { //$(".message").hide('blind', {}, 500)); 
@@ -68,6 +76,10 @@
         });
 
         $(".chosen-select").chosen({search_contains: true});
+
+        // For select 2
+        $(".select2").select2();
+        // $('.selectpicker').selectpicker();
     });
 </script>
 

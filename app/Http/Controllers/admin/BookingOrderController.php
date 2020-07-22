@@ -80,6 +80,15 @@ class BookingOrderController extends Controller
             $bookingDate = "";
         }
 
+        if ($request->cod == "Yes")
+        {
+            $codAmount = $request->codAmount;
+        }
+        else
+        {
+            $codAmount = 0;
+        }
+
         $senderZone = explode(',',$request->senderZone);
         $senderZoneId = $senderZone[0];
         $senderZoneType = $senderZone[1];
@@ -150,6 +159,7 @@ class BookingOrderController extends Controller
             'uom' => $request->uom,
             'delivery_charge' => $request->deliveryCharge,
             'cod' => $request->cod,
+            'cod_amount' => $codAmount,
             'delivery_duration_id' => $request->deliveryTypeId,
             'created_by' => $this->userId,
         ]);
@@ -202,6 +212,15 @@ class BookingOrderController extends Controller
             $bookingDate = "";
         }
 
+        if ($request->cod == "Yes")
+        {
+            $codAmount = $request->codAmount;
+        }
+        else
+        {
+            $codAmount = 0;
+        }
+
         $senderZone = explode(',',$request->senderZone);
         $senderZoneId = $senderZone[0];
         $senderZoneType = $senderZone[1];
@@ -235,6 +254,7 @@ class BookingOrderController extends Controller
             'uom' => $request->uom,
             'delivery_charge' => $request->deliveryCharge,
             'cod' => $request->cod,
+            'cod_amount' => $codAmount,
             'delivery_duration_id' => $request->deliveryTypeId,
             'updated_by' => $this->userId,
         ]);

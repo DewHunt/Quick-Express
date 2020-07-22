@@ -3,14 +3,14 @@
 @section('card_body')
     <div class="card-body">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label for="booking-date">Booking Date</label>
                 <div class="form-group">
                     <input  type="text" class="form-control add_datepicker" id="bookingDate" name="bookingDate" placeholder="Select Delivery Date">
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label for="order-no-name">Order No</label>
                 <div class="form-group {{ $errors->has('orderNo') ? ' has-danger' : '' }}">
                     <input type="text" class="form-control" placeholder="Order No" name="orderNo" value="{{ $orderNo }}" readonly>
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label for="cash-on-delivery">Cash On Delivery</label>
                 <div class="form-group {{ $errors->has('cod') ? ' has-danger' : '' }}">
                     <div class="form-check-inline">
@@ -38,6 +38,18 @@
                     </div>
                     @if ($errors->has('cod'))
                         @foreach($errors->get('cod') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label for="order-no-name">Cash On Delivery Amount</label>
+                <div class="form-group {{ $errors->has('codAmount') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" placeholder="Cash On Delivery Amount" id="codAmount" name="codAmount" value="{{ old('codAmount') }}" readonly>
+                    @if ($errors->has('codAmount'))
+                        @foreach($errors->get('codAmount') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
                         @endforeach
                     @endif
@@ -279,6 +291,19 @@
 
 @section('custom-js')
     <script type="text/javascript">
+        $('.cod').click(function(event) {
+            var cod =  $("input[name='cod']:checked").val();
+
+            if(cod == "Yes")
+            {
+                $("#codAmount").prop('readonly',false);
+            }
+            else
+            {
+                $("#codAmount").prop('readonly',true);
+            }
+        })
+
         function getClientInfo()
         {
             $.ajaxSetup({

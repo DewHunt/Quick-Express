@@ -345,6 +345,17 @@ Route::prefix('admin')->group(function()
 			Route::get('/issueToSubagent','Admin\IssueToSubagentController@index')->name('issueToSubagent.index');
 			Route::get('/issueToSubagent-view/{id}','Admin\IssueToSubagentController@view')->name('issueToSubagent.view');
 			Route::post('/issueToSubagent-status','Admin\IssueToSubagentController@issueToSubagentStatus')->name('issueToSubagent.issueToSubagentStatus');
+
+			// Payment Collection 
+			Route::get('/paymentCollection','Admin\PaymentCollectionController@index')->name('paymentCollection.index');
+			Route::get('/paymentCollection-add','Admin\PaymentCollectionController@add')->name('paymentCollection.add');
+			Route::post('/paymentCollection-save','Admin\PaymentCollectionController@save')->name('paymentCollection.save');
+			Route::get('/paymentCollection-edit/{id}','Admin\PaymentCollectionController@edit')->name('paymentCollection.edit');
+			Route::post('/paymentCollection-update','Admin\PaymentCollectionController@update')->name('paymentCollection.update');
+			Route::post('/paymentCollection-status','Admin\PaymentCollectionController@status')->name('paymentCollection.status');
+			Route::get('/paymentCollection-view/{id}','Admin\PaymentCollectionController@view')->name('paymentCollection.view');
+			Route::post('/paymentCollection-delete','Admin\PaymentCollectionController@delete')->name('paymentCollection.delete');
+			Route::post('/paymentCollection-get-order-info','Admin\PaymentCollectionController@getOrderInfo')->name('paymentCollection.getOrderInfo');
 		});
 	});
 
