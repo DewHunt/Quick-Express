@@ -88,7 +88,7 @@
 		        <div class="card-body">
 		        	<div class="row">
 		        		<h3>
-		        			<a href="{{ route('merchantBookingOrder.index') }}" style="font-size: unset;color: unset;">
+		        			<a href="javascript:0" style="font-size: unset;color: unset;">
 		        				<i class="fa fa-plus"></i>
 		        			</a>
 		        		</h3>
@@ -97,7 +97,7 @@
 		                <div class="col-md-10">
 		                    <div class="d-flex no-block align-items-center">
 		                        <div>
-		                            <a href="{{ route('merchantBookingOrder.index') }}" style="font-size: unset;">
+		                            <a href="javascript:0" style="font-size: unset;">
 		                            	<p>New Order</p>
 		                            </a>
 		                        </div>

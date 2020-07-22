@@ -27,8 +27,8 @@ class HomeController extends Controller
         $userId = Auth::user()->id;
         $userRole = Auth::user()->role;
 
-        if ($userRole == 2 || $userRole == 2)
-        {   $title = "Marchant Dashboard";
+        if ($userRole == 2 || $userRole == 3)
+        {   $title = "Dashboard";
 
             $new_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName')
             ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
