@@ -27,14 +27,38 @@ class HomeController extends Controller
         $userId = Auth::user()->id;
         $userRole = Auth::user()->role;
 
-        if ($userRole == 2)
-        {
-            return view('admin.index.index')->with(compact('title'));
+        if ($userRole == 2 || $userRole == 3)
+        {   $title = "Dashboard";
+
+            $new_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',0)
+            ->orderBy('id','desc')
+            ->get();
+
+            $running_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',1)
+            ->where('delivery_status',0)
+            ->orderBy('id','desc')
+            ->get();
+
+            $complete_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',1)
+            ->where('delivery_status',1)
+            ->orderBy('id','desc')
+            ->get();
+
+            $total_amount = BookingOrder::select('tbl_booking_orders.*')
+                            ->sum('delivery_charge');
+            
+            return view('admin.index.index')->with(compact('title','new_order_list','running_order_list','complete_order_list','total_amount'));
         }
-        elseif ($userRole == 3)
+        /*elseif ($userRole == 3)
         {
             // return view('admin.index.agent')->with(compact('title'));
-        }
+        }*/
         elseif ($userRole == 4)
         {
             # code...
@@ -43,7 +67,38 @@ class HomeController extends Controller
         {
             $title = "Agent Dashboard";
             
-            return view('admin.index.agent')->with(compact('title'));
+            $new_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_agents.user_id')
+            ->join('tbl_agents','tbl_booking_orders.sender_zone_id','=','tbl_agents.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',0)
+            ->Where('tbl_agents.user_id',\Auth::user()->id)
+            ->orderBy('id','desc')
+            ->get();
+
+            $running_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_agents.user_id')
+            ->join('tbl_agents','tbl_booking_orders.sender_zone_id','=','tbl_agents.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',1)
+            ->where('delivery_status',0)
+            ->Where('tbl_agents.user_id',\Auth::user()->id)
+            ->orderBy('id','desc')
+            ->get();
+
+            $complete_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_agents.user_id')
+            ->join('tbl_agents','tbl_booking_orders.sender_zone_id','=','tbl_agents.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',1)
+            ->where('delivery_status',1)
+            ->Where('tbl_agents.user_id',\Auth::user()->id)
+            ->orderBy('id','desc')
+            ->get();
+
+            $total_amount = BookingOrder::select('tbl_booking_orders.*','tbl_agents.user_id')
+                            ->join('tbl_agents','tbl_booking_orders.sender_zone_id','=','tbl_agents.id')
+                            ->Where('tbl_agents.user_id',\Auth::user()->id)
+                            ->sum('delivery_charge');
+            
+            return view('admin.index.agent')->with(compact('title','new_order_list','running_order_list','complete_order_list','total_amount'));
         }
         elseif ($userRole == 10)
         {
@@ -67,7 +122,6 @@ class HomeController extends Controller
             ->where('collection_status',0)
             ->where('booked_type','Merchant')
             ->Where('tbl_marchants.user_id',\Auth::user()->id)
-            ->Where('booked_type','Merchant')
             ->orderBy('id','desc')
             ->get();
 
@@ -78,7 +132,6 @@ class HomeController extends Controller
             ->where('delivery_status',0)
             ->where('booked_type','Merchant')
             ->Where('tbl_marchants.user_id',\Auth::user()->id)
-            ->Where('booked_type','Merchant')
             ->orderBy('id','desc')
             ->get();
 
@@ -89,11 +142,16 @@ class HomeController extends Controller
             ->where('delivery_status',1)
             ->where('booked_type','Merchant')
             ->Where('tbl_marchants.user_id',\Auth::user()->id)
-            ->Where('booked_type','Merchant')
             ->orderBy('id','desc')
             ->get();
+
+            $total_amount = BookingOrder::select('tbl_booking_orders.*','tbl_marchants.user_id')
+                            ->join('tbl_marchants','tbl_booking_orders.sender_id','=','tbl_marchants.id')
+                            ->where('booked_type','Merchant')
+                            ->Where('tbl_marchants.user_id',\Auth::user()->id)
+                            ->sum('delivery_charge');
             
-            return view('admin.index.marchant')->with(compact('title','new_order_list','running_order_list','complete_order_list'));
+            return view('admin.index.marchant')->with(compact('title','new_order_list','running_order_list','complete_order_list','total_amount'));
         }
         elseif ($userRole == 14)
         {
