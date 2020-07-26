@@ -356,6 +356,17 @@ Route::prefix('admin')->group(function()
 			Route::get('/paymentCollection-view/{id}','Admin\PaymentCollectionController@view')->name('paymentCollection.view');
 			Route::post('/paymentCollection-delete','Admin\PaymentCollectionController@delete')->name('paymentCollection.delete');
 			Route::post('/paymentCollection-get-order-info','Admin\PaymentCollectionController@getOrderInfo')->name('paymentCollection.getOrderInfo');
+
+			// Delivery Man Payment 
+			Route::get('/deliveryManPayment','Admin\DeliveryManPaymentController@index')->name('deliveryManPayment.index');
+			Route::get('/deliveryManPayment-add','Admin\DeliveryManPaymentController@add')->name('deliveryManPayment.add');
+			Route::post('/deliveryManPayment-save','Admin\DeliveryManPaymentController@save')->name('deliveryManPayment.save');
+			Route::get('/deliveryManPayment-edit/{id}','Admin\DeliveryManPaymentController@edit')->name('deliveryManPayment.edit');
+			Route::post('/deliveryManPayment-update','Admin\DeliveryManPaymentController@update')->name('deliveryManPayment.update');
+			Route::post('/deliveryManPayment-status','Admin\DeliveryManPaymentController@status')->name('deliveryManPayment.status');
+			Route::get('/deliveryManPayment-view/{id}','Admin\DeliveryManPaymentController@view')->name('deliveryManPayment.view');
+			Route::post('/deliveryManPayment-delete','Admin\DeliveryManPaymentController@delete')->name('deliveryManPayment.delete');
+			Route::post('/deliveryManPayment-get-order-info','Admin\DeliveryManPaymentController@getOrderInfo')->name('deliveryManPayment.getOrderInfo');
 		});
 	});
 

@@ -45,3 +45,9 @@
 
 <!-- Tree Menu CSS -->
 <link href="{{ asset('/public/tree-menu/TreeMenu.css') }}" rel="stylesheet">
+
+<style type="text/css">
+	.select2-container {
+		width: 100% !important;
+	}
+</style>

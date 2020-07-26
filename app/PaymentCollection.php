@@ -9,7 +9,7 @@ class PaymentCollection extends Model
 	protected $table = "tbl_payment_collections";
 
     protected $fillable = [
-    	'client_type','client_id','total_cod_amount','total_delivery_charge_amount','balance','status','created_by','updated_by'
+    	'date','client_type','client_id','total_cod_amount','total_delivery_charge_amount','balance','status','created_by','updated_by'
     ];
 
 	protected $hidden = [

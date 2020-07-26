@@ -64,6 +64,9 @@
 
 <script src="{{ asset('/public/admin-elite/js/tinymce/tinymce.min.js') }}"></script>
 
+<!-- Print -->>
+<script src="{{ asset('public/admin-elite/dist/js/pages/jquery.PrintArea.js') }}" type="text/JavaScript"></script>
+
  <script>
     $(document).ready(function () {
         setTimeout(function () { //$(".message").hide('blind', {}, 500)); 
@@ -80,6 +83,17 @@
         // For select 2
         $(".select2").select2();
         // $('.selectpicker').selectpicker();
+
+        // For Print Jquery Code
+        $("#print").click(function() {
+            var mode = 'iframe'; //popup
+            var close = mode == "popup";
+            var options = {
+                mode: mode,
+                popClose: close
+            };
+            $("div.printableArea").printArea(options);
+        });
     });
 </script>
 

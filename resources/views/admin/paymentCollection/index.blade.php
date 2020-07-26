@@ -95,7 +95,7 @@
                                     timer: 1000,
                                     html: true,
                                 });
-                                $('.row_'+bookingOrderId).remove();
+                                $('.row_'+paymentCollectionId).remove();
                             },
                             error: function(response) {
                                 error = "Failed.";

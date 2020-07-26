@@ -17,6 +17,7 @@ use App\Admin;
 use App\UserRoles;
 use App\ChargeForClient;
 use App\ChargeForMerchant;
+use App\ChargeForDeliveryMen;
 use App\DeliveryType;
 
 use DB;
@@ -161,6 +162,8 @@ class BookingOrderController extends Controller
             'cod' => $request->cod,
             'cod_amount' => $codAmount,
             'delivery_duration_id' => $request->deliveryTypeId,
+            'collection_payment' => $request->collectionPayment,
+            'delivery_payment' => $request->deliveryPayment,
             'created_by' => $this->userId,
         ]);
 
@@ -256,6 +259,8 @@ class BookingOrderController extends Controller
             'cod' => $request->cod,
             'cod_amount' => $codAmount,
             'delivery_duration_id' => $request->deliveryTypeId,
+            'collection_payment' => $request->collectionPayment,
+            'delivery_payment' => $request->deliveryPayment,
             'updated_by' => $this->userId,
         ]);
 
@@ -386,6 +391,37 @@ class BookingOrderController extends Controller
                 ->first();
         }
 
+        if ($request->serviceId)
+        {
+            $paymentForCollection = ChargeForDeliveryMen::where('service_type_name','Collect')->where('service_id',$request->serviceId)->first();
+            $paymentForDelivery = ChargeForDeliveryMen::where('service_type_name','Delivery')->where('service_id',$request->serviceId)->first();
+
+            // dd($paymentForDelivery);
+
+            if ($paymentForCollection)
+            {
+                $collectionPayment = $paymentForCollection->charge;
+            }
+            else
+            {
+                $collectionPayment = 0;
+            }
+
+            if ($paymentForDelivery)
+            {
+                $deliveryPayment = $paymentForDelivery->charge;
+            }
+            else
+            {
+                $deliveryPayment = 0;
+            }
+        }
+        else
+        {
+            $collectionPayment = 0;
+            $deliveryPayment = 0;
+        }
+
         if ($charge)
         {
             $chargeName = $charge->name;
@@ -403,6 +439,8 @@ class BookingOrderController extends Controller
             return response()->json([
                 'chargeName'=>$chargeName,
                 'charge'=>$charge,
+                'collectionPayment'=>$collectionPayment,
+                'deliveryPayment'=>$deliveryPayment,
             ]);
         }
     }

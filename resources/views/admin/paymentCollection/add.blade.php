@@ -47,7 +47,7 @@
                                     <div class="col-md-6">
                                         <label for="total-cod-amount">Total COD Amount</label>
                                         <div class="form-group {{ $errors->has('totalCodAmount') ? ' has-danger' : '' }}">
-                                            <input type="text" class="form-control" id="totalCodAmount" name="totalCodAmount" value="0" required/>
+                                            <input type="text" class="form-control" id="totalCodAmount" name="totalCodAmount" value="0" required readonly />
                                             @if ($errors->has('totalCodAmount'))
                                                 @foreach($errors->get('totalCodAmount') as $error)
                                                     <div class="form-control-feedback">{{ $error }}</div>
@@ -68,7 +68,7 @@
                                     <div class="col-md-6">
                                         <label for="total-delivery-charge">Total Delivery Charge</label>
                                         <div class="form-group {{ $errors->has('totalDeliveryCharge') ? ' has-danger' : '' }}">
-                                            <input type="text" class="form-control" id="totalDeliveryCharge" name="totalDeliveryCharge" value="0" required/>
+                                            <input type="text" class="form-control" id="totalDeliveryCharge" name="totalDeliveryCharge" value="0" required readonly />
                                             @if ($errors->has('totalDeliveryCharge'))
                                                 @foreach($errors->get('totalDeliveryCharge') as $error)
                                                     <div class="form-control-feedback">{{ $error }}</div>
@@ -80,7 +80,7 @@
                                     <div class="col-md-6">
                                         <label for="balance">Balance</label>
                                         <div class="form-group {{ $errors->has('balance') ? ' has-danger' : '' }}">
-                                            <input type="text" class="form-control" id="balance" name="balance" value="0" required/>
+                                            <input type="text" class="form-control" id="balance" name="balance" value="0" required readonly />
                                             @if ($errors->has('balance'))
                                                 @foreach($errors->get('balance') as $error)
                                                     <div class="form-control-feedback">{{ $error }}</div>
@@ -157,30 +157,22 @@
                     {
                         $(".orderInfo tbody").append(
                             '<tr class="orderInfoRow" id="orderInfoRow_'+orderInformation.id+'">'+
-                                // '<div class="form-group">'+
-                                // '<div class="input-group">'+
-                                // '<ul class="icheck-list">'+
-                                // '<li>'+
                                 '<td>'+
                                     orderInformation.order_no+
-                                    '<input type="hidden" class="orderNo_'+orderInformation.id+'" id="orderNo_'+orderInformation.id+'" name="orderNo[]" value="'+orderInformation.order_no+'" readonly>'+
+                                    '<input type="hidden" class="orderNo_'+orderInformation.id+'" id="orderNo_'+orderInformation.id+'" value="'+orderInformation.order_no+'" readonly>'+
                                 '</td>'+
                                 '<td align="right">'+
                                     orderInformation.cod_amount+
-                                    '<input type="hidden" style="text-align: right;" class="codAmount_'+orderInformation.id+'" id="codAmount_'+orderInformation.id+'" name="codAmount[]" value="'+orderInformation.cod_amount+'" readonly>'+
+                                    '<input type="hidden" style="text-align: right;" class="codAmount_'+orderInformation.id+'" id="codAmount_'+orderInformation.id+'" value="'+orderInformation.cod_amount+'" readonly>'+
                                 '</td>'+
                                 '<td align="right">'+
                                     orderInformation.delivery_charge+
-                                    '<input type="hidden" style="text-align: right;" class="deliveryCharge_'+orderInformation.id+'" id="deliveryCharge_'+orderInformation.id+'" name="deliveryCharge[]" value="'+orderInformation.delivery_charge+'" readonly>'+
+                                    '<input type="hidden" style="text-align: right;" class="deliveryCharge_'+orderInformation.id+'" id="deliveryCharge_'+orderInformation.id+'" value="'+orderInformation.delivery_charge+'" readonly>'+
                                 '</td>'+
                                 '<td align="center">'+
-                                    '<input type="checkbox" class="check selectAllColumn" id="orderCheck_'+orderInformation.id+'" name="orderId[]" value="'+orderInformation.id+'" data-checkbox="icheckbox_square-red" onclick="getPayment('+orderInformation.id+')">'+
+                                    '<input type="checkbox" class="check selectAllColumn" id="orderCheck_'+orderInformation.id+'" value="'+orderInformation.id+'" data-checkbox="icheckbox_square-red" onclick="getPayment('+orderInformation.id+')">'+
                                     '<label for="minimal-checkbox-'+orderInformation.id+'"></label>'+
                                 '</td>'+
-                                // '</li>'+
-                                // '</ul>'+
-                                // '</div>'+
-                                // '</div>'+
                             '</tr>'
                         );                        
                     }
@@ -204,6 +196,15 @@
 
                 $('#totalCodAmount').val(totalCodAmount);
                 $('#totalDeliveryCharge').val(totalDeliveryCharge);
+
+                $("#selectedOrders").append(
+                    '<div id="block_'+bookingOrderId+'">'+
+                    '<input type="hidden" name="orderNo[]" value="'+orderNo+'">'+
+                    '<input type="hidden" name="codAmount[]" value="'+codAmount+'">'+
+                    '<input type="hidden" name="deliveryCharge[]" value="'+deliveryCharge+'">'+
+                    '<input type="hidden" name="orderId[]" value="'+bookingOrderId+'">'+
+                    '</div>'
+                );
             }
             else
             {
@@ -212,18 +213,13 @@
 
                 $('#totalCodAmount').val(totalCodAmount);
                 $('#totalDeliveryCharge').val(totalDeliveryCharge);
+
+                $('#block_'+bookingOrderId).remove();
             }
 
             var balance = totalCodAmount - totalDeliveryCharge;
 
             $('#balance').val(balance);
-
-            $("#selectedOrders").append(
-                '<input type="text" name="orderNo[]" value="'+orderNo+'">'+
-                '<input type="text" name="codAmount[]" value="'+codAmount+'">'+
-                '<input type="text" name="deliveryCharge[]" value="'+deliveryCharge+'">'+
-                '<input type="text" name="orderId[]" value="'+bookingOrderId+'">'
-            );
         }
     </script>
 @endsection

@@ -24,7 +24,6 @@ class PaymentCollectionController extends Controller
     			$query->on('tbl_payment_collections.client_type','=','view_clients.clientType');
     			$query->on('tbl_payment_collections.client_id','=','view_clients.clientId');
     		})
-    		// ->leftJoin('view_clients','view_clients.id','=','tbl_payment_collections.delivery_type_id')
     		->orderBy('tbl_payment_collections.id','desc')
     		->get();
 
@@ -46,11 +45,21 @@ class PaymentCollectionController extends Controller
     {
     	// dd($request->all());
 
+        if ($request->paymentDate)
+        {
+            $paymentDate = date('Y-m-d',strtotime($request->paymentDate));
+        }
+        else
+        {
+            $paymentDate = "";
+        }
+
         $clients = explode(',',$request->client);
         $clientId = $clients[0];
         $clientType = $clients[1];
 
         $paymentCollection = PaymentCollection::create([
+            'date' => $paymentDate,
             'client_type' => $clientType,
             'client_id' => $clientId,
             'total_cod_amount' => $request->totalCodAmount,
@@ -69,7 +78,7 @@ class PaymentCollectionController extends Controller
 		            'booking_order_id' => $request->orderId[$i],
 		            'order_no' => $request->orderNo[$i],
 		            'cod_amount' => $request->codAmount[$i],
-		            'delivery_chargee' => $request->deliveryCharge[$i],
+		            'delivery_charge' => $request->deliveryCharge[$i],
 		            'created_by' => $this->userId,
 		        ]);
 
@@ -96,6 +105,25 @@ class PaymentCollectionController extends Controller
         return redirect(route('paymentCollection.index'))->with('msg','Payment Collected Successfully');
     }
 
+    public function view($paymentCollectionId)
+    {
+    	$title = "Payment Collection";
+
+    	$paymentCollection = PaymentCollection::select('tbl_payment_collections.*','view_clients.clientType as clientType','view_clients.clientName as clientName')
+    		->leftJoin('view_clients', function($query) {
+    			$query->on('tbl_payment_collections.client_type','=','view_clients.clientType');
+    			$query->on('tbl_payment_collections.client_id','=','view_clients.clientId');
+    		})
+    		->where('tbl_payment_collections.id',$paymentCollectionId)
+    		->first();
+
+    	$paymentCollectionLists = PaymentCollectionList::where('payment_collection_id',$paymentCollectionId)->get();
+
+    	// dd($paymentCollection);
+
+    	return view('admin.paymentCollection.view')->with(compact('title','paymentCollection','paymentCollectionLists'));
+    }
+
     public function getOrderInfo(Request $request)
     {
         $clients = explode(',',$request->client);
@@ -110,6 +138,51 @@ class PaymentCollectionController extends Controller
         {
             return response()->json([
                 'orderInformations' => $orderInformations,
+            ]);
+        }
+    }
+
+    public function delete(Request $request)
+    {
+    	$paymentCollectionLists = PaymentCollectionList::where('payment_collection_id',$request->paymentCollectionId)->get();
+
+    	foreach ($paymentCollectionLists as $paymentCollectionList)
+    	{
+	        $bookingOrder = BookingOrder::find($paymentCollectionList->booking_order_id);
+
+	        if ($bookingOrder->payment_status == 1)
+	        {
+	            $bookingOrder->update( [               
+	                'payment_status' => 0                
+	            ]);
+	        }
+	        else
+	        {
+	            $bookingOrder->update( [               
+	                'payment_status' => 1                
+	            ]);
+	        }
+    	}
+
+    	PaymentCollectionList::where('payment_collection_id',$request->paymentCollectionId)->delete();
+
+    	PaymentCollection::where('id',$request->paymentCollectionId)->delete();
+    }
+
+    public function status(Request $request)
+    {
+        $paymentCollection = PaymentCollection::find($request->paymentCollectionId);
+
+        if ($paymentCollection->status == 1)
+        {
+            $paymentCollection->update( [               
+                'status' => 0                
+            ]);
+        }
+        else
+        {
+            $paymentCollection->update( [               
+                'status' => 1                
             ]);
         }
     }

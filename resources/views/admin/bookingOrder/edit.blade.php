@@ -335,6 +335,8 @@
                 <label for="delivery-charge">Delivery Charge</label>
                 <div class="form-group {{ $errors->has('deliveryCharge') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Delivery Charge" id="deliveryCharge" name="deliveryCharge" value="{{ $bookedOrder->delivery_charge == '' ? '0' : $bookedOrder->delivery_charge }}">
+                    <input type="hidden" class="form-control" id="collectionPayment" name="collectionPayment" value="{{ $bookedOrder->collection_payment == '' ? '0' : $bookedOrder->collection_payment }}">
+                    <input type="hidden" class="form-control" id="deliveryPayment" name="deliveryPayment" value="{{ $bookedOrder->delivery_payment == '' ? '0' : $bookedOrder->delivery_payment }}">
                     @if ($errors->has('deliveryCharge'))
                         @foreach($errors->get('deliveryCharge') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -445,6 +447,8 @@
                     success:function(data){
                         $('#deliveryChargeUnit').val(data.charge);
                         $('#chargeName').val(data.chargeName);
+                        $('#collectionPayment').val(data.collectionPayment);
+                        $('#deliveryPayment').val(data.deliveryPayment);
                         findDeliveryCharge();
                     }
                 });
