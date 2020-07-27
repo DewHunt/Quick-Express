@@ -16,7 +16,7 @@
             <div class="col-md-6">
                 <label for="delivery-man-name">Delivery Man Name</label>
                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Delivery Man Name" name="name" value="{{ $deliveryMan->name }}">
+                    <input type="text" class="form-control" placeholder="Delivery Man Name" name="name" value="{{ $deliveryMan->name }}" required>
                     @if ($errors->has('name'))
                         @foreach($errors->get('name') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -43,7 +43,7 @@
                 <div class="form-group {{ $errors->has('area') ? ' has-danger' : '' }}">
                     <label for="area">Preffered Area</label>
                     <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
-                        <select class="form-control chosen-select" name="area[]" multiple required>
+                        <select class="form-control select2" name="area[]" multiple required>
                             @php
                                 $area_array = explode(',', $deliveryMan->area_id);
                             @endphp
@@ -70,7 +70,7 @@
             <div class="col-md-6">
                 <label for="Phone">Phone</label>
                 <div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Phone Number" name="phone" value="{{ $deliveryMan->phone }}">
+                    <input type="text" class="form-control" placeholder="Phone Number" name="phone" value="{{ $deliveryMan->phone }}" required>
                     @if ($errors->has('phone'))
                         @foreach($errors->get('phone') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -146,7 +146,7 @@
                             <div class="col-md-12">
                                 <label for="email">Email</label>
                                 <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <input type="text" class="form-control" placeholder="Email" name="email" value="{{ $user->email }}">
+                                    <input type="text" class="form-control" placeholder="Email" name="email" value="{{ $user->email }}" required>
                                     @if ($errors->has('email'))
                                         @foreach($errors->get('email') as $error)
                                             <div class="form-control-feedback">{{ $error }}</div>

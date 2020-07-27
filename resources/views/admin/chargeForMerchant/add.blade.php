@@ -6,7 +6,7 @@
             <div class="col-md-4">
                 <label for="merchant-name">Merchant's Name</label>
                 <div class="form-group {{ $errors->has('merchant') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select merchant" id="merchant" name="merchant" required>
+                    <select class="form-control select2 merchant" id="merchant" name="merchant" required>
                         <option value="">Select A Merchant's Name</option>
                         @foreach ($merchants as $merchant)
                             <option value="{{ $merchant->id }}">{{ $merchant->name }}</option>
@@ -18,7 +18,7 @@
             <div class="col-md-4">
                 <label for="service-type">Service Type</label>
                 <div class="form-group {{ $errors->has('serviceTypeId') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select serviceType" id="serviceType" name="serviceTypeId" onchange="getChargeName()" required>
+                    <select class="form-control select2 serviceType" id="serviceType" name="serviceTypeId" onchange="getChargeName()" required>
                         <option value="">Select A Service Type</option>
                         @foreach ($serviceTypes as $serviceType)
                             <option value="{{ $serviceType->id }}">{{ $serviceType->name }}</option>
@@ -30,7 +30,7 @@
             <div class="col-md-4">
                 <label for="Service">Service Name</label>
                 <div class="form-group {{ $errors->has('serviceId') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select service" id="service" name="serviceId" onchange="getChargeName()" required>
+                    <select class="form-control select2 service" id="service" name="serviceId" onchange="getChargeName()" required>
                         <option value="">Select A Service Name</option>
                         @foreach ($services as $service)
                             <option value="{{ $service->id }}">{{ $service->name }}</option>

@@ -13,9 +13,16 @@ class AreaSetupController extends Controller
     {
     	$title = "Area Setup";
 
-    	$areas = AreaSetup::orderBy('name','asc')->get();
+        $totalArea = AreaSetup::count();
 
-    	return view('admin.areaSetup.index')->with(compact('title','areas'));
+        $limit = floor($totalArea / 3);
+        $lastLimit = $totalArea - $limit * 2;
+
+    	$areas_00 = AreaSetup::skip(0)->take($limit)->get();
+        $areas_01 = AreaSetup::skip($limit)->take($limit)->get();
+        $areas_02 = AreaSetup::skip($limit*2)->take($lastLimit)->get();
+
+    	return view('admin.areaSetup.index')->with(compact('title','areas_00','areas_01','areas_02'));
     }
 
     public function add()

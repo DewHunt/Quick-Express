@@ -79,23 +79,59 @@ class DeliveryManPaymentController extends Controller
 		        {
 		        	$bookingOrder = BookingOrder::find($deliveryManPaymentList->booking_order_id);
 
-			        if ($bookingOrder->delivery_man_payment_status == 1)
-			        {
-			            $bookingOrder->update( [               
-			                'delivery_man_payment_status' => 0                
-			            ]);
-			        }
-			        else
-			        {
-			            $bookingOrder->update( [               
-			                'delivery_man_payment_status' => 1                
-			            ]);
-			        }
+                    if ($request->type[$i] == 'Collection')
+                    {
+                        if ($bookingOrder->collection_payment_status == 0)
+                        {
+                            $bookingOrder->update( [               
+                                'collection_payment_status' => 1                
+                            ]);
+                        }
+                    }
+                    else
+                    {
+                        if ($bookingOrder->delivery_payment_status == 0)
+                        {
+                            $bookingOrder->update( [               
+                                'delivery_payment_status' => 1                
+                            ]);
+                        }
+                    }
 		        }
         	}
         }
 
         return redirect(route('deliveryManPayment.index'))->with('msg','Payment Collected Successfully');
+    }
+
+    public function edit($deliveryManPaymentId)
+    {
+        $title = "Edit  Delivery Man Payment";
+        $formLink = "deliveryManPayment.update";
+        $buttonName = "Update";
+
+        $deliveryMen = DeliveryMan::orderBy('name','desc')->get();
+
+        $deliveryManPayment = DeliveryManPayment::where('id',$deliveryManPaymentId)->first();
+
+        $deliveryManPaymentLists = DeliveryManPaymentList::where('delivery_man_payment_id',$deliveryManPaymentId)->get();
+
+        $orderInformations = BookingOrder::where('collection_man_id',$deliveryManPayment->delivery_man_id)
+            ->where('collection_status',1)
+            ->where('collection_payment_status',0)
+            ->orWhere('delivery_man_id',$deliveryManPayment->delivery_man_id)
+            ->where('delivery_status',1)
+            ->where('delivery_payment_status',0)
+            ->get();
+
+        // dd($orderInformations);
+
+        return view('admin.deliveryManPayment.edit')->with(compact('title','formLink','buttonName','deliveryMen','deliveryManPayment','deliveryManPaymentLists','orderInformations','deliveryManPaymentId'));
+    }
+
+    public function update(Request $request)
+    {
+        dd($request->all());
     }
 
     public function view($deliveryManPaymentId)
@@ -107,7 +143,7 @@ class DeliveryManPaymentController extends Controller
     		->where('tbl_delivery_man_payments.id',$deliveryManPaymentId)
     		->first();
 
-    	$deliveryManPaymentLists = DeliveryManPaymentList::where('delivery_man_payment_id',$deliveryManPaymentId)->get();
+    	$deliveryManPaymentLists = DeliveryManPaymentList::where('delivery_man_payment_id',$deliveryManPaymentId)->orderBy('order_type','asc')->get();
 
     	// dd($paymentCollection);
 
@@ -117,7 +153,13 @@ class DeliveryManPaymentController extends Controller
     public function getOrderInfo(Request $request)
     {
 
-        $orderInformations = BookingOrder::where('collection_man_id',$request->deliveryMan)->orWhere('delivery_man_id',$request->deliveryMan)->get();
+        $orderInformations = BookingOrder::where('collection_man_id',$request->deliveryMan)
+            ->where('collection_status',1)
+            ->where('collection_payment_status',0)
+            ->orWhere('delivery_man_id',$request->deliveryMan)
+            ->where('delivery_status',1)
+            ->where('delivery_payment_status',0)
+            ->get();
         
         if($request->ajax())
         {
@@ -135,12 +177,26 @@ class DeliveryManPaymentController extends Controller
     	{
 	        $bookingOrder = BookingOrder::find($deliveryManPaymentList->booking_order_id);
 
-	        if ($bookingOrder->delivery_man_payment_status == 1)
-	        {
-	            $bookingOrder->update( [               
-	                'delivery_man_payment_status' => 0                
-	            ]);
-	        }
+            if ($deliveryManPaymentList->order_type == 'Collection')
+            {
+                if ($bookingOrder->collection_payment_status == 1)
+                {
+                    $bookingOrder->update( [               
+                        'collection_payment_status' => 0                
+                    ]);
+                }
+            }
+            else
+            {
+                if ($bookingOrder->delivery_payment_status == 1)
+                {
+                    $bookingOrder->update( [               
+                        'delivery_payment_status' => 0                
+                    ]);
+                }
+            }
+            
+
     	}
 
     	DeliveryManPaymentList::where('delivery_man_payment_id',$request->deliveryManPaymentId)->delete();

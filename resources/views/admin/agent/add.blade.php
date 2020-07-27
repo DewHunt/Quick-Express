@@ -61,7 +61,8 @@
             <div class="col-md-6">
                 <label for="supporting_warehouse">Supporting Warehouse</label>
                 <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="supporting_warehouse" required>
+                    <select class="form-control select2" name="supporting_warehouse" required>
+                        <option value="">Select Supporting Warehouse</option>
                         @foreach ($warehouse_list as $warehouse)
                             <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                         @endforeach
@@ -77,7 +78,7 @@
             <div class="col-md-6">
                 <label for="area">Preffered Area</label>
                 <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="area[]" multiple required>
+                    <select class="form-control select2" name="area[]" multiple required>
                         @foreach ($area_list as $area)
                             @php
                                 $exist_area = Agent::whereRaw('FIND_IN_SET(?,area)', [$area->id])->get();

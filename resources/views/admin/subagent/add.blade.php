@@ -6,8 +6,8 @@
             <div class="col-md-6">
                 <label for="agent-name">Agent Name</label>
                 <div class="form-group {{ $errors->has('agentId') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="agentId">
-                        <option value=" ">Select Agent's Name</option>
+                    <select class="form-control select2" name="agentId" required>
+                        <option value="">Select Agent's Name</option>
                         @foreach ($agents as $agent)
                             <option value="{{ $agent->id }}">{{ $agent->name }}</option>
                         @endforeach
@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 <label for="subagent-name">Subagent Name</label>
                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Subagent Name" name="name" value="{{ old('name') }}">
+                    <input type="text" class="form-control" placeholder="Subagent Name" name="name" value="{{ old('name') }}" required>
                     @if ($errors->has('name'))
                         @foreach($errors->get('name') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -32,7 +32,7 @@
             <div class="col-md-6">
                 <label for="contact-person">Contact Person</label>
                 <div class="form-group {{ $errors->has('contactPerson') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Contact Person" name="contactPerson" value="{{ old('contactPerson') }}">
+                    <input type="text" class="form-control" placeholder="Contact Person" name="contactPerson" value="{{ old('contactPerson') }}" required>
                     @if ($errors->has('contact-person'))
                         @foreach($errors->get('contactPerson') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -60,7 +60,7 @@
                     <div class="col-md-12">
                         <label for="Phone">Phone</label>
                         <div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
-                            <input type="text" class="form-control" placeholder="Phone Number" name="phone" value="{{ old('phone') }}">
+                            <input type="text" class="form-control" placeholder="Phone Number" name="phone" value="{{ old('phone') }}" required>
                             @if ($errors->has('phone'))
                                 @foreach($errors->get('phone') as $error)
                                     <div class="form-control-feedback">{{ $error }}</div>
@@ -72,7 +72,7 @@
                     <div class="col-md-12">
                         <label for="email">Email</label>
                         <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <input type="text" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
+                            <input type="text" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required>
                             @if ($errors->has('email'))
                                 @foreach($errors->get('email') as $error)
                                     <div class="form-control-feedback">{{ $error }}</div>

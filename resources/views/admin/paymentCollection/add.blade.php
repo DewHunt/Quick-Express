@@ -141,6 +141,11 @@
     <script type="text/javascript">
         $(document).on('change', '#client', function()
         {
+            $('.block').remove();
+            $('#totalCodAmount').val(0);
+            $('#totalDeliveryCharge').val(0);
+            $('#balance').val(0);
+            
             var client = $('#client').val();
 
             $.ajax({
@@ -198,11 +203,11 @@
                 $('#totalDeliveryCharge').val(totalDeliveryCharge);
 
                 $("#selectedOrders").append(
-                    '<div id="block_'+bookingOrderId+'">'+
-                    '<input type="hidden" name="orderNo[]" value="'+orderNo+'">'+
-                    '<input type="hidden" name="codAmount[]" value="'+codAmount+'">'+
-                    '<input type="hidden" name="deliveryCharge[]" value="'+deliveryCharge+'">'+
-                    '<input type="hidden" name="orderId[]" value="'+bookingOrderId+'">'+
+                    '<div class="block" id="block_'+bookingOrderId+'">'+
+                    '<input type="text" name="orderNo[]" value="'+orderNo+'">'+
+                    '<input type="text" name="codAmount[]" value="'+codAmount+'">'+
+                    '<input type="text" name="deliveryCharge[]" value="'+deliveryCharge+'">'+
+                    '<input type="text" name="orderId[]" value="'+bookingOrderId+'">'+
                     '</div>'
                 );
             }

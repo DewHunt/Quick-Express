@@ -70,7 +70,8 @@
             <div class="col-md-6">
                 <label for="supporting_warehouse">Supporting Warehouse</label>
                 <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="supporting_warehouse" required>
+                    <select class="form-control select2" name="supporting_warehouse" required>
+                        <option value="">Select Supporting Warehouse</option>
                         @foreach ($warehouse_list as $warehouse)
                         @php
                             if($warehouse->id == $agent->supporting_warehouse){
@@ -93,7 +94,7 @@
             <div class="col-md-6">
                 <label for="area">Preffered Area</label>
                 <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="area[]" multiple required>
+                    <select class="form-control select2" name="area[]" multiple required>
                         @php
                             $area_array = explode(',', $agent->area);
                         @endphp

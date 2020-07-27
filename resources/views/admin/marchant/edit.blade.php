@@ -15,7 +15,7 @@
             <div class="col-md-6">
                 <label for="agent-name">Warehouse Name</label>
                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Warehouse Name" name="name" value="{{ $marchant->name }}">
+                    <input type="text" class="form-control" placeholder="Warehouse Name" name="name" value="{{ $marchant->name }}" required>
                     @if ($errors->has('name'))
                         @foreach($errors->get('name') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -27,7 +27,7 @@
             <div class="col-md-6">
                 <label for="contact-person-name">Contact Person Name</label>
                 <div class="form-group {{ $errors->has('contactPerson') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Contact Person Name" name="contactPerson" value="{{ $marchant->contact_person_name }}">
+                    <input type="text" class="form-control" placeholder="Contact Person Name" name="contactPerson" value="{{ $marchant->contact_person_name }}" required>
                     @if ($errors->has('contactPerson'))
                         @foreach($errors->get('contactPerson') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -41,7 +41,7 @@
             <div class="col-md-6">
                 <label for="Phone">Phone</label>
                 <div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Menu link" name="phone" value="{{ $marchant->contact_person_phone }}">
+                    <input type="text" class="form-control" placeholder="Menu link" name="phone" value="{{ $marchant->contact_person_phone }}" required>
                     @if ($errors->has('phone'))
                         @foreach($errors->get('phone') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -54,15 +54,19 @@
                 <div class="form-group {{ $errors->has('area') ? ' has-danger' : '' }}">
                     <label for="area">Business Area</label>
                     <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
-                        <select class="form-control chosen-select" name="area">
+                        <select class="form-control select2" name="area" required>
+                            <option value="">Select Business Area</option>
                             @foreach ($area_list as $area)
-                            @php
-                                if($area->id == $marchant->area){
-                                    $selected = 'selected';
-                                }else{
-                                    $selected = '';
-                                }
-                            @endphp
+                                @php
+                                    if($area->id == $marchant->area)
+                                    {
+                                        $selected = 'selected';
+                                    }
+                                    else
+                                    {
+                                        $selected = '';
+                                    }
+                                @endphp
                                 <option {{$selected}} value="{{$area->id}}">{{$area->name}}</option>
                             @endforeach
                         </select>
@@ -93,7 +97,7 @@
 
                     <div class="col-md-12">
                         <label for="email">Email</label>
-                        <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
+                        <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}" required>
                             <input type="text" class="form-control" placeholder="fa fa-icon" name="email" value="{{ $marchant->contact_person_email }}">
                             @if ($errors->has('email'))
                                 @foreach($errors->get('email') as $error)

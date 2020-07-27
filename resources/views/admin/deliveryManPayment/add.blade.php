@@ -22,90 +22,86 @@
 @section('content')
     {{-- <div style="padding-bottom: 23px;"></div> --}}
     <div class="row">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-lg-5 col-md-3">
-                    <form class="form-horizontal" action="{{ route($formLink) }}" id="formAddEdit" method="POST" enctype="multipart/form-data" name="form">
-                        {{ csrf_field() }}
-                        <div class="card">
-                            <div class="card-body">
-                                <label for="delivery-men-list">Delivery Men List</label>
-                                <div class="form-group {{ $errors->has('deliveryMan') ? ' has-danger' : '' }}">
-                                    <select class="select2 form-control" id="deliveryMan" name="deliveryMan">
-                                        <option value="">Select A Client/Marchant</option>
-                                        @foreach ($deliveryMen as $deliveryMan)
-                                            <option value="{{ $deliveryMan->id }}">{{ $deliveryMan->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+        <div class="col-lg-5 col-md-3">
+            <form class="form-horizontal" action="{{ route($formLink) }}" id="formAddEdit" method="POST" enctype="multipart/form-data" name="form">
+                {{ csrf_field() }}
+                <div class="card">
+                    <div class="card-body">
+                        <label for="delivery-men-list">Delivery Men List</label>
+                        <div class="form-group {{ $errors->has('deliveryMan') ? ' has-danger' : '' }}">
+                            <select class="select2 form-control" id="deliveryMan" name="deliveryMan">
+                                <option value="">Select A Client/Marchant</option>
+                                @foreach ($deliveryMen as $deliveryMan)
+                                    <option value="{{ $deliveryMan->id }}">{{ $deliveryMan->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="payment-date">Payment Date</label>
-                                        <div class="form-group">
-                                            <input  type="text" class="form-control add_datepicker" id="paymentDate" name="paymentDate" placeholder="Select Payment Date" readonly>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="total-delivery-charge">Total Delivery Charge</label>
-                                        <div class="form-group {{ $errors->has('totalCharge') ? ' has-danger' : '' }}">
-                                            <input type="text" class="form-control" id="totalCharge" name="totalCharge" value="0" required readonly />
-                                            @if ($errors->has('totalCharge'))
-                                                @foreach($errors->get('totalCharge') as $error)
-                                                    <div class="form-control-feedback">{{ $error }}</div>
-                                                @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12 text-right">
-                                        <label for=""></label>
-                                        <div class="form-group">
-                                            <a class="btn btn-outline-info btn-md" href="{{ route($goBackLink) }}">
-                                                <i class="fa fa-arrow-circle-left"></i> Go Back
-                                            </a>
-                                            <button type="submit" class="btn btn-outline-info btn-md waves-effect buttonAddEdit" name="buttonAddEdit" value="Save">
-                                                <i class="fa fa-save"></i> {{ $buttonName }}
-                                            </button>
-                                            <button type="reset" class="btn btn-outline-info btn-md waves-effect buttonAddEdit" name="buttonAddEdit" value="Save" onclick="reset()">
-                                                <i class="fa fa-window-close"></i> Cancel
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div id="selectedOrders"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col-lg-7 col-md-9">
-                    <div class="tableFixHead">
-                        <table class="table table-bordered table-md {{-- color-table muted-table --}} color-bordered-table success-bordered-table orderInfo">
-                            <thead>
-                                <tr>
-                                    <th>Order No.</th>
-                                    <th width="100px">Type</th>
-                                    <th width="100px">Charge</th>
-                                    <th width="30px" style="text-align: center;"></th>
-                                </tr>
-                            </thead>
-
-                            <tbody id="tbody">
-                            </tbody>
-                        </table>
                     </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="payment-date">Payment Date</label>
+                                <div class="form-group">
+                                    <input  type="text" class="form-control add_datepicker" id="paymentDate" name="paymentDate" placeholder="Select Payment Date" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="total-delivery-charge">Total Delivery Charge</label>
+                                <div class="form-group {{ $errors->has('totalCharge') ? ' has-danger' : '' }}">
+                                    <input type="text" class="form-control" id="totalCharge" name="totalCharge" value="0" required readonly />
+                                    @if ($errors->has('totalCharge'))
+                                        @foreach($errors->get('totalCharge') as $error)
+                                            <div class="form-control-feedback">{{ $error }}</div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <label for=""></label>
+                                <div class="form-group">
+                                    <a class="btn btn-outline-info btn-md" href="{{ route($goBackLink) }}">
+                                        <i class="fa fa-arrow-circle-left"></i> Go Back
+                                    </a>
+                                    <button type="submit" class="btn btn-outline-info btn-md waves-effect buttonAddEdit" name="buttonAddEdit" value="Save">
+                                        <i class="fa fa-save"></i> {{ $buttonName }}
+                                    </button>
+                                    <button type="reset" class="btn btn-outline-info btn-md waves-effect buttonAddEdit" name="buttonAddEdit" value="Save" onclick="reset()">
+                                        <i class="fa fa-window-close"></i> Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div id="selectedOrders"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-lg-7 col-md-9">
+            <div class="tableFixHead">
+                <table class="table table-bordered table-md {{-- color-table muted-table --}} color-bordered-table success-bordered-table orderInfo">
+                    <thead>
+                        <tr>
+                            <th>Order No.</th>
+                            <th width="100px">Type</th>
+                            <th width="100px">Charge</th>
+                            <th width="30px" style="text-align: center;"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tbody">
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -187,10 +183,10 @@
 
                 $("#selectedOrders").append(
                     '<div class="block" id="block_'+bookingOrderId+'">'+
-                    '<input type="text" name="orderNo[]" value="'+orderNo+'">'+
-                    '<input type="text" name="type[]" value="'+type+'">'+
-                    '<input type="text" name="charge[]" value="'+charge+'">'+
-                    '<input type="text" name="orderId[]" value="'+bookingOrderId+'">'+
+                    '<input type="hidden" name="orderNo[]" value="'+orderNo+'">'+
+                    '<input type="hidden" name="type[]" value="'+type+'">'+
+                    '<input type="hidden" name="charge[]" value="'+charge+'">'+
+                    '<input type="hidden" name="orderId[]" value="'+bookingOrderId+'">'+
                     '</div>'
                 );
             }

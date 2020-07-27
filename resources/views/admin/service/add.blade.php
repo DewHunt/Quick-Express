@@ -6,7 +6,7 @@
             <div class="col-md-6">
                 <label for="name">Name</label>
                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Courier Type Name" name="name" value="{{ old('name') }}">
+                    <input type="text" class="form-control" placeholder="Courier Type Name" name="name" value="{{ old('name') }}" required>
                     @if ($errors->has('name'))
                         @foreach($errors->get('name') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
