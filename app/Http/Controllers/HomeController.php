@@ -156,21 +156,68 @@ class HomeController extends Controller
         elseif ($userRole == 14)
         {
             $title = "Delivery Man Dashboard";
+
+            $new_collection_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_delivery_men.user_id')
+            ->join('tbl_delivery_men','tbl_booking_orders.collection_man_id','=','tbl_delivery_men.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',0)
+            ->where('tbl_booking_orders.collection_man_id','!=',NULL)
+            ->Where('tbl_delivery_men.user_id',\Auth::user()->id)
+            ->orderBy('id','desc')
+            ->get();
+
+            $new_delivery_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_delivery_men.user_id')
+            ->join('tbl_delivery_men','tbl_booking_orders.delivery_man_id','=','tbl_delivery_men.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('delivery_status',0)
+            ->where('tbl_booking_orders.delivery_man_id','!=',NULL)
+            ->Where('tbl_delivery_men.user_id',\Auth::user()->id)
+            ->orderBy('id','desc')
+            ->get();
+
+            $complete_collection_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_delivery_men.user_id')
+            ->join('tbl_delivery_men','tbl_booking_orders.collection_man_id','=','tbl_delivery_men.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('collection_status',1)
+            ->Where('tbl_delivery_men.user_id',\Auth::user()->id)
+            ->orderBy('id','desc')
+            ->get();
+
+            $complete_delivery_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName','tbl_delivery_men.user_id')
+            ->join('tbl_delivery_men','tbl_booking_orders.collection_man_id','=','tbl_delivery_men.id')
+            ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
+            ->where('delivery_status',1)
+            ->Where('tbl_delivery_men.user_id',\Auth::user()->id)
+            ->orderBy('id','desc')
+            ->get();
+
+            $received_collection_amount = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_men.user_id')
+                            ->join('tbl_delivery_men','tbl_booking_orders.collection_man_id','=','tbl_delivery_men.id')
+                            ->Where('tbl_delivery_men.user_id',\Auth::user()->id)
+                            ->where('tbl_booking_orders.collection_payment_status',1)
+                            ->sum('delivery_charge');
+
+            $received_delivery_amount = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_men.user_id')
+                            ->join('tbl_delivery_men','tbl_booking_orders.collection_man_id','=','tbl_delivery_men.id')
+                            ->Where('tbl_delivery_men.user_id',\Auth::user()->id)
+                            ->where('tbl_booking_orders.delivery_payment_status',1)
+                            ->sum('delivery_charge');
+
+            $due_collection_amount = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_men.user_id')
+                            ->join('tbl_delivery_men','tbl_booking_orders.collection_man_id','=','tbl_delivery_men.id')
+                            ->Where('tbl_delivery_men.user_id',\Auth::user()->id)
+                            ->where('tbl_booking_orders.collection_payment_status',0)
+                            ->sum('delivery_charge');
+
+            $due_delivery_amount = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_men.user_id')
+                            ->join('tbl_delivery_men','tbl_booking_orders.collection_man_id','=','tbl_delivery_men.id')
+                            ->Where('tbl_delivery_men.user_id',\Auth::user()->id)
+                            ->where('tbl_booking_orders.delivery_payment_status',0)
+                            ->sum('delivery_charge');
             
-            return view('admin.index.deliveryMan')->with(compact('title'));
+            return view('admin.index.deliveryMan')->with(compact('title','new_collection_list','new_delivery_list','complete_collection_list','complete_delivery_list','received_collection_amount','received_delivery_amount','due_collection_amount','due_delivery_amount'));
         }
         // return view('home');
     }
 
-    public function message_md()
-    {
-        return view('admin.settings.message_md');
-    }
-
-    public function message_md_ajax(Request $request)
-    {
-        \App\helperClass::_writeNammedFile($request->message, 'message_md.txt');
-
-        return redirect(route('settings.message_md'))->with('message', 'updated successfully');
-    }
 }
