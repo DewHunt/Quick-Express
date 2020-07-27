@@ -39,3 +39,5 @@
 {{-- data table css --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap.min.css">
+
+<link href="{{ asset('/public/admin-elite/assets/node_modules/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
