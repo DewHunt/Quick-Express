@@ -9,10 +9,20 @@ use App\BookingOrder;
 use App\Agent;
 use App\Subagent;
 use App\Warehouse;
+use App\Service;
+use App\ServiceType;
+use App\Client;
+use App\Marchant;
+use App\Admin;
+use App\UserRoles;
+use App\ChargeForClient;
+use App\ChargeForMerchant;
+use App\ChargeForDeliveryMen;
 use App\DeliveryType;
 use App\DeliveryMan;
 
 use DB;
+
 class BookingController extends Controller
 {  
     public function index(){
@@ -25,20 +35,22 @@ class BookingController extends Controller
         return view('frontend.customer.booking.index')->with(compact('title','bookingOrders'));
     }
 
-    public function create(){
+    public function create()
+    {
     	$title = "Create New Booking";
     	$formLink = "user.bookingCreate";
     	$buttonName = "Save";
 
-    	$courierTypes = CourierType::orderBy('name','asc')->get();
-    	$deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+        $services = Service::orderBy('name','asc')->get();
+        $serviceTypes = ServiceType::orderBy('name','asc')->get();
+        $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
 
     	$zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
 
         $toDayDate = date("Y-m-d");
         $orderPrefix = "co-".date('ymd')."-";
 
-        $maxOrderNo = BookingOrder::where('date',$toDayDate)->where('booked_type','Client')->max('order_no');
+        $maxOrderNo = BookingOrder::where('date',$toDayDate)->max('order_no');
 
         if ($maxOrderNo)
         {
@@ -50,7 +62,9 @@ class BookingController extends Controller
             $orderNo = $orderPrefix."00001";
         }
 
-        if(count(request()->all()) > 0){
+        if(count(request()->all()) > 0)
+        {
+            // dd(request()->all());
 
         	if (request()->bookingDate)
 	        {
@@ -61,6 +75,15 @@ class BookingController extends Controller
 	            $bookingDate = "";
 	        }
 
+            if (request()->cod == "Yes")
+            {
+                $codAmount = request()->codAmount;
+            }
+            else
+            {
+                $codAmount = 0;
+            }
+
 	        $senderZone = explode(',',request()->senderZone);
 	        $senderZoneId = $senderZone[0];
 	        $senderZoneType = $senderZone[1];
@@ -70,34 +93,42 @@ class BookingController extends Controller
 	        $receiverZoneType = $receiverZone[1];
 
 	        BookingOrder::create([
-	            'sender_id' => \Auth::guard('customer')->user()->id,
-	            'order_no' => request()->orderNo,
-	            'date' => $bookingDate,
-	            'booked_type' => 'Client',
-	            'sender_name' => request()->senderName,
-	            'sender_phone' => request()->senderPhoneNumber,
-	            'sender_zone_type' => $senderZoneType,
-	            'sender_zone_id' => $senderZoneId,
-	            'sender_address' => request()->senderAddress,
-	            'receiver_name' => request()->receiverName,
-	            'receiver_phone' => request()->receiverPhoneNumber,
-	            'receiver_zone_type' => $receiverZoneType,
-	            'receiver_zone_id' => $receiverZoneId,
-	            'receiver_address' => request()->receiverAddress,
-	            'courier_type_id' => request()->courierType,
-	            'courier_unit_price' => request()->courierTypeUnit,
-	            'delivery_type_id' => request()->deliveryTypeId,
-	            'delivery_unit_price' => request()->deliveryTypeUnit,
-	            'uom' => request()->uom,
-	            'delivery_charge' => request()->deliveryCharge,
-	            'status' => '0',
+                'order_no' => request()->orderNo,
+                'date' => $bookingDate,
+                'booked_type' => 'Client',
+                'sender_id' => request()->clientId,
+                'sender_name' => request()->senderName,
+                'sender_phone' => request()->senderPhoneNumber,
+                'sender_zone_type' => $senderZoneType,
+                'sender_zone_id' => $senderZoneId,
+                'sender_address' => request()->senderAddress,
+                'receiver_name' => request()->receiverName,
+                'receiver_phone' => request()->receiverPhoneNumber,
+                'receiver_zone_type' => $receiverZoneType,
+                'receiver_zone_id' => $receiverZoneId,
+                'receiver_address' => request()->receiverAddress,
+                'remarks' => request()->remarks,
+                'courier_type_id' => request()->serviceId,
+                'delivery_type_id' => request()->serviceTypeId,
+                'charge_name' => request()->chargeName,
+                'delivery_charge_unit' => request()->deliveryChargeUnit,
+                'uom' => request()->uom,
+                'delivery_charge' => request()->deliveryCharge,
+                'cod' => request()->cod,
+                'cod_amount' => $codAmount,
+                'delivery_duration_id' => request()->deliveryTypeId,
+                'collection_payment' => request()->collectionPayment,
+                'delivery_payment' => request()->deliveryPayment,
+                'status' => '0',
+                'created_by' => $this->userId,
 	        ]);
         	return redirect(route('user.booking'))->with('message','Your Booking Created Successfully');
         }
-    	return view('frontend.customer.booking.create')->with(compact('title','formLink','buttonName','courierTypes','deliveryTypes','zones','orderNo'));
+    	return view('frontend.customer.booking.create')->with(compact('title','formLink','buttonName','services','serviceTypes','deliveryTypes','zones','orderNo'));
     }
 
-    public function view($id){
+    public function view($id)
+    {
         $title = "View Your Booking";
         $bookedOrder = BookingOrder::where('id',$id)->where('sender_id',\Auth::guard('customer')->user()->id)->first();
         $deliveryMan = DeliveryMan::find($bookedOrder->delivery_man_id);
@@ -106,64 +137,95 @@ class BookingController extends Controller
         $sender_zone = DB::table('view_zones')->where('zone_id',$bookedOrder->sender_zone_id)->first();
         $receiver_zone = DB::table('view_zones')->where('zone_id',$bookedOrder->receiver_zone_id)->first();
 
-        return view('frontend.customer.booking.view')->with(compact('title','bookedOrder','deliveryMan','courierType','deliveryTypes','sender_zone','receiver_zone'));
+        return view('frontend.customer.booking.view')->with(compact('title','bookedOrder','deliveryMan','courierType','serviceTypes','deliveryTypes','sender_zone','receiver_zone'));
     }
 
 
-    public function edit($id){
+    public function edit($id)
+    {
     	$title = "Edit Your Booking";
+        $formLink = "user.bookingEdit,".$id;
     	$buttonName = "Update";
 
         $bookedOrder = BookingOrder::find($id);
 
-    	$courierTypes = CourierType::orderBy('name','asc')->get();
-    	$deliveryTypes = DeliveryType::orderBy('name','asc')->get();
-    	$zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
-
-        if(count(request()->all()) > 0){
-
-        	if (request()->deliveryDate)
+        if (request()->bookingDate)
         {
-            $deliveryDate = date('Y-m-d',strtotime(request()->deliveryDate));
+            $bookingDate = date('Y-m-d',strtotime(request()->bookingDate));
         }
         else
         {
-            $deliveryDate = "";
+            $bookingDate = "";
         }
 
-        $senderZone = explode(',',request()->senderZone);
-        $senderZoneId = $senderZone[0];
-        $senderZoneType = $senderZone[1];
+        if (request()->cod == "Yes")
+        {
+            $codAmount = request()->codAmount;
+        }
+        else
+        {
+            $codAmount = 0;
+        }
 
-        $receiverZone = explode(',',request()->receiverZone);
-        $receiverZoneId = $receiverZone[0];
-        $receiverZoneType = $receiverZone[1];
+        $services = Service::orderBy('name','asc')->get();
+        $serviceTypes = ServiceType::orderBy('name','asc')->get();
+        $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
 
-        $bookedOrder->update([
-            'order_no' => request()->orderNo,
-            'date' => $deliveryDate,
-            'booked_type' => 'Client',
-            'sender_name' => request()->senderName,
-            'sender_phone' => request()->senderPhoneNumber,
-            'sender_zone_type' => $senderZoneType,
-            'sender_zone_id' => $senderZoneId,
-            'sender_address' => request()->senderAddress,
-            'receiver_name' => request()->receiverName,
-            'receiver_phone' => request()->receiverPhoneNumber,
-            'receiver_zone_type' => $receiverZoneType,
-            'receiver_zone_id' => $receiverZoneId,
-            'receiver_address' => request()->receiverAddress,
-            'courier_type_id' => request()->courierType,
-            'courier_unit_price' => request()->courierTypeUnit,
-            'delivery_type_id' => request()->deliveryTypeId,
-            'delivery_unit_price' => request()->deliveryTypeUnit,
-            'uom' => request()->uom,
-            'delivery_charge' => request()->deliveryCharge,
-	        'status' => '0',
-        ]);
+        $zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
+
+        if(count(request()->all()) > 0)
+        {
+        	if (request()->deliveryDate)
+            {
+                $deliveryDate = date('Y-m-d',strtotime(request()->deliveryDate));
+            }
+            else
+            {
+                $deliveryDate = "";
+            }
+
+            $senderZone = explode(',',request()->senderZone);
+            $senderZoneId = $senderZone[0];
+            $senderZoneType = $senderZone[1];
+
+            $receiverZone = explode(',',request()->receiverZone);
+            $receiverZoneId = $receiverZone[0];
+            $receiverZoneType = $receiverZone[1];
+
+            $bookedOrder->update([
+                'order_no' => request()->orderNo,
+                'date' => $bookingDate,
+                'booked_type' => 'Client',
+                'sender_id' => request()->clientId,
+                'sender_name' => request()->senderName,
+                'sender_phone' => request()->senderPhoneNumber,
+                'sender_zone_type' => $senderZoneType,
+                'sender_zone_id' => $senderZoneId,
+                'sender_address' => request()->senderAddress,
+                'receiver_name' => request()->receiverName,
+                'receiver_phone' => request()->receiverPhoneNumber,
+                'receiver_zone_type' => $receiverZoneType,
+                'receiver_zone_id' => $receiverZoneId,
+                'receiver_address' => request()->receiverAddress,
+                'remarks' => request()->remarks,
+                'courier_type_id' => request()->serviceId,
+                'delivery_type_id' => request()->serviceTypeId,
+                'charge_name' => request()->chargeName,
+                'delivery_charge_unit' => request()->deliveryChargeUnit,
+                'uom' => request()->uom,
+                'delivery_charge' => request()->deliveryCharge,
+                'cod' => request()->cod,
+                'cod_amount' => $codAmount,
+                'delivery_duration_id' => request()->deliveryTypeId,
+                'collection_payment' => request()->collectionPayment,
+                'delivery_payment' => request()->deliveryPayment,
+                'status' => '0',
+                'created_by' => $this->userId,
+            ]);
+
         	return redirect(route('user.booking'))->with('message','Your Booking Updated Successfully');
         }
-    	return view('frontend.customer.booking.edit')->with(compact('title','buttonName','bookedOrder','courierTypes','deliveryTypes','zones'));
+    	return view('frontend.customer.booking.edit')->with(compact('title','formLink','buttonName','bookedOrder','services','serviceTypes','deliveryTypes','zones'));
     }
 
     public function orderTrack(){

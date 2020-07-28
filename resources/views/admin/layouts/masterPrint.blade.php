@@ -152,21 +152,21 @@
 
     <body align="center">
     	@php
-    		use App\CompanySetup;
+    		use App\WebsiteInformation;
 
-    		$company = CompanySetup::first();
+    		$WebsiteInformation = WebsiteInformation::first();
     	@endphp
 
     	<table id="header-table">
     		<thead>
     			<tr>
-    				<th>{{ $company->name }}</th>
+    				<th>{{ $WebsiteInformation->website_name }}</th>
     			</tr>
     			<tr>
-    				<td><b>Address:</b> {{ $company->address }}</td>
+    				<td><b>Address:</b> {{ $WebsiteInformation->address }}</td>
     			</tr>
     			<tr>
-    				<td><b>Phone:</b> {{ $company->phone }}, <b>Website:</b> {{ $company->website }}, <b>Email: </b>{{ $company->email }}</td>
+    				<td><b>Phone:</b> {{ $WebsiteInformation->phone_one }}, <b>Website:</b> {{ $WebsiteInformation->website_link }}</td>
     			</tr>
     		</thead>
     	</table>

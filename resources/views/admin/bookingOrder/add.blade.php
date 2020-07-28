@@ -302,6 +302,7 @@
             }
             else
             {
+                $("#codAmount").val(0);
                 $("#codAmount").prop('readonly',true);
             }
         })
@@ -423,7 +424,14 @@
                         clientId:clientId
                     },
                     success:function(data){
-                        $('#deliveryChargeUnit').val(data.charge);
+                        if (data.charge)
+                        {
+                            $('#deliveryChargeUnit').val(data.charge);
+                        }
+                        else
+                        {
+                            $('#deliveryChargeUnit').val(0);
+                        }
                         $('#chargeName').val(data.chargeName);
                         $('#collectionPayment').val(data.collectionPayment);
                         $('#deliveryPayment').val(data.deliveryPayment);

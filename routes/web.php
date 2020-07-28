@@ -367,6 +367,134 @@ Route::prefix('admin')->group(function()
 			Route::get('/deliveryManPayment-view/{id}','Admin\DeliveryManPaymentController@view')->name('deliveryManPayment.view');
 			Route::post('/deliveryManPayment-delete','Admin\DeliveryManPaymentController@delete')->name('deliveryManPayment.delete');
 			Route::post('/deliveryManPayment-get-order-info','Admin\DeliveryManPaymentController@getOrderInfo')->name('deliveryManPayment.getOrderInfo');
+			
+		// Start Account Management
+			// COA Setup
+			Route::get('/coa-setup','Admin\CoaSetupController@index')->name('coaSetup.index');
+			Route::get('/coa-setup-add','Admin\CoaSetupController@add')->name('coaSetup.add');
+			Route::post('/coa-setup-action','Admin\CoaSetupController@action')->name('coaSetup.action');
+			Route::get('/coa-setup-edit/{id}','Admin\CoaSetupController@edit')->name('coaSetup.edit');
+			Route::post('/coa-setup-update','Admin\CoaSetupController@update')->name('coaSetup.update');
+			Route::post('/coa-setup-delete','Admin\CoaSetupController@delete')->name('coaSetup.delete');
+			Route::post('/coa-setup-tree','Admin\CoaSetupController@makeTree')->name('coaSetup.makeTree');
+			Route::post('/coa-setup-new-coa-data','Admin\CoaSetupController@newCoaData')->name('coaSetup.newCoaData');
+			Route::post('/coa-setup-load-coa-data','Admin\CoaSetupController@loadCoaData')->name('coaSetup.loadCoaData');
+
+			// Debit Voucher Entry
+			Route::get('/debit-entry','Admin\DebitEntryController@index')->name('debitEntry.index');
+			Route::post('/debit-entry','Admin\DebitEntryController@index')->name('debitEntry.index');
+			Route::post('/debit-entry-print','Admin\DebitEntryController@print')->name('debitEntry.print');
+			Route::get('/debit-entry-add','Admin\DebitEntryController@add')->name('debitEntry.add');
+			Route::post('/debit-entry-save','Admin\DebitEntryController@save')->name('debitEntry.save');
+			Route::get('/debit-entry-view/{id}','Admin\DebitEntryController@view')->name('debitEntry.view');
+			Route::get('/debit-entry-print/{id}','Admin\DebitEntryController@printDebitVoucher')->name('debitEntry.printDebitVoucher');
+			Route::get('/debit-entry-edit/{id}','Admin\DebitEntryController@edit')->name('debitEntry.edit');
+			Route::post('/debit-entry-update','Admin\DebitEntryController@update')->name('debitEntry.update');
+			Route::post('/debit-entry-delete','Admin\DebitEntryController@delete')->name('debitEntry.delete');
+			Route::post('/debit-entry-publish','Admin\DebitEntryController@changePublish')->name('debitEntry.publish');
+			Route::post('/debit-entry-get-coa','Admin\DebitEntryController@getCoa')->name('debitEntry.getCoa');
+			Route::post('/debit-entry-vouchar-no','Admin\DebitEntryController@getVoucharNo')->name('debitEntry.getVoucharNo');
+
+			// Credit Voucher Entry
+			Route::get('/credit-entry','Admin\CreditEntryController@index')->name('creditEntry.index');
+			Route::post('/credit-entry','Admin\CreditEntryController@index')->name('creditEntry.index');
+			Route::post('/credit-entry-print','Admin\CreditEntryController@print')->name('creditEntry.print');
+			Route::get('/credit-entry-add','Admin\CreditEntryController@add')->name('creditEntry.add');
+			Route::post('/credit-entry-save','Admin\CreditEntryController@save')->name('creditEntry.save');
+			Route::get('/credit-entry-view/{id}','Admin\CreditEntryController@view')->name('creditEntry.view');
+			Route::get('/credit-entry-print/{id}','Admin\CreditEntryController@printCreditVoucher')->name('creditEntry.printCreditVoucher');
+			Route::get('/credit-entry-edit/{id}','Admin\CreditEntryController@edit')->name('creditEntry.edit');
+			Route::post('/credit-entry-update','Admin\CreditEntryController@update')->name('creditEntry.update');
+			Route::post('/credit-entry-delete','Admin\CreditEntryController@delete')->name('creditEntry.delete');
+			Route::post('/credit-entry-publish','Admin\CreditEntryController@changePublish')->name('creditEntry.publish');
+			Route::post('/credit-entry-get-coa','Admin\CreditEntryController@getCoa')->name('creditEntry.getCoa');
+			Route::post('/credit-entry-vouchar-no','Admin\CreditEntryController@getVoucharNo')->name('creditEntry.getVoucharNo');
+
+			// Journal Voucher Entry
+			Route::get('/journal-entry','Admin\JournalEntryController@index')->name('journalEntry.index');
+			Route::post('/journal-entry','Admin\JournalEntryController@index')->name('journalEntry.index');
+			Route::post('/journal-entry-print','Admin\JournalEntryController@print')->name('journalEntry.print');
+			Route::get('/journal-entry-add','Admin\JournalEntryController@add')->name('journalEntry.add');
+			Route::post('/journal-entry-save','Admin\JournalEntryController@save')->name('journalEntry.save');
+			Route::get('/journal-entry-view/{id}','Admin\JournalEntryController@view')->name('journalEntry.view');
+			Route::get('/journal-entry-print/{id}','Admin\JournalEntryController@printJournalVoucher')->name('journalEntry.printJournalVoucher');
+			Route::get('/journal-entry-edit/{id}','Admin\JournalEntryController@edit')->name('journalEntry.edit');
+			Route::post('/journal-entry-update','Admin\JournalEntryController@update')->name('journalEntry.update');
+			Route::post('/journal-entry-delete','Admin\JournalEntryController@delete')->name('journalEntry.delete');
+			Route::post('/journal-entry-publish','Admin\JournalEntryController@changePublish')->name('journalEntry.publish');
+			Route::post('/journal-entry-get-coa','Admin\JournalEntryController@getCoa')->name('journalEntry.getCoa');
+			Route::post('/journal-entry-vouchar-no','Admin\JournalEntryController@getVoucharNo')->name('journalEntry.getVoucharNo');
+
+			// Openning Balance Entry
+			Route::get('/opening-balance-entry','Admin\OpeningBalanceController@index')->name('openingBalanceEntry.index');
+			Route::post('/opening-balance-entry','Admin\OpeningBalanceController@index')->name('openingBalanceEntry.index');
+			Route::post('/opening-balance-entry-print','Admin\OpeningBalanceController@print')->name('openingBalanceEntry.print');
+			Route::get('/opening-balance-entry-add','Admin\OpeningBalanceController@add')->name('openingBalanceEntry.add');
+			Route::post('/opening-balance-entry-save','Admin\OpeningBalanceController@save')->name('openingBalanceEntry.save');
+			Route::get('/opening-balance-entry-view/{id}','Admin\OpeningBalanceController@view')->name('openingBalanceEntry.view');
+			Route::get('/opening-balance-entry-print/{id}','Admin\OpeningBalanceController@printOpeningBalanceVoucher')->name('openingBalanceEntry.printOpeningBalanceVoucher');
+			Route::post('/opening-balance-entry-delete','Admin\OpeningBalanceController@delete')->name('openingBalanceEntry.delete');
+			Route::post('/opening-balance-entry-publish','Admin\OpeningBalanceController@changePublish')->name('openingBalanceEntry.publish');
+			Route::post('/opening-balance-entry-get-coa','Admin\OpeningBalanceController@getCoa')->name('openingBalanceEntry.getCoa');
+			Route::post('/opening-balance-entry-vouchar-no','Admin\OpeningBalanceController@getVoucharNo')->name('openingBalanceEntry.getVoucharNo');
+
+			// Voucher Approve
+			Route::get('/voucher-approve','Admin\VoucherApproveController@index')->name('voucherApprove.index');
+			Route::post('/voucher-approve','Admin\VoucherApproveController@index')->name('voucherApprove.index');
+			Route::get('/voucher-approve-view/{id}','Admin\VoucherApproveController@view')->name('voucherApprove.view');
+			Route::post('/voucher-approve','Admin\VoucherApproveController@approve')->name('voucherApprove.approve');
+		// End Account Management
+
+		// Start Account Report
+			// COA List
+			Route::get('/coa-list','Admin\CoaListController@index')->name('coaList.index');
+			Route::get('/coa-list-print','Admin\CoaListController@print')->name('coaList.print');
+
+			//Voucher List
+			Route::get('/voucher-list','Admin\VoucherListController@index')->name('voucherList.index');
+			Route::post('/voucher-list','Admin\VoucherListController@index')->name('voucherList.index');
+			Route::post('/voucher-list-print','Admin\VoucherListController@print')->name('voucherList.print');
+
+			//General Ledger List
+			Route::get('/general-ledger','Admin\GeneralLedgerController@index')->name('generalLedger.index');
+			Route::post('/general-ledger','Admin\GeneralLedgerController@index')->name('generalLedger.index');
+			Route::post('/general-ledger-print','Admin\GeneralLedgerController@print')->name('generalLedger.print');
+
+			//Trasaction Ledger List
+			Route::get('/transaction-ledger','Admin\TransactionLedgerController@index')->name('transactionLedger.index');
+			Route::post('/transaction-ledger','Admin\TransactionLedgerController@index')->name('transactionLedger.index');
+			Route::post('/transaction-ledger-print','Admin\TransactionLedgerController@print')->name('transactionLedger.print');
+
+			//Cash Book
+			Route::get('/cash-book','Admin\CashBookController@index')->name('cashBook.index');
+			Route::post('/cash-book','Admin\CashBookController@index')->name('cashBook.index');
+			Route::post('/cash-book-print','Admin\CashBookController@print')->name('cashBook.print');
+
+			//Bank Book
+			Route::get('/bank-book','Admin\bankBookController@index')->name('bankBook.index');
+			Route::post('/bank-book','Admin\bankBookController@index')->name('bankBook.index');
+			Route::post('/bank-book-print','Admin\bankBookController@print')->name('bankBook.print');
+
+			//Trial Balance
+			Route::get('/trial-balance','Admin\TrialBalanceController@index')->name('trialBalance.index');
+			Route::post('/trial-balance','Admin\TrialBalanceController@index')->name('trialBalance.index');
+			Route::post('/trial-balance-print','Admin\TrialBalanceController@print')->name('trialBalance.print');
+
+			//Balance Sheets
+			Route::get('/balance-sheet','Admin\BalanceSheetController@index')->name('balanceSheet.index');
+			Route::post('/balance-sheet','Admin\BalanceSheetController@index')->name('balanceSheet.index');
+			Route::post('/balance-sheet-print','Admin\BalanceSheetController@print')->name('balanceSheet.print');
+
+			//Income statement
+			Route::get('/income-statement','Admin\IncomeStatementController@index')->name('incomeStatement.index');
+			Route::post('/income-statement','Admin\IncomeStatementController@index')->name('incomeStatement.index');
+			Route::post('/income-statement-print','Admin\IncomeStatementController@print')->name('incomeStatement.print');
+
+			//Receive And Payment statement
+			Route::get('/receive-payment-statement','Admin\ReceivePaymentStatementController@index')->name('receivePaymentStatement.index');
+			Route::post('/receive-payment-statement','Admin\ReceivePaymentStatementController@index')->name('receivePaymentStatement.index');
+			Route::post('/receive-payment-statement-print','Admin\ReceivePaymentStatementController@print')->name('receivePaymentStatement.print');
+		// End Account Report
 		});
 	});
 

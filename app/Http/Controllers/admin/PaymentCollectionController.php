@@ -105,6 +105,28 @@ class PaymentCollectionController extends Controller
         return redirect(route('paymentCollection.index'))->with('msg','Payment Collected Successfully');
     }
 
+    public function edit($paymentCollectionId)
+    {
+        $title = "Edit Payment Collection";
+        $formLink = "paymentCollection.update";
+        $buttonName = "Update";
+
+        $clients = DB::table('view_clients')->select('view_clients.*')->orderBy('view_clients.clientType')->get();
+
+        $paymentCollection = DeliveryManPayment::where('id',$paymentCollectionId)->first();
+
+        $paymentCollectionLists = DeliveryManPaymentList::where('delivery_man_payment_id',$paymentCollectionId)->get();
+
+        $orderInformations = BookingOrder::where('booked_type',$paymentCollection->client_type)
+            ->where('sender_id',$paymentCollection->client_id)
+            ->where('payment_status',0)
+            ->get();
+
+        // dd($orderInformations);
+
+        return view('admin.paymentCollection.edit')->with(compact('title','formLink','buttonName','clients','paymentCollection','paymentCollectionLists','orderInformations','paymentCollectionId'));
+    }
+
     public function view($paymentCollectionId)
     {
     	$title = "Payment Collection";

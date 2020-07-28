@@ -241,7 +241,6 @@
                                     $select = "";
                                 }                                
                             @endphp
-
                             <option value="{{ $serviceType->id }}" {{ $select }}>{{ $serviceType->name }}</option>
                         @endforeach
                     </select>
@@ -264,7 +263,6 @@
                                     $select = "";
                                 }                                
                             @endphp
-
                             <option value="{{ $service->id }}" {{ $select }}>{{ $service->name }}</option>
                         @endforeach
                     </select>
@@ -359,6 +357,7 @@
             }
             else
             {
+                $("#codAmount").val(0);
                 $("#codAmount").prop('readonly',true);
             }
         })

@@ -81,6 +81,49 @@ class HelperClass
         return $logoUrl;
     }
 
+    public static function makeTree($headName,$headCode,$coaLists,$visit,$d)
+    {
+        $tree = "";
+
+        if ($d == 0)
+        {
+            $tree .= "<li>$headName";
+        }
+        else
+        {           
+            $tree .= "<li><a href='javascript:' onclick='loadData(".$headCode .")'>$headName</a>";
+        }
+
+        $p = 0;
+
+        for ($i = 0; $i<count($coaLists->toarray()); $i++)
+        {
+            if (!$visit[$i])
+            {
+                if ($headName == $coaLists->toarray()[$i]['parent_head_name']) {
+                    $visit[$i] = true;
+                    if ($p == 0)
+                    {
+                        $tree .= "<ul>";
+                    }
+                    $p++;
+                    $tree .= static::makeTree($coaLists->toarray()[$i]['head_name'], $coaLists->toarray()[$i]['head_code'], $coaLists, $visit, $d+1);
+                }
+            }
+        }
+
+        if ($p == 0) 
+        {
+            $tree .= "</li>";
+        }
+        else
+        {
+            $tree .= "</ul>";
+        }
+
+        return $tree;
+    }
+
     public static function numberToWords($num)
     {    
         $ones = array(
