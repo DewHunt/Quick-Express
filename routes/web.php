@@ -516,6 +516,8 @@ Route::prefix('admin')->group(function()
 //Frontend part start here
 Route::get('/','FrontendController@index');
 
+Route::any('/order/track', 'BookingController@orderTrack')->name('order.track');
+
 //code for custom/user
 Route::prefix('user')->group(function(){
 	//authentication for customer
@@ -587,4 +589,5 @@ Route::middleware('IfNotLoggedIn')->group(function(){
 			Route::any('/login', 'MerchantAuthController@login')->name('merchant.login');
 		});
 	});
+
 });

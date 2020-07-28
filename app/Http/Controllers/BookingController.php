@@ -228,4 +228,21 @@ class BookingController extends Controller
     	return view('frontend.customer.booking.edit')->with(compact('title','formLink','buttonName','bookedOrder','services','serviceTypes','deliveryTypes','zones'));
     }
 
+    public function orderTrack(){
+        $title = "Track Your Booking Order";
+        $order_no = request()->order_track;
+        $bookedOrder = BookingOrder::where('order_no',$order_no)->first();
+        
+        $collectionMan = DeliveryMan::find(@$bookedOrder->collection_man_id);
+        $deliveryMan = DeliveryMan::find(@$bookedOrder->delivery_man_id);
+        $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+
+        $sender_zone = DB::table('view_zones')->where('zone_id',@$bookedOrder->sender_zone_id)->first();
+        $receiver_zone = DB::table('view_zones')->where('zone_id',@$bookedOrder->receiver_zone_id)->first();
+
+        $host_ware_house = Warehouse::find(@$bookedOrder->host_warehouse_id);
+        $delivery_ware_house = Warehouse::find(@$bookedOrder->destination_warehouse_id);
+        return view('frontend.customer.booking.order_track')->with(compact('title','bookedOrder','collectionMan','deliveryMan','deliveryTypes','sender_zone','receiver_zone','order_no','host_ware_house','delivery_ware_house'));
+    }
+
 }

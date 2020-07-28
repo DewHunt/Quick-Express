@@ -13,7 +13,7 @@
 					<div class="responsive-menu-wrap"></div>
 				</div>
 
-				<div class="col-lg-7">
+				<div class="col-lg-6">
 					<!-- main-menu-->
 					<div class="navigation text-white">
 						<div id="cssmenu">
@@ -29,6 +29,21 @@
 								</li> --}}
 							</ul>
 						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-12">
+					<div>
+						<ul>
+							<form action="{{ route('order.track') }}" method="get">
+								@csrf
+								<li>
+									<input class="form-control" type="text" name="order_track" style="margin: 25px 0px;" placeholder="Enter order no" value="{{@$order_no}}">
+								</li>
+								
+							</form>
+						</ul>
+						
 					</div>
 				</div>
 			</div>

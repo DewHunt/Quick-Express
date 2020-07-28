@@ -5,6 +5,8 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+
 	<!-- Jquery for multi select or choose -->
 	<script src="{{ asset('/public/admin-elite/dist/js/chosen.jquery.js') }}"></script>
 
