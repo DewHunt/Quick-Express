@@ -35,10 +35,10 @@
 				<div class="col-lg-3 col-12">
 					<div>
 						<ul>
-							<form action="{{ route('order.track') }}">
+							<form action="{{ route('order.track') }}" method="get">
 								@csrf
 								<li>
-									<input class="form-control" type="text" name="order_track" style="margin: 25px 0px;" placeholder="track order by order no" value="{{@$order_no}}">
+									<input class="form-control" type="text" name="order_track" style="margin: 25px 0px;" placeholder="Enter order no" value="{{@$order_no}}">
 								</li>
 								
 							</form>
