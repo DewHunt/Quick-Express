@@ -48,6 +48,7 @@
                             </select>
                         </div>
                         <input type="hidden" name="deliveryMan" value="{{ $deliveryManPayment->delivery_man_id }}">
+                        <input type="hidden" name="deliveryManPaymentId" value="{{ $deliveryManPaymentId }}">
                     </div>
                 </div>
 
@@ -95,10 +96,10 @@
                             <div id="selectedOrders">
                                 @foreach ($deliveryManPaymentLists as $deliveryManPaymentList)
                                     <div class="block" id="block_{{ $deliveryManPaymentList->booking_order_id }}">
-                                        <input type="text" name="orderNo[]" value="{{ $deliveryManPaymentList->order_no }}">
-                                        <input type="text" name="type[]" value="{{ $deliveryManPaymentList->order_type }}">
-                                        <input type="text" name="charge[]" value="{{ $deliveryManPaymentList->charge }}">
-                                        <input type="text" name="orderId[]" value="{{ $deliveryManPaymentList->booking_order_id }}">
+                                        <input type="hidden" name="orderNo[]" value="{{ $deliveryManPaymentList->order_no }}">
+                                        <input type="hidden" name="type[]" value="{{ $deliveryManPaymentList->order_type }}">
+                                        <input type="hidden" name="charge[]" value="{{ $deliveryManPaymentList->charge }}">
+                                        <input type="hidden" name="orderId[]" value="{{ $deliveryManPaymentList->booking_order_id }}">
                                     </div>
                                 @endforeach
                             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2020 at 06:43 AM
+-- Generation Time: Jul 28, 2020 at 01:10 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -113,6 +113,78 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_account_transactions`
+--
+
+CREATE TABLE `tbl_account_transactions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `voucher_no` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voucher_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voucher_date` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coa_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coa_head_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `narration` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `debit_amount` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `credit_amount` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `posted` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `approve` tinyint(4) NOT NULL DEFAULT 0,
+  `approve_by` int(11) DEFAULT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT 1,
+  `delete` tinyint(4) NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_account_transactions`
+--
+
+INSERT INTO `tbl_account_transactions` (`id`, `voucher_no`, `voucher_type`, `voucher_date`, `coa_id`, `coa_head_code`, `narration`, `debit_amount`, `credit_amount`, `posted`, `approve`, `approve_by`, `active`, `delete`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(98, 'CV-1000000002', 'CV', '2020-02-01', NULL, '10201', 'Previous  Month of April-2019 forward May 2019', '60154', '0', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:37:10', NULL, '2020-02-10 19:03:56'),
+(99, 'CV-1000000002', 'CV', '2020-02-01', NULL, '20105', 'Previous  Month of April-2019 forward May 2019', '0', '60154', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-10 19:03:56'),
+(100, 'CV-1000000001', 'CV', '2020-02-02', NULL, '10201', 'Cash Withdrew from Se. bank CQ No 4442932 dt: 30.04.19 for Fuel, vehicle maintenance with petty cash', '500000', '0', 'I', 1, 4, 1, 0, 1, 1, '2020-02-10 18:37:25', NULL, '2020-07-28 02:40:36'),
+(101, 'CV-1000000001', 'CV', '2020-02-02', NULL, '1020204', 'Cash Withdrew from Se. bank CQ No 4442932 dt: 30.04.19 for Fuel, vehicle maintenance with petty cash', '0', '500000', 'I', 1, 4, 1, 0, 1, 1, NULL, NULL, '2020-07-28 02:40:36'),
+(102, 'DV-1000000001', 'DV', '2020-02-04', NULL, '10201', 'Fuel & Gas all  cars  Dhaka Metro: Jha:-12-0054, Dhaka Metro: Cha:-13-8171, Dhaka Metro: Jha:-12-0027, Dhaka Metro:Cha:-51-8023, Dhaka Metro:Cha:-53-2745', '0', '11756', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:37:55', NULL, '2020-07-28 01:36:20'),
+(103, 'DV-1000000001', 'DV', '2020-02-04', NULL, '4020201', 'Fuel & Gas all  cars  Dhaka Metro: Jha:-12-0054, Dhaka Metro: Cha:-13-8171, Dhaka Metro: Jha:-12-0027, Dhaka Metro:Cha:-51-8023, Dhaka Metro:Cha:-53-2745', '752', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-07-28 01:36:20'),
+(104, 'DV-1000000001', 'DV', '2020-02-04', NULL, '4020203', 'Fuel & Gas all  cars  Dhaka Metro: Jha:-12-0054, Dhaka Metro: Cha:-13-8171, Dhaka Metro: Jha:-12-0027, Dhaka Metro:Cha:-51-8023, Dhaka Metro:Cha:-53-2745', '650', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-07-28 01:36:20'),
+(105, 'DV-1000000001', 'DV', '2020-02-04', NULL, '4020204', 'Fuel & Gas all  cars  Dhaka Metro: Jha:-12-0054, Dhaka Metro: Cha:-13-8171, Dhaka Metro: Jha:-12-0027, Dhaka Metro:Cha:-51-8023, Dhaka Metro:Cha:-53-2745', '750', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-07-28 01:36:20'),
+(106, 'DV-1000000001', 'DV', '2020-02-04', NULL, '4020205', 'Fuel & Gas all  cars  Dhaka Metro: Jha:-12-0054, Dhaka Metro: Cha:-13-8171, Dhaka Metro: Jha:-12-0027, Dhaka Metro:Cha:-51-8023, Dhaka Metro:Cha:-53-2745', '4620', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-07-28 01:36:20'),
+(107, 'DV-1000000001', 'DV', '2020-02-04', NULL, '4020206', 'Fuel & Gas all  cars  Dhaka Metro: Jha:-12-0054, Dhaka Metro: Cha:-13-8171, Dhaka Metro: Jha:-12-0027, Dhaka Metro:Cha:-51-8023, Dhaka Metro:Cha:-53-2745', '4984', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-07-28 01:36:20'),
+(108, 'DV-1000000002', 'DV', '2020-02-04', NULL, '10201', 'Cash Paid for  Class Party against  ll,lll,lV Classes item of Chips, Pepsi', '0', '11438', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:38:25', NULL, '2020-02-10 19:00:14'),
+(109, 'DV-1000000002', 'DV', '2020-02-04', NULL, '40230', 'Cash Paid for  Class Party against  ll,lll,lV Classes item of Chips, Pepsi', '11438', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-10 19:00:14'),
+(110, 'DV-1000000003', 'DV', '2020-02-04', NULL, '10201', 'Conveyance paid to Mr. Harun', '0', '80', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:39:42', NULL, '2020-02-10 19:00:17'),
+(111, 'DV-1000000003', 'DV', '2020-02-04', NULL, '40208', 'Conveyance paid to Mr. Harun', '80', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-10 19:00:17'),
+(112, 'DV-1000000004', 'DV', '2020-02-04', NULL, '10201', 'paid for Tifin Aya ,Driver & Security Guard', '0', '5085', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:41:13', NULL, '2020-02-10 19:00:32'),
+(113, 'DV-1000000004', 'DV', '2020-02-04', NULL, '40227', 'paid for Tifin Aya ,Driver & Security Guard', '5085', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-10 19:00:32'),
+(116, 'DV-1000000005', 'DV', '2020-02-04', NULL, '10201', 'Entertainment for Games teacher for Babuland Field trips for Class KG-1', '0', '1500', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:44:04', NULL, '2020-02-10 19:00:37'),
+(117, 'DV-1000000005', 'DV', '2020-02-04', NULL, '40213', 'Entertainment for Games teacher for Babuland Field trips for Class KG-1', '1500', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-10 19:00:37'),
+(118, 'DV-1000000006', 'DV', '2020-02-04', NULL, '10201', 'Entertainment for Accounts office  A/C software', '0', '320', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:45:15', NULL, '2020-02-10 19:01:36'),
+(119, 'DV-1000000006', 'DV', '2020-02-04', NULL, '40213', 'Entertainment for Accounts office  A/C software', '320', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-10 19:01:36'),
+(120, 'DV-1000000007', 'DV', '2020-02-04', NULL, '10201', 'Electric Goods', '0', '2475', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:46:46', NULL, '2020-02-10 19:01:59'),
+(121, 'DV-1000000007', 'DV', '2020-02-04', NULL, '40231', 'Electric Goods', '2475', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-10 19:01:59'),
+(122, 'DV-1000000008', 'DV', '2020-02-04', NULL, '10201', 'Conveyance Mr. Afridi', '0', '70', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:48:12', NULL, '2020-02-10 19:02:04'),
+(123, 'DV-1000000008', 'DV', '2020-02-04', NULL, '40208', 'Conveyance Mr. Afridi', '70', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-10 19:02:04'),
+(128, 'DV-1000000009', 'DV', '2020-02-07', NULL, '10201', 'Head Name Boishakhi Expense', '0', '300', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:50:52', NULL, '2020-02-11 17:40:42'),
+(129, 'DV-1000000009', 'DV', '2020-02-07', NULL, '40226', 'Head Name Boishakhi Expense', '300', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-11 17:40:42'),
+(130, 'JV-1000000001', 'JV', '2020-02-11', NULL, '30103', 'Academic Fee, Buildings, Cash at Bank, Computer Accessories (Printer & CPU)', '200', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-11 17:40:46'),
+(131, 'JV-1000000001', 'JV', '2020-02-11', NULL, '30104', 'Academic Fee, Buildings, Cash at Bank, Computer Accessories (Printer & CPU)', '0', '200', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-11 17:40:46'),
+(132, 'JV-1000000001', 'JV', '2020-02-11', NULL, '1020201', 'Academic Fee, Buildings, Cash at Bank, Computer Accessories (Printer & CPU)', '300', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-11 17:40:46'),
+(133, 'JV-1000000001', 'JV', '2020-02-11', NULL, '10201', 'Academic Fee, Buildings, Cash at Bank, Computer Accessories (Printer & CPU)', '0', '300', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-11 17:40:46'),
+(152, 'JV-1000000001', 'JV', '2020-02-18', NULL, '30103', 'Academic Fee, Accounts Payable', '120', '0', 'I', 1, 5, 1, 0, 1, 5, NULL, 5, '2020-02-18 05:53:01'),
+(153, 'JV-1000000001', 'JV', '2020-02-18', NULL, '20101', 'Academic Fee, Accounts Payable', '0', '120', 'I', 1, 5, 1, 0, 1, 5, NULL, 5, '2020-02-18 05:53:01'),
+(166, 'DV-1000000001', 'DV', '2020-02-18', NULL, NULL, 'Accounts Payable, Admission Fee', '0', '400', 'I', 1, 5, 1, 0, 1, 5, '2020-02-18 01:16:55', 5, '2020-07-28 01:36:20'),
+(167, 'DV-1000000001', 'DV', '2020-02-18', NULL, '30101', 'Accounts Payable, Admission Fee', '200', '0', 'I', 1, 5, 1, 0, 1, 5, NULL, 5, '2020-07-28 01:36:20'),
+(168, 'DV-1000000001', 'DV', '2020-02-18', NULL, '20101', 'Accounts Payable, Admission Fee', '200', '0', 'I', 1, 5, 1, 0, 1, 5, NULL, 5, '2020-07-28 01:36:20'),
+(172, 'CV-1000000001', 'CV', '2020-02-18', NULL, '10201', 'Boishakhi Expense, Class Party', '500', '0', 'I', 1, 4, 1, 0, 1, 5, '2020-02-18 01:23:27', 5, '2020-07-28 02:40:36'),
+(173, 'CV-1000000001', 'CV', '2020-02-18', NULL, '40226', 'Boishakhi Expense, Class Party', '0', '250', 'I', 1, 4, 1, 0, 1, 5, NULL, 5, '2020-07-28 02:40:36'),
+(174, 'CV-1000000001', 'CV', '2020-02-18', NULL, '40230', 'Boishakhi Expense, Class Party', '0', '250', 'I', 1, 4, 1, 0, 1, 5, NULL, 5, '2020-07-28 02:40:36');
 
 -- --------------------------------------------------------
 
@@ -315,12 +387,14 @@ CREATE TABLE `tbl_booking_orders` (
 --
 
 INSERT INTO `tbl_booking_orders` (`id`, `order_no`, `date`, `booked_type`, `sender_id`, `sender_name`, `sender_phone`, `sender_zone_type`, `sender_zone_id`, `sender_address`, `receiver_name`, `receiver_phone`, `receiver_zone_type`, `receiver_zone_id`, `receiver_address`, `remarks`, `courier_type_id`, `delivery_type_id`, `charge_name`, `delivery_charge_unit`, `uom`, `delivery_charge`, `cod`, `cod_amount`, `delivery_duration_id`, `collection_man_id`, `collection_payment`, `collection_status`, `collection_payment_status`, `sender_goods_receieve_status`, `host_warehouse_id`, `host_warehouse_goods_receieve_status`, `destination_warehouse_id`, `destination_warehouse_goods_receieve_status`, `receiver_issue_status`, `receiver_goods_receieve_status`, `delivery_man_id`, `delivery_payment`, `delivery_status`, `delivery_payment_status`, `payment_status`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'co-200725-00001', '2020-07-25', 'Client', 1, 'Raihan Ahmed', '01418253595', 'Agent', 8, 'Mirpur -11', 'Ktubuddin', '01919283746', 'Subagent', 4, 'Gulshan', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '1200', 1, 2, '50', 1, 1, 1, 4, 1, 3, 1, 1, 1, 1, '80', 1, 1, 0, 1, 26, '2020-07-25 00:24:52', 4, '2020-07-26 07:51:54'),
+(1, 'co-200725-00001', '2020-07-25', 'Client', 1, 'Raihan Ahmed', '01418253595', 'Agent', 8, 'Mirpur -11', 'Ktubuddin', '01919283746', 'Subagent', 4, 'Gulshan', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '1200', 1, 2, '50', 1, 1, 1, 4, 1, 3, 1, 1, 1, 1, '80', 1, 1, 0, 1, 26, '2020-07-25 00:24:52', 4, '2020-07-26 23:21:21'),
 (2, 'co-200725-00002', '2020-07-25', 'Client', 1, 'Raihan Ahmed', '01418253595', 'Agent', 8, 'Mirpur -11', 'Sayed', '01818273649', 'Subagent', 4, 'Badda', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '1500', 2, 2, '50', 1, 0, 1, 4, 1, 3, 1, 1, 1, NULL, '80', 1, 0, 0, 1, 4, '2020-07-25 00:30:24', 4, '2020-07-25 03:36:20'),
 (3, 'co-200725-00003', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Irim', '01717209349', 'Subagent', 4, 'Azimpur', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '700', 3, 2, '50', 1, 1, 1, 4, 1, 3, 1, 1, 1, 1, '80', 1, 1, 0, 1, 26, '2020-07-25 00:33:01', 4, '2020-07-26 07:51:54'),
-(4, 'co-200725-00004', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Mintu', '01616230485', 'Subagent', 4, 'Dhanmondi', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'No', '0', 1, 1, '50', 1, 0, 1, 4, 1, 3, 1, 1, 1, 2, '80', 1, 0, 0, 1, 26, '2020-07-25 00:34:00', 4, '2020-07-25 03:35:46'),
-(5, 'co-200725-00005', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Sadman', '01515243048', 'Subagent', 4, 'Rampura', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '2300', 3, 1, '50', 1, 1, 1, 4, 1, 3, 1, 1, 1, 2, '80', 1, 1, 0, 1, 26, '2020-07-25 00:35:17', 4, '2020-07-26 07:51:54'),
-(6, 'co-200725-00006', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Ktubuddin', '01919283746', 'Subagent', 4, 'Gulshan', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '2900', 3, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '80', 0, 0, 0, 1, 4, '2020-07-25 03:32:54', NULL, '2020-07-25 03:32:54');
+(4, 'co-200725-00004', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Mintu', '01616230485', 'Subagent', 4, 'Dhanmondi', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'No', '0', 1, 1, '50', 1, 0, 1, 4, 1, 3, 1, 1, 1, 2, '80', 1, 0, 0, 1, 26, '2020-07-25 00:34:00', 4, '2020-07-26 23:21:20'),
+(5, 'co-200725-00005', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Sadman', '01515243048', 'Subagent', 4, 'Rampura', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '2300', 3, 1, '50', 1, 0, 1, 4, 1, 3, 1, 1, 1, 2, '80', 1, 1, 0, 1, 26, '2020-07-25 00:35:17', 4, '2020-07-26 23:21:20'),
+(6, 'co-200725-00006', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Ktubuddin', '01919283746', 'Subagent', 4, 'Gulshan', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '2900', 3, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '80', 0, 0, 0, 1, 4, '2020-07-25 03:32:54', NULL, '2020-07-25 03:32:54'),
+(7, 'co-200727-00001', '2020-07-27', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Sabbir', '01313293846', 'Subagent', 4, 'Dhanmondi', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'No', '0', 2, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '80', 0, 0, 0, 0, 2, '2020-07-27 04:32:25', NULL, '2020-07-27 04:32:25'),
+(8, 'co-200727-00002', '2020-07-27', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Rohim', '01414293847', 'Subagent', 4, 'Gulshan', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '1650', 2, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '80', 0, 0, 0, 0, 2, '2020-07-27 04:41:40', NULL, '2020-07-27 05:22:29');
 
 -- --------------------------------------------------------
 
@@ -453,6 +527,120 @@ INSERT INTO `tbl_clients` (`id`, `user_role_id`, `area`, `name`, `phone`, `nid`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_coa`
+--
+
+CREATE TABLE `tbl_coa` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `head_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `head_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_head_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `head_level` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT 1,
+  `transaction` tinyint(4) NOT NULL DEFAULT 0,
+  `general_ledger` tinyint(4) NOT NULL DEFAULT 0,
+  `head_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `budget` tinyint(4) NOT NULL,
+  `depreciation` tinyint(4) NOT NULL,
+  `depreciation_rate` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_coa`
+--
+
+INSERT INTO `tbl_coa` (`id`, `head_code`, `head_name`, `parent_head_name`, `head_level`, `active`, `transaction`, `general_ledger`, `head_type`, `budget`, `depreciation`, `depreciation_rate`, `status`, `created_at`, `updated_at`) VALUES
+(1, '1', 'Assets', 'COA', '0', 1, 0, 0, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(2, '101', 'Fixed Assets', 'Assets', '1', 1, 0, 0, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(21, '102', 'Current Asset', 'Assets', '1', 1, 0, 0, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(22, '10201', 'Cash In Hand', 'Current Asset', '2', 1, 1, 1, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(23, '10202', 'Cash at Bank', 'Current Asset', '2', 1, 0, 1, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(31, '10203', 'Account Receivable', 'Current Asset', '2', 1, 0, 0, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(32, '2', 'Liabilities', 'COA', '0', 1, 0, 0, 'L', 0, 0, '0.00', 1, NULL, NULL),
+(33, '201', 'Current Laibalities', 'Liabilities', '1', 1, 0, 1, 'L', 0, 0, '0.00', 1, NULL, NULL),
+(47, '202', 'Share Capital', 'Liabilities', '1', 1, 0, 1, 'L', 0, 0, '0.00', 1, NULL, NULL),
+(50, '3', 'Income', 'COA', '0', 1, 0, 0, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(51, '301', 'Student Charge', 'Income', '1', 1, 0, 1, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(52, '30101', 'Admission Fee', 'Student Charge', '2', 1, 1, 0, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(53, '30102', 'Library Fee', 'Student Charge', '2', 1, 1, 0, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(54, '30103', 'Academic Fee', 'Student Charge', '2', 1, 1, 0, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(55, '30104', 'Tuition Fee', 'Student Charge', '2', 1, 1, 0, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(56, '4', 'Expence', 'COA', '0', 1, 0, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(77, '302', 'Indirect Income', 'Income', '1', 1, 0, 1, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(89, '30105', 'Transport Fee', 'Student Charge', '2', 1, 1, 1, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(90, '303', 'Direct Income', 'Income', '1', 1, 0, 1, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(91, '30106', 'Late Fee', 'Student Charge', '2', 1, 1, 0, 'I', 0, 0, '0.00', 1, NULL, NULL),
+(99, '401', 'Direct Expense ', 'Expence', '1', 1, 0, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(100, '402', 'Indirect Expense', 'Expence', '1', 1, 0, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(101, '203', 'Short Term Liability ', 'Liabilities', '1', 1, 0, 1, 'L', 0, 0, '0.00', 1, NULL, NULL),
+(102, '10101', 'Land', 'Fixed Assets', '2', 1, 0, 1, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(103, '10102', 'Buildings', 'Fixed Assets', '2', 1, 0, 1, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(104, '10103', 'Vehicles', 'Fixed Assets', '2', 1, 0, 1, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(105, '10104', 'Furniture & Fixture', 'Fixed Assets', '2', 1, 0, 1, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(106, '10105', 'Computer Accessories (Printer & CPU)', 'Fixed Assets', '2', 1, 0, 1, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(107, '40201', 'Salary ', 'Indirect Expense', '2', 1, 0, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(108, '40202', 'Fuel & Gas', 'Indirect Expense', '2', 1, 0, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(109, '4020201', 'Dhaka Metro: Cha:-13-8171', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(110, '4020202', 'Dhaka Metro: Cha:-52-0760', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(111, '4020203', 'Dhaka Metro:Cha:-53-2745', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(112, '4020204', 'Dhaka Metro:Cha:-51-8023', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(113, '4020205', 'Dhaka Metro: Jha:-12-0027', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(114, '4020206', 'Dhaka Metro: Jha:-12-0054', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(115, '4020207', 'Dhaka Metro: Jha:-12-0015', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(116, '4020208', 'Dhaka Metro: Jha:-11-0691', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(117, '4020209', 'Dhaka Metro: Ja:-12-0971', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(118, '4020210', 'Dhaka Metro: Ga:-28-1359', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(119, '4020211', 'Dhaka Metro: Ga:-33-1227', 'Fuel & Gas', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(120, '40203', 'Repair & Maintenance', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(121, '40204', 'Paper Bill', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(122, '1020201', 'Bank Asia ', 'Cash at Bank', '3', 1, 1, 0, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(125, '20101', 'Accounts Payable', 'Current Laibalities', '2', 1, 1, 0, 'L', 0, 0, '0.00', 1, NULL, NULL),
+(126, '20102', 'Income Taxes Payable ', 'Current Laibalities', '2', 1, 0, 1, 'L', 0, 0, '0.00', 1, NULL, NULL),
+(127, '20103', 'Short Term Loans', 'Current Laibalities', '2', 1, 0, 1, 'L', 0, 0, '0.00', 1, NULL, NULL),
+(128, '20104', 'Caution Money', 'Current Laibalities', '2', 1, 1, 1, 'L', 0, 0, '0.00', 1, NULL, NULL),
+(129, '40205', 'Utilities Bill', 'Indirect Expense', '2', 1, 0, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(130, '4020501', 'Electric Bill', 'Utilities Bill', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(131, '4020502', 'Gas Bill', 'Utilities Bill', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(132, '4020503', 'Wasa Bill', 'Utilities Bill', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(133, '4020504', 'Telephone Bill', 'Utilities Bill', '3', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(134, '40206', 'Internet Bill ', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(135, '40207', 'Overtime', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(136, '40208', 'Conveyance', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(137, '40209', 'Fuel for Generator', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(138, '40210', 'Vehicle Maintenance   ', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(139, '40211', 'Donation & charity', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(140, '40212', 'Postage & courier', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(141, '40213', 'Entertainment ', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(142, '40214', 'Foundation Day ', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(143, '40215', 'Graduation Day', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(144, '40216', 'Printing & Stationary Expense', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(145, '40217', 'Repair charge', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(146, '40218', 'Furniture & Fixture Expense ', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(147, '10204', 'Cash On School Receive', 'Current Asset', '2', 1, 1, 0, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(149, '40219', 'Mobile Bill', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(150, '40220', 'Lunch Money & Conveyance', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(151, '40221', 'Vat Expense : Source', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(152, '40222', 'Medical Expense', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(153, '40223', 'Boishakhi Mela Expense', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(154, '40224', 'Photography Expense', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(155, '40225', 'Infant program', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(156, '40226', 'Boishakhi Expense', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(157, '40227', 'Tifin Aya ,Driver & Security Guard', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(158, '40228', 'vehicle  Spare parts', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(159, '40229', 'Photocopy Expense', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(160, '20105', 'Reserve Accounts(Previous)', 'Current Laibalities', '2', 1, 1, 0, 'L', 0, 0, '0.00', 1, NULL, NULL),
+(161, '1020204', 'Southeast Bank: 0013 11100005167', 'Cash at Bank', '3', 1, 1, 0, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(162, '1020205', 'Shahjalal Islami Bank: 40401110000156', 'Cash at Bank', '3', 1, 1, 0, 'A', 0, 0, '0.00', 1, NULL, NULL),
+(164, '40230', 'Class Party', 'Indirect Expense', '2', 1, 1, 0, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(165, '40231', 'Electric Goods', 'Indirect Expense', '2', 1, 1, 1, 'E', 0, 0, '0.00', 1, NULL, NULL),
+(166, '1010401', 'Electric Fan', 'Furniture & Fixture', '3', 1, 1, 0, 'A', 0, 0, '0.00', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_delivery_man_payments`
 --
 
@@ -473,7 +661,7 @@ CREATE TABLE `tbl_delivery_man_payments` (
 --
 
 INSERT INTO `tbl_delivery_man_payments` (`id`, `date`, `delivery_man_id`, `total_charge_amount`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(15, '2020-07-26', 1, '130', 1, 4, '2020-07-26 07:12:08', NULL, '2020-07-26 07:12:08'),
+(15, '2020-07-27', 1, '80', 1, 4, '2020-07-26 07:12:08', 4, '2020-07-26 23:21:20'),
 (16, '2020-07-26', 1, '80', 1, 4, '2020-07-26 07:12:15', NULL, '2020-07-26 07:12:15'),
 (18, '2020-07-26', 2, '180', 1, 4, '2020-07-26 07:51:54', NULL, '2020-07-26 07:51:54');
 
@@ -502,12 +690,11 @@ CREATE TABLE `tbl_delivery_man_payment_lists` (
 --
 
 INSERT INTO `tbl_delivery_man_payment_lists` (`id`, `delivery_man_payment_id`, `booking_order_id`, `order_no`, `order_type`, `charge`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(38, 15, 1, 'co-200725-00001', 'Delivery', '80', 1, 4, '2020-07-26 07:12:08', NULL, '2020-07-26 07:12:08'),
-(39, 15, 5, 'co-200725-00005', 'Collection', '50', 1, 4, '2020-07-26 07:12:08', NULL, '2020-07-26 07:12:08'),
 (40, 16, 3, 'co-200725-00003', 'Delivery', '80', 1, 4, '2020-07-26 07:12:15', NULL, '2020-07-26 07:12:15'),
 (43, 18, 1, 'co-200725-00001', 'Collection', '50', 1, 4, '2020-07-26 07:51:54', NULL, '2020-07-26 07:51:54'),
 (44, 18, 3, 'co-200725-00003', 'Collection', '50', 1, 4, '2020-07-26 07:51:54', NULL, '2020-07-26 07:51:54'),
-(45, 18, 5, 'co-200725-00005', 'Delivery', '80', 1, 4, '2020-07-26 07:51:54', NULL, '2020-07-26 07:51:54');
+(45, 18, 5, 'co-200725-00005', 'Delivery', '80', 1, 4, '2020-07-26 07:51:54', NULL, '2020-07-26 07:51:54'),
+(48, 15, 1, 'co-200725-00001', 'Delivery', '80', 1, 4, '2020-07-26 23:21:20', NULL, '2020-07-26 23:21:20');
 
 -- --------------------------------------------------------
 
@@ -799,7 +986,23 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (49, '13', 'Delivery Type', 'deliveryType.index', 'fa fa-bars', 10, '1', '2020-07-11 23:30:50', '2020-07-11 23:30:50'),
 (50, NULL, 'Order Entry', 'merchantBookingOrder.index', 'fa fa-bars', 9, '1', '2020-07-12 03:48:51', '2020-07-12 04:27:37'),
 (51, NULL, 'Payment Collection', 'paymentCollection.index', NULL, 10, '1', '2020-07-20 04:07:25', '2020-07-20 04:07:25'),
-(52, NULL, 'Delivery Man Payment', 'deliveryManPayment.index', NULL, 11, '1', '2020-07-23 06:51:33', '2020-07-23 06:51:33');
+(52, NULL, 'Delivery Man Payment', 'deliveryManPayment.index', NULL, 11, '1', '2020-07-23 06:51:33', '2020-07-23 06:51:33'),
+(53, NULL, 'Accounts Management', 'admin.index', NULL, 12, '1', '2020-07-27 23:09:22', '2020-07-27 23:09:22'),
+(54, '53', 'Chart Of Accounts', 'coaSetup.index', NULL, 1, '1', '2020-07-27 23:10:20', '2020-07-27 23:10:20'),
+(55, '53', 'Journal Entry', 'journalEntry.index', NULL, 2, '1', '2020-07-27 23:40:06', '2020-07-27 23:45:57'),
+(56, '53', 'Debit Entry', 'debitEntry.index', NULL, 3, '1', '2020-07-27 23:46:21', '2020-07-27 23:46:21'),
+(57, '53', 'Credit Entry', 'creditEntry.index', NULL, 4, '1', '2020-07-27 23:49:58', '2020-07-27 23:49:58'),
+(58, '53', 'Voucher Approve', 'voucherApprove.index', NULL, 5, '1', '2020-07-27 23:55:51', '2020-07-27 23:55:51'),
+(59, NULL, 'Accounts Reports', 'admin.index', NULL, 13, '1', '2020-07-28 03:04:59', '2020-07-28 03:04:59'),
+(61, '59', 'COA List', 'coaList.index', NULL, 1, '1', '2020-07-28 03:06:23', '2020-07-28 03:06:23'),
+(62, '59', 'Voucher List', 'voucherList.index', NULL, 2, '1', '2020-07-28 03:07:26', '2020-07-28 03:07:26'),
+(63, '59', 'General Ledger', 'generalLedger.index', NULL, 3, '1', '2020-07-28 03:07:44', '2020-07-28 03:07:44'),
+(64, '59', 'Transaction Ledger', 'transactionLedger.index', NULL, 4, '1', '2020-07-28 03:09:08', '2020-07-28 03:09:08'),
+(65, '59', 'Cash Book', 'cashBook.index', NULL, 5, '1', '2020-07-28 03:10:06', '2020-07-28 03:10:06'),
+(66, '59', 'Bank Book', 'bankBook.index', NULL, 6, '1', '2020-07-28 03:10:22', '2020-07-28 03:10:22'),
+(67, '59', 'Trial Balance', 'trialBalance.index', NULL, 7, '1', '2020-07-28 03:11:01', '2020-07-28 03:11:01'),
+(68, '59', 'Income Statement', 'incomeStatement.index', NULL, 8, '1', '2020-07-28 03:11:21', '2020-07-28 03:11:21'),
+(69, '59', 'Receive Payment Statement', 'receivePaymentStatement.index', NULL, 9, '1', '2020-07-28 03:12:06', '2020-07-28 03:12:06');
 
 -- --------------------------------------------------------
 
@@ -944,7 +1147,25 @@ INSERT INTO `tbl_menu_actions` (`id`, `parent_menu_id`, `menu_type`, `action_nam
 (145, 52, 2, 'Edit', 'deliveryManPayment.edit', 2, 1, '2020-07-23 06:52:07', '2020-07-23 06:52:07'),
 (146, 52, 3, 'Status', 'deliveryManPayment.status', 3, 1, '2020-07-23 06:52:26', '2020-07-23 06:52:26'),
 (147, 52, 8, 'View', 'deliveryManPayment.view', 4, 1, '2020-07-23 06:52:37', '2020-07-23 06:52:37'),
-(148, 52, 4, 'Delete', 'deliveryManPayment.delete', 5, 1, '2020-07-23 06:52:46', '2020-07-23 06:52:46');
+(148, 52, 4, 'Delete', 'deliveryManPayment.delete', 5, 1, '2020-07-23 06:52:46', '2020-07-23 06:52:46'),
+(149, 55, 1, 'Add', 'journalEntry.add', 1, 1, '2020-07-27 23:40:57', '2020-07-27 23:42:47'),
+(150, 55, 2, 'Edit', 'journalEntry.edit', 2, 1, '2020-07-27 23:41:18', '2020-07-27 23:43:01'),
+(151, 55, 8, 'View', 'journalEntry.view', 3, 1, '2020-07-27 23:41:40', '2020-07-27 23:43:21'),
+(152, 55, 11, 'Print Journal Voucher', 'journalEntry.printJournalVoucher', 4, 1, '2020-07-27 23:44:13', '2020-07-27 23:44:13'),
+(153, 55, 4, 'Delete', 'journalEntry.delete', 5, 1, '2020-07-27 23:44:36', '2020-07-27 23:44:36'),
+(154, 55, 3, 'Publish', 'journalEntry.publish', 6, 1, '2020-07-27 23:44:59', '2020-07-27 23:44:59'),
+(155, 56, 1, 'Add', 'debitEntry.add', 1, 1, '2020-07-27 23:46:54', '2020-07-27 23:46:54'),
+(156, 56, 2, 'Edit', 'debitEntry.edit', 2, 1, '2020-07-27 23:47:35', '2020-07-27 23:47:35'),
+(157, 56, 8, 'View Debit Entry', 'debitEntry.view', 3, 1, '2020-07-27 23:47:55', '2020-07-27 23:49:14'),
+(158, 56, 11, 'Print Debit Voucher', 'debitEntry.printDebitVoucher', 4, 1, '2020-07-27 23:48:27', '2020-07-27 23:54:22'),
+(159, 56, 4, 'Delete', 'debitEntry.delete', 5, 1, '2020-07-27 23:48:44', '2020-07-27 23:48:44'),
+(160, 56, 3, 'Publish', 'debitEntry.publish', 6, 1, '2020-07-27 23:48:59', '2020-07-27 23:48:59'),
+(161, 57, 1, 'Add', 'creditEntry.add', 1, 1, '2020-07-27 23:50:22', '2020-07-27 23:50:22'),
+(162, 57, 2, 'Edit', 'creditEntry.edit', 2, 1, '2020-07-27 23:50:35', '2020-07-27 23:50:35'),
+(163, 57, 8, 'View Credit Entry', 'creditEntry.view', 3, 1, '2020-07-27 23:51:20', '2020-07-27 23:51:20'),
+(164, 57, 11, 'Print Credit Voucher', 'creditEntry.printCreditVoucher', 4, 1, '2020-07-27 23:52:55', '2020-07-27 23:52:55'),
+(165, 57, 4, 'Delete', 'creditEntry.delete', 5, 1, '2020-07-27 23:53:18', '2020-07-27 23:53:18'),
+(166, 57, 3, 'Publish', 'creditEntry.publish', 6, 1, '2020-07-27 23:53:45', '2020-07-27 23:53:45');
 
 -- --------------------------------------------------------
 
@@ -1781,7 +2002,7 @@ CREATE TABLE `tbl_user_roles` (
 --
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
-(2, 'Super User', NULL, 1, 1, '1,39,2,3,4,5,38,6,7,8,10,11,12,13,14,15,16,17,18,25,37,49,21,22,42,43,44,45,46,47,48,51,52', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,89,90,91,92,104,105,106,107,130,131,132,133,84,85,88,86,87,114,115,116,117,110,111,112,113,118,119,120,121,122,123,124,125,126,127,128,129,139,140,141,142,143,144,145,146,147,148', '2019-04-17 00:50:05', '2020-07-23 06:54:18'),
+(2, 'Super User', NULL, 1, 1, '1,39,2,3,4,5,38,6,7,8,10,11,12,13,14,15,16,17,18,25,37,49,21,22,42,43,44,45,46,47,48,51,52,53,54,55,56,57,58,59,61,62,63,64,65,66,67,68,69', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,89,90,91,92,104,105,106,107,130,131,132,133,84,85,88,86,87,114,115,116,117,110,111,112,113,118,119,120,121,122,123,124,125,126,127,128,129,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166', '2019-04-17 00:50:05', '2020-07-28 03:14:49'),
 (3, 'Admin', NULL, 1, 1, '1,39,2,3,5', '2,3,4,11,12,13,14,15,21,22,23,24,25,26', '2019-04-17 00:52:54', '2020-07-08 12:49:14'),
 (4, 'Client', NULL, 1, 1, '1', '', '2020-03-07 00:49:33', '2020-07-08 12:49:35'),
 (8, 'Agent', NULL, 1, 1, '1,21,23,24', '93,94', '2020-06-10 06:39:37', '2020-07-08 12:49:25'),
@@ -1878,6 +2099,21 @@ CREATE TABLE `users` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `view_account`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_account` (
+`voucherNo` varchar(191)
+,`voucherType` varchar(191)
+,`debitHeadCode` varchar(191)
+,`debitHeadname` varchar(191)
+,`creditHeadcode` varchar(191)
+,`creditHeadName` varchar(191)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `view_clients`
 -- (See below for the actual view)
 --
@@ -1888,6 +2124,23 @@ CREATE TABLE `view_clients` (
 ,`clientName` varchar(255)
 ,`clientPhone` varchar(255)
 ,`clientAddress` mediumtext
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_voucher_approve`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_voucher_approve` (
+`id` int(10) unsigned
+,`voucherNo` varchar(191)
+,`voucherType` varchar(191)
+,`narration` mediumtext
+,`date` varchar(191)
+,`amount` varchar(191)
+,`approve` tinyint(4)
+,`approveBy` int(11)
 );
 
 -- --------------------------------------------------------
@@ -1907,11 +2160,29 @@ CREATE TABLE `view_zones` (
 -- --------------------------------------------------------
 
 --
+-- Structure for view `view_account`
+--
+DROP TABLE IF EXISTS `view_account`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_account`  AS  select `tab1`.`voucher_no` AS `voucherNo`,`tab1`.`voucher_type` AS `voucherType`,`tab1`.`coa_head_code` AS `debitHeadCode`,`debitcoa`.`head_name` AS `debitHeadname`,`tab2`.`coa_head_code` AS `creditHeadcode`,`creditcoa`.`head_name` AS `creditHeadName` from (((`tbl_account_transactions` `tab1` join `tbl_account_transactions` `tab2` on(`tab2`.`voucher_no` = `tab1`.`voucher_no`)) join `tbl_coa` `debitcoa` on(`debitcoa`.`head_code` = `tab1`.`coa_head_code`)) join `tbl_coa` `creditcoa` on(`creditcoa`.`head_code` = `tab2`.`coa_head_code`)) where `tab1`.`debit_amount` <> 0 and `tab2`.`credit_amount` <> 0 order by `tab1`.`voucher_no` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `view_clients`
 --
 DROP TABLE IF EXISTS `view_clients`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_clients`  AS  select `tbl_clients`.`id` AS `clientId`,`tbl_clients`.`user_role_id` AS `clientUserRoleId`,'Client' AS `clientType`,`tbl_clients`.`name` AS `clientName`,`tbl_clients`.`phone` AS `clientPhone`,`tbl_clients`.`address` AS `clientAddress` from `tbl_clients` union all select `tbl_marchants`.`id` AS `clientId`,`tbl_marchants`.`user_role_id` AS `clientUserRoleId`,'Merchant' AS `clientType`,`tbl_marchants`.`name` AS `clientName`,`tbl_marchants`.`contact_person_phone` AS `clientPhone`,`tbl_marchants`.`address` AS `clientAddress` from `tbl_marchants` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_voucher_approve`
+--
+DROP TABLE IF EXISTS `view_voucher_approve`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_voucher_approve`  AS  select `tbl_account_transactions`.`id` AS `id`,`tbl_account_transactions`.`voucher_no` AS `voucherNo`,`tbl_account_transactions`.`voucher_type` AS `voucherType`,`tbl_account_transactions`.`narration` AS `narration`,`tbl_account_transactions`.`voucher_date` AS `date`,`tbl_account_transactions`.`credit_amount` AS `amount`,`tbl_account_transactions`.`approve` AS `approve`,`tbl_account_transactions`.`approve_by` AS `approveBy` from `tbl_account_transactions` where `tbl_account_transactions`.`voucher_type` = 'DV' and `tbl_account_transactions`.`debit_amount` = 0 union all select `tbl_account_transactions`.`id` AS `id`,`tbl_account_transactions`.`voucher_no` AS `voucherNo`,`tbl_account_transactions`.`voucher_type` AS `voucherType`,`tbl_account_transactions`.`narration` AS `narration`,`tbl_account_transactions`.`voucher_date` AS `date`,`tbl_account_transactions`.`debit_amount` AS `amount`,`tbl_account_transactions`.`approve` AS `approve`,`tbl_account_transactions`.`approve_by` AS `approveBy` from `tbl_account_transactions` where `tbl_account_transactions`.`voucher_type` = 'CV' and `tbl_account_transactions`.`credit_amount` = 0 union all select `tbl_account_transactions`.`id` AS `id`,`tbl_account_transactions`.`voucher_no` AS `voucherNo`,`tbl_account_transactions`.`voucher_type` AS `voucherType`,`tbl_account_transactions`.`narration` AS `narration`,`tbl_account_transactions`.`voucher_date` AS `date`,sum(`tbl_account_transactions`.`debit_amount`) AS `amount`,`tbl_account_transactions`.`approve` AS `approve`,`tbl_account_transactions`.`approve_by` AS `approveBy` from `tbl_account_transactions` where `tbl_account_transactions`.`voucher_type` = 'JV' group by `tbl_account_transactions`.`voucher_no` union all select `tbl_account_transactions`.`id` AS `id`,`tbl_account_transactions`.`voucher_no` AS `voucherNo`,`tbl_account_transactions`.`voucher_type` AS `voucherType`,`tbl_account_transactions`.`narration` AS `narration`,`tbl_account_transactions`.`voucher_date` AS `date`,sum(`tbl_account_transactions`.`debit_amount`) AS `amount`,`tbl_account_transactions`.`approve` AS `approve`,`tbl_account_transactions`.`approve_by` AS `approveBy` from `tbl_account_transactions` where `tbl_account_transactions`.`voucher_type` = 'OB' group by `tbl_account_transactions`.`voucher_no` order by `voucherNo` ;
 
 -- --------------------------------------------------------
 
@@ -1951,6 +2222,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `tbl_account_transactions`
+--
+ALTER TABLE `tbl_account_transactions`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_admin_panel_information`
@@ -1998,6 +2275,12 @@ ALTER TABLE `tbl_charge_for_merchants`
 -- Indexes for table `tbl_clients`
 --
 ALTER TABLE `tbl_clients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_coa`
+--
+ALTER TABLE `tbl_coa`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2168,6 +2451,12 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `tbl_account_transactions`
+--
+ALTER TABLE `tbl_account_transactions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
+
+--
 -- AUTO_INCREMENT for table `tbl_admin_panel_information`
 --
 ALTER TABLE `tbl_admin_panel_information`
@@ -2189,7 +2478,7 @@ ALTER TABLE `tbl_area`
 -- AUTO_INCREMENT for table `tbl_booking_orders`
 --
 ALTER TABLE `tbl_booking_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_charge_for_clients`
@@ -2216,6 +2505,12 @@ ALTER TABLE `tbl_clients`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tbl_coa`
+--
+ALTER TABLE `tbl_coa`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+
+--
 -- AUTO_INCREMENT for table `tbl_delivery_man_payments`
 --
 ALTER TABLE `tbl_delivery_man_payments`
@@ -2225,7 +2520,7 @@ ALTER TABLE `tbl_delivery_man_payments`
 -- AUTO_INCREMENT for table `tbl_delivery_man_payment_lists`
 --
 ALTER TABLE `tbl_delivery_man_payment_lists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `tbl_delivery_men`
@@ -2261,13 +2556,13 @@ ALTER TABLE `tbl_marchants`
 -- AUTO_INCREMENT for table `tbl_menus`
 --
 ALTER TABLE `tbl_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_actions`
 --
 ALTER TABLE `tbl_menu_actions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_action_type`

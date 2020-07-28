@@ -8,6 +8,9 @@
 	<!-- Jquery for multi select or choose -->
 	<script src="{{ asset('/public/admin-elite/dist/js/chosen.jquery.js') }}"></script>
 
+	{{-- Page Plugins --}}
+	<script src="{{ asset('public/admin-elite/assets/node_modules/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+
 	<script src="{{ asset('public/frontend/asset/js/bootstrap.bundle.js') }}"></script>
 
 	<!-- Owl Carousel js -->
@@ -40,48 +43,56 @@
 	<!-- This is data table -->
 	<script src="{{ asset('/public/admin-elite/assets/node_modules/datatables/jquery.dataTables.min.js') }}"></script>
 
+	<!-- Sweet-Alert  -->
+	<script src="{{ asset('/public/admin-elite/assets/node_modules/sweetalert/sweetalert.min.js') }}"></script>
+	<script src="{{ asset('/public/admin-elite/assets/node_modules/sweetalert/jquery.sweet-alert.custom.js') }}"></script>
+
 
 	<!-- end JS -->
 	@yield('custom_js')
 	<script>
-	$( function() {
-		$( ".add_datepicker" ).datetimepicker({
-            format: 'DD-MM-YYYY',
-        	viewMode: 'years'
-       });
+		$( function() {
+			$( ".add_datepicker" ).datetimepicker({
+				format: 'DD-MM-YYYY',
+				viewMode: 'years'
+			});
 
-		$(".datepicker").datetimepicker({
-            format: 'DD-MM-YYYY',
-            viewMode: 'years'
-        });
-	} );
-</script>
+			$(".datepicker").datetimepicker({
+				format: 'DD-MM-YYYY',
+				viewMode: 'years'
+			});
+		});
+	</script>
 
-<script type="text/javascript">
-	$(".chosen-select").chosen({search_contains: true});
-</script>
+	<script type="text/javascript">
+		$(".chosen-select").chosen({search_contains: true});
+	</script>
 
-<script>
-        $(document).ready(function() {
-            var updateThis ;
+	<script>
+		$(document).ready(function() {
+			var updateThis ;
 
             // Switchery
             var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
             $('.js-switch').each(function() {
-                new Switchery($(this)[0], $(this).data());
+            	new Switchery($(this)[0], $(this).data());
             });
 
             var table = $('#dataTable').DataTable( {
-                "orderable": false,
-                "bSort" : false,
-                "pageLength": 25,
+            	"orderable": false,
+            	"bSort" : false,
+            	"pageLength": 25,
             } );
             table.on( 'order.dt search.dt', function () {
-	            table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-	                cell.innerHTML = i+1;
-	            } );
-	        } ).draw();
+            	table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            		cell.innerHTML = i+1;
+            	} );
+            } ).draw();
 
-        });
-                
-</script>
+	        // For select 2
+	        $(".select2").select2();
+	        // $('.selectpicker').selectpicker();
+
+	    });
+
+	</script>

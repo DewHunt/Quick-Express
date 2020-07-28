@@ -26,6 +26,8 @@
 	</title>
 
 	@include('frontend.element.header.header_asset')
+
+	@yield('custom-css')
 </head>
 
 	<body>

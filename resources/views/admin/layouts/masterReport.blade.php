@@ -54,9 +54,9 @@
     			    	{{ csrf_field() }}
 
     				    <div class="card">
-    				        <div class="card-header">
+    				        <div class="custom-card-header">
     				            <div class="row">
-    				                <div class="col-md-6"><h4 class="card-title">{{ $title }}</h4></div>
+    				                <div class="col-md-6"><h4 class="custom-card-title">{{ $title }}</h4></div>
     				                <div class="col-md-6 text-right">
     				                	<button type="submit" class="btn btn-outline-info btn-lg waves-effect"><i class="fa fa-search"></i> Search</button>
     				                </div>
@@ -69,7 +69,7 @@
 	    		                <!-- End Search Card Body Content -->    				        	
     				        </div>
 
-    				        <div class="card-footer">
+    				        <div class="custom-card-footer">
     				            <div class="row">
     				                <div class="col-md-12 text-right">
     				                	<button type="submit" id="search" class="btn btn-outline-info btn-lg waves-effect search"><i class="fa fa-search"></i> Search</button>
@@ -78,6 +78,8 @@
     				        </div>
     				    </div>
     				</form>
+
+    				<div style="padding: 10px;"></div>
 
 		            <div class="card" style="margin-bottom: 0px;">              
 		                <div class="custom-card-header">

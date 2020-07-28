@@ -15,44 +15,46 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                @if(file_exists($profile->image))
-                    <img src="{{ asset($profile->image) }}" style="height: 120px;">
-                @endif
-            </div>
-        </div>
-
         <div class="table-responsive">
-            <table class="table table-bordered table-sm booking_info">
-                <tbody>
-                    <thead>
-                        <tr>
-                            <th colspan="6" class="text-center">Profile Information</th>
-                        </tr>
-                    </thead>
+            <table class="table table-borderless table-sm booking_info">
+                <thead>
                     <tr>
-                        <th class="head_name">Name</th>
+                        <th colspan="7" class="text-center">Profile Information</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <th class="head_name" style="width: 110px;">Name</th>
+                        <td width="10px">:</td>
                         <td>{{$profile->name}}</td>
-                        <th class="head_name">Phone No</th>
+                        <th class="head_name" style="width: 110px;">Phone No</th>
+                        <td width="10px">:</td>
                         <td>{{$profile->phone}}</td>
+                        <td rowspan="3" width="120px">
+                            @if(file_exists($profile->image))
+                                <img src="{{ asset($profile->image) }}" style="height: 120px;">
+                            @endif
+                        </td>
                     </tr>
 
                     <tr>
-                        <th class="head_name">Email Address</th>
+                        <th class="head_name" style="width: 110px;">Email Address</th>
+                        <td width="10px">:</td>
                         <td>{{$profile->email}}</td>
-                        <th class="head_name">Date of Birth</th>
+                        <th class="head_name" style="width: 110px;">Date of Birth</th>
+                        <td width="10px">:</td>
                         <td>{{date('d-m-Y',strtotime($profile->birth_date))}}</td>
                     </tr>
 
                     <tr>
-                        <th class="head_name">Address</th>
+                        <th class="head_name" style="width: 110px;">Address</th>
+                        <td width="10px">:</td>
                         <td>{{$profile->address}}</td>
-                        <th class="head_name">NID</th>
+                        <th class="head_name" style="width: 110px;">NID</th>
+                        <td width="10px">:</td>
                         <td>{{$profile->nid}}</td>
                     </tr>
-
-
                 </tbody>
             </table>
         </div>

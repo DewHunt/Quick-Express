@@ -6,6 +6,9 @@
 
 <link href="{{ asset('/public/admin-elite/dist/css/chosen.css') }}" rel="stylesheet">
 
+<!-- Page Plugins -->
+<link href="{{ asset('public/admin-elite/assets/node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+
 <!-- Navigation CSS -->
 <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/asset/css/menumaker.css') }}" />
 
@@ -23,6 +26,10 @@
 
 <!-- Slicknav CSS -->
 <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/asset/css/slicknav.min.css') }}" />
+
+
+<!--alerts CSS -->
+<link href="{{ asset('/public/admin-elite/assets/node_modules/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
 
 <!-- Main Style CSS -->
 <link href="{{ asset('public/frontend/asset/css/style.css') }}" rel="stylesheet" type="text/css" />

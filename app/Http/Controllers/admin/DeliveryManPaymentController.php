@@ -131,7 +131,99 @@ class DeliveryManPaymentController extends Controller
 
     public function update(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+
+        if ($request->paymentDate)
+        {
+            $paymentDate = date('Y-m-d',strtotime($request->paymentDate));
+        }
+        else
+        {
+            $paymentDate = "";
+        }
+
+        $deliveryManPaymentId = $request->deliveryManPaymentId;
+
+        $deliveryManPayment = DeliveryManPayment::find($deliveryManPaymentId);
+
+        $deliveryMan = $request->deliveryMan;
+
+        $deliveryManPayment->update([
+            'date' => $paymentDate,
+            'delivery_man_id' => $deliveryMan,
+            'total_charge_amount' => $request->totalCharge,
+            'updated_by' => $this->userId,
+        ]);
+
+        $deliveryManPaymentLists = DeliveryManPaymentList::where('delivery_man_payment_id',$request->deliveryManPaymentId)->get();
+
+        foreach ($deliveryManPaymentLists as $deliveryManPaymentList)
+        {
+            $bookingOrder = BookingOrder::find($deliveryManPaymentList->booking_order_id);
+
+            if ($deliveryManPaymentList->order_type == 'Collection')
+            {
+                if ($bookingOrder->collection_payment_status == 1)
+                {
+                    $bookingOrder->update( [               
+                        'collection_payment_status' => 0                
+                    ]);
+                }
+            }
+            else
+            {
+                if ($bookingOrder->delivery_payment_status == 1)
+                {
+                    $bookingOrder->update( [               
+                        'delivery_payment_status' => 0                
+                    ]);
+                }
+            }
+        }
+
+        DeliveryManPaymentList::where('delivery_man_payment_id',$request->deliveryManPaymentId)->delete();
+
+        $countOrderId = count($request->orderId);
+        if($request->orderId)
+        {
+            for ($i=0; $i < $countOrderId; $i++)
+            {
+                $deliveryManPaymentList = DeliveryManPaymentList::create([
+                    'delivery_man_payment_id' => $deliveryManPayment->id,
+                    'booking_order_id' => $request->orderId[$i],
+                    'order_no' => $request->orderNo[$i],
+                    'order_type' => $request->type[$i],
+                    'charge' => $request->charge[$i],
+                    'created_by' => $this->userId,
+                ]);
+
+                if ($deliveryManPaymentList)
+                {
+                    $bookingOrder = BookingOrder::find($deliveryManPaymentList->booking_order_id);
+
+                    if ($request->type[$i] == 'Collection')
+                    {
+                        if ($bookingOrder->collection_payment_status == 0)
+                        {
+                            $bookingOrder->update( [               
+                                'collection_payment_status' => 1                
+                            ]);
+                        }
+                    }
+                    else
+                    {
+                        if ($bookingOrder->delivery_payment_status == 0)
+                        {
+                            $bookingOrder->update( [               
+                                'delivery_payment_status' => 1                
+                            ]);
+                        }
+                    }
+                }
+            }
+        }
+
+        return redirect(route('deliveryManPayment.index'))->with('msg','Payment Updated Successfully');
     }
 
     public function view($deliveryManPaymentId)
