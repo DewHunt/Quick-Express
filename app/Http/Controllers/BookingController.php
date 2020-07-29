@@ -130,14 +130,23 @@ class BookingController extends Controller
     public function view($id)
     {
         $title = "View Your Booking";
-        $bookedOrder = BookingOrder::where('id',$id)->where('sender_id',\Auth::guard('customer')->user()->id)->first();
-        $deliveryMan = DeliveryMan::find($bookedOrder->delivery_man_id);
-        $courierType = CourierType::find($bookedOrder->courier_type_id);
+        $order_no = request()->order_track;
+        $bookedOrder = BookingOrder::where('id',$id)->first();
+        
+        $collectionMan = DeliveryMan::find(@$bookedOrder->collection_man_id);
+        $deliveryMan = DeliveryMan::find(@$bookedOrder->delivery_man_id);
         $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
-        $sender_zone = DB::table('view_zones')->where('zone_id',$bookedOrder->sender_zone_id)->first();
-        $receiver_zone = DB::table('view_zones')->where('zone_id',$bookedOrder->receiver_zone_id)->first();
 
-        return view('frontend.customer.booking.view')->with(compact('title','bookedOrder','deliveryMan','courierType','serviceTypes','deliveryTypes','sender_zone','receiver_zone'));
+        $sender_zone = DB::table('view_zones')->where('zone_id',@$bookedOrder->sender_zone_id)->first();
+        $receiver_zone = DB::table('view_zones')->where('zone_id',@$bookedOrder->receiver_zone_id)->first();
+
+        $host_ware_house = Warehouse::find(@$bookedOrder->host_warehouse_id);
+        $delivery_ware_house = Warehouse::find(@$bookedOrder->destination_warehouse_id);
+
+        $service_type = ServiceType::find($bookedOrder->delivery_type_id);
+        $delivery_type = ServiceType::find($bookedOrder->delivery_duration_id);
+
+        return view('frontend.customer.booking.view')->with(compact('title','bookedOrder','collectionMan','deliveryMan','deliveryTypes','sender_zone','receiver_zone','order_no','host_ware_house','delivery_ware_house','service_type','delivery_type'));
     }
 
 
@@ -240,9 +249,12 @@ class BookingController extends Controller
         $sender_zone = DB::table('view_zones')->where('zone_id',@$bookedOrder->sender_zone_id)->first();
         $receiver_zone = DB::table('view_zones')->where('zone_id',@$bookedOrder->receiver_zone_id)->first();
 
+        $service_type = ServiceType::find($bookedOrder->delivery_type_id);
+        $delivery_type = ServiceType::find($bookedOrder->delivery_duration_id);
+
         $host_ware_house = Warehouse::find(@$bookedOrder->host_warehouse_id);
         $delivery_ware_house = Warehouse::find(@$bookedOrder->destination_warehouse_id);
-        return view('frontend.customer.booking.order_track')->with(compact('title','bookedOrder','collectionMan','deliveryMan','deliveryTypes','sender_zone','receiver_zone','order_no','host_ware_house','delivery_ware_house'));
+        return view('frontend.customer.booking.order_track')->with(compact('title','bookedOrder','collectionMan','deliveryMan','deliveryTypes','sender_zone','receiver_zone','order_no','host_ware_house','delivery_ware_house','service_type','delivery_type'));
     }
 
 }

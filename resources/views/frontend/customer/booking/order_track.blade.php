@@ -64,9 +64,9 @@
 
                             <tr>
                                 <th class="head_name">Service Type</th>
-                                <td></td>
+                                <td>{{$service_type->name}}</td>
                                 <th class="head_name">Delivery Type</th>
-                                <td>{{ $bookedOrder->courier_unit_price }}</td>
+                                <td>{{$delivery_type->name}}</td>
                             </tr>
 
                             <tr>
