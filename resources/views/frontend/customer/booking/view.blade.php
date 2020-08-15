@@ -12,7 +12,7 @@
                     </thead>
                     <tr>
                         <th class="head_name">Booking Date</th>
-                        <td>{{ date('d-m-Y', strtotime($bookedOrder->date)) }}</td>
+                        <td>{{ date('d-m-Y', strtotime(@$bookedOrder->date)) }}</td>
                         <th class="head_name">Order No</th>
                         <td>{{ $bookedOrder->order_no }}</td>
                     </tr>
@@ -46,10 +46,10 @@
                     </tr>
 
                     <tr>
-                        <th class="head_name">Courier Type</th>
-                        <td>{{ $courierType->name }}</td>
-                        <th class="head_name">Courier Type Unit</th>
-                        <td>{{ $bookedOrder->courier_unit_price }}</td>
+                        <th class="head_name">Service Type</th>
+                        <td>{{$service_type->name}}</td>
+                        <th class="head_name">Delivery Type</th>
+                        <td>{{$delivery_type->name}}</td>
                     </tr>
 
                     <tr>
@@ -73,22 +73,20 @@
                     <thead>
                         <tr>
                             <th colspan="2" class="text-center">Delivery Process</th>
-                            <th class="text-center">User</th>
+                            {{-- <th class="text-center">User</th> --}}
                             <th class="text-center">Date / Time</th>
                             <th class="text-center delivery_status">Status</th>
                         </tr>
                     </thead>
                     <tr>
                         <th class="head_name">Doc / Percel Collection</th>
-                        <td>{{$deliveryMan->name}}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$collectionMan->name}}</td>
+                        {{-- <td></td> --}}
+                        <td>{{Date('d-m-Y'),strtotime($bookedOrder->created_at)}} / {{Date('H:i a'),strtotime($bookedOrder->created_at)}}</td>
                         <td class="text-center">
                             @if($bookedOrder->collection_status == 0)
                                 <span class="pending">Pending</span>
-                            @endif
-
-                            @if($bookedOrder->collection_status == 1)
+                            @else
                                 <span class="done">Done</span>
                             @endif
                         </td>
@@ -96,15 +94,13 @@
 
                     <tr>
                         <th class="head_name">Host Agent</th>
-                        <td>Sender Agent Name</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$sender_zone->zone_name}}</td>
+                        {{-- <td></td> --}}
+                        <td>{{Date('d-m-Y'),strtotime($bookedOrder->created_at)}} / {{Date('H:i a'),strtotime($bookedOrder->created_at)}}</td>
                         <td class="text-center">
-                            @if($bookedOrder->collection_status == 0)
+                            @if($bookedOrder->sender_goods_receieve_status == 0)
                                 <span class="pending">Pending</span>
-                            @endif
-
-                            @if($bookedOrder->collection_status == 1)
+                            @else
                                 <span class="done">Done</span>
                             @endif
                         </td>
@@ -112,15 +108,13 @@
 
                     <tr>
                         <th class="head_name">Host Warehouse</th>
-                        <td>Sender Warehouse Name</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$host_ware_house->name}}</td>
+                        {{-- <td></td> --}}
+                        <td>{{Date('d-m-Y'),strtotime($bookedOrder->created_at)}} / {{Date('H:i a'),strtotime($bookedOrder->created_at)}}</td>
                         <td class="text-center">
-                            @if($bookedOrder->collection_status == 0)
+                            @if($bookedOrder->host_warehouse_goods_receieve_status == 0)
                                 <span class="pending">Pending</span>
-                            @endif
-
-                            @if($bookedOrder->collection_status == 1)
+                            @else
                                 <span class="done">Done</span>
                             @endif
                         </td>
@@ -128,15 +122,13 @@
 
                     <tr>
                         <th class="head_name">Delivery Warehouse</th>
-                        <td>Delivery Warehouse Name</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$delivery_ware_house->name}}</td>
+                        {{-- <td></td> --}}
+                        <td>{{Date('d-m-Y'),strtotime($bookedOrder->created_at)}} / {{Date('H:i a'),strtotime($bookedOrder->created_at)}}</td>
                         <td class="text-center">
-                            @if($bookedOrder->collection_status == 0)
+                            @if($bookedOrder->destination_warehouse_goods_receieve_status == 0)
                                 <span class="pending">Pending</span>
-                            @endif
-
-                            @if($bookedOrder->collection_status == 1)
+                            @else
                                 <span class="done">Done</span>
                             @endif
                         </td>
@@ -144,15 +136,13 @@
 
                     <tr>
                         <th class="head_name">Delivery Agent</th>
-                        <td>Delivery Agent Name</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$receiver_zone->zone_name}}</td>
+                        {{-- <td></td> --}}
+                        <td>{{Date('d-m-Y'),strtotime($bookedOrder->created_at)}} / {{Date('H:i a'),strtotime($bookedOrder->created_at)}}</td>
                         <td class="text-center">
-                            @if($bookedOrder->collection_status == 0)
+                            @if($bookedOrder->receiver_goods_receieve_status == 0)
                                 <span class="pending">Pending</span>
-                            @endif
-
-                            @if($bookedOrder->collection_status == 1)
+                            @else
                                 <span class="done">Done</span>
                             @endif
                         </td>
@@ -160,15 +150,13 @@
 
                     <tr>
                         <th class="head_name">Delivery Man</th>
-                        <td>Delivery Man Name</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{@$deliveryMan->name}}</td>
+                        {{-- <td></td> --}}
+                        <td>{{Date('d-m-Y'),strtotime($bookedOrder->created_at)}} / {{Date('H:i a'),strtotime($bookedOrder->created_at)}}</td>
                         <td class="text-center">
-                            @if($bookedOrder->collection_status == 0)
+                            @if($bookedOrder->delivery_status == 0)
                                 <span class="pending">Pending</span>
-                            @endif
-
-                            @if($bookedOrder->collection_status == 1)
+                            @else
                                 <span class="done">Done</span>
                             @endif
                         </td>
@@ -176,16 +164,20 @@
 
                     <tr>
                         <th class="head_name">Goods delivery</th>
-                        <td>Goods delivery Complete status</td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center">
-                            @if($bookedOrder->collection_status == 0)
-                                <span class="pending">Pending</span>
+                        <td>
+                            @if($bookedOrder->delivery_status == 0)
+                                <span class="pending">Processing</span>
+                            @else
+                                <span class="done">Complete</span>
                             @endif
-
-                            @if($bookedOrder->collection_status == 1)
-                                <span class="done">Done</span>
+                        </td>
+                        {{-- <td></td> --}}
+                        <td>{{Date('d-m-Y'),strtotime($bookedOrder->created_at)}} / {{Date('H:i a'),strtotime($bookedOrder->created_at)}}</td>
+                        <td class="text-center">
+                            @if($bookedOrder->delivery_status == 0)
+                                <span class="pending">Processing</span>
+                            @else
+                                <span class="done">Complete</span>
                             @endif
                         </td>
                     </tr>

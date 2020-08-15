@@ -13,13 +13,37 @@
 					<div class="responsive-menu-wrap"></div>
 				</div>
 
-				<div class="col-lg-6">
+				<div class="col-lg-7">
 					<!-- main-menu-->
 					<div class="navigation text-white">
 						<div id="cssmenu">
 							<ul>
 								<li class="active">
 									<a href="{{ url('/') }}" title="Home">Home</a>
+								</li>
+
+								<li class="">
+									<a href="{{ url('/') }}" title="Home">About Us</a>
+								</li>
+
+								<li class="">
+									<a href="{{ url('/') }}" title="Home">Our Branch</a>
+								</li>
+
+								<li class="">
+									<a href="{{ url('/') }}" title="Home">Support</a>
+								</li>
+
+								{{-- <li class="active">
+									<a href="{{ url('/') }}" title="Home">Carrer</a>
+								</li>
+
+								<li class="active">
+									<a href="{{ url('/') }}" title="Home">Media</a>
+								</li> --}}
+
+								<li class="">
+									<a href="{{ url('/') }}" title="Home">Our Service</a>
 								</li>
 								
 								{{-- <li><a href="#" title="blog">Blog +</a>
@@ -32,7 +56,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-3 col-12">
+				<div class="col-lg-2 col-12">
 					<div>
 						<ul>
 							<form action="{{ route('order.track') }}" method="get">
