@@ -9,7 +9,7 @@ class AreaSetup extends Model
 	protected $table = "tbl_area";
 
     protected $fillable = [
-    	'name','description','status','order_by','status','created_by','updated_by'
+    	'hub_id','name','description','status','order_by','status','created_by','updated_by'
     ];
 
 	protected $hidden = [

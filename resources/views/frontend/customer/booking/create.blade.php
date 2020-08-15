@@ -177,26 +177,47 @@
 		        <div class="row">
 		            <div class="col-md-6">
 		                <label for="sender-area">Sender Area</label>
-		                <div class="form-group {{ $errors->has('senderZone') ? ' has-danger' : '' }}">
-		                    <select class="{{-- form-control --}} chosen-select" id="senderZone" name="senderZone">
+		                <div class="form-group {{ $errors->has('senderArea') ? ' has-danger' : '' }}">
+		                    <select class="form-control chosen-select" id="senderArea" name="senderArea">
 		                        <option value="">Select A Zone</option>
-		                        @foreach ($zones as $zone)
-		                            <option value="{{ $zone->zone_id }},{{ $zone->zone_type }}">{{ $zone->zone_name }}</option>
+		                        @foreach ($areas as $area)
+		                        	@php
+		                        		if ($area->id == Auth::guard('customer')->user()->area)
+		                        		{
+		                        			$select = "selected";
+		                        		}
+		                        		else
+		                        		{
+		                        			$select = "";
+		                        		}		                        		
+		                        	@endphp
+		                            <option value="{{ $area->id }}" {{ $select }}>{{ $area->name }}</option>
 		                        @endforeach
 		                    </select>
 		                </div>
+
+		                @php
+		                	$area = DB::table('tbl_area')->where('id',Auth::guard('customer')->user()->area)->first();
+		                	$agent = DB::table('tbl_agents')->where('hub_id',$area->hub_id)->first();
+		                @endphp
+
+		                <input type="hidden" id="senderZoneId" name="senderZoneId" value="{{ $agent->id }}">
+		                <input type="hidden" id="senderZoneType" name="senderZoneType" value="Agent">
 		            </div>
 
 		            <div class="col-md-6">
 		                <label for="receiver-area">Receiver Area</label>
-		                <div class="form-group {{ $errors->has('receiverZone') ? ' has-danger' : '' }}">
-		                    <select class="{{-- form-control --}} chosen-select" id="receiverZone" name="receiverZone">
+		                <div class="form-group {{ $errors->has('receiverArea') ? ' has-danger' : '' }}">
+		                    <select class="form-control chosen-select" id="receiverArea" name="receiverArea">
 		                        <option value="">Select A Zone</option>
-		                        @foreach ($zones as $zone)
-		                            <option value="{{ $zone->zone_id }},{{ $zone->zone_type }}">{{ $zone->zone_name }}</option>
+		                        @foreach ($areas as $area)
+		                            <option value="{{ $area->id }}">{{ $area->name }}</option>
 		                        @endforeach
 		                    </select>
 		                </div>
+
+		                <input type="hidden" id="receiverZoneId" name="receiverZoneId">
+		                <input type="hidden" id="receiverZoneType" name="receiverZoneType" value="">
 		            </div>
 		        </div>
 
@@ -308,6 +329,42 @@
 
 @section('custom_js')
     <script type="text/javascript">
+        $(document).on('change', '#senderArea', function()
+        {
+            var areaId = $('#senderArea').val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('user.getAgentInfo') }}',
+                data:{areaId:areaId},
+                success:function(data){
+                    $('#senderZoneId').val(data.zoneId);
+                    $('#senderZoneType').val(data.zoneType);
+                },
+            });
+        });
+
+        $(document).on('change', '#receiverArea', function()
+        {
+            var areaId = $('#receiverArea').val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('user.getAgentInfo') }}',
+                data:{areaId:areaId},
+                success:function(data){
+                    $('#receiverZoneId').val(data.zoneId);
+                    $('#receiverZoneType').val(data.zoneType);
+                },
+            });
+        });
+
         $('.cod').click(function(event) {
             var cod =  $("input[name='cod']:checked").val();
 
@@ -334,11 +391,12 @@
 
             $.ajax({
                 type:'post',
-                url:'{{ route('bookingOrder.getReceiverInfo') }}',
+                url:'{{ route('user.getReceiverInfo') }}',
                 data:{receiverPhoneNumber:receiverPhoneNumber},
                 success:function(data){
                     $('#receiverName').val(data.receiverName);
                     $('#receiverAddress').val(data.receiverAddress);
+                    // $('#receiverZoneId').val(data.receiverAgentId);
 
                     if (data.receiverName)
                     {
@@ -349,26 +407,23 @@
                         $('#receiverName').prop('readonly',false);
                     }
 
-                    // $('#receiverZone').selectmenu("refresh", true);
-
-                    // if (data.receiverZoneName)
+                    // if (data.receiverAreaId)
                     // {
-                    //     $('#receiverZone option').filter(function () {
+                    //     $('#receiverArea option').filter(function () {
                     //         return $(this).val() == "";
                     //     }).attr('selected', false).trigger('chosen:updated');
 
-                    //     $('#receiverZone option').filter(function () {
-                    //         return $(this).html() == data.receiverZoneName;
+                    //     $('#receiverArea option').filter(function () {
+                    //         return $(this).val() == data.receiverAreaId;
                     //     }).attr('selected', true).trigger('chosen:updated');
-                    // 	alert($('#receiverZone option:selected').text());
                     // }
                     // else
                     // {
-                    //     $('#receiverZone option').filter(function () {
-                    //         return $(this).html() == $('#receiverZone option:selected').text();
+                    //     $('#receiverArea option').filter(function () {
+                    //         return $(this).val() == $('#receiverArea').val();
                     //     }).attr('selected', false).trigger('chosen:updated');
 
-                    //     $('#receiverZone option').filter(function () {
+                    //     $('#receiverArea option').filter(function () {
                     //         return $(this).val() == "";
                     //     }).attr('selected', true).trigger('chosen:updated');
                     // }
@@ -391,7 +446,7 @@
 
             $.ajax({
                 type:'post',
-                url:'{{ route('bookingOrder.getChargeInfo') }}',
+                url:'{{ route('user.getChargeInfo') }}',
                 data:{
                     senderType:senderType,
                     serviceTypeId:serviceTypeId,

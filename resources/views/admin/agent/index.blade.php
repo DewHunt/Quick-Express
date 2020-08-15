@@ -18,8 +18,8 @@
                 <thead>
                     <tr>
                         <th width="20px">SL</th>
-                        <th width="220px">Agent Name</th>
-                        <th width="140px">Phone</th>
+                        <th width="150px">Agent Name</th>
+                        <th width="100px">Phone</th>
                         <th>Business Area</th>
                         
                         <th width="20px">Status</th>
@@ -31,20 +31,30 @@
                 		$sl = 1;
                 	@endphp
                 	@foreach ($agents as $agent)
-                    @php
-                        $getAreaList = AreaSetup::whereIn('id', explode(',', $agent->area))->get();
-                        $are_array = [];
-                        foreach ($getAreaList as $getArea) {
-                            array_push($are_array, $getArea->name);
-                        }
+                        @php
+                            // $getAreaList = AreaSetup::whereIn('id', explode(',', $agent->area))->get();
+                            if ($agent->hub_id)
+                            {
+                                $areas = DB::table('tbl_area')->where('hub_id',$agent->hub_id)->orderBy('name','asc')->get();
+                            }
+                            else
+                            {
+                                $areas = [];
+                            }
+                            
+                            $areaArray = [];
+                            foreach ($areas as $area)
+                            {
+                                array_push($areaArray, $area->name);
+                            }
 
-                        $area_name = implode(',', $are_array);
-                    @endphp
+                            $areaName = implode(', ', $areaArray);
+                        @endphp
                 		<tr class="row_{{ $agent->id }}">
                 			<td>{{ $sl++ }}</td>
                 			<td>{{ $agent->name }}</td>
                             <td>{{ $agent->phone }}</td>
-                			<td>{{ $area_name }}</td>
+                			<td style="text-align: justify;">{{ $areaName }}</td>
                 			<td>
                                 @php
                                     echo \App\Link::status($agent->id,$agent->status);

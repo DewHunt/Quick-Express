@@ -50,4 +50,89 @@
 	.select2-container {
 		width: 100% !important;
 	}
+
+	.chalan {
+		padding: 30px 5px 30px 5px;
+	}
+
+	.chalan-container {
+		width: 100%;
+		margin: auto;
+		padding: 10px;
+	}
+
+	.chalan-type {
+		width: 30%;
+		height: 35px;
+		line-height: 35px;
+		float: left;
+		text-align: center;
+		border: 1px solid black;
+	}
+
+	.chalan-date {
+		width: 30%;
+		margin-left: 70%;
+		height: 35px;
+		line-height: 35px;
+		text-align: center;
+		border: 1px solid black;
+	}
+
+	.chalan-from {
+		font-weight: bold;
+		font-family: sans-serif;
+		margin-bottom: 0;
+	}
+
+	.chalan-from h4 {
+		margin-bottom: 5px;
+		font-weight: bold;
+		height: 45px;
+		line-height: 45px;
+	}
+
+	.chalan-from p {
+		margin-top: -20px;
+		margin-bottom: -5px;
+		padding: 0px;
+		height: 45px;
+		line-height: 45px;
+	}
+
+	.chalan-to {
+		font-family: sans-serif;
+		margin-bottom: 0;
+	}
+
+	.chalan-to h4 {
+		margin-bottom: 5px;
+		font-weight: bold;
+		height: 45px;
+		line-height: 45px;
+	}
+
+	.chalan-to p {
+		margin: -23px 0px 0px 12px;
+		padding: 0px;
+		height: 45px;
+		line-height: 45px;
+		text-align: left;
+	}
+
+	.chalan-to span {
+		font-weight: bold;
+	}
+
+	.chalan-cod, .chalan-order-no, .chalan-area {
+		margin: auto;
+		margin-bottom: 10px;
+		width: 70%;
+		height: 35px;
+		line-height: 35px;
+		font-size: 16px;
+		font-weight: bold;
+		text-align: center;
+		border: 1px solid black;
+	}
 </style>

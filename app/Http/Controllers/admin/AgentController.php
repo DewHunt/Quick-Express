@@ -10,6 +10,7 @@ use App\Admin;
 use App\UserRoles;
 use App\Warehouse;
 use App\AreaSetup;
+use App\HubSetup;
 
 class AgentController extends Controller
 {
@@ -31,25 +32,29 @@ class AgentController extends Controller
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('id',8)->get();
         $warehouse_list = Warehouse::orderBy('name','asc')->where('status',1)->get();
-        $area_list = AreaSetup::where('status',1)
-                    ->orderBy('name','asc')
-                    ->get();
 
-    	return view('admin.agent.add')->with(compact('title','formLink','buttonName','userRoles','warehouse_list','area_list'));
+        // $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
+
+        $hubs = HubSetup::select('tbl_hubs.*')
+            ->leftJoin('tbl_agents','tbl_agents.hub_id','=','tbl_hubs.id')
+            ->whereNull('tbl_agents.hub_id')
+            ->get();
+
+    	return view('admin.agent.add')->with(compact('title','formLink','buttonName','userRoles','warehouse_list','hubs'));
     }
 
     public function save(Request $request)
     {
     	// dd($request->all());
 
-        if($request->area)
-        {
-            $area = implode(',', $request->area);
-        }
-        else
-        {
-            $area = '';
-        }
+        // if($request->area)
+        // {
+        //     $area = implode(',', $request->area);
+        // }
+        // else
+        // {
+        //     $area = '';
+        // }
 
         $user = Admin::create( [           
             'role' => '8',     
@@ -62,6 +67,7 @@ class AgentController extends Controller
         Agent::create([
             'user_id' => $user->id ,
             'user_role_id' => '8',
+            'hub_id' => $request->hub,
             'name' => $request->name,
             'contact_person' => $request->contact_person,
             'phone' => $request->phone,
@@ -69,7 +75,6 @@ class AgentController extends Controller
             'nid' => $request->nid,
             'supporting_warehouse' => $request->supporting_warehouse,
             'address' => $request->address,
-            'area' => $area,
             'created_by' => $this->userId,
         ]);
 
@@ -85,12 +90,19 @@ class AgentController extends Controller
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
         $warehouse_list = Warehouse::orderBy('name','asc')->where('status',1)->get();
-        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
+        // $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
-    	$agent = Agent::where('id',$agentId)->first();
+        $agent = Agent::where('id',$agentId)->first();
+
+        $hubs = HubSetup::select('tbl_hubs.*')
+            ->leftJoin('tbl_agents','tbl_agents.hub_id','=','tbl_hubs.id')
+            ->where('tbl_agents.hub_id',$agent->hub_id)
+            ->oRWhereNull('tbl_agents.hub_id')
+            ->get();
+
         $user = Admin::where('id',$agent->user_id)->first();
 
-    	return view('admin.agent.edit')->with(compact('title','formLink','buttonName','agent','userRoles','user','warehouse_list','area_list'));
+    	return view('admin.agent.edit')->with(compact('title','formLink','buttonName','agent','userRoles','user','warehouse_list','hubs'));
     }
 
     public function update(Request $request)
@@ -107,16 +119,17 @@ class AgentController extends Controller
             'email' => $request->email,                     
         ]);
 
-        if($request->area)
-        {
-            $area = implode(',', $request->area);
-        }
-        else
-        {
-            $area = '';
-        }
+        // if($request->area)
+        // {
+        //     $area = implode(',', $request->area);
+        // }
+        // else
+        // {
+        //     $area = '';
+        // }
 
         $agent->update([
+            'hub_id' => $request->hub,
             'name' => $request->name,
             'contact_person' => $request->contact_person,
             'phone' => $request->phone,
@@ -124,7 +137,6 @@ class AgentController extends Controller
             'nid' => $request->nid,
             'supporting_warehouse' => $request->supporting_warehouse,
             'address' => $request->address,
-            'area' => $area,
             'updated_by' => $this->userId,
         ]);
 

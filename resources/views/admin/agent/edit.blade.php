@@ -92,6 +92,34 @@
             </div>
 
             <div class="col-md-6">
+                <label for="preffered-hub">Preffered Hub</label>
+                <div class="form-group {{ $errors->has('hub') ? ' has-danger' : '' }}">
+                    <select class="form-control select2" name="hub" required>
+                        <option value="">Select A Hub</option>
+                        @foreach ($hubs as $hub)
+                            @php
+                                if ($hub->id == $agent->hub_id)
+                                {
+                                    $select = "selected";
+                                }
+                                else
+                                {
+                                    $select = "";
+                                }
+                                
+                            @endphp
+                            <option value="{{ $hub->id }}" {{ $select }}>{{ $hub->name }}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('hub'))
+                        @foreach($errors->get('hub') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            {{-- <div class="col-md-6">
                 <label for="area">Preffered Area</label>
                 <div class="form-group {{ $errors->has('district') ? ' has-danger' : '' }}">
                     <select class="form-control select2" name="area[]" multiple required>
@@ -123,7 +151,7 @@
                         @endforeach
                     @endif
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="row">

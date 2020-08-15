@@ -26,6 +26,42 @@
 
         <div class="row">
             <div class="col-md-6">
+                <label for="cash-on-delivery">Cash On Delivery</label>
+                <div class="form-group {{ $errors->has('cod') ? ' has-danger' : '' }}">
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="radio" value="Yes" id="yes" name="cod" class="cod" required> Yes
+                        </label>
+                    </div>
+
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="radio" value="No" id="no" name="cod" class="cod"> No
+                        </label>
+                    </div>
+                    @if ($errors->has('cod'))
+                        @foreach($errors->get('cod') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="order-no-name">Cash On Delivery Amount</label>
+                <div class="form-group {{ $errors->has('codAmount') ? ' has-danger' : '' }}">
+                    <input type="text" class="form-control" placeholder="Cash On Delivery Amount" id="codAmount" name="codAmount" value="{{ old('codAmount') }}" readonly required>
+                    @if ($errors->has('codAmount'))
+                        @foreach($errors->get('codAmount') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
                 <label for="sender-phone-number">Sender Phone Number</label>
                 <div class="form-group {{ $errors->has('senderPhoneNumber') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Sender Phone Number" id="senderPhoneNumber" name="senderPhoneNumber" value="{{@$merchant_info->contact_person_phone}}" oninput="getClientInfo()" readonly>
@@ -119,26 +155,42 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="sender-area">Sender Area</label>
-                <div class="form-group {{ $errors->has('senderZone') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="senderZone">
+                <div class="form-group {{ $errors->has('senderArea') ? ' has-danger' : '' }}">
+                    <select class="form-control chosen-select" id="senderArea" name="senderArea">
                         <option value="">Select A Zone</option>
-                        @foreach ($zones as $zone)
-                            <option value="{{ $zone->zone_id }},{{ $zone->zone_type }}">{{ $zone->zone_name }}</option>
+                        @foreach ($areas as $area)
+                            @php
+                                if ($area->id == @$merchant_info->area)
+                                {
+                                    $select = "selected";
+                                }
+                                else
+                                {
+                                    $select = "";
+                                }                                
+                            @endphp
+                            <option value="{{ $area->id }}" {{ $select }}>{{ $area->name }}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <input type="hidden" id="senderZoneId" name="senderZoneId" value="{{ @$merchant_info->agentId }}">
+                <input type="hidden" id="senderZoneType" name="senderZoneType" value="Agent">
             </div>
 
             <div class="col-md-6">
                 <label for="receiver-area">Receiver Area</label>
-                <div class="form-group {{ $errors->has('receiverZone') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" id="receiverZone" name="receiverZone">
+                <div class="form-group {{ $errors->has('receiverArea') ? ' has-danger' : '' }}">
+                    <select class="form-control chosen-select" id="receiverArea" name="receiverArea">
                         <option value="">Select A Zone</option>
-                        @foreach ($zones as $zone)
-                            <option value="{{ $zone->zone_id }},{{ $zone->zone_type }}">{{ $zone->zone_name }}</option>
+                        @foreach ($areas as $area)
+                            <option value="{{ $area->id }}">{{ $area->name }}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <input type="hidden" id="receiverZoneId" name="receiverZoneId" value="">
+                <input type="hidden" id="receiverZoneType" name="receiverZoneType" value="Agent">
             </div>
         </div>
 
@@ -217,34 +269,12 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <label for="delivery-charge">Delivery Charge</label>
                 <div class="form-group {{ $errors->has('deliveryCharge') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Delivery Charge" id="deliveryCharge" name="deliveryCharge" value="0">
                     @if ($errors->has('deliveryCharge'))
                         @foreach($errors->get('deliveryCharge') as $error)
-                            <div class="form-control-feedback">{{ $error }}</div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <label for="cash-on-delivery">Cash On Delivery</label>
-                <div class="form-group {{ $errors->has('cod') ? ' has-danger' : '' }}">
-                    <div class="form-check-inline">
-                        <label class="form-check-label">
-                            <input type="radio" value="Yes" id="no" name="cod" class="cod" required> Yes
-                        </label>
-                    </div>
-
-                    <div class="form-check-inline">
-                        <label class="form-check-label">
-                            <input type="radio" value="No" id="no" name="cod" class="cod"> No
-                        </label>
-                    </div>
-                    @if ($errors->has('cod'))
-                        @foreach($errors->get('cod') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
                         @endforeach
                     @endif
@@ -256,6 +286,56 @@
 
 @section('custom-js')
     <script type="text/javascript">
+        $(document).on('change', '#senderArea', function()
+        {
+            var areaId = $('#senderArea').val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('bookingOrder.getAgentInfo') }}',
+                data:{areaId:areaId},
+                success:function(data){
+                    $('#senderZoneId').val(data.zoneId);
+                    $('#senderZoneType').val(data.zoneType);
+                },
+            });
+        });
+
+        $(document).on('change', '#receiverArea', function()
+        {
+            var areaId = $('#receiverArea').val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('bookingOrder.getAgentInfo') }}',
+                data:{areaId:areaId},
+                success:function(data){
+                    $('#receiverZoneId').val(data.zoneId);
+                    $('#receiverZoneType').val(data.zoneType);
+                },
+            });
+        });
+
+        $('.cod').click(function(event) {
+            var cod =  $("input[name='cod']:checked").val();
+
+            if(cod == "Yes")
+            {
+                $("#codAmount").prop('readonly',false);
+            }
+            else
+            {
+                $("#codAmount").val(0);
+                $("#codAmount").prop('readonly',true);
+            }
+        })
+
         function getReceiverInfo()
         {
             $.ajaxSetup({
@@ -273,6 +353,7 @@
                 success:function(data){
                     $('#receiverName').val(data.receiverName);
                     $('#receiverAddress').val(data.receiverAddress);
+                    $('#receiverZoneId').val(data.receiverAgentId);
 
                     if (data.receiverName)
                     {
@@ -283,25 +364,23 @@
                         $('#receiverName').prop('readonly',false);
                     }
 
-                    // $('#receiverZone').selectmenu("refresh", true);
-
-                    if (data.receiverZoneName)
+                    if (data.receiverAreaId)
                     {
-                        $('#receiverZone option').filter(function () {
+                        $('#receiverArea option').filter(function () {
                             return $(this).val() == "";
                         }).attr('selected', false).trigger('chosen:updated');
 
-                        $('#receiverZone option').filter(function () {
-                            return $(this).html() == data.receiverZoneName;
+                        $('#receiverArea option').filter(function () {
+                            return $(this).val() == data.receiverAreaId;
                         }).attr('selected', true).trigger('chosen:updated');
                     }
                     else
                     {
-                        $('#receiverZone option').filter(function () {
-                            return $(this).html() == $('#receiverZone option:selected').text();
+                        $('#receiverArea option').filter(function () {
+                            return $(this).val() == $('#receiverArea').val();
                         }).attr('selected', false).trigger('chosen:updated');
 
-                        $('#receiverZone option').filter(function () {
+                        $('#receiverArea option').filter(function () {
                             return $(this).val() == "";
                         }).attr('selected', true).trigger('chosen:updated');
                     }

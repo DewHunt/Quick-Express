@@ -176,26 +176,32 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="sender-area">Sender Area</label>
-                <div class="form-group {{ $errors->has('senderZone') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" id="senderZone" name="senderZone">
+                <div class="form-group {{ $errors->has('senderArea') ? ' has-danger' : '' }}">
+                    <select class="form-control chosen-select" id="senderArea" name="senderArea">
                         <option value="">Select A Zone</option>
-                        @foreach ($zones as $zone)
-                            <option value="{{ $zone->zone_id }},{{ $zone->zone_type }}">{{ $zone->zone_name }}</option>
+                        @foreach ($areas as $area)
+                            <option value="{{ $area->id }}">{{ $area->name }}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <input type="hidden" id="senderZoneId" name="senderZoneId">
+                <input type="hidden" id="senderZoneType" name="senderZoneType">
             </div>
 
             <div class="col-md-6">
                 <label for="receiver-area">Receiver Area</label>
-                <div class="form-group {{ $errors->has('receiverZone') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" id="receiverZone" name="receiverZone">
+                <div class="form-group {{ $errors->has('receiverArea') ? ' has-danger' : '' }}">
+                    <select class="form-control chosen-select" id="receiverArea" name="receiverArea">
                         <option value="">Select A Zone</option>
-                        @foreach ($zones as $zone)
-                            <option value="{{ $zone->zone_id }},{{ $zone->zone_type }}">{{ $zone->zone_name }}</option>
+                        @foreach ($areas as $area)
+                            <option value="{{ $area->id }}">{{ $area->name }}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <input type="hidden" id="receiverZoneId" name="receiverZoneId">
+                <input type="hidden" id="receiverZoneType" name="receiverZoneType">
             </div>
         </div>
 
@@ -293,6 +299,42 @@
 
 @section('custom-js')
     <script type="text/javascript">
+        $(document).on('change', '#senderArea', function()
+        {
+            var areaId = $('#senderArea').val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('bookingOrder.getAgentInfo') }}',
+                data:{areaId:areaId},
+                success:function(data){
+                    $('#senderZoneId').val(data.zoneId);
+                    $('#senderZoneType').val(data.zoneType);
+                },
+            });
+        });
+
+        $(document).on('change', '#receiverArea', function()
+        {
+            var areaId = $('#receiverArea').val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('bookingOrder.getAgentInfo') }}',
+                data:{areaId:areaId},
+                success:function(data){
+                    $('#receiverZoneId').val(data.zoneId);
+                    $('#receiverZoneType').val(data.zoneType);
+                },
+            });
+        });
+
         $('.cod').click(function(event) {
             var cod =  $("input[name='cod']:checked").val();
 
@@ -342,6 +384,27 @@
                             $("#Merchant").prop("checked",true);
                         }
                     }
+
+                    if (data.senderAreaId)
+                    {
+                        $('#senderArea option').filter(function () {
+                            return $(this).val() == "";
+                        }).attr('selected', false).trigger('chosen:updated');
+
+                        $('#senderArea option').filter(function () {
+                            return $(this).val() == data.senderAreaId;
+                        }).attr('selected', true).trigger('chosen:updated');
+                    }
+                    else
+                    {
+                        $('#senderArea option').filter(function () {
+                            return $(this).val() == $('#senderArea').val();
+                        }).attr('selected', false).trigger('chosen:updated');
+
+                        $('#senderArea option').filter(function () {
+                            return $(this).val() == "";
+                        }).attr('selected', true).trigger('chosen:updated');
+                    }
                 }
             });
         }
@@ -373,25 +436,23 @@
                         $('#receiverName').prop('readonly',false);
                     }
 
-                    // $('#receiverZone').selectmenu("refresh", true);
-
-                    if (data.receiverZoneName)
+                    if (data.receiverAreaId)
                     {
-                        $('#receiverZone option').filter(function () {
+                        $('#receiverArea option').filter(function () {
                             return $(this).val() == "";
                         }).attr('selected', false).trigger('chosen:updated');
 
-                        $('#receiverZone option').filter(function () {
-                            return $(this).html() == data.receiverZoneName;
+                        $('#receiverArea option').filter(function () {
+                            return $(this).val() == data.receiverAreaId;
                         }).attr('selected', true).trigger('chosen:updated');
                     }
                     else
                     {
-                        $('#receiverZone option').filter(function () {
-                            return $(this).html() == $('#receiverZone option:selected').text();
+                        $('#receiverArea option').filter(function () {
+                            return $(this).val() == $('#receiverArea').val();
                         }).attr('selected', false).trigger('chosen:updated');
 
-                        $('#receiverZone option').filter(function () {
+                        $('#receiverArea option').filter(function () {
                             return $(this).val() == "";
                         }).attr('selected', true).trigger('chosen:updated');
                     }

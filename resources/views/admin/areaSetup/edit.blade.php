@@ -21,7 +21,34 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
+                <label for="hubs">Hubs</label>
+                <div class="form-group {{ $errors->has('hub') ? ' has-danger' : '' }}">
+                    <select class="form-control select2" name="hub" required>
+                        <option value="">Select Hub</option>
+                        @foreach ($hubs as $hub)
+                            @php
+                                if ($hub->id == $area->hub_id)
+                                {
+                                    $select = "selected";
+                                }
+                                else
+                                {
+                                    $select = "";
+                                }                                
+                            @endphp
+                            <option value="{{$hub->id}}" {{ $select }}>{{$hub->name}}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('hub'))
+                        @foreach($errors->get('hub') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-3">
                 <label for="order-by">Order By</label>
                 <div class="form-group {{ $errors->has('orderBy') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Order By" name="orderBy" value="{{ $area->order_by }}">

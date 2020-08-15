@@ -55,6 +55,12 @@ class ClientController extends Controller
             $height = $request->height;
             $image = \App\HelperClass::UploadImage($request->image,'tbl_delivery_men','public/uploads/profile_image/client/',@$width,@$height);
         }
+        else
+        {
+            $width = "";
+            $height = "";
+            $image = "";
+        }
 
         Client::create([
             'user_role_id' => '4',

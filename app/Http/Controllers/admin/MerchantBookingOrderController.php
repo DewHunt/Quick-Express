@@ -18,6 +18,7 @@ use App\UserRoles;
 use App\ChargeForClient;
 use App\ChargeForMerchant;
 use App\DeliveryType;
+use App\AreaSetup;
 
 use DB;
 
@@ -44,14 +45,18 @@ class MerchantBookingOrderController extends Controller
     	$formLink = "merchantBookingOrder.save";
     	$buttonName = "Save";
 
-        $merchant_info = Marchant::where('user_id',$this->userId)->first();
+        // $merchant_info = Marchant::where('user_id',$this->userId)->first();
 
-    	// $courierTypes = CourierType::orderBy('name','asc')->get();
-    	// $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+        $merchant_info = Marchant::select('tbl_marchants.*','tbl_agents.id as agentId')
+            ->leftJoin('tbl_area','tbl_area.id','=','tbl_marchants.area')
+            ->leftJoin('tbl_agents','tbl_agents.hub_id','=','tbl_area.hub_id')
+            ->where('tbl_marchants.user_id',$this->userId)
+            ->first();
 
         $services = Service::orderBy('name','asc')->get();
         $serviceTypes = ServiceType::orderBy('name','asc')->get();
         $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+        $areas = AreaSetup::orderBy('name','asc')->get();
 
     	$zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
 
@@ -72,7 +77,7 @@ class MerchantBookingOrderController extends Controller
 
         // echo $orderNo; exit();
 
-    	return view('admin.merchantBookingOrder.add')->with(compact('title','formLink','buttonName','merchant_info','services','serviceTypes','zones','orderNo','deliveryTypes'));
+    	return view('admin.merchantBookingOrder.add')->with(compact('title','formLink','buttonName','merchant_info','services','serviceTypes','zones','orderNo','deliveryTypes','areas'));
     }
 
     public function save(Request $request)
@@ -86,30 +91,24 @@ class MerchantBookingOrderController extends Controller
         else
         {
             $bookingDate = "";
-        }
-
-        $senderZone = explode(',',$request->senderZone);
-        $senderZoneId = $senderZone[0];
-        $senderZoneType = $senderZone[1];
-
-        $receiverZone = explode(',',$request->receiverZone);
-        $receiverZoneId = $receiverZone[0];
-        $receiverZoneType = $receiverZone[1];       
+        }      
 
         BookingOrder::create([
             'order_no' => $request->orderNo,
             'date' => $bookingDate,
             'booked_type' => 'Merchant',
             'sender_id' => $request->senderId,
+            'sender_area_id' => $request->senderArea,
             'sender_name' => $request->senderName,
             'sender_phone' => $request->senderPhoneNumber,
-            'sender_zone_type' => $senderZoneType,
-            'sender_zone_id' => $senderZoneId,
+            'sender_zone_type' => $request->senderZoneType,
+            'sender_zone_id' => $request->senderZoneId,
             'sender_address' => $request->senderAddress,
+            'receiver_area_id' => $request->receiverArea,
             'receiver_name' => $request->receiverName,
             'receiver_phone' => $request->receiverPhoneNumber,
-            'receiver_zone_type' => $receiverZoneType,
-            'receiver_zone_id' => $receiverZoneId,
+            'receiver_zone_type' => $request->receiverZoneType,
+            'receiver_zone_id' => $request->receiverZoneId,
             'receiver_address' => $request->receiverAddress,
             'remarks' => $request->remarks,
             'courier_type_id' => $request->courierType,
@@ -119,6 +118,7 @@ class MerchantBookingOrderController extends Controller
             'uom' => $request->uom,
             'delivery_charge' => $request->deliveryCharge,
             'cod' => $request->cod,
+            'cod_amount' => $request->codAmount,
             'delivery_duration_id' => $request->deliveryTypeId,
             'created_by' => $this->userId,
         ]);
@@ -135,6 +135,7 @@ class MerchantBookingOrderController extends Controller
         $services = Service::orderBy('name','asc')->get();
         $serviceTypes = ServiceType::orderBy('name','asc')->get();
         $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+        $areas = AreaSetup::orderBy('name','asc')->get();
 
         $zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
 
@@ -155,7 +156,7 @@ class MerchantBookingOrderController extends Controller
 
         $bookedOrder = BookingOrder::where('id',$bookedOrderId)->first();
 
-    	return view('admin.merchantBookingOrder.edit')->with(compact('title','formLink','buttonName','bookedOrder','services','serviceTypes','zones','orderNo','deliveryTypes'));
+    	return view('admin.merchantBookingOrder.edit')->with(compact('title','formLink','buttonName','bookedOrder','services','serviceTypes','zones','orderNo','deliveryTypes','areas'));
     }
 
     public function update(Request $request)
@@ -171,28 +172,22 @@ class MerchantBookingOrderController extends Controller
             $deliveryDate = "";
         }
 
-        $senderZone = explode(',',$request->senderZone);
-        $senderZoneId = $senderZone[0];
-        $senderZoneType = $senderZone[1];
-
-        $receiverZone = explode(',',$request->receiverZone);
-        $receiverZoneId = $receiverZone[0];
-        $receiverZoneType = $receiverZone[1];
-
         $bookedOrder = BookingOrder::find($request->bookedOrderId);
 
         $bookedOrder->update([
             'order_no' => $request->orderNo,
             'date' => $deliveryDate,
+            'sender_area_id' => $request->senderArea,
             'sender_name' => $request->senderName,
             'sender_phone' => $request->senderPhoneNumber,
-            'sender_zone_type' => $senderZoneType,
-            'sender_zone_id' => $senderZoneId,
+            'sender_zone_type' => $request->senderZoneType,
+            'sender_zone_id' => $request->senderZoneId,
             'sender_address' => $request->senderAddress,
+            'receiver_area_id' => $request->receiverArea,
             'receiver_name' => $request->receiverName,
             'receiver_phone' => $request->receiverPhoneNumber,
-            'receiver_zone_type' => $receiverZoneType,
-            'receiver_zone_id' => $receiverZoneId,
+            'receiver_zone_type' => $request->receiverZoneType,
+            'receiver_zone_id' => $request->receiverZoneId,
             'receiver_address' => $request->receiverAddress,
             'remarks' => $request->remarks,
             'courier_type_id' => $request->courierType,
@@ -202,6 +197,7 @@ class MerchantBookingOrderController extends Controller
             'uom' => $request->uom,
             'delivery_charge' => $request->deliveryCharge,
             'cod' => $request->cod,
+            'cod_amount' => $request->codAmount,
             'delivery_duration_id' => $request->deliveryTypeId,
             'updated_by' => $this->userId,
         ]);
@@ -237,15 +233,10 @@ class MerchantBookingOrderController extends Controller
 
     	return view('admin.merchantBookingOrder.view')->with(compact('title','bookedOrder','senderInfo','receiverInfo'));
     }
-    
+
     public function getReceiverInfo(Request $request)
     {
-
-        $receiverInfo = BookingOrder::select('tbl_booking_orders.*','view_zones.zone_name as receiverZoneName')
-            ->leftJoin('view_zones',function($leftJoin){
-                $leftJoin->on('tbl_booking_orders.receiver_zone_id','=','view_zones.zone_id');
-                $leftJoin->on('tbl_booking_orders.receiver_zone_type','=','view_zones.zone_type');
-            })
+        $receiverInfo = BookingOrder::select('tbl_booking_orders.*')
             ->where('tbl_booking_orders.receiver_phone',$request->receiverPhoneNumber)
             ->orderBy('tbl_booking_orders.id','desc')
             ->first();
@@ -254,13 +245,13 @@ class MerchantBookingOrderController extends Controller
         {
             $receiverName = $receiverInfo->receiver_name;
             $receiverAddress = $receiverInfo->receiver_address;
-            $receiverZoneName = $receiverInfo->receiverZoneName;
+            $receiverAreaId = $receiverInfo->receiver_area_id;
         }
         else
         {
             $receiverName = "";
             $receiverAddress = "";
-            $receiverZoneName = "";
+            $receiverAreaId = "";
         }
         
         if($request->ajax())
@@ -268,7 +259,7 @@ class MerchantBookingOrderController extends Controller
             return response()->json([
                 'receiverName' => $receiverName,
                 'receiverAddress'=> $receiverAddress,
-                'receiverZoneName' =>$receiverZoneName
+                'receiverAreaId' =>$receiverAreaId
             ]);
         }
     }

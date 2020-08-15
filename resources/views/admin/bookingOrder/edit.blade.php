@@ -116,7 +116,7 @@
             <div class="col-md-6">
                 <label for="sender-name">Sender Name</label>
                 <div class="form-group {{ $errors->has('senderName') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Sender Name" id="senderName" name="senderName" value="{{ $bookedOrder->sender_name }}">
+                    <input type="text" class="form-control" placeholder="Sender Name" id="senderName" name="senderName" value="{{ $bookedOrder->sender_name }}" readonly>
                     @if ($errors->has('senderName'))
                         @foreach($errors->get('senderName') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -180,13 +180,13 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="sender-zone">Sender Area</label>
-                <div class="form-group {{ $errors->has('senderZone') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" name="senderZone">
-                        <option value="">Select A Area</option>
-                        @foreach ($zones as $zone)
+                <label for="sender-area">Sender Area</label>
+                <div class="form-group {{ $errors->has('senderArea') ? ' has-danger' : '' }}">
+                    <select class="form-control chosen-select" id="senderArea" name="senderArea">
+                        <option value="">Select A Zone</option>
+                        @foreach ($areas as $area)
                             @php
-                                if ($zone->zone_type == $bookedOrder->sender_zone_type && $zone->zone_id == $bookedOrder->sender_zone_id)
+                                if ($area->id == $bookedOrder->sender_area_id)
                                 {
                                     $select = "selected";
                                 }
@@ -195,20 +195,23 @@
                                     $select = "";
                                 }                                
                             @endphp
-                            <option value="{{ $zone->zone_id }},{{ $zone->zone_type }}" {{ $select }}>{{ $zone->zone_name }}</option>
+                            <option value="{{ $area->id }}" {{ $select }}>{{ $area->name }}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <input type="text" id="senderZoneId" name="senderZoneId" value="{{ $bookedOrder->sender_zone_id }}">
+                <input type="text" id="senderZoneType" name="senderZoneType" value="{{ $bookedOrder->sender_zone_type }}">
             </div>
 
             <div class="col-md-6">
-                <label for="receiver-zone">Receiver Area</label>
-                <div class="form-group {{ $errors->has('receiverZone') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" id="receiverZone" name="receiverZone">
-                        <option value="">Select A Area</option>
-                        @foreach ($zones as $zone)
+                <label for="receiver-area">Receiver Area</label>
+                <div class="form-group {{ $errors->has('receiverArea') ? ' has-danger' : '' }}">
+                    <select class="form-control chosen-select" id="receiverArea" name="receiverArea">
+                        <option value="">Select A Zone</option>
+                        @foreach ($areas as $area)
                             @php
-                                if ($zone->zone_type == $bookedOrder->receiver_zone_type && $zone->zone_id == $bookedOrder->receiver_zone_id)
+                                if ($area->id == $bookedOrder->receiver_area_id)
                                 {
                                     $select = "selected";
                                 }
@@ -217,10 +220,13 @@
                                     $select = "";
                                 }                                
                             @endphp
-                            <option value="{{ $zone->zone_id }},{{ $zone->zone_type }}" {{ $select }}>{{ $zone->zone_name }}</option>
+                            <option value="{{ $area->id }}" {{ $select }}>{{ $area->name }}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <input type="text" id="receiverZoneId" name="receiverZoneId" value="{{ $bookedOrder->receiver_zone_id }}">
+                <input type="text" id="receiverZoneType" name="receiverZoneType" value="{{ $bookedOrder->receiver_zone_type }}">
             </div>
         </div>
 
@@ -389,29 +395,23 @@
                         $('#receiverName').prop('readonly',false);
                     }
 
-                    // $('#receiverZone').selectmenu("refresh", true);
-
-                    if (data.receiverZoneName)
+                    if (data.receiverAreaId)
                     {
-                        $('#receiverZone option').filter(function () {
-                            return $(this).html() == $('#receiverZone option:selected').text();
-                        }).attr('selected', false).trigger('chosen:updated');
-                        
-                        $('#receiverZone option').filter(function () {
+                        $('#receiverArea option').filter(function () {
                             return $(this).val() == "";
                         }).attr('selected', false).trigger('chosen:updated');
 
-                        $('#receiverZone option').filter(function () {
-                            return $(this).html() == data.receiverZoneName;
+                        $('#receiverArea option').filter(function () {
+                            return $(this).val() == data.receiverAreaId;
                         }).attr('selected', true).trigger('chosen:updated');
                     }
                     else
                     {
-                        $('#receiverZone option').filter(function () {
-                            return $(this).html() == $('#receiverZone option:selected').text();
+                        $('#receiverArea option').filter(function () {
+                            return $(this).val() == $('#receiverArea').val();
                         }).attr('selected', false).trigger('chosen:updated');
 
-                        $('#receiverZone option').filter(function () {
+                        $('#receiverArea option').filter(function () {
                             return $(this).val() == "";
                         }).attr('selected', true).trigger('chosen:updated');
                     }

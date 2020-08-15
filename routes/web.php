@@ -249,6 +249,15 @@ Route::prefix('admin')->group(function()
 			Route::post('/chargeForDeliveryMen-status','Admin\ChargeForDeliveryMenController@status')->name('chargeForDeliveryMen.status');
 			Route::post('/chargeForDeliveryMen-delete','Admin\ChargeForDeliveryMenController@delete')->name('chargeForDeliveryMen.delete');
 
+			// Hub Setup
+			Route::get('/hubSetup','Admin\HubSetupController@index')->name('hubSetup.index');
+			Route::get('/hubSetup-add','Admin\HubSetupController@add')->name('hubSetup.add');
+			Route::post('/hubSetup-save','Admin\HubSetupController@save')->name('hubSetup.save');
+			Route::get('/hubSetup-edit/{id}','Admin\HubSetupController@edit')->name('hubSetup.edit');
+			Route::post('/hubSetup-update','Admin\HubSetupController@update')->name('hubSetup.update');
+			Route::post('/hubSetup-status','Admin\HubSetupController@status')->name('hubSetup.status');
+			Route::post('/hubSetup-delete','Admin\HubSetupController@delete')->name('hubSetup.delete');
+
 			// Area Setup
 			Route::get('/areaSetup','Admin\AreaSetupController@index')->name('areaSetup.index');
 			Route::get('/areaSetup-add','Admin\AreaSetupController@add')->name('areaSetup.add');
@@ -257,6 +266,7 @@ Route::prefix('admin')->group(function()
 			Route::post('/areaSetup-update','Admin\AreaSetupController@update')->name('areaSetup.update');
 			Route::post('/areaSetup-status','Admin\AreaSetupController@status')->name('areaSetup.status');
 			Route::post('/areaSetup-delete','Admin\AreaSetupController@delete')->name('areaSetup.delete');
+			Route::post('/areaSetup-get-area-info','Admin\AreaSetupController@getAreaInfo')->name('areaSetup.getAreaInfo');
 
 			// Booking Order 
 			Route::get('/bookingOrder','Admin\BookingOrderController@index')->name('bookingOrder.index');
@@ -270,6 +280,7 @@ Route::prefix('admin')->group(function()
 			Route::post('/bookingOrder-get-client-info','Admin\BookingOrderController@getClientInfo')->name('bookingOrder.getClientInfo');
 			Route::post('/bookingOrder-get-receiver-info','Admin\BookingOrderController@getReceiverInfo')->name('bookingOrder.getReceiverInfo');
 			Route::post('/bookingOrder-get-charge-info','Admin\BookingOrderController@getChargeInfo')->name('bookingOrder.getChargeInfo');
+			Route::post('/bookingOrder-get-agent-info','Admin\BookingOrderController@getAgentInfo')->name('bookingOrder.getAgentInfo');
 
 
 			//Booking Order For Merchant
@@ -529,6 +540,9 @@ Route::prefix('user')->group(function(){
 		Route::any('/booking/create', 'BookingController@create')->name('user.bookingCreate');
 		Route::any('/booking/edit/{id}', 'BookingController@edit')->name('user.bookingEdit');
 		Route::any('/booking/view/{id}', 'BookingController@view')->name('user.bookingView');
+		Route::post('/booking/get_receiver_info','BookingController@getReceiverInfo')->name('user.getReceiverInfo');
+		Route::post('/booking/get_charge_info','BookingController@getChargeInfo')->name('user.getChargeInfo');
+		Route::post('/booking/get_agent_info','BookingController@getAgentInfo')->name('user.getAgentInfo');
 
 		Route::any('/logout', 'Auth\Customer\CustomerAuthController@logout')->name('user.logout');
 	});

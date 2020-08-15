@@ -19,6 +19,8 @@ use App\ChargeForClient;
 use App\ChargeForMerchant;
 use App\ChargeForDeliveryMen;
 use App\DeliveryType;
+use App\WebsiteInformation;
+use App\AreaSetup;
 
 use DB;
 
@@ -45,6 +47,7 @@ class BookingOrderController extends Controller
     	$services = Service::orderBy('name','asc')->get();
     	$serviceTypes = ServiceType::orderBy('name','asc')->get();
         $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+        $areas = AreaSetup::orderBy('name','asc')->get();
 
     	$zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
 
@@ -65,7 +68,7 @@ class BookingOrderController extends Controller
 
         // echo $orderNo; exit();
 
-    	return view('admin.bookingOrder.add')->with(compact('title','formLink','buttonName','services','serviceTypes','zones','orderNo','deliveryTypes'));
+    	return view('admin.bookingOrder.add')->with(compact('title','formLink','buttonName','services','serviceTypes','zones','orderNo','deliveryTypes','areas'));
     }
 
     public function save(Request $request)
@@ -89,14 +92,6 @@ class BookingOrderController extends Controller
         {
             $codAmount = 0;
         }
-
-        $senderZone = explode(',',$request->senderZone);
-        $senderZoneId = $senderZone[0];
-        $senderZoneType = $senderZone[1];
-
-        $receiverZone = explode(',',$request->receiverZone);
-        $receiverZoneId = $receiverZone[0];
-        $receiverZoneType = $receiverZone[1];
 
         if ($request->clientId)
         {
@@ -142,15 +137,17 @@ class BookingOrderController extends Controller
             'date' => $bookingDate,
             'booked_type' => $request->senderType,
             'sender_id' => $senderId,
+            'sender_area_id' => $request->senderArea,
             'sender_name' => $request->senderName,
             'sender_phone' => $request->senderPhoneNumber,
-            'sender_zone_type' => $senderZoneType,
-            'sender_zone_id' => $senderZoneId,
+            'sender_zone_type' => $request->senderZoneType,
+            'sender_zone_id' => $request->senderZoneId,
             'sender_address' => $request->senderAddress,
+            'receiver_area_id' => $request->receiverArea,
             'receiver_name' => $request->receiverName,
             'receiver_phone' => $request->receiverPhoneNumber,
-            'receiver_zone_type' => $receiverZoneType,
-            'receiver_zone_id' => $receiverZoneId,
+            'receiver_zone_type' => $request->receiverZoneType,
+            'receiver_zone_id' => $request->receiverZoneId,
             'receiver_address' => $request->receiverAddress,
             'remarks' => $request->remarks,
             'courier_type_id' => $request->serviceId,
@@ -179,6 +176,7 @@ class BookingOrderController extends Controller
         $services = Service::orderBy('name','asc')->get();
         $serviceTypes = ServiceType::orderBy('name','asc')->get();
         $deliveryTypes = DeliveryType::orderBy('name','asc')->get();
+        $areas = AreaSetup::orderBy('name','asc')->get();
 
         $zones = DB::table('view_zones')->select('view_zones.*')->orderBy('view_zones.zone_type')->get();
 
@@ -199,7 +197,7 @@ class BookingOrderController extends Controller
 
         $bookedOrder = BookingOrder::where('id',$bookedOrderId)->first();
 
-    	return view('admin.bookingOrder.edit')->with(compact('title','formLink','buttonName','bookedOrder','services','serviceTypes','zones','orderNo','deliveryTypes'));
+    	return view('admin.bookingOrder.edit')->with(compact('title','formLink','buttonName','bookedOrder','services','serviceTypes','zones','orderNo','deliveryTypes','areas'));
     }
 
     public function update(Request $request)
@@ -224,30 +222,24 @@ class BookingOrderController extends Controller
             $codAmount = 0;
         }
 
-        $senderZone = explode(',',$request->senderZone);
-        $senderZoneId = $senderZone[0];
-        $senderZoneType = $senderZone[1];
-
-        $receiverZone = explode(',',$request->receiverZone);
-        $receiverZoneId = $receiverZone[0];
-        $receiverZoneType = $receiverZone[1];
-
         $bookedOrder = BookingOrder::find($request->bookedOrderId);
 
         $bookedOrder->update([
             'order_no' => $request->orderNo,
             'date' => $bookingDate,
             'booked_type' => $request->senderType,
-            'sender_id' => $request->clientId,
+            'sender_id' => $senderId,
+            'sender_area_id' => $request->senderArea,
             'sender_name' => $request->senderName,
             'sender_phone' => $request->senderPhoneNumber,
-            'sender_zone_type' => $senderZoneType,
-            'sender_zone_id' => $senderZoneId,
+            'sender_zone_type' => $request->senderZoneType,
+            'sender_zone_id' => $request->senderZoneId,
             'sender_address' => $request->senderAddress,
+            'receiver_area_id' => $request->receiverArea,
             'receiver_name' => $request->receiverName,
             'receiver_phone' => $request->receiverPhoneNumber,
-            'receiver_zone_type' => $receiverZoneType,
-            'receiver_zone_id' => $receiverZoneId,
+            'receiver_zone_type' => $request->receiverZoneType,
+            'receiver_zone_id' => $request->receiverZoneId,
             'receiver_address' => $request->receiverAddress,
             'remarks' => $request->remarks,
             'courier_type_id' => $request->serviceId,
@@ -279,6 +271,9 @@ class BookingOrderController extends Controller
     		->orderBy('id','desc')
     		->first();
 
+        $senderAreaInfo = AreaSetup::where('id',$bookedOrder->sender_area_id)->first();
+        $receiverAreaInfo = AreaSetup::where('id',$bookedOrder->receiver_area_id)->first();
+
     	$senderInfo = DB::table('view_zones')
     		->select('view_zones.*')
     		->where('zone_type',$bookedOrder->sender_zone_type)
@@ -291,17 +286,44 @@ class BookingOrderController extends Controller
     		->where('zone_id',$bookedOrder->receiver_zone_id)
     		->first();
 
+        $companyInformation = WebsiteInformation::first();
+
     	// dd($receiverInfo);
 
-    	return view('admin.bookingOrder.view')->with(compact('title','bookedOrder','senderInfo','receiverInfo'));
+    	return view('admin.bookingOrder.view')->with(compact('title','bookedOrder','senderInfo','receiverInfo','companyInformation','senderAreaInfo','receiverAreaInfo'));
+    }
+
+    public function getAgentInfo(Request $request)
+    {
+        $area = AreaSetup::where('id',$request->areaId)->first();
+
+        $agent = Agent::where('hub_id',$area->hub_id)->first();
+
+        // $agent = Agent::whereRaw('FIND_IN_SET(?,area)',[$areaId])->first();
+
+        if ($agent)
+        {
+            $zoneId = $agent->id;
+            $zoneType = "Agent";
+        }
+        else
+        {
+            $zoneId = "";
+            $zoneType = "";
+        }
+        
+        if($request->ajax())
+        {
+            return response()->json([
+                'zoneId' => $zoneId,
+                'zoneType'=> $zoneType,
+            ]);
+        }
     }
 
     public function getClientInfo(Request $request)
     {
         $senderPhoneNumber = $request->senderPhoneNumber;
-
-        // $clientInfo = Client::where('phone',$senderPhoneNumber)->first();
-        // $clientInfo = Client::where('phone','like','%'.$senderPhoneNumber.'%')->first();
 
         $clientInfo = DB::table('view_clients')
             ->select('view_clients.*')
@@ -318,6 +340,7 @@ class BookingOrderController extends Controller
             $clientId = $clientInfo->clientId;
             $clientType = $clientInfo->clientType;
             $clientUserRoleId = $clientInfo->clientUserRoleId;
+            $senderAreaId = $clientInfo->clientAreaId;
         }
         else
         {
@@ -326,6 +349,7 @@ class BookingOrderController extends Controller
             $clientId = "";
             $clientType = "";
             $clientUserRoleId = "";
+            $senderAreaId = "";
         }
         
         if($request->ajax())
@@ -336,18 +360,14 @@ class BookingOrderController extends Controller
                 'clientId'=> $clientId,
                 'clientType'=> $clientType,
                 'clientUserRoleId'=> $clientUserRoleId,
+                'senderAreaId'=> $senderAreaId,
             ]);
         }
     }
 
     public function getReceiverInfo(Request $request)
     {
-
-        $receiverInfo = BookingOrder::select('tbl_booking_orders.*','view_zones.zone_name as receiverZoneName')
-            ->leftJoin('view_zones',function($leftJoin){
-                $leftJoin->on('tbl_booking_orders.receiver_zone_id','=','view_zones.zone_id');
-                $leftJoin->on('tbl_booking_orders.receiver_zone_type','=','view_zones.zone_type');
-            })
+        $receiverInfo = BookingOrder::select('tbl_booking_orders.*')
             ->where('tbl_booking_orders.receiver_phone',$request->receiverPhoneNumber)
             ->orderBy('tbl_booking_orders.id','desc')
             ->first();
@@ -356,13 +376,13 @@ class BookingOrderController extends Controller
         {
             $receiverName = $receiverInfo->receiver_name;
             $receiverAddress = $receiverInfo->receiver_address;
-            $receiverZoneName = $receiverInfo->receiverZoneName;
+            $receiverAreaId = $receiverInfo->receiver_area_id;
         }
         else
         {
             $receiverName = "";
             $receiverAddress = "";
-            $receiverZoneName = "";
+            $receiverAreaId = "";
         }
         
         if($request->ajax())
@@ -370,7 +390,7 @@ class BookingOrderController extends Controller
             return response()->json([
                 'receiverName' => $receiverName,
                 'receiverAddress'=> $receiverAddress,
-                'receiverZoneName' =>$receiverZoneName
+                'receiverAreaId' =>$receiverAreaId
             ]);
         }
     }
