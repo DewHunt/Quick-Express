@@ -239,6 +239,7 @@ Route::prefix('admin')->group(function()
 			Route::post('/chargeForMerchant-update','Admin\ChargeForMerchantController@update')->name('chargeForMerchant.update');
 			Route::post('/chargeForMerchant-status','Admin\ChargeForMerchantController@status')->name('chargeForMerchant.status');
 			Route::post('/chargeForMerchant-delete','Admin\ChargeForMerchantController@delete')->name('chargeForMerchant.delete');
+			Route::post('/chargeForMerchant-get-service-name','Admin\ChargeForMerchantController@getServiceInfo')->name('chargeForMerchant.getServiceInfo');
 
 			// Charge For Delivery Men
 			Route::get('/chargeForDeliveryMen','Admin\ChargeForDeliveryMenController@index')->name('chargeForDeliveryMen.index');
@@ -281,6 +282,53 @@ Route::prefix('admin')->group(function()
 			Route::post('/bookingOrder-get-receiver-info','Admin\BookingOrderController@getReceiverInfo')->name('bookingOrder.getReceiverInfo');
 			Route::post('/bookingOrder-get-charge-info','Admin\BookingOrderController@getChargeInfo')->name('bookingOrder.getChargeInfo');
 			Route::post('/bookingOrder-get-agent-info','Admin\BookingOrderController@getAgentInfo')->name('bookingOrder.getAgentInfo');
+			Route::post('/bookingOrder-get-service-info','Admin\BookingOrderController@getServiceInfo')->name('bookingOrder.getServiceInfo');
+
+			// Booking Order POS
+			Route::get('/bookingOrder-pos','Admin\BookingOrderPosController@index')->name('bookingOrderPos.index');
+			Route::post('/bookingOrder-pos','Admin\BookingOrderPosController@index')->name('bookingOrderPos.index');
+			Route::post('/bookingOrder-pos-print','Admin\BookingOrderPosController@print')->name('bookingOrderPos.print');
+
+			// Assigned Delivery Man
+			Route::get('/assignedDeliveryMan','Admin\AssignedDeliveryManController@index')->name('assignedDeliveryMan.index');
+			Route::get('/assignedDeliveryMan-add','Admin\AssignedDeliveryManController@add')->name('assignedDeliveryMan.add');
+			Route::post('/assignedDeliveryMan-save','Admin\AssignedDeliveryManController@save')->name('assignedDeliveryMan.save');
+			Route::get('/assignedDeliveryMan-view/{id}','Admin\AssignedDeliveryManController@view')->name('assignedDeliveryMan.view');
+			Route::post('/assignedDeliveryMan-reject','Admin\AssignedDeliveryManController@reject')->name('assignedDeliveryMan.reject');
+			Route::post('/assignedDeliveryMan-hub-wise-order','Admin\AssignedDeliveryManController@hubWiseOrder')->name('assignedDeliveryMan.hubWiseOrder');
+			Route::post('/assignedDeliveryMan-get-all-areas','Admin\AssignedDeliveryManController@getAllAreas')->name('assignedDeliveryMan.getAllAreas');
+			Route::post('/assignedDeliveryMan-area-wise-order','Admin\AssignedDeliveryManController@areaWiseOrder')->name('assignedDeliveryMan.areaWiseOrder');
+
+			// Assigned Delivery Man
+			Route::get('/assignedDeliveryMan','Admin\AssignedDeliveryManController@index')->name('assignedDeliveryMan.index');
+			Route::get('/assignedDeliveryMan-add','Admin\AssignedDeliveryManController@add')->name('assignedDeliveryMan.add');
+			Route::post('/assignedDeliveryMan-save','Admin\AssignedDeliveryManController@save')->name('assignedDeliveryMan.save');
+			Route::get('/assignedDeliveryMan-view/{id}','Admin\AssignedDeliveryManController@view')->name('assignedDeliveryMan.view');
+			Route::post('/assignedDeliveryMan-reject','Admin\AssignedDeliveryManController@reject')->name('assignedDeliveryMan.reject');
+			Route::post('/assignedDeliveryMan-hub-wise-order','Admin\AssignedDeliveryManController@hubWiseOrder')->name('assignedDeliveryMan.hubWiseOrder');
+			Route::post('/assignedDeliveryMan-get-all-areas','Admin\AssignedDeliveryManController@getAllAreas')->name('assignedDeliveryMan.getAllAreas');
+			Route::post('/assignedDeliveryMan-area-wise-order','Admin\AssignedDeliveryManController@areaWiseOrder')->name('assignedDeliveryMan.areaWiseOrder');
+
+			// Assign Order Status
+			Route::get('/assignedOrderStatus','Admin\AssignedOrderStatusController@index')->name('assignedOrderStatus.index');
+			Route::get('/assignedOrderStatus-add','Admin\AssignedOrderStatusController@add')->name('assignedOrderStatus.add');
+			Route::post('/assignedOrderStatus-save','Admin\AssignedOrderStatusController@save')->name('assignedOrderStatus.save');
+			Route::get('/assignedOrderStatus-view/{id}','Admin\AssignedOrderStatusController@view')->name('assignedOrderStatus.view');
+			Route::post('/assignedOrderStatus-reject','Admin\AssignedOrderStatusController@reject')->name('assignedOrderStatus.reject');
+			Route::post('/assignedOrderStatus-hub-wise-order','Admin\AssignedOrderStatusController@hubWiseOrder')->name('assignedOrderStatus.hubWiseOrder');
+			Route::post('/assignedOrderStatus-get-all-areas','Admin\AssignedOrderStatusController@getAllAreas')->name('assignedOrderStatus.getAllAreas');
+			Route::post('/assignedOrderStatus-area-wise-order','Admin\AssignedOrderStatusController@areaWiseOrder')->name('assignedOrderStatus.areaWiseOrder');
+			Route::post('/assignedOrderStatus-delivery-man-wise-order','Admin\AssignedOrderStatusController@deliveryManWiseOrder')->name('assignedOrderStatus.deliveryManWiseOrder');
+
+			// Order List
+			Route::get('/order-list','Admin\OrderListController@index')->name('orderList.index');
+			Route::post('/order-list','Admin\OrderListController@index')->name('orderList.index');
+			Route::post('/order-list-print','Admin\OrderListController@print')->name('orderList.print');
+
+			// Order Status List
+			Route::get('/order-starus-list','Admin\OrderStatusListController@index')->name('orderStatusList.index');
+			Route::post('/order-starus-list','Admin\OrderStatusListController@index')->name('orderStatusList.index');
+			Route::post('/order-starus-list-print','Admin\OrderStatusListController@print')->name('orderStatusList.print');
 
 
 			//Booking Order For Merchant
@@ -330,6 +378,13 @@ Route::prefix('admin')->group(function()
 			Route::get('/goodsDelivery','Admin\GoodsDeliveryController@index')->name('goodsDelivery.index');
 			Route::get('/goodsDelivery-view/{id}','Admin\GoodsDeliveryController@view')->name('goodsDelivery.view');
 			Route::post('/goodsDelivery-approve-delivery','Admin\GoodsDeliveryController@approveOrRefuseDelivery')->name('goodsDelivery.approveOrRefuseDelivery');
+			Route::post('/goodsDelivery-return-delivery','Admin\GoodsDeliveryController@returnDelivery')->name('goodsDelivery.returnDelivery');
+			Route::post('/goodsDelivery-reschedule-delivery','Admin\GoodsDeliveryController@rescheduleDelivery')->name('goodsDelivery.rescheduleDelivery');
+
+			// Return Delivery 
+			Route::get('/returnDelivery','Admin\ReturnDeliveryController@index')->name('returnDelivery.index');
+			Route::get('/returnDelivery-view/{id}','Admin\ReturnDeliveryController@view')->name('returnDelivery.view');
+			Route::post('/returnsDelivery-approve-delivery','Admin\ReturnDeliveryController@approveOrRefuseDelivery')->name('returnDelivery.approveOrRefuseDelivery');
 
 			// Receive From Agent
 			Route::get('/receiveFormAgent','Admin\ReceiveFromAgentController@index')->name('receiveFormAgent.index');
@@ -378,6 +433,17 @@ Route::prefix('admin')->group(function()
 			Route::get('/deliveryManPayment-view/{id}','Admin\DeliveryManPaymentController@view')->name('deliveryManPayment.view');
 			Route::post('/deliveryManPayment-delete','Admin\DeliveryManPaymentController@delete')->name('deliveryManPayment.delete');
 			Route::post('/deliveryManPayment-get-order-info','Admin\DeliveryManPaymentController@getOrderInfo')->name('deliveryManPayment.getOrderInfo');
+
+			// Merchant Payment 
+			Route::get('/merchantPayment','Admin\MerchantPaymentController@index')->name('merchantPayment.index');
+			Route::get('/merchantPayment-add','Admin\MerchantPaymentController@add')->name('merchantPayment.add');
+			Route::post('/merchantPayment-save','Admin\MerchantPaymentController@save')->name('merchantPayment.save');
+			Route::get('/merchantPayment-edit/{id}','Admin\MerchantPaymentController@edit')->name('merchantPayment.edit');
+			Route::post('/merchantPayment-update','Admin\MerchantPaymentController@update')->name('merchantPayment.update');
+			Route::post('/merchantPayment-status','Admin\MerchantPaymentController@status')->name('merchantPayment.status');
+			Route::get('/merchantPayment-view/{id}','Admin\MerchantPaymentController@view')->name('merchantPayment.view');
+			Route::post('/merchantPayment-delete','Admin\MerchantPaymentController@delete')->name('merchantPayment.delete');
+			Route::post('/merchantPayment-get-order-info','Admin\MerchantPaymentController@getOrderInfo')->name('merchantPayment.getOrderInfo');
 			
 		// Start Account Management
 			// COA Setup
@@ -506,6 +572,54 @@ Route::prefix('admin')->group(function()
 			Route::post('/receive-payment-statement','Admin\ReceivePaymentStatementController@index')->name('receivePaymentStatement.index');
 			Route::post('/receive-payment-statement-print','Admin\ReceivePaymentStatementController@print')->name('receivePaymentStatement.print');
 		// End Account Report
+
+			// Marchant Statement
+			Route::get('/merchant-statement','Admin\MerchantStatementController@index')->name('merchantStatement.index');
+			Route::post('/merchant-statement','Admin\MerchantStatementController@index')->name('merchantStatement.index');
+			Route::post('/merchant-statement-print','Admin\MerchantStatementController@print')->name('merchantStatement.print');
+
+			// Marchant Statement
+			Route::get('/order-statement','Admin\OrderStatementController@index')->name('orderStatement.index');
+			Route::post('/order-statement','Admin\OrderStatementController@index')->name('orderStatement.index');
+			Route::post('/order-statement-print','Admin\OrderStatementController@print')->name('orderStatement.print');
+
+			// Payment Log
+			Route::get('/payment-log','Admin\PaymentLogController@index')->name('paymentLog.index');
+			Route::post('/payment-log','Admin\PaymentLogController@index')->name('paymentLog.index');
+			Route::post('/payment-log-print','Admin\PaymentLogController@print')->name('paymentLog.print');
+
+			// Collection History
+			Route::get('/collection-history','Admin\CollectionHistoryController@index')->name('collectionHistory.index');
+			Route::post('/collection-history','Admin\CollectionHistoryController@index')->name('collectionHistory.index');
+			Route::post('/collection-history-print','Admin\CollectionHistoryController@print')->name('collectionHistory.print');
+
+			// Top Sheet
+			Route::get('/top-sheet','Admin\TopSheetController@index')->name('topSheet.index');
+			Route::post('/top-sheet','Admin\TopSheetController@index')->name('topSheet.index');
+			Route::post('/top-sheet-print','Admin\TopSheetController@print')->name('topSheet.print');
+
+			// Return History
+			Route::get('/return-history','Admin\ReturnHistoryController@index')->name('returnHistory.index');
+			Route::post('/return-history','Admin\ReturnHistoryController@index')->name('returnHistory.index');
+			Route::post('/return-history-print','Admin\ReturnHistoryController@print')->name('returnHistory.print');
+
+			// Contact Us
+			Route::get('/contactUs','Admin\ContactUsController@index')->name('contactUs.index');
+			Route::get('/contactUs-add','Admin\ContactUsController@add')->name('contactUs.add');
+			Route::post('/contactUs-save','Admin\ContactUsController@save')->name('contactUs.save');
+			Route::get('/contactUs-edit/{id}','Admin\ContactUsController@edit')->name('contactUs.edit');
+			Route::post('/contactUs-update','Admin\ContactUsController@update')->name('contactUs.update');
+			Route::post('/contactUs-status','Admin\ContactUsController@status')->name('contactUs.status');
+			Route::post('/contactUs-delete','Admin\ContactUsController@delete')->name('contactUs.delete');
+
+			// Contact Us
+			Route::get('/serviceCharges','Admin\ServiceChargesController@index')->name('serviceCharges.index');
+			Route::get('/serviceCharges-add','Admin\ServiceChargesController@add')->name('serviceCharges.add');
+			Route::post('/serviceCharges-save','Admin\ServiceChargesController@save')->name('serviceCharges.save');
+			Route::get('/serviceCharges-edit/{id}','Admin\ServiceChargesController@edit')->name('serviceCharges.edit');
+			Route::post('/serviceCharges-update','Admin\ServiceChargesController@update')->name('serviceCharges.update');
+			Route::post('/serviceCharges-status','Admin\ServiceChargesController@status')->name('serviceCharges.status');
+			Route::post('/serviceCharges-delete','Admin\ServiceChargesController@delete')->name('serviceCharges.delete');
 		});
 	});
 
@@ -525,9 +639,21 @@ Route::prefix('admin')->group(function()
 
 
 //Frontend part start here
-Route::get('/','FrontendController@index');
+Route::get('/','FrontendController@index')->name('quickExpress');
 
-Route::any('/order/track', 'BookingController@orderTrack')->name('order.track');
+Route::any('/order/track','BookingController@orderTrack')->name('order.track');
+
+Route::get('/about-us','FrontendController@aboutUs')->name('aboutUs');
+
+Route::get('/our-services','FrontendController@ourService')->name('ourService');
+Route::get('/parcel-delivery','FrontendController@parcelDelivery')->name('parcelDelivery');
+Route::get('/document-delivery','FrontendController@documentDelivery')->name('documentDelivery');
+Route::get('/food-delivery','FrontendController@foodDelivery')->name('foodDelivery');
+Route::get('/grocery-delivery','FrontendController@groceryDelivery')->name('groceryDelivery');
+
+Route::get('/services-charges','FrontendController@serviceCharge')->name('serviceCharge');
+
+Route::get('/contact-us','FrontendController@contactUs')->name('contactUs');
 
 //code for custom/user
 Route::prefix('user')->group(function(){
@@ -603,5 +729,16 @@ Route::middleware('IfNotLoggedIn')->group(function(){
 			Route::any('/login', 'MerchantAuthController@login')->name('merchant.login');
 		});
 	});
+
+});	
+	
+Route::get('/clear', function() {
+   Artisan::call('cache:clear');
+   Artisan::call('config:clear');
+   Artisan::call('config:cache');
+   Artisan::call('view:clear');
+   Artisan::call('route:clear');
+    
+   return "Cleared!";
 
 });

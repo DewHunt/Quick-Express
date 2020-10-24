@@ -1,5 +1,6 @@
 @extends('admin.layouts.masterAddEdit')
 
+
 @section('card_body')
     <div class="card-body">
         <div class="row">
@@ -95,12 +96,24 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label for="charge">Charge</label>
                 <div class="form-group {{ $errors->has('charge') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Delivery Charge" id="charge" name="charge" value="{{ $charge->charge }}" required>
                     @if ($errors->has('charge'))
                         @foreach($errors->get('charge') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label for="charge-per-kg">Charge Per Kg</label>
+                <div class="form-group {{ $errors->has('chargePerKg') ? ' has-danger' : '' }}">
+                    <input type="number" class="form-control" placeholder="Delivery ChargePerKg" id="chargePerKg" name="chargePerKg" value="{{ $charge->charge_per_uom }}">
+                    @if ($errors->has('chargePerKg'))
+                        @foreach($errors->get('chargePerKg') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
                         @endforeach
                     @endif

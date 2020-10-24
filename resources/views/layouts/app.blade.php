@@ -7,7 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Web Site CMS</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($adminInformation->fav_icon) }}">
+
+    <title>Quick Express</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

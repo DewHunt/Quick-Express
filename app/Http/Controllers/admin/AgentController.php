@@ -11,6 +11,7 @@ use App\UserRoles;
 use App\Warehouse;
 use App\AreaSetup;
 use App\HubSetup;
+use App\HelperClass;
 
 class AgentController extends Controller
 {
@@ -56,29 +57,39 @@ class AgentController extends Controller
         //     $area = '';
         // }
 
-        $user = Admin::create( [           
-            'role' => '8',     
-            'name' => $request->name,           
-            'username' => $request->username,          
-            'email' => $request->email,           
-            'password' => bcrypt($request->password),                      
-        ]);
+        $isEmailExists = HelperClass::checkEmail('admins','email',null,$request->email);
 
-        Agent::create([
-            'user_id' => $user->id ,
-            'user_role_id' => '8',
-            'hub_id' => $request->hub,
-            'name' => $request->name,
-            'contact_person' => $request->contact_person,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'nid' => $request->nid,
-            'supporting_warehouse' => $request->supporting_warehouse,
-            'address' => $request->address,
-            'created_by' => $this->userId,
-        ]);
+        if ($isEmailExists == null)
+        {
+            $user = Admin::create( [           
+                'role' => '8',     
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'username' => $request->username,          
+                'email' => $request->email,           
+                'password' => bcrypt($request->password),                      
+            ]);
 
-        return redirect(route('agent.index'))->with('msg','Agent Added Successfully');
+            Agent::create([
+                'user_id' => $user->id ,
+                'user_role_id' => '8',
+                'hub_id' => $request->hub,
+                'name' => $request->name,
+                'contact_person' => $request->contact_person,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'nid' => $request->nid,
+                'supporting_warehouse' => $request->supporting_warehouse,
+                'address' => $request->address,
+                'created_by' => $this->userId,
+            ]);
+
+            return redirect(route('agent.index'))->with('msg','Agent Added Successfully');
+        }
+        else
+        {
+            return redirect(route('agent.add'))->with('error','This Email "'.$request->email.'" Already Exists');
+        }
     }
 
     public function edit($agentId)
@@ -93,6 +104,8 @@ class AgentController extends Controller
         // $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
         $agent = Agent::where('id',$agentId)->first();
+
+        // dd($agent)
 
         $hubs = HubSetup::select('tbl_hubs.*')
             ->leftJoin('tbl_agents','tbl_agents.hub_id','=','tbl_hubs.id')
@@ -112,39 +125,53 @@ class AgentController extends Controller
     	$agent = Agent::find($request->agentId);
         $user = Admin::find($request->userId);
 
-        $user->update([           
-            'role' => '8',     
-            'name' => $request->name,           
-            'username' => $request->username,          
-            'email' => $request->email,                     
-        ]);
+        $isEmailExists = HelperClass::checkEmail('admins','email',$request->userId,$request->email);
 
-        // if($request->area)
-        // {
-        //     $area = implode(',', $request->area);
-        // }
-        // else
-        // {
-        //     $area = '';
-        // }
+        if ($isEmailExists == null)
+        {
+            $user->update([           
+                'role' => '8',     
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'username' => $request->username,          
+                'email' => $request->email,                     
+            ]);
 
-        $agent->update([
-            'hub_id' => $request->hub,
-            'name' => $request->name,
-            'contact_person' => $request->contact_person,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'nid' => $request->nid,
-            'supporting_warehouse' => $request->supporting_warehouse,
-            'address' => $request->address,
-            'updated_by' => $this->userId,
-        ]);
+            // if($request->area)
+            // {
+            //     $area = implode(',', $request->area);
+            // }
+            // else
+            // {
+            //     $area = '';
+            // }
 
-        return redirect(route('agent.index'))->with('msg','Agent Updated Successfully');
+            $agent->update([
+                'hub_id' => $request->hub,
+                'name' => $request->name,
+                'contact_person' => $request->contact_person,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'nid' => $request->nid,
+                'supporting_warehouse' => $request->supporting_warehouse,
+                'address' => $request->address,
+                'updated_by' => $this->userId,
+            ]);
+
+            return redirect(route('agent.index'))->with('msg','Agent Updated Successfully');
+        }
+        else
+        {
+            return redirect(route('agent.edit',$request->agentId))->with('error','This Email "'.$request->email.'" Already Exists');
+        }
     }
 
     public function delete(Request $request)
     {
+        $agent = Agent::find($request->agentId);
+
+        Admin::where('id',$agent->user_id)->delete();
+
     	Agent::where('id',$request->agentId)->delete();
     }
 

@@ -7,7 +7,8 @@
 
         <style>
             #report-table {
-                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+                font-family: "common", sans-serif;
                 border-collapse: collapse;
                 width: 100%;
             }

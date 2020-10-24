@@ -172,7 +172,7 @@
                     }
                     
                     remarks += coaName;
-                }               
+                }
             }
 
             $('.remarks').val(remarks);

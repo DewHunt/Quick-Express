@@ -14,6 +14,7 @@
                         <th>Merchant Name</th>
                         <th>Charge Name</th>
                         <th width="60px">Charge</th>
+                        <th width="120px">Charge Per Kg</th>
                         <th width="20px">Status</th>
                         <th width="50px">Action</th>
                     </tr>
@@ -28,6 +29,7 @@
                             <td>{{ $merchantCharge->merchantName }}</td>
                             <td>{{ $merchantCharge->name }}</td>
                             <td>{{ $merchantCharge->charge }}</td>
+                            <td>{{ $merchantCharge->charge_per_uom == "" ? 0 : $merchantCharge->charge_per_uom }}</td>
                 			<td>
                                 @php
                                     echo \App\Link::status($merchantCharge->id,$merchantCharge->status);

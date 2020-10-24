@@ -82,6 +82,20 @@
         </div>
 
         <div class="row">
+             <div class="col-md-12">
+                <label for="address">Address</label>
+                <div class="form-group {{ $errors->has('address') ? ' has-danger' : '' }}">
+                    <textarea class="form-control" name="address" rows="2">{{ $websiteInformation->address }}</textarea>
+                    @if ($errors->has('address'))
+                        @foreach($errors->get('address') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-4">
             	<label for="website-logo">Website Logo - 1</label>
                 <div class="form-group {{ $errors->has('siteLogo1') ? ' has-danger' : '' }}">

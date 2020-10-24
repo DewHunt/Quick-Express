@@ -197,8 +197,8 @@
         <div class="row">
             <div class="col-md-3">
                 <label for="service-type">Service Type</label>
-                <div class="form-group {{ $errors->has('deliveryTypeId') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select serviceType" id="serviceType" name="deliveryTypeId" onchange="findCharge()">
+                <div class="form-group {{ $errors->has('serviceTypeId') ? ' has-danger' : '' }}">
+                    <select class="form-control select2 serviceType" id="serviceType" name="serviceTypeId" onchange="findCharge()">
                         <option value="">Select A Delivery Type</option>
                         @foreach ($serviceTypes as $serviceType)
                             <option value="{{ $serviceType->id }}">{{ $serviceType->name }}</option>

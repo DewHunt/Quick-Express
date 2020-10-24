@@ -13,6 +13,7 @@
                         <th width="20px">SL</th>
                         <th>Name</th>
                         <th width="60px">Charge</th>
+                        <th width="120px">Charge Per Kg</th>
                         <th width="20px">Status</th>
                         <th width="50px">Action</th>
                     </tr>
@@ -25,7 +26,8 @@
                 		<tr class="row_{{ $clientCharge->id }}">
                 			<td>{{ $sl++ }}</td>
                             <td>{{ $clientCharge->name }}</td>
-                            <td>{{ $clientCharge->charge }}</td>
+                            <td class="text-right">{{ $clientCharge->charge }}</td>
+                            <td class="text-right">{{ $clientCharge->charge_per_uom == "" ? 0 : $clientCharge->charge_per_uom }}</td>
                 			<td>
                                 @php
                                     echo \App\Link::status($clientCharge->id,$clientCharge->status);

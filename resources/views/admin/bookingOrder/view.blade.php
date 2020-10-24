@@ -80,24 +80,51 @@
     <div class="row" style="padding: 10px;">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header text-right">                    
+                <div class="card-header text-right">
+                    <a style="font-size: 16px;" class="btn btn-outline-info btn-lg" href="{{ route('bookingOrder.add') }}">
+                        <i class="fa fa-plus-circle"></i> Add New
+                    </a>
                     <button id="print" class="btn btn-outline-info btn-lg" type="button"> <span><i class="fa fa-print"></i> Print</span> </button>
                 </div>
 
                 <div class="card-body printableArea">
                     <style type="text/css">
+                        .company {
+                            font-weight: bold;
+                            font-family: sans-serif;
+                            margin-bottom: -25px;
+                            padding: 20px 0px 0px 0px;
+                        }
+
+                        .company h2 {
+                            margin-bottom: 5px;
+                            font-weight: bold;
+                            height: 45px;
+                            line-height: 45px;
+                            color: green;
+                        }
+
+                        .company p {
+                            margin: -20px 0px 0px 0px;
+                            padding: 0px;
+                            height: 45px;
+                            line-height: 45px;
+                        }
+
                         .chalan {
-                            padding: 30px 5px 30px 5px;
+                            margin-top: -15px;
+                            padding: 0px 0px 10px 0px;
                         }
 
                         .chalan-container {
+                            margin: 0 auto;
                             width: 100%;
-                            margin: auto;
-                            padding: 10px;
+                            padding: 0px;
+                            text-align: center;
                         }
 
                         .chalan-type {
-                            width: 30%;
+                            width: 45%;
                             height: 35px;
                             line-height: 35px;
                             float: left;
@@ -106,12 +133,16 @@
                         }
 
                         .chalan-date {
-                            width: 30%;
-                            margin-left: 70%;
+                            width: 45%;
+                            margin-left: 53%;
                             height: 35px;
                             line-height: 35px;
                             text-align: center;
                             border: 1px solid black;
+                        }
+
+                        .chalan-type span, .chalan-date span {
+                            font-weight: bold;
                         }
 
                         .chalan-from {
@@ -137,7 +168,27 @@
 
                         .chalan-to {
                             font-family: sans-serif;
-                            margin-bottom: 0;
+                            text-align: left;
+                            margin: 0px 10px 25px 0px;
+                        }
+
+                        .chalan-to-name {
+                            width: 70%;
+                            float: left;
+                            /*border: 1px solid black;*/
+                        }
+
+                        .chalan-to-contact-number {
+                            width: 30%;
+                            margin-left: 70%;
+                            /*border: 1px solid black;*/
+                        }
+
+                        .chalan-to-address {
+                            width: 100%;
+                            float: left;
+                            margin: 10px 0px 15px 0px;
+                            /*border: 1px solid black;*/
                         }
 
                         .chalan-to h4 {
@@ -145,30 +196,30 @@
                             font-weight: bold;
                             height: 45px;
                             line-height: 45px;
+                            text-align: center;
                         }
 
                         .chalan-to p {
-                            margin: -23px 0px 0px 12px;
-                            padding: 0px;
-                            height: 45px;
-                            line-height: 45px;
-                            text-align: left;
+                            margin: 0px 0px 0px 5px;
                         }
 
                         .chalan-to span {
                             font-weight: bold;
                         }
 
-                        .chalan-cod, .chalan-order-no, .chalan-area {
+                        .chalan-cod, .chalan-order-no, .chalan-area, .chalan-remarks {
+                            width: 100%;
                             margin: auto;
+                            float: right;
                             margin-bottom: 10px;
-                            width: 70%;
-                            height: 35px;
-                            line-height: 35px;
-                            font-size: 16px;
+                            padding: 10px;
                             font-weight: bold;
                             text-align: center;
                             border: 1px solid black;
+                        }
+
+                        .chalan-cod, .chalan-order-no, .chalan-area, .chalan-remarks p{
+                            /*text-align: justify;*/
                         }
                     </style>
 
@@ -176,233 +227,228 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="chalan text-center">
-                                        <div class="chalan-from">
-                                            <h4>{{ $bookedOrder->sender_name }}</h4>
-                                            <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
-                                        </div>
+                                    <div class="company text-center">
+                                        <h2>{{ $companyInformation->website_name }}</h2>
+                                        <p>{{ $companyInformation->address }}</p>
+                                        <p>{{ $companyInformation->phone_one }}</p>
+                                    </div>
+                                    <hr>
 
+                                    <div class="chalan">
                                         <div class="chalan-container">
-                                            <div class="chalan-type">
-                                                {{ $bookedOrder->deliveryTypeName }}
+                                            <div class="chalan-from">
+                                                <h4>{{ $bookedOrder->sender_name }}</h4>
+                                                <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
                                             </div>
 
-                                            <div class="chalan-date">
-                                                {{ $bookedOrder->date }}
+                                            <div>
+                                                <div class="chalan-type">
+                                                    <span>Order Date : </span>{{ date('d-m-Y',strtotime($bookedOrder->date)) }}
+                                                </div>
+
+                                                <div class="chalan-date">
+                                                    <span>Delivery Date : </span>{{ date('d-m-Y',strtotime($bookedOrder->delivery_date)) }}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="chalan-to">
-                                            <h4>Client Info</h4>
-                                            <p><span>Name :</span> {{ $bookedOrder->receiver_name }}</p>
-                                            <p><span>Address :</span> {{ $bookedOrder->receiver_address }}</p>
-                                            <span><p>Contact Number: {{ $bookedOrder->receiver_phone }}</p></span>
-                                        </div>
+                                            <div class="chalan-to">
+                                                <h4>Client Info</h4>
+                                                <div class="chalan-to-name">
+                                                    <span>Name :</span> <p>{{ $bookedOrder->receiver_name }}</p>
+                                                </div>
+                                                <div class="chalan-to-contact-number">
+                                                    <span>Contact Number: </span><p>{{ $bookedOrder->receiver_phone }}</p>
+                                                </div>
+                                                <div class="chalan-to-address">
+                                                    <span>Address :</span> <p>{{ $bookedOrder->receiver_address }}</p>
+                                                </div>
 
-                                        <div class="chalan-cod">
-                                            Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
-                                        </div>
+                                                <div class="chalan-cod">
+                                                    Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
+                                                </div>
 
-                                        <div class="chalan-order-no">
-                                            Order No : {{ $bookedOrder->order_no }}
-                                        </div>
+                                                <div class="chalan-order-no">
+                                                    Order No : {{ $bookedOrder->order_no }}
+                                                </div>
 
-                                        <div class="chalan-area">
-                                            Area : {{ $receiverAreaInfo->name }}
+                                                <div class="chalan-area">
+                                                    Area : {{ $receiverAreaInfo->name }}
+                                                </div>
+
+                                                <div class="chalan-remarks">
+                                                    remarks : {{ $bookedOrder->remarks }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
-
                                 <td>
-                                    <div class="chalan text-center">
-                                        <div class="chalan-from">
-                                            <h4>{{ $bookedOrder->sender_name }}</h4>
-                                            <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
-                                        </div>
-
-                                        <div class="chalan-container">
-                                            <div class="chalan-type">
-                                                {{ $bookedOrder->deliveryTypeName }}
-                                            </div>
-
-                                            <div class="chalan-date">
-                                                Area : {{ $bookedOrder->date }}
-                                            </div>
-                                        </div>
-
-                                        <div class="chalan-to">
-                                            <h4>Client Info</h4>
-                                            <p><span>Name :</span> {{ $bookedOrder->receiver_name }}</p>
-                                            <p><span>Address :</span> {{ $bookedOrder->receiver_address }}</p>
-                                            <span><p>Contact Number: {{ $bookedOrder->receiver_phone }}</p></span>
-                                        </div>
-
-                                        <div class="chalan-cod">
-                                            Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
-                                        </div>
-
-                                        <div class="chalan-order-no">
-                                            Order No : {{ $bookedOrder->order_no }}
-                                        </div>
-
-                                        <div class="chalan-area">
-                                            Area : {{ $receiverAreaInfo->name }}
-                                        </div>
+                                    <div class="company text-center">
+                                        <h2>{{ $companyInformation->website_name }}</h2>
+                                        <p>{{ $companyInformation->address }}</p>
+                                        <p>{{ $companyInformation->phone_one }}</p>
                                     </div>
-                                </td>
-                            </tr>
+                                    <hr>
 
-                            <tr>
-                                <td>
-                                    <div class="chalan text-center">
-                                        <div class="chalan-from">
-                                            <h4>{{ $bookedOrder->sender_name }}</h4>
-                                            <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
-                                        </div>
-
+                                    <div class="chalan">
                                         <div class="chalan-container">
-                                            <div class="chalan-type">
-                                                {{ $bookedOrder->deliveryTypeName }}
+                                            <div class="chalan-from">
+                                                <h4>{{ $bookedOrder->sender_name }}</h4>
+                                                <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
                                             </div>
 
-                                            <div class="chalan-date">
-                                                {{ $bookedOrder->date }}
-                                            </div>
-                                        </div>
+                                            <div>
+                                                <div class="chalan-type">
+                                                    <span>Order Date : </span>{{ date('d-m-Y',strtotime($bookedOrder->date)) }}
+                                                </div>
 
-                                        <div class="chalan-to">
-                                            <h4>Client Info</h4>
-                                            <p><span>Name :</span> {{ $bookedOrder->receiver_name }}</p>
-                                            <p><span>Address :</span> {{ $bookedOrder->receiver_address }}</p>
-                                            <span><p>Contact Number: {{ $bookedOrder->receiver_phone }}</p></span>
-                                        </div>
-
-                                        <div class="chalan-cod">
-                                            Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
-                                        </div>
-
-                                        <div class="chalan-order-no">
-                                            Order No : {{ $bookedOrder->order_no }}
-                                        </div>
-
-                                        <div class="chalan-area">
-                                            {{ $receiverAreaInfo->name }}
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div class="chalan text-center">
-                                        <div class="chalan-from">
-                                            <h4>{{ $bookedOrder->sender_name }}</h4>
-                                            <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
-                                        </div>
-
-                                        <div class="chalan-container">
-                                            <div class="chalan-type">
-                                                {{ $bookedOrder->deliveryTypeName }}
+                                                <div class="chalan-date">
+                                                    <span>Delivery Date : </span>{{ date('d-m-Y',strtotime($bookedOrder->delivery_date)) }}
+                                                </div>
                                             </div>
 
-                                            <div class="chalan-date">
-                                                {{ $bookedOrder->date }}
+                                            <div class="chalan-to">
+                                                <h4>Client Info</h4>
+                                                <div class="chalan-to-name">
+                                                    <span>Name :</span> <p>{{ $bookedOrder->receiver_name }}</p>
+                                                </div>
+                                                <div class="chalan-to-contact-number">
+                                                    <span>Contact Number: </span><p>{{ $bookedOrder->receiver_phone }}</p>
+                                                </div>
+                                                <div class="chalan-to-address">
+                                                    <span>Address :</span> <p>{{ $bookedOrder->receiver_address }}</p>
+                                                </div>
+
+                                                <div class="chalan-cod">
+                                                    Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
+                                                </div>
+
+                                                <div class="chalan-order-no">
+                                                    Order No : {{ $bookedOrder->order_no }}
+                                                </div>
+
+                                                <div class="chalan-area">
+                                                    Area : {{ $receiverAreaInfo->name }}
+                                                </div>
+
+                                                <div class="chalan-remarks">
+                                                    remarks : {{ $bookedOrder->remarks }}
+                                                </div>
                                             </div>
-                                        </div>
-
-                                        <div class="chalan-to">
-                                            <h4>Client Info</h4>
-                                            <p><span>Name :</span> {{ $bookedOrder->receiver_name }}</p>
-                                            <p><span>Address :</span> {{ $bookedOrder->receiver_address }}</p>
-                                            <span><p>Contact Number: {{ $bookedOrder->receiver_phone }}</p></span>
-                                        </div>
-
-                                        <div class="chalan-cod">
-                                            Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
-                                        </div>
-
-                                        <div class="chalan-order-no">
-                                            Order No : {{ $bookedOrder->order_no }}
-                                        </div>
-
-                                        <div class="chalan-area">
-                                            {{ $receiverAreaInfo->name }}
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td>
-                                    <div class="chalan text-center">
-                                        <div class="chalan-from">
-                                            <h4>{{ $bookedOrder->sender_name }}</h4>
-                                            <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
-                                        </div>
+                                    <div class="company text-center">
+                                        <h2>{{ $companyInformation->website_name }}</h2>
+                                        <p>{{ $companyInformation->address }}</p>
+                                        <p>{{ $companyInformation->phone_one }}</p>
+                                    </div>
+                                    <hr>
 
+                                    <div class="chalan">
                                         <div class="chalan-container">
-                                            <div class="chalan-type">
-                                                {{ $bookedOrder->deliveryTypeName }}
+                                            <div class="chalan-from">
+                                                <h4>{{ $bookedOrder->sender_name }}</h4>
+                                                <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
                                             </div>
 
-                                            <div class="chalan-date">
-                                                {{ $bookedOrder->date }}
+                                            <div>
+                                                <div class="chalan-type">
+                                                    <span>Order Date : </span>{{ date('d-m-Y',strtotime($bookedOrder->date)) }}
+                                                </div>
+
+                                                <div class="chalan-date">
+                                                    <span>Delivery Date : </span>{{ date('d-m-Y',strtotime($bookedOrder->delivery_date)) }}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="chalan-to">
-                                            <h4>Client Info</h4>
-                                            <p><span>Name :</span> {{ $bookedOrder->receiver_name }}</p>
-                                            <p><span>Address :</span> {{ $bookedOrder->receiver_address }}</p>
-                                            <span><p>Contact Number: {{ $bookedOrder->receiver_phone }}</p></span>
-                                        </div>
+                                            <div class="chalan-to">
+                                                <h4>Client Info</h4>
+                                                <div class="chalan-to-name">
+                                                    <span>Name :</span> <p>{{ $bookedOrder->receiver_name }}</p>
+                                                </div>
+                                                <div class="chalan-to-contact-number">
+                                                    <span>Contact Number: </span><p>{{ $bookedOrder->receiver_phone }}</p>
+                                                </div>
+                                                <div class="chalan-to-address">
+                                                    <span>Address :</span> <p>{{ $bookedOrder->receiver_address }}</p>
+                                                </div>
 
-                                        <div class="chalan-cod">
-                                            Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
-                                        </div>
+                                                <div class="chalan-cod">
+                                                    Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
+                                                </div>
 
-                                        <div class="chalan-order-no">
-                                            Order No : {{ $bookedOrder->order_no }}
-                                        </div>
+                                                <div class="chalan-order-no">
+                                                    Order No : {{ $bookedOrder->order_no }}
+                                                </div>
 
-                                        <div class="chalan-area">
-                                            {{ $receiverInfo->zone_area }}
+                                                <div class="chalan-area">
+                                                    Area : {{ $receiverAreaInfo->name }}
+                                                </div>
+
+                                                <div class="chalan-remarks">
+                                                    remarks : {{ $bookedOrder->remarks }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
-
                                 <td>
-                                    <div class="chalan text-center">
-                                        <div class="chalan-from">
-                                            <h4>{{ $bookedOrder->sender_name }}</h4>
-                                            <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
-                                        </div>
+                                    <div class="company text-center">
+                                        <h2>{{ $companyInformation->website_name }}</h2>
+                                        <p>{{ $companyInformation->address }}</p>
+                                        <p>{{ $companyInformation->phone_one }}</p>
+                                    </div>
+                                    <hr>
 
+                                    <div class="chalan">
                                         <div class="chalan-container">
-                                            <div class="chalan-type">
-                                                {{ $bookedOrder->deliveryTypeName }}
+                                            <div class="chalan-from">
+                                                <h4>{{ $bookedOrder->sender_name }}</h4>
+                                                <p>Contact Number : {{ $bookedOrder->sender_phone }}</p>
                                             </div>
 
-                                            <div class="chalan-date">
-                                                {{ $bookedOrder->date }}
+                                            <div>
+                                                <div class="chalan-type">
+                                                    <span>Order Date : </span>{{ date('d-m-Y',strtotime($bookedOrder->date)) }}
+                                                </div>
+
+                                                <div class="chalan-date">
+                                                    <span>Delivery Date : </span>{{ date('d-m-Y',strtotime($bookedOrder->delivery_date)) }}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="chalan-to">
-                                            <h4>Client Info</h4>
-                                            <p><span>Name :</span> {{ $bookedOrder->receiver_name }}</p>
-                                            <p><span>Address :</span> {{ $bookedOrder->receiver_address }}</p>
-                                            <span><p>Contact Number: {{ $bookedOrder->receiver_phone }}</p></span>
-                                        </div>
+                                            <div class="chalan-to">
+                                                <h4>Client Info</h4>
+                                                <div class="chalan-to-name">
+                                                    <span>Name :</span> <p>{{ $bookedOrder->receiver_name }}</p>
+                                                </div>
+                                                <div class="chalan-to-contact-number">
+                                                    <span>Contact Number: </span><p>{{ $bookedOrder->receiver_phone }}</p>
+                                                </div>
+                                                <div class="chalan-to-address">
+                                                    <span>Address :</span> <p>{{ $bookedOrder->receiver_address }}</p>
+                                                </div>
 
-                                        <div class="chalan-cod">
-                                            Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
-                                        </div>
+                                                <div class="chalan-cod">
+                                                    Cash On Delivery : {{ $bookedOrder->cod_amount }} Taka
+                                                </div>
 
-                                        <div class="chalan-order-no">
-                                            Order No : {{ $bookedOrder->order_no }}
-                                        </div>
+                                                <div class="chalan-order-no">
+                                                    Order No : {{ $bookedOrder->order_no }}
+                                                </div>
 
-                                        <div class="chalan-area">
-                                            {{ $receiverInfo->zone_area }}
+                                                <div class="chalan-area">
+                                                    Area : {{ $receiverAreaInfo->name }}
+                                                </div>
+
+                                                <div class="chalan-remarks">
+                                                    remarks : {{ $bookedOrder->remarks }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>

@@ -9,7 +9,7 @@ class Service extends Model
 	protected $table = "tbl_services";
 
     protected $fillable = [
-    	'name','description','status','order_by','status','created_by','updated_by'
+    	'name','description','status','order_by','weighing_scale','upto','status','created_by','updated_by'
     ];
 
 	protected $hidden = [

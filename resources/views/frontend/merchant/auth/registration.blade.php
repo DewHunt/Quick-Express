@@ -50,27 +50,47 @@
 					</div>
 
 					<div class="row">
-						<div class="col-lg-6">
+						<div class="col-lg-3">
 							<div class="form-group">
 								<label for="contact_person_phone">Contact Person Phone No <span>*</span></label>
 								<input type="text" name="contact_person_phone" class="form-control" id="contact_person_phone" placeholder="phone no." value="{{ old('contact_person_phone') }}" required>
 							</div>
 						</div>
-						<div class="col-lg-6 col-sm-6">
+
+						<div class="col-lg-3">
 							<div class="form-group">
-								<label for="contact_person_email">Contact Person Email</label>
-								<input type="contact_person_email" name="contact_person_email" class="form-control" id="contact_person_email" placeholder="contact person email" value="{{ old('contact_person_email') }}">
+								<label for="trade_licence_no">Trade Licence No</label>
+								<input type="text" name="trade_licence_no" class="form-control" id="trade_licence_no" placeholder="trade licence no" value="{{ old('trade_licence_no') }}">
 							</div>
 						</div>
+
+			            <div class="col-md-6"> 
+			                <div class="form-group {{ $errors->has('area') ? ' has-danger' : '' }}">
+			                    <label for="area">Business Area</label>
+			                    <div class="form-group {{ $errors->has('area') ? ' has-danger' : '' }}">
+			                        <select class="form-control select2" name="area" required>
+			                            <option value="">Select Business Area</option>
+			                            @foreach ($area_list as $area)
+			                                <option value="{{$area->id}}">{{$area->name}}</option>
+			                            @endforeach
+			                        </select>
+			                        @if ($errors->has('area'))
+			                            @foreach($errors->get('area') as $error)
+			                                <div class="form-control-feedback">{{ $error }}</div>
+			                            @endforeach
+			                        @endif
+			                    </div>
+			                </div>                                       
+			            </div>
 					</div>
 
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="row">
-								<div class="col-lg-12">
+								<div class="col-lg-12 col-sm-6">
 									<div class="form-group">
-										<label for="trade_licence_no">Trade Licence No</label>
-										<input type="text" name="trade_licence_no" class="form-control" id="trade_licence_no" placeholder="trade licence no" value="{{ old('trade_licence_no') }}">
+										<label for="contact_person_email">Contact Person Email</label>
+										<input type="contact_person_email" name="contact_person_email" class="form-control" id="contact_person_email" placeholder="contact person email" value="{{ old('contact_person_email') }}">
 									</div>
 								</div>
 							</div>

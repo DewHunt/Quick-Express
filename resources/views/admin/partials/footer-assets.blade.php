@@ -78,7 +78,10 @@
             forced_root_block: ''
         });
 
-        $(".chosen-select").chosen({search_contains: true});
+        $(".chosen-select").chosen({
+            search_contains: true,
+            // $.validator.setDefaults({ ignore: ":hidden:not(.chosen-select)" })
+        });
 
         // For select 2
         $(".select2").select2();

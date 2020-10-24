@@ -210,10 +210,10 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="courier-type">Service Type</label>
-                <div class="form-group {{ $errors->has('deliveryTypeId') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select serviceType" id="serviceType" name="deliveryTypeId" onchange="findCharge()">
+                <div class="form-group {{ $errors->has('serviceTypeId') ? ' has-danger' : '' }}">
+                    <select class="form-control chosen-select serviceType" id="serviceType" name="serviceTypeId" onchange="findCharge()">
                         <option value="">Select A Delivery Type</option>
                         @foreach ($serviceTypes as $serviceType)
                             @php
@@ -233,7 +233,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="courier-type">Service Name</label>
                 <div class="form-group {{ $errors->has('courierType') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select service" id="service" name="courierType" onchange="findCharge()">
@@ -256,7 +256,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="charge-name">Charge Name</label>
                 <div class="form-group {{ $errors->has('chargeName') ? ' has-danger' : '' }}">
                     <input type="text" class="form-control" placeholder="Charge Name" id="chargeName" name="chargeName" value="{{ $bookedOrder->charge_name }}" readonly>
@@ -267,46 +267,8 @@
                     @endif
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-2">
-                <label for="delivery-type-unit">Delivery Charge Unit</label>
-                <div class="form-group {{ $errors->has('deliveryChargeUnit') ? ' has-danger' : '' }}">
-                    <input type="number" class="form-control" placeholder="Unit Price" id="deliveryChargeUnit" name="deliveryChargeUnit" oninput="findDeliveryCharge()" value="{{ $bookedOrder->delivery_charge_unit }}">
-                    @if ($errors->has('deliveryChargeUnit'))
-                        @foreach($errors->get('deliveryChargeUnit') as $error)
-                            <div class="form-control-feedback">{{ $error }}</div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <label for="qty-kg-lit">Kg/Litre</label>
-                <div class="form-group {{ $errors->has('uom') ? ' has-danger' : '' }}">
-                    <input type="number" class="form-control" placeholder="Qunatity/KG/Litre" id="uom" name="uom" oninput="findDeliveryCharge()" value="{{ $bookedOrder->uom == '' ? '1' : $bookedOrder->uom }}" readonly>
-                    @if ($errors->has('uom'))
-                        @foreach($errors->get('uom') as $error)
-                            <div class="form-control-feedback">{{ $error }}</div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <label for="delivery-charge">Delivery Charge</label>
-                <div class="form-group {{ $errors->has('deliveryCharge') ? ' has-danger' : '' }}">
-                    <input type="number" class="form-control" placeholder="Delivery Charge" id="deliveryCharge" name="deliveryCharge" value="{{ $bookedOrder->delivery_charge == '' ? '0' : $bookedOrder->delivery_charge }}">
-                    @if ($errors->has('deliveryCharge'))
-                        @foreach($errors->get('deliveryCharge') as $error)
-                            <div class="form-control-feedback">{{ $error }}</div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label for="delivery-type">Delivery Type</label>
                 <div class="form-group {{ $errors->has('deliveryTypeId') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select" name="deliveryTypeId">
@@ -325,6 +287,44 @@
                             <option title="{{ $deliveryType->description }}" value="{{ $deliveryType->id }}" {{ $select }}>{{ $deliveryType->name }}</option>
                         @endforeach
                     </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <label for="delivery-type-unit">Delivery Charge Unit</label>
+                <div class="form-group {{ $errors->has('deliveryChargeUnit') ? ' has-danger' : '' }}">
+                    <input type="number" class="form-control" placeholder="Unit Price" id="deliveryChargeUnit" name="deliveryChargeUnit" oninput="findDeliveryCharge()" value="{{ $bookedOrder->delivery_charge_unit }}">
+                    @if ($errors->has('deliveryChargeUnit'))
+                        @foreach($errors->get('deliveryChargeUnit') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label for="qty-kg-lit">Kg/Litre</label>
+                <div class="form-group {{ $errors->has('uom') ? ' has-danger' : '' }}">
+                    <input type="number" class="form-control" placeholder="Qunatity/KG/Litre" id="uom" name="uom" oninput="findDeliveryCharge()" value="{{ $bookedOrder->uom == '' ? '1' : $bookedOrder->uom }}" readonly>
+                    @if ($errors->has('uom'))
+                        @foreach($errors->get('uom') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="delivery-charge">Delivery Charge</label>
+                <div class="form-group {{ $errors->has('deliveryCharge') ? ' has-danger' : '' }}">
+                    <input type="number" class="form-control" placeholder="Delivery Charge" id="deliveryCharge" name="deliveryCharge" value="{{ $bookedOrder->delivery_charge == '' ? '0' : $bookedOrder->delivery_charge }}">
+                    @if ($errors->has('deliveryCharge'))
+                        @foreach($errors->get('deliveryCharge') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

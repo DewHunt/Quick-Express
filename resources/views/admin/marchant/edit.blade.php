@@ -82,6 +82,42 @@
 
         <div class="row">
             <div class="col-md-6">
+                <label for="cod-charge">COD Charge (%)</label>
+                <div class="form-group {{ $errors->has('codChargePercentage') ? ' has-danger' : '' }}">
+                    <input type="number" min="0" step="0.01" class="form-control" placeholder="COD Charge Percentage" name="codChargePercentage" value="{{ $marchant->cod_charge_percentage }}" required>
+                    @if ($errors->has('codChargePercentage'))
+                        @foreach($errors->get('codChargePercentage') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for=""></label>
+                <div class="form-group {{ $errors->has('parcelReturnable') ? ' has-danger' : '' }}">
+                    <div class="form-check-inline">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="1" id="returnCharge" name="returnCharge" {{ $marchant->return_charge_status == 1 ? "checked" : "" }}>Return Charge
+                        </label>
+                    </div>
+
+                    <div class="form-check-inline">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="1" id="rescheduleCharge" name="rescheduleCharge" {{ $marchant->reschedule_charge_status == 1 ? "checked" : "" }}>Re-Schedule Charge
+                        </label>
+                    </div>
+                    @if ($errors->has('parcelReturnable'))
+                        @foreach($errors->get('parcelReturnable') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12">
                         <label for="trade-License">Trade License No.</label>

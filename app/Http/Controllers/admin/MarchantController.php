@@ -9,6 +9,7 @@ use App\Marchant;
 use App\Admin;
 use App\UserRoles;
 use App\AreaSetup;
+use App\HelperClass;
 
 class MarchantController extends Controller
 {
@@ -38,28 +39,60 @@ class MarchantController extends Controller
     {
     	// dd($request->all());
 
-        $user = Admin::create( [           
-            'role' => '12',     
-            'name' => $request->name,           
-            'username' => $request->username,          
-            'email' => $request->email,           
-            'password' => bcrypt($request->password),                      
-        ]);
+        $isEmailExists = HelperClass::checkEmail('admins','email',null,$request->email);
 
-        Marchant::create([
-            'user_id' => $user->id ,
-            'user_role_id' => '12',
-            'name' => $request->name,
-            'contact_person_name' => $request->contactPerson,
-            'contact_person_phone' => $request->phone,
-            'contact_person_email' => $request->email,
-            'trade_licence_no' => $request->tradeLicenseNo,
-            'address' => $request->address,
-            'area' => $request->area,
-            'created_by' => $this->userId,
-        ]);
+        if ($isEmailExists == null)
+        {
+            if ($request->returnCharge)
+            {
+                $returnCharge = $request->returnCharge;
+            }
+            else
+            {
+                $returnCharge = 0;
+            }
 
-        return redirect(route('marchant.index'))->with('msg','Marchant Added Successfully');
+            if ($request->rescheduleCharge)
+            {
+                $rescheduleCharge = $request->rescheduleCharge;
+            }
+            else
+            {
+                $rescheduleCharge = 0;
+            }
+
+            $user = Admin::create( [           
+                'role' => '12',     
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'username' => $request->username,          
+                'email' => $request->email,           
+                'password' => bcrypt($request->password),                      
+            ]);
+
+            Marchant::create([
+                'user_id' => $user->id ,
+                'user_role_id' => '12',
+                'name' => $request->name,
+                'contact_person_name' => $request->contactPerson,
+                'contact_person_phone' => $request->phone,
+                'contact_person_email' => $request->email,
+                'trade_licence_no' => $request->tradeLicenseNo,
+                'cod_charge_percentage' => $request->codChargePercentage,
+                'return_charge_status' => $returnCharge,
+                'reschedule_charge_status' => $rescheduleCharge,
+                'address' => $request->address,
+                'area' => $request->area,
+                'created_by' => $this->userId,
+            ]);
+
+            return redirect(route('marchant.index'))->with('msg','Marchant Added Successfully');
+        }
+        else
+        {
+            return redirect(route('marchant.add'))->with('error','This Email "'.$request->email.'" Already Exists');
+        }
+        
     }
 
     public function edit($marchantId)
@@ -82,34 +115,78 @@ class MarchantController extends Controller
     {
     	// dd($request->all());
 
-    	$marchant = Marchant::find($request->marchantId);
-        $user = Admin::find($request->userId);
+        $isEmailExists = HelperClass::checkEmail('admins','email',$request->userId,$request->email);
 
-        $user->update([           
-            'role' => '12',     
-            'name' => $request->name,           
-            'username' => $request->username,          
-            'email' => $request->email,                     
-        ]);
+        if ($isEmailExists == null)
+        {
+            if ($request->returnCharge)
+            {
+                $returnCharge = $request->returnCharge;
+            }
+            else
+            {
+                $returnCharge = 0;
+            }
 
-        $marchant->update([
-            'user_id' => $user->id ,
-            'user_role_id' => '12',
-            'name' => $request->name,
-            'contact_person_name' => $request->contactPerson,
-            'contact_person_phone' => $request->phone,
-            'contact_person_email' => $request->email,
-            'trade_licence_no' => $request->tradeLicenseNo,
-            'address' => $request->address,
-            'area' => $request->area,
-            'created_by' => $this->userId,
-        ]);
+            if ($request->rescheduleCharge)
+            {
+                $rescheduleCharge = $request->rescheduleCharge;
+            }
+            else
+            {
+                $rescheduleCharge = 0;
+            }
 
-        return redirect(route('marchant.index'))->with('msg','Marchant Updated Successfully');
+            $marchant = Marchant::find($request->marchantId);
+            $user = Admin::find($request->userId);
+
+            if ($request->parcelReturnable == "Yes")
+            {
+                $parcelReturnable = 1;
+            }
+            else
+            {
+                $parcelReturnable = 0;
+            }
+
+            $user->update([           
+                'role' => '12',     
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'username' => $request->username,          
+                'email' => $request->email,                     
+            ]);
+
+            $marchant->update([
+                'user_id' => $user->id ,
+                'user_role_id' => '12',
+                'name' => $request->name,
+                'contact_person_name' => $request->contactPerson,
+                'contact_person_phone' => $request->phone,
+                'contact_person_email' => $request->email,
+                'trade_licence_no' => $request->tradeLicenseNo,
+                'cod_charge_percentage' => $request->codChargePercentage,
+                'return_charge_status' => $returnCharge,
+                'reschedule_charge_status' => $rescheduleCharge,
+                'address' => $request->address,
+                'area' => $request->area,
+                'created_by' => $this->userId,
+            ]);
+
+            return redirect(route('marchant.index'))->with('msg','Marchant Updated Successfully');
+        }
+        else
+        {
+            return redirect(route('marchant.edit',$request->marchantId))->with('error','This Email "'.$request->email.'" Already Exists');
+        }
     }
 
     public function delete(Request $request)
     {
+        $marchant = Marchant::find($request->marchantId);
+
+        Admin::where('id',$marchant->user_id)->delete();
+
     	Marchant::where('id',$request->marchantId)->delete();
     }
 

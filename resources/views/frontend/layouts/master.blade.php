@@ -21,8 +21,12 @@
 
 	{{-- website title --}}
 	<title>
-		{{ @$website_information->website_name }} 
-		@if(@$title) {{ @$website_information->prefix_title }} @endif {{ @$title }}
+		{{ @$website_information->website_name }}
+		
+		@if(@$title)
+			{{ @$website_information->prefix_title }}
+		@endif
+		{{ @$title }}
 	</title>
 
 	@include('frontend.element.header.header_asset')
@@ -31,17 +35,18 @@
 </head>
 
 	<body>
-		<div class="preloader">
-			<div class="spinner">
-				<div class="double-bounce1"></div>
-				<div class="double-bounce2"></div>
-			</div>
-		</div>
+		@include('frontend.element.preloader.preloader')
 
 		@include('frontend.element.header.header_top')
 		@include('frontend.element.header.header_menu')
 
+		@if (@$pageTitle)
+			@include('frontend.element.pageTitle.pageTitle')
+		@endif
+
 		@yield('content')
+
+		@include('frontend.element.clients.clients')
 
 		<!-- footer start-->
 		<footer id="footer" class="footer-main-block">

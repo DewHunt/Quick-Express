@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Warehouse;
 use App\Admin;
 use App\UserRoles;
+use App\HelperClass;
 
 class WarehouseController extends Controller
 {
@@ -36,26 +37,35 @@ class WarehouseController extends Controller
     {
     	// dd($request->all());
 
-        $user = Admin::create( [           
-            'role' => '11',     
-            'name' => $request->name,           
-            'username' => $request->username,          
-            'email' => $request->email,           
-            'password' => bcrypt($request->password),                      
-        ]);
+        $isEmailExists = HelperClass::checkEmail('admins','email',null,$request->email);
 
-        Warehouse::create([
-            'user_id' => $user->id ,
-            'user_role_id' => '11',
-            'name' => $request->name,
-            'contact_person' => $request->contactPerson,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'address' => $request->address,
-            'created_by' => $this->userId,
-        ]);
+        if ($isEmailExists == null)
+        {
+            $user = Admin::create( [           
+                'role' => '11',     
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'username' => $request->username,          
+                'email' => $request->email,           
+                'password' => bcrypt($request->password),                      
+            ]);
 
-        return redirect(route('warehouse.index'))->with('msg','Warehouse Added Successfully');
+            Warehouse::create([
+                'user_id' => $user->id ,
+                'user_role_id' => '11',
+                'name' => $request->name,
+                'contact_person' => $request->contactPerson,
+                'email' => $request->email,
+                'address' => $request->address,
+                'created_by' => $this->userId,
+            ]);
+
+            return redirect(route('warehouse.index'))->with('msg','Warehouse Added Successfully');
+        }
+        else
+        {
+            return redirect(route('warehouse.add'))->with('error','This Email "'.$request->email.'" Already Exists');
+        }
     }
 
     public function edit($warehouseId)
@@ -80,29 +90,43 @@ class WarehouseController extends Controller
     	$warehouse = Warehouse::find($request->warehouseId);
         $user = Admin::find($request->userId);
 
-        $user->update([           
-            'role' => '11',     
-            'name' => $request->name,           
-            'username' => $request->username,          
-            'email' => $request->email,                     
-        ]);
+        $isEmailExists = HelperClass::checkEmail('admins','email',$request->userId,$request->email);
 
-        $warehouse->update([
-            'user_id' => $user->id ,
-            'user_role_id' => '11',
-            'name' => $request->name,
-            'contact_person' => $request->contactPerson,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'address' => $request->address,
-            'created_by' => $this->userId,
-        ]);
+        if ($isEmailExists == null)
+        {
+            $user->update([           
+                'role' => '11',     
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'username' => $request->username,          
+                'email' => $request->email,                     
+            ]);
 
-        return redirect(route('warehouse.index'))->with('msg','Agent Updated Successfully');
+            $warehouse->update([
+                'user_id' => $user->id ,
+                'user_role_id' => '11',
+                'name' => $request->name,
+                'contact_person' => $request->contactPerson,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'address' => $request->address,
+                'created_by' => $this->userId,
+            ]);
+
+            return redirect(route('warehouse.index'))->with('msg','Agent Updated Successfully');
+        }
+        else
+        {
+            return redirect(route('warehouse.edit',$request->warehouseId))->with('error','This Email "'.$request->email.'" Already Exists');
+        }
     }
 
     public function delete(Request $request)
     {
+        $warehouse = Warehouse::find($request->warehouseId);
+
+        Admin::where('id',$warehouse->user_id)->delete();
+
     	Warehouse::where('id',$request->warehouseId)->delete();
     }
 

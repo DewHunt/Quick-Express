@@ -11,6 +11,7 @@ use DB;
 use App\Admin;
 use App\Marchant;
 use App\WebsiteInformation;
+use App\AreaSetup;
 
 class MerchantAuthController extends Controller
 {   public function __construct()
@@ -19,7 +20,11 @@ class MerchantAuthController extends Controller
     }
 
     public function registration(){
+        // dd(request()->all());
         $title = 'Create Merchant Account';
+
+        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
+
         if(count(request()->all()) > 0){
             $this->validate(request(), [
                 'name' => ['required', 'string', 'max:255'],
@@ -30,7 +35,7 @@ class MerchantAuthController extends Controller
 
                 'contact_person_email' => ['nullable', 'string', 'email', 'max:255', 'unique:tbl_marchants'],
 
-                'trade_licence_no' => ['required', 'string', 'max:255', 'unique:tbl_marchants'],
+                // 'trade_licence_no' => ['required', 'string', 'max:255', 'unique:tbl_marchants'],
 
                 'password' => ['required', 'string', 'min:6', 'same:confirm_password'],
 
@@ -41,7 +46,10 @@ class MerchantAuthController extends Controller
                 $random_code = rand(10000000000000,99999999999999);
                 $verification_code = $random_code.base64_encode(request()->contact_person_email);
                 $username = str_replace(' ', '_', request()->name);
-                $existAdmin = Admin::where('email',request()->contact_person_email)->first();
+                $existAdmin = Admin::where('email',request()->contact_person_email)
+                    ->orWhere('phone',request()->contact_person_phone)
+                    ->first();
+                // dd($existAdmin);
                 if(!@$existAdmin){
                     $admin = Admin::create( [           
                         'role' => '12',     
@@ -58,6 +66,7 @@ class MerchantAuthController extends Controller
                 $merchant = Marchant::create([
                     'user_id' => $admin->id ,
                     'user_role_id' => $admin->role,
+                    'area' => request()->area,
                     'name' => request()->name,
                     'contact_person_name' => request()->contact_person_name,
                     'contact_person_phone' => request()->contact_person_phone,
@@ -112,7 +121,6 @@ class MerchantAuthController extends Controller
                     'address' => request()->address,        
                     'password' => bcrypt(request()->password),
                     'status'=>'0'
-
                 ]);
 
                 if(@$merchant){
@@ -120,7 +128,7 @@ class MerchantAuthController extends Controller
                 }
             }
         }
-       return view('frontend.merchant.auth.registration')->with(compact('title')); 
+       return view('frontend.merchant.auth.registration')->with(compact('title','area_list')); 
     }
 
     public function completeRegistration(){

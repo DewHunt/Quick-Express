@@ -87,6 +87,10 @@
 
                                 <div class="card-footer" style="background: #c7bdbd;">
                                     <div style="text-align: right;">
+                                        <button class="btn btn-outline-dark btn-sm" onclick="returnDelivery({{ $pendingDelivery->id }})" id="btnReturnStatus" {{ $pendingDelivery->reschedule_status == 1 ? "disabled" : "" }}>Return</button>
+
+                                        <button class="btn btn-outline-dark btn-sm" onclick="showModal({{ $pendingDelivery->id }});" {{$pendingDelivery->return_status == 1 ? "disabled" : "" }}>Re-Schedule</button>
+
                                         <button class="btn btn-outline-dark btn-sm" onclick="approveCollection({{ $pendingDelivery->id }})" id="btnStatus">Approve</button>
 
                                         <a class="btn btn-outline-dark btn-sm" href="{{ route('goodsDelivery.view',$pendingDelivery->id) }}">
@@ -97,6 +101,36 @@
                             </div>
                         </div>
                     @endforeach
+
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title" style="font-weight: bold;">Re-Schedule Date</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {{-- <label for="date">Date</label> --}}
+                                            <div class="form-group">
+                                                <input  type="text" class="form-control add_datepicker" id="date" name="date" placeholder="Select Re-Schedule Date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button class="btn btn-outline-success btn-sm" id="rescheduleSaveBtn">Re-Schedule Save</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -194,6 +228,12 @@
             })
         });
 
+        function showModal(bookingOrderId)
+        {
+            $("#rescheduleSaveBtn").attr("onclick","rescheduleDelivery("+bookingOrderId+")");
+            $('#myModal').modal('show');
+        }
+
         function approveCollection(bookedOrderId)
         {
             $.ajax({
@@ -203,6 +243,75 @@
                 type:'post',
                 url:'{{ route('goodsDelivery.approveOrRefuseDelivery') }}',
                 data:{bookedOrderId:bookedOrderId},
+                success: function(response) {
+                    swal({
+                        title: "<small class='text-success'>Success!</small>", 
+                        type: "success",
+                        text: "Collection "+response.msg+" Successfully!",
+                        timer: 1000,
+                        html: true,
+                    });
+                    setTimeout(function(){  // wait for 1 secs(2)
+                        location.reload(true); // then reload the page.(3)
+                    }, 1000)
+                },
+                error: function(response) {
+                    error = "Failed.";
+                    swal({
+                        title: "<small class='text-danger'>Error!</small>", 
+                        type: "error",
+                        text: error,
+                        timer: 2000,
+                        html: true,
+                    });
+                }
+            });
+        }
+
+        function returnDelivery(bookedOrderId)
+        {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('goodsDelivery.returnDelivery') }}',
+                data:{bookedOrderId:bookedOrderId},
+                success: function(response) {
+                    swal({
+                        title: "<small class='text-success'>Success!</small>", 
+                        type: "success",
+                        text: "Collection "+response.msg+" Successfully!",
+                        timer: 1000,
+                        html: true,
+                    });
+                    setTimeout(function(){  // wait for 1 secs(2)
+                        location.reload(true); // then reload the page.(3)
+                    }, 1000)
+                },
+                error: function(response) {
+                    error = "Failed.";
+                    swal({
+                        title: "<small class='text-danger'>Error!</small>", 
+                        type: "error",
+                        text: error,
+                        timer: 2000,
+                        html: true,
+                    });
+                }
+            });
+        }
+
+        function rescheduleDelivery(bookedOrderId)
+        {
+            var date = $('#date').val();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('goodsDelivery.rescheduleDelivery') }}',
+                data:{bookedOrderId:bookedOrderId,date:date},
                 success: function(response) {
                     swal({
                         title: "<small class='text-success'>Success!</small>", 

@@ -41,12 +41,24 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label for="charge">Charge</label>
                 <div class="form-group {{ $errors->has('charge') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Delivery Charge" id="charge" name="charge" value="0" required>
                     @if ($errors->has('charge'))
                         @foreach($errors->get('charge') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label for="charge-per-kg">Charge Per Kg</label>
+                <div class="form-group {{ $errors->has('chargePerUom') ? ' has-danger' : '' }}">
+                    <input type="number" class="form-control" placeholder="Delivery Charge Per Kg" id="charge" name="chargePerUom" value="0" required>
+                    @if ($errors->has('chargePerUom'))
+                        @foreach($errors->get('chargePerUom') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
                         @endforeach
                     @endif

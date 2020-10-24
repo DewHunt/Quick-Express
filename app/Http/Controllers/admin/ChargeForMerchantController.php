@@ -41,16 +41,26 @@ class ChargeForMerchantController extends Controller
     {
     	// dd($request->all());
 
-        ChargeForMerchant::create([
-            'service_type_id' => $request->serviceTypeId,
-            'service_id' => $request->serviceId,
-            'merchant_id' => $request->merchant,
-            'name' => $request->chargeName,
-            'charge' => $request->charge,
-            'created_by' => $this->userId,
-        ]);
+        $countCharges = count($request->serviceTypeId);
 
-        return redirect(route('chargeForMerchant.add'))->with('msg',"Merchant's Charge Added Successfully");
+        if($request->serviceTypeId)
+        {
+            $postData = [];
+            for ($i=0; $i <$countCharges ; $i++) { 
+                $postData[] = [
+                    'service_type_id' => $request->serviceTypeId[$i],
+                    'service_id' => $request->serviceId[$i],
+                    'merchant_id' => $request->merchant,
+                    'name' => $request->chargeName[$i],
+                    'charge' => $request->charge[$i],
+                    'charge_per_uom' => $request->chargePerKg[$i],
+                    'created_by' => $this->userId,
+                ];
+            }                
+            ChargeForMerchant::insert($postData);
+        }
+
+        return redirect(route('chargeForMerchant.index'))->with('msg',"Merchant's Charge Added Successfully");
     }
 
     public function edit($chargeId)
@@ -80,10 +90,67 @@ class ChargeForMerchantController extends Controller
             'merchant_id' => $request->merchant,
             'name' => $request->chargeName,
             'charge' => $request->charge,
+            'charge_per_uom' => $request->chargePerKg,
             'updated_by' => $this->userId,
         ]);
 
         return redirect(route('chargeForMerchant.index'))->with('msg',"Merchant's Charge Updated Successfully");
+    }
+
+    public function getServiceInfo(Request $request)
+    {
+        $serviceType = '';
+        $serviceName = '';
+        $total = $request->total;
+
+        $serviceTypes = ServiceType::orderBy('name','asc')->get();
+        $services = Service::orderBy('name','asc')->get();
+
+        if ($serviceTypes)
+        {
+            $serviceType .= '<select class="form-control select2 serviceType" id="serviceType_'.$total.'" name="serviceTypeId[]" onchange="getChargeName('.$total.')" required>';
+            $serviceType .= '<option value="">Select A Service Type</option>';
+                foreach ($serviceTypes as $serviceTypeInfo)
+                {
+                    $serviceType .= '<option value="'.$serviceTypeInfo->id.'">'.$serviceTypeInfo->name.'</option>';
+                }
+            $serviceType .= '</select>';
+        }
+        else
+        {
+            $serviceType .= '<select class="form-control select2 serviceType" id="serviceType_'.$total.'" name="serviceTypeId[]" onchange="getChargeName('.$total.')" required>';
+                $serviceType .= '<option value="">Select A Service Type</option>';
+            $serviceType .= '</select>';
+        }
+        
+
+        if ($services)
+        {
+            $serviceName .= '<select class="form-control select2 service" id="service_'.$total.'" name="serviceId[]" onchange="getChargeName('.$total.')" required>';
+            $serviceName .= '<option value="">Select A Service Name</option>';
+                foreach ($services as $service)
+                {
+                    $serviceName .= '<option value="'.$service->id.'">'.$service->name.'</option>';
+                }
+            $serviceName .= '</select>';
+        }
+        else
+        {
+            $serviceName .= '<select class="form-control select2 service" id="service_'.$total.'" name="serviceId[]" onchange="getChargeName('.$total.')" required>';
+                $serviceName .= '<option value="">Select A Service Name</option>';
+            $serviceName .= '</select>';
+        }
+
+        // echo $output;
+        
+        if($request->ajax())
+        {
+            return response()->json([
+                'serviceType' => $serviceType,
+                'serviceName' => $serviceName
+            ]);
+        }
+        
     }
 
     public function delete(Request $request)

@@ -45,6 +45,9 @@
 	<!-- This is data table -->
 	<script src="{{ asset('/public/admin-elite/assets/node_modules/datatables/jquery.dataTables.min.js') }}"></script>
 
+	{{-- Page Plugins --}}
+	<script src="{{ asset('public/admin-elite/assets/node_modules/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+
 
 	<!-- end JS -->
 	@yield('custom_js')
@@ -64,6 +67,7 @@
 
 	<script type="text/javascript">
 		$(".chosen-select").chosen({search_contains: true});
+		$('.select2').select2();
 	</script>
 
 	<script>

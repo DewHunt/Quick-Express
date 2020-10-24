@@ -19,7 +19,7 @@
                         <th style="font-weight: bold; vertical-align: middle;" width="100px">Client Type</th>
                         <th style="font-weight: bold; vertical-align: middle;">Client Name</th>
                         <th style="font-weight: bold; vertical-align: middle;" width="130px">Total COD Amount</th>
-                        <th style="font-weight: bold; vertical-align: middle;" width="150px">Total Delivery Charge</th>
+                        <th style="font-weight: bold; vertical-align: middle;" width="150px">Total Charge</th>
                         <th style="font-weight: bold; vertical-align: middle;" width="60px">Status</th>
                         <th style="font-weight: bold; vertical-align: middle;" width="70px">Action</th>
                     </tr>

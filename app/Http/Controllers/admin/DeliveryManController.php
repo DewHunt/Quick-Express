@@ -40,7 +40,8 @@ class DeliveryManController extends Controller
 
         $user = Admin::create( [           
             'role' => '14',     
-            'name' => $request->name,           
+            'name' => $request->name,
+            'phone' => $request->phone,
             'username' => $request->username,          
             'email' => $request->email,           
             'password' => bcrypt($request->password),                      
@@ -109,7 +110,8 @@ class DeliveryManController extends Controller
 
         $user->update([           
             'role' => '14',     
-            'name' => $request->name,           
+            'name' => $request->name,
+            'phone' => $request->phone,
             'username' => $request->username,          
             'email' => $request->email,                     
         ]);
@@ -160,6 +162,10 @@ class DeliveryManController extends Controller
 
     public function delete(Request $request)
     {
+        $deliveryMan = DeliveryMan::find($request->deliveryManId);
+
+        Admin::where('id',$deliveryMan->user_id)->delete();
+
     	DeliveryMan::where('id',$request->deliveryManId)->delete();
     }
 

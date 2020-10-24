@@ -66,7 +66,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="total-delivery-charge">Total Delivery Charge</label>
+                                        <label for="total-delivery-charge">Total Charge</label>
                                         <div class="form-group {{ $errors->has('totalDeliveryCharge') ? ' has-danger' : '' }}">
                                             <input type="text" class="form-control" id="totalDeliveryCharge" name="totalDeliveryCharge" value="0" required readonly />
                                             @if ($errors->has('totalDeliveryCharge'))
@@ -204,10 +204,10 @@
 
                 $("#selectedOrders").append(
                     '<div class="block" id="block_'+bookingOrderId+'">'+
-                    '<input type="text" name="orderNo[]" value="'+orderNo+'">'+
-                    '<input type="text" name="codAmount[]" value="'+codAmount+'">'+
-                    '<input type="text" name="deliveryCharge[]" value="'+deliveryCharge+'">'+
-                    '<input type="text" name="orderId[]" value="'+bookingOrderId+'">'+
+                    '<input type="hidden" name="orderNo[]" value="'+orderNo+'">'+
+                    '<input type="hidden" name="codAmount[]" value="'+codAmount+'">'+
+                    '<input type="hidden" name="deliveryCharge[]" value="'+deliveryCharge+'">'+
+                    '<input type="hidden" name="orderId[]" value="'+bookingOrderId+'">'+
                     '</div>'
                 );
             }

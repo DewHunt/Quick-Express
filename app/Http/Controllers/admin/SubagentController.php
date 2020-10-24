@@ -9,6 +9,7 @@ use App\Subagent;
 use App\Agent;
 use App\Admin;
 use App\UserRoles;
+use App\HelperClass;
 
 class SubagentController extends Controller
 {
@@ -42,28 +43,37 @@ class SubagentController extends Controller
     {
     	// dd($request->all());
 
-        $user = Admin::create( [           
-            'role' => '10',     
-            'name' => $request->name,           
-            'username' => $request->username,          
-            'email' => $request->email,           
-            'password' => bcrypt($request->password),                      
-        ]);
+        $isEmailExists = HelperClass::checkEmail('admins','email',$request->userId,$request->email);
 
-        Subagent::create([
-            'user_id' => $user->id ,
-            'user_role_id' => '10',
-            'agent_id' => $request->agentId,
-            'name' => $request->name,
-            'contact_person' => $request->contactPerson,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'nid' => $request->nid,
-            'address' => $request->address,
-            'created_by' => $this->userId,
-        ]);
+        if ($isEmailExists == null)
+        {
+            $user = Admin::create( [           
+                'role' => '10',     
+                'name' => $request->name,           
+                'username' => $request->username,          
+                'email' => $request->email,           
+                'password' => bcrypt($request->password),                      
+            ]);
 
-        return redirect(route('subagent.index'))->with('msg','SUbagent Added Successfully');
+            Subagent::create([
+                'user_id' => $user->id ,
+                'user_role_id' => '10',
+                'agent_id' => $request->agentId,
+                'name' => $request->name,
+                'contact_person' => $request->contactPerson,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'nid' => $request->nid,
+                'address' => $request->address,
+                'created_by' => $this->userId,
+            ]);
+
+            return redirect(route('subagent.index'))->with('msg','SUbagent Added Successfully');
+        }
+        else
+        {
+            return redirect(route('subagent.add'))->with('error','This Email "'.$request->email.'" Already Exists');
+        }
     }
 
     public function edit($subagentId)
@@ -87,32 +97,46 @@ class SubagentController extends Controller
     {
     	// dd($request->all());
 
-    	$subagent = Subagent::find($request->subagentId);
-        $user = Admin::find($request->userId);
+        $isEmailExists = HelperClass::checkEmail('admins','email',$request->userId,$request->email);
 
-        $user->update([           
-            'role' => '10',     
-            'name' => $request->name,           
-            'username' => $request->username,          
-            'email' => $request->email,                     
-        ]);
+        if ($isEmailExists == null)
+        {
+            $subagent = Subagent::find($request->subagentId);
+            $user = Admin::find($request->userId);
 
-        $subagent->update([
-            'agent_id' => $request->agentId,
-            'name' => $request->name,
-            'contact_person' => $request->contactPerson,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'nid' => $request->nid,
-            'address' => $request->address,
-            'updated_by' => $this->userId,
-        ]);
+            $user->update([           
+                'role' => '10',     
+                'name' => $request->name,           
+                'username' => $request->username,          
+                'email' => $request->email,                     
+            ]);
 
-        return redirect(route('subagent.index'))->with('msg','Subagent Updated Successfully');
+            $subagent->update([
+                'agent_id' => $request->agentId,
+                'name' => $request->name,
+                'contact_person' => $request->contactPerson,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'nid' => $request->nid,
+                'address' => $request->address,
+                'updated_by' => $this->userId,
+            ]);
+
+            return redirect(route('subagent.index'))->with('msg','Subagent Updated Successfully');
+        }
+        else
+        {
+            return redirect(route('subagent.edit',$request->subagentId))->with('error','This Email "'.$request->email.'" Already Exists');
+        }
+
     }
 
     public function delete(Request $request)
     {
+        $subagent = Subagent::find($request->subagentId);
+
+        Admin::where('id',$subagent->user_id)->delete();
+
     	Subagent::where('id',$request->subagentId)->delete();
     }
 

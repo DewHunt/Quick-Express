@@ -84,7 +84,7 @@ class PostController extends Controller
         $post = Post::where('id',$postId)->first();
         $page = Page::where('id',$post->page_id)->first();
 
-        $title = "Edit Post ( ".$page->page_name." >>> ".$post->post_name." )";
+        $title = "Edit Post ( ".$page->page_name." - ".$post->post_name." )";
         $formLink = "post.update";
         $buttonName = "Update";
 

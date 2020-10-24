@@ -11,9 +11,9 @@ class ServiceController extends Controller
 {
     public function index()
     {
-    	$title = "Courier Type Setup";
+    	$title = "Service Setup";
 
-    	$services = Service::orderBy('name','asc')->get();
+    	$services = Service::orderBy('order_by','asc')->get();
 
     	return view('admin.service.index')->with(compact('title','services'));
     }
@@ -34,6 +34,8 @@ class ServiceController extends Controller
         Service::create([
             'name' => $request->name,
             'description' => $request->description,
+            'weighing_scale' => $request->weighingScale,
+            'upto' => $request->upto,
             'order_by' => $request->orderBy,
             'created_by' => $this->userId,
         ]);
@@ -61,6 +63,8 @@ class ServiceController extends Controller
         $service->update([
             'name' => $request->name,
             'description' => $request->description,
+            'weighing_scale' => $request->weighingScale,
+            'upto' => $request->upto,
             'order_by' => $request->orderBy,
             'created_by' => $this->userId,
         ]);

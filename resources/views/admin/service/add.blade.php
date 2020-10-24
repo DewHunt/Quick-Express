@@ -15,7 +15,36 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-2">
+                <label for="weighing-scale">Weighing Scale</label>
+                <div class="form-group ">
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="radio" value="1" class="weighingScale" name="weighingScale" required=""> Yes
+                        </label>
+                    </div>
+
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="radio" value="0" class="weighingScale" name="weighingScale" checked> No
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <label for="upto">Upto</label>
+                <div class="form-group {{ $errors->has('upto') ? ' has-danger' : '' }}">
+                    <input type="number" min="0" class="form-control" placeholder="Upto Weight" id="upto" name="upto" value="0" readonly>
+                    @if ($errors->has('upto'))
+                        @foreach($errors->get('upto') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-2">
                 <label for="order-by">Order By</label>
                 <div class="form-group {{ $errors->has('orderBy') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Order By" name="orderBy" value="{{ old('orderBy') }}">
@@ -42,4 +71,22 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('custom-js')
+    <script type="text/javascript">
+        $('.weighingScale').click(function(event) {
+            var weighingScale = $("input[name='weighingScale']:checked").val();
+
+            if(weighingScale == 1)
+            {
+                $("#upto").prop('readonly',false);
+            }
+            else
+            {
+                $("#upto").val(0);
+                $("#upto").prop('readonly',true);
+            }
+        })
+    </script>
 @endsection

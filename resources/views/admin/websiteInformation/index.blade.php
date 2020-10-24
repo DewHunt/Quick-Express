@@ -90,6 +90,12 @@
                         <td>{{ $websiteInformation->phone_three }}</td>
                     </tr>
 
+                    <tr>
+                        <td class="head_name">Address</td>
+                        <td class="head_colon">:</td>
+                        <td>{{ $websiteInformation->address }}</td>
+                    </tr>
+
                 	<tr>
                 		<td class="head_name">Developed By</td>
                 		<td class="head_colon">:</td>

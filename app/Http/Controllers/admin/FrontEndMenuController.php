@@ -24,6 +24,7 @@ class FrontEndMenuController extends Controller
             ->join('tbl_frontend_menu as tab2','tab2.id','=','tab1.parent_menu')
             ->union($nullMenus)
             ->orderBy('parentName','asc')
+            ->orderBy('order_by','asc')
             ->orderBy('menu_name','asc')
             ->get();
 

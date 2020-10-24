@@ -58,7 +58,7 @@
                             <div class="col-md-6">
                                 <label for="payment-date">Payment Date</label>
                                 <div class="form-group">
-                                    <input  type="text" class="form-control add_datepicker" id="paymentDate" name="paymentDate" placeholder="Select Payment Date" value="{{ $deliveryManPayment->date == "" ? "--- " : date('Y-m-d',strtotime($deliveryManPayment->bookingDate)) }}" readonly>
+                                    <input  type="text" class="form-control add_datepicker" id="paymentDate" name="paymentDate" placeholder="Select Payment Date" value="{{ $deliveryManPayment->date == "" ? "--- " : date('Y-m-d',strtotime($deliveryManPayment->date)) }}" readonly>
                                 </div>
                             </div>
 

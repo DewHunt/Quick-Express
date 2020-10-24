@@ -15,7 +15,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $title = "Menu Action";
+        $title = "Pages";
 
         $pages = Page::select('tbl_pages.*','tbl_frontend_menu.menu_name as menuName')
         	->leftJoin('tbl_frontend_menu','tbl_frontend_menu.id','=','tbl_pages.frontend_menu_id')

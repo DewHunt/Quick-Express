@@ -18,7 +18,8 @@
                         <th width="250px">Name</th>
                         <th width="80px">Image</th>
                         <th width="100px">Phone</th>
-                        <th>Address</th>
+                        <th width="200px">Address</th>
+                        <th>Areas</th>
                         <th width="20px">Status</th>
                         <th width="80px">Action</th>
                     </tr>
@@ -34,6 +35,27 @@
                             <td align="center"><img src="{{ asset($deliveryMan->image) }}" width="80px" height="80px"></td>
                             <td>{{ $deliveryMan->phone }}</td>
                             <td>{{ $deliveryMan->address }}</td>
+                            @php
+                                if ($deliveryMan->area_id)
+                                {
+                                    $areasId = explode(',',$deliveryMan->area_id);
+                                    $areas = DB::table('tbl_area')->whereIn('id',$areasId)->get();
+                                }
+                                else
+                                {
+                                    $areas = [];
+                                }
+                            
+                                $areaArray = [];
+                                foreach ($areas as $area)
+                                {
+                                    array_push($areaArray, $area->name);
+                                }
+
+                                $areaName = implode(', ', $areaArray);
+                            @endphp
+
+                            <td>{{ $areaName }}</td>
                 			<td>
                                 @php
                                     echo \App\Link::status($deliveryMan->id,$deliveryMan->status);

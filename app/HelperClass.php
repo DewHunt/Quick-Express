@@ -8,7 +8,6 @@ use DB;
 
 class HelperClass
 {
-
     // public static function changeStatus($tableName,$id)
     // {
     //     $changeStatus = db::table($tableName)->find($id);
@@ -187,5 +186,12 @@ class HelperClass
             }
         }
        return $rettxt;            
+    }
+
+    public static function checkEmail($tableName,$fieldName,$id,$email)
+    {
+        $isEmailExists = DB::table($tableName)->where($fieldName,$email)->where('id','<>',$id)->first();
+
+        return $isEmailExists;
     }
 }

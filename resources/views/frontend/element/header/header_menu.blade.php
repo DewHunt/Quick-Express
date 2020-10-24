@@ -18,39 +18,35 @@
 					<div class="navigation text-white">
 						<div id="cssmenu">
 							<ul>
-								<li class="active">
-									<a href="{{ url('/') }}" title="Home">Home</a>
-								</li>
+								@php
+									$menus = DB::table('tbl_frontend_menu')
+										->where('parent_menu','=',null)
+										->orderby('order_by','asc')
+										->get();
+								@endphp
+								@foreach ($menus as $menu)
+									@php
+										$subMenus = DB::table('tbl_frontend_menu')
+											->where('parent_menu','=',$menu->id)
+											->orderby('order_by','asc')
+											->get()
+									@endphp
 
-								<li class="">
-									<a href="{{ url('/') }}" title="Home">About Us</a>
-								</li>
-
-								<li class="">
-									<a href="{{ url('/') }}" title="Home">Our Branch</a>
-								</li>
-
-								<li class="">
-									<a href="{{ url('/') }}" title="Home">Support</a>
-								</li>
-
-								{{-- <li class="active">
-									<a href="{{ url('/') }}" title="Home">Carrer</a>
-								</li>
-
-								<li class="active">
-									<a href="{{ url('/') }}" title="Home">Media</a>
-								</li> --}}
-
-								<li class="">
-									<a href="{{ url('/') }}" title="Home">Our Service</a>
-								</li>
-								
-								{{-- <li><a href="#" title="blog">Blog +</a>
-									<ul>
-										<li><a href="blog.html" title="Blog">Blog</a></li>
-									</ul>
-								</li> --}}
+									@if (count($subMenus) > 0)
+										<li>
+											<a href="#">{{ $menu->menu_name }} +</a>
+											<ul>
+												@foreach ($subMenus as $subMenu)
+													<li><a href="{{ route($subMenu->menu_link) }}">{{ $subMenu->menu_name }}</a></li>
+												@endforeach
+											</ul>
+										</li>
+									@else
+										<li {{-- class="active" --}}>
+											<a href="{{ route($menu->menu_link) }}">{{ $menu->menu_name }}</a>
+										</li>	
+									@endif							
+								@endforeach
 							</ul>
 						</div>
 					</div>
@@ -66,8 +62,7 @@
 								</li>
 								
 							</form>
-						</ul>
-						
+						</ul>						
 					</div>
 				</div>
 			</div>

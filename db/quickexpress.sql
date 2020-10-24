@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2020 at 01:10 PM
+-- Generation Time: Oct 24, 2020 at 05:55 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -48,23 +48,18 @@ CREATE TABLE `admins` (
 INSERT INTO `admins` (`id`, `name`, `phone`, `email`, `username`, `role`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (4, 'Admin', NULL, 'admin@gmail.com', 'Admin', 2, '$2y$10$KSdee7hzr.8uJB89YOyV7eKvQG6uXyD45P0Fpf.FNHv9q46VCXM0i', 1, 'HftBsS0WaFhNaeki9GEnbTOdo99h14G9dS1WtBq9AJJkzUuSyNKsUxMufhEx', '2019-04-17 01:04:35', '2020-01-20 13:33:35'),
 (7, 'Jisan Ahmed', NULL, 'jisanahmed06@gmail.com', 'jisan', 3, '$2y$10$KSdee7hzr.8uJB89YOyV7eKvQG6uXyD45P0Fpf.FNHv9q46VCXM0i', 1, NULL, '2019-08-30 21:43:55', '2019-11-26 22:25:40'),
-(16, 'Selim Furniture', NULL, 'selimfurniture@gmail.com', 'selim', 12, '$2y$10$rIXkct985vyFfJdVrbLV..vGyQnULxPDgcpHgTUfpoTTKCiMuBhKC', 1, NULL, '2020-06-11 11:59:36', '2020-06-18 00:16:22'),
-(22, 'Delivery Man Shihab', NULL, 'shihab@gmail.com', 'shihab', 14, '$2y$10$d9.4GV4FeUKYdY9V2npCJ.cO7aNwzVpZ8hBWfuFBM/4cvnzLiIUkq', 1, NULL, '2020-06-22 03:42:33', '2020-06-23 00:54:46'),
-(23, 'Delivery Man Dhiman', NULL, 'dhiman@gmail.com', 'dhiman', 14, '$2y$10$AK0r/RqFXeNhSbqERqj7oOL/lcl2Ru9WPcO3FpRnWJsb.EfZ0qY6u', 1, NULL, '2020-06-22 04:20:40', '2020-07-04 01:37:27'),
-(24, 'Agent One', NULL, 'agentone@gmail.com', 'agentone', 8, '$2y$10$KSdee7hzr.8uJB89YOyV7eKvQG6uXyD45P0Fpf.FNHv9q46VCXM0i', 1, NULL, '2020-07-04 01:41:03', '2020-07-04 02:53:25'),
-(25, 'Agent Two', NULL, 'agenttwo@gmail.com', 'agenttwo', 8, '$2y$10$RCPWgRTIKhwF1ZOpI/qkp.QbDCW.gOlfX8P/cAlDcZjGeGYfaxC/a', 1, NULL, '2020-07-04 01:42:03', '2020-07-04 02:53:27'),
-(26, 'Subagnet One', NULL, 'subagentone@gmail.com', 'subagentone', 10, '$2y$10$mbAwEnXiPJSQzPNu5.FQTOwfLfkEXHBcsqk9VikUpKo5KxpRLU0gK', 1, NULL, '2020-07-04 01:43:22', '2020-07-04 03:05:45'),
-(27, 'Subagent Two', NULL, 'subagenttwo@gmail.com', 'Subagenttwo', 10, '$2y$10$RTQRzctr0/sN3TFb9h3vu.wRwp/9qtDIh3bZvmOAMuJ/eCPuPtvhS', 1, NULL, '2020-07-04 01:44:46', '2020-07-04 03:05:46'),
-(28, 'Subagent Three', NULL, 'subagentthree@gmail.com', 'SubagentThree', 10, '$2y$10$RE3PwoBhilgpXQBHjq/i5eJP0qEqPCdjY84p8OP/vNPRjg460ieai', 1, NULL, '2020-07-04 01:45:41', '2020-07-04 03:05:48'),
-(29, 'Dhaka South', NULL, 'dhakasouth@gmail.com', 'Dhaka South', 11, '$2y$10$wkDZD1UNsK1nIfCMoqJDpOhhqKaldP3jzLKcIXpR4SFJj3IpMq/Gu', 1, NULL, '2020-07-04 01:47:38', '2020-07-04 03:05:50'),
-(30, 'Dhaka North', NULL, 'dhakanorth@gmail.com', 'Dhaka North', 11, '$2y$10$uAjLoNdVTF8jqa153SLTveU/S1WlUfvtxzeU5Zx322kEw3VJY.lp.', 1, NULL, '2020-07-04 01:48:21', '2020-07-04 03:05:55'),
-(31, 'Mymensing Warehouse', NULL, 'mymensingwarehoue@gmail.com', 'Mymensing Warehouse', 11, '$2y$10$yjTrYKxJycm8iA/h4Jxyf.dCKN6UzutpgDMgJogmInpqicSAUcFAu', 1, NULL, '2020-07-04 01:49:39', '2020-07-04 03:05:57'),
-(42, 'Korim', '01324349417', NULL, NULL, 12, '$2y$10$s63rQL0uEYnwfWTcw.CVxux9SuIycMGQqt5LHgyWSHWnwmqHHHSLK', 1, NULL, '2020-07-09 07:39:32', '2020-07-09 07:39:32'),
-(43, 'Alif', '01857629384', NULL, NULL, 12, '$2y$10$ZlzzKNgBLd/T7zGcXEEDDu95Mt95BOg6DKYCQ.UY8MP8kCfJGHIGy', 1, NULL, '2020-07-11 06:59:58', '2020-07-11 06:59:58'),
-(44, 'Agent Three', NULL, 'miltonkhan@gmail.com', NULL, 8, '$2y$10$48F6w.gSpzqYRVoMhb6npu3HVgBZQre1COIE58DhWgesNa2w5.3va', 1, NULL, '2020-07-16 02:39:10', '2020-07-16 02:39:10'),
-(48, 'Subagent Four', NULL, 'milon@gmail.com', NULL, 10, '$2y$10$PbgXhzjETeeiMe8ASML0Au/BHlyQ5Bym/PyBqRrxdu6vrazVISpfi', 1, NULL, '2020-07-16 03:19:35', '2020-07-16 03:19:35'),
-(49, 'Habib', '01717298365', 'Habib365@gmail.com', 'Habib', 14, '$2y$10$XoJtpvhm4G3f0h1w429guutuiMmS1Jlu6BPcyfqLBkyXkXR05y0AG', 1, NULL, '2020-07-23 06:34:07', '2020-07-23 06:34:07'),
-(50, 'Labiba', '01919263594', 'Labiba594@gmail.com', 'Labiba', 14, '$2y$10$mRX6cNLtXCkCcPg6iOyevu5ivLy/F.QmFaqAD0zlvKoLbXVDFUdX.', 1, NULL, '2020-07-23 06:35:50', '2020-07-23 06:35:50');
+(30, 'Dhaka Central Warehouse', '01612742150', 'dhakacentral@quickexpress.com.bd', NULL, 11, '$2y$10$6oDOraHJJiqdDdkhKgBP7eZn0K0DlxGhh2LVLaCbtJrXD/y8RHRvS', 1, NULL, '2020-07-03 19:48:21', '2020-08-15 17:22:43'),
+(53, 'Dew Hunt', '01317243494', 'dew.fog1553@gmail.com', NULL, 14, '$2y$10$EW.MaumpvLEKiEFj1VNrPOUYyic3KV/7GGwfW8UO/cs0FRgIAA3D2', 1, NULL, '2020-07-06 15:52:48', '2020-08-17 15:21:13'),
+(56, 'Badda', '01713900802', 'agent_badda@gmail.com', NULL, 8, '$2y$10$wdmwPD9LZ9XD3UP/aNCFzebuRumTO/hBDptsUcFJnZovkPwK299hq', 1, NULL, '2020-07-13 22:07:25', '2020-08-15 17:20:34'),
+(58, 'Mirpur', '01713900800', 'agent_mirpur@gmail.com', NULL, 8, '$2y$10$kt3rL4.MyUnmZ8RWjN2Tg.VeFbmWBJ5vUze62dJkFIjdl3lQnh/mW', 1, NULL, '2020-07-25 17:57:06', '2020-08-15 17:20:08'),
+(60, 'Dhamondi', '01713900803', 'agent_dhanmondi@gmail.com', NULL, 8, '$2y$10$3qNWFKE9t0ZPY9t.Ws1rDu0IC0uYgjWJnV.Y2PLBMVU0dRxV.mOfO', 1, NULL, '2020-08-11 15:55:51', '2020-08-15 17:20:18'),
+(61, 'Uttara', '01713900804', 'agent_uttara@gmail.com', NULL, 8, '$2y$10$sCcujks3b1mveildGTGvi.fwA3A9Uc3lds0./f0sc/wTAkr8aZqly', 1, NULL, '2020-08-11 15:56:58', '2020-08-15 17:19:40'),
+(62, 'Zatrabari', '01713900805', 'agent_zatrabari@gmail.com', NULL, 8, '$2y$10$F6EvVpJqTK7/.FXmaQuHnO9NVr1cPvhO4.IsPzTaXviEIWdV3217m', 1, NULL, '2020-08-11 15:57:39', '2020-08-15 17:19:21'),
+(72, 'Ripon', '01418253567', 'ripon@gmail.com', NULL, 14, '$2y$10$2faQ4wTso7JjVAfJF3SAXOQ.ckhTUDwC1UIAYPXYTUjxBpQMCgpOC', 1, NULL, '2020-08-24 00:18:56', '2020-08-24 00:18:56'),
+(73, 'Raihan', '01713900818', 'raihan@gmail.com', NULL, 14, '$2y$10$1PFmi8VvFwvUrOA4NIx9sOXZO6GrjmPfLRyxObYvmBuIp8zIGjhou', 1, NULL, '2020-08-24 00:20:05', '2020-08-24 00:20:05'),
+(82, 'Jatrabari', '01880208040', 'sojol@quickexpress.com.bd', NULL, 8, '$2y$10$3BuJ5e0X8Y8lqIvpIVgwau8hSrLSygF0OMj1y/aNyrTEWIJgUEJ3S', 1, NULL, '2020-09-30 20:28:04', '2020-09-30 20:28:04'),
+(84, 'Magical BD', '01712781700', 'magicalbd689@gmail.com', NULL, 12, '$2y$10$8iQA19JFpsZprt8m/uM1zO7xiwh9JpkO7lWd5aPzqGjoOpkMFKYKm', 1, NULL, '2020-09-30 20:35:34', '2020-09-30 20:35:34'),
+(87, 'Mamunur Rashid', NULL, 'alfattah@gmail.com', 'alfattah@gmail.com', 3, '$2y$10$4yRiBpOoufotSAcD5KUXzOV.bXde6RPmZpJikckQE1B7hcQtNX9OS', 1, NULL, '2020-10-24 02:07:20', '2020-10-24 02:07:20');
 
 -- --------------------------------------------------------
 
@@ -149,8 +144,8 @@ CREATE TABLE `tbl_account_transactions` (
 INSERT INTO `tbl_account_transactions` (`id`, `voucher_no`, `voucher_type`, `voucher_date`, `coa_id`, `coa_head_code`, `narration`, `debit_amount`, `credit_amount`, `posted`, `approve`, `approve_by`, `active`, `delete`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (98, 'CV-1000000002', 'CV', '2020-02-01', NULL, '10201', 'Previous  Month of April-2019 forward May 2019', '60154', '0', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:37:10', NULL, '2020-02-10 19:03:56'),
 (99, 'CV-1000000002', 'CV', '2020-02-01', NULL, '20105', 'Previous  Month of April-2019 forward May 2019', '0', '60154', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-02-10 19:03:56'),
-(100, 'CV-1000000001', 'CV', '2020-02-02', NULL, '10201', 'Cash Withdrew from Se. bank CQ No 4442932 dt: 30.04.19 for Fuel, vehicle maintenance with petty cash', '500000', '0', 'I', 1, 4, 1, 0, 1, 1, '2020-02-10 18:37:25', NULL, '2020-07-28 02:40:36'),
-(101, 'CV-1000000001', 'CV', '2020-02-02', NULL, '1020204', 'Cash Withdrew from Se. bank CQ No 4442932 dt: 30.04.19 for Fuel, vehicle maintenance with petty cash', '0', '500000', 'I', 1, 4, 1, 0, 1, 1, NULL, NULL, '2020-07-28 02:40:36'),
+(100, 'CV-1000000001', 'CV', '2020-02-02', NULL, '10201', 'Cash Withdrew from Se. bank CQ No 4442932 dt: 30.04.19 for Fuel, vehicle maintenance with petty cash', '500000', '0', 'I', 1, 4, 1, 0, 1, 1, '2020-02-10 18:37:25', NULL, '2020-09-03 00:14:58'),
+(101, 'CV-1000000001', 'CV', '2020-02-02', NULL, '1020204', 'Cash Withdrew from Se. bank CQ No 4442932 dt: 30.04.19 for Fuel, vehicle maintenance with petty cash', '0', '500000', 'I', 1, 4, 1, 0, 1, 1, NULL, NULL, '2020-09-03 00:14:58'),
 (102, 'DV-1000000001', 'DV', '2020-02-04', NULL, '10201', 'Fuel & Gas all  cars  Dhaka Metro: Jha:-12-0054, Dhaka Metro: Cha:-13-8171, Dhaka Metro: Jha:-12-0027, Dhaka Metro:Cha:-51-8023, Dhaka Metro:Cha:-53-2745', '0', '11756', 'I', 1, 1, 1, 0, 1, 1, '2020-02-10 18:37:55', NULL, '2020-07-28 01:36:20'),
 (103, 'DV-1000000001', 'DV', '2020-02-04', NULL, '4020201', 'Fuel & Gas all  cars  Dhaka Metro: Jha:-12-0054, Dhaka Metro: Cha:-13-8171, Dhaka Metro: Jha:-12-0027, Dhaka Metro:Cha:-51-8023, Dhaka Metro:Cha:-53-2745', '752', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-07-28 01:36:20'),
 (104, 'DV-1000000001', 'DV', '2020-02-04', NULL, '4020203', 'Fuel & Gas all  cars  Dhaka Metro: Jha:-12-0054, Dhaka Metro: Cha:-13-8171, Dhaka Metro: Jha:-12-0027, Dhaka Metro:Cha:-51-8023, Dhaka Metro:Cha:-53-2745', '650', '0', 'I', 1, 1, 1, 0, 1, 1, NULL, NULL, '2020-07-28 01:36:20'),
@@ -182,9 +177,9 @@ INSERT INTO `tbl_account_transactions` (`id`, `voucher_no`, `voucher_type`, `vou
 (166, 'DV-1000000001', 'DV', '2020-02-18', NULL, NULL, 'Accounts Payable, Admission Fee', '0', '400', 'I', 1, 5, 1, 0, 1, 5, '2020-02-18 01:16:55', 5, '2020-07-28 01:36:20'),
 (167, 'DV-1000000001', 'DV', '2020-02-18', NULL, '30101', 'Accounts Payable, Admission Fee', '200', '0', 'I', 1, 5, 1, 0, 1, 5, NULL, 5, '2020-07-28 01:36:20'),
 (168, 'DV-1000000001', 'DV', '2020-02-18', NULL, '20101', 'Accounts Payable, Admission Fee', '200', '0', 'I', 1, 5, 1, 0, 1, 5, NULL, 5, '2020-07-28 01:36:20'),
-(172, 'CV-1000000001', 'CV', '2020-02-18', NULL, '10201', 'Boishakhi Expense, Class Party', '500', '0', 'I', 1, 4, 1, 0, 1, 5, '2020-02-18 01:23:27', 5, '2020-07-28 02:40:36'),
-(173, 'CV-1000000001', 'CV', '2020-02-18', NULL, '40226', 'Boishakhi Expense, Class Party', '0', '250', 'I', 1, 4, 1, 0, 1, 5, NULL, 5, '2020-07-28 02:40:36'),
-(174, 'CV-1000000001', 'CV', '2020-02-18', NULL, '40230', 'Boishakhi Expense, Class Party', '0', '250', 'I', 1, 4, 1, 0, 1, 5, NULL, 5, '2020-07-28 02:40:36');
+(172, 'CV-1000000001', 'CV', '2020-02-18', NULL, '10201', 'Boishakhi Expense, Class Party', '500', '0', 'I', 1, 4, 1, 0, 1, 5, '2020-02-18 01:23:27', 5, '2020-09-03 00:14:58'),
+(173, 'CV-1000000001', 'CV', '2020-02-18', NULL, '40226', 'Boishakhi Expense, Class Party', '0', '250', 'I', 1, 4, 1, 0, 1, 5, NULL, 5, '2020-09-03 00:14:58'),
+(174, 'CV-1000000001', 'CV', '2020-02-18', NULL, '40230', 'Boishakhi Expense, Class Party', '0', '250', 'I', 1, 4, 1, 0, 1, 5, NULL, 5, '2020-09-03 00:14:58');
 
 -- --------------------------------------------------------
 
@@ -232,6 +227,7 @@ CREATE TABLE `tbl_agents` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `user_role_id` int(11) DEFAULT NULL,
+  `hub_id` int(11) DEFAULT NULL,
   `supporting_warehouse` int(11) DEFAULT NULL,
   `area` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -252,10 +248,9 @@ CREATE TABLE `tbl_agents` (
 -- Dumping data for table `tbl_agents`
 --
 
-INSERT INTO `tbl_agents` (`id`, `user_id`, `user_role_id`, `supporting_warehouse`, `area`, `name`, `contact_person`, `district`, `phone`, `email`, `nid`, `address`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(8, 24, 8, NULL, NULL, 'Agent One', NULL, 'Dhaka', '01317243494', 'agentone@gmail.com', '5098768831', 'Road - 12', 1, 4, '2020-07-04 01:41:03', NULL, '2020-07-04 01:41:03'),
-(9, 25, 8, NULL, NULL, 'Agent Two', NULL, 'Mymensing', '01317243494', 'agenttwo@gmail.com', '5389567031', 'Road - 12', 1, 4, '2020-07-04 01:42:04', NULL, '2020-07-04 01:42:04'),
-(10, 44, 8, 4, '1', 'Agent Three', 'Miton Khan', NULL, '01319543493', 'miltonkhan@gmail.com', '5389567031', 'Mirpur - 11', 1, 4, '2020-07-16 02:39:10', NULL, '2020-07-16 02:39:10');
+INSERT INTO `tbl_agents` (`id`, `user_id`, `user_role_id`, `hub_id`, `supporting_warehouse`, `area`, `name`, `contact_person`, `district`, `phone`, `email`, `nid`, `address`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(11, 58, 8, 1, 4, '1', 'Mirpur', 'Not Fixed', NULL, '01713900800', 'agent_mirpur@gmail.com', NULL, 'Mirpur', 1, 4, '2020-07-25 17:57:06', 4, '2020-08-15 17:20:08'),
+(17, 82, 8, 5, 4, NULL, 'Jatrabari', 'Sojol', NULL, '01880208040', 'sojol@quickexpress.com.bd', NULL, NULL, 1, 4, '2020-09-30 20:28:04', NULL, '2020-09-30 20:28:04');
 
 -- --------------------------------------------------------
 
@@ -265,6 +260,7 @@ INSERT INTO `tbl_agents` (`id`, `user_id`, `user_role_id`, `supporting_warehouse
 
 CREATE TABLE `tbl_area` (
   `id` int(11) NOT NULL,
+  `hub_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
@@ -279,53 +275,83 @@ CREATE TABLE `tbl_area` (
 -- Dumping data for table `tbl_area`
 --
 
-INSERT INTO `tbl_area` (`id`, `name`, `description`, `status`, `order_by`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'Uttara', NULL, 1, 1, NULL, NULL, NULL, NULL),
-(2, 'Badda', NULL, 1, 2, NULL, NULL, NULL, NULL),
-(3, 'Rampura', NULL, 1, 3, 4, '2020-07-13 22:08:09', NULL, '2020-07-13 22:08:09'),
-(4, 'Gulshan', NULL, 1, 4, 4, '2020-07-13 22:08:52', NULL, '2020-07-13 22:08:52'),
-(5, 'Jatrabari', NULL, 1, 5, 4, '2020-07-13 22:09:25', NULL, '2020-07-13 22:09:25'),
-(6, 'Dhanmondi', NULL, 1, 6, 4, '2020-07-13 22:11:55', NULL, '2020-07-13 22:11:55'),
-(7, 'Banasree', NULL, 1, 7, 4, '2020-07-13 22:12:54', NULL, '2020-07-13 22:12:54'),
-(8, 'Kazi Para', NULL, 1, 2, 4, '2020-07-25 17:57:45', NULL, '2020-07-25 17:57:45'),
-(9, 'Shawra Para', NULL, 1, 3, 4, '2020-07-25 17:58:17', NULL, '2020-07-25 17:58:17'),
-(10, 'Mirpur 1', NULL, 1, 3, 4, '2020-07-25 17:58:43', NULL, '2020-07-25 17:58:43'),
-(11, 'Mirpur 2', NULL, 1, 5, 4, '2020-07-25 17:58:58', NULL, '2020-07-25 17:58:58'),
-(12, 'Mirpur 6', NULL, 1, 4, 4, '2020-07-25 17:59:23', NULL, '2020-07-25 17:59:23'),
-(13, 'Mirpur 7', NULL, 1, NULL, 4, '2020-07-25 17:59:56', NULL, '2020-07-25 17:59:56'),
-(14, 'Mirpur 10', NULL, 1, NULL, 4, '2020-07-25 18:00:12', NULL, '2020-07-25 18:00:12'),
-(15, 'Mirpur 11', NULL, 1, NULL, 4, '2020-07-25 18:00:29', NULL, '2020-07-25 18:00:29'),
-(16, 'Mirpur 12', NULL, 1, NULL, 4, '2020-07-25 18:01:12', NULL, '2020-07-25 18:01:12'),
-(17, 'Mirpur 13', NULL, 1, NULL, 4, '2020-07-25 18:01:45', NULL, '2020-07-25 18:01:45'),
-(18, 'Mirpur 14', NULL, 1, NULL, 4, '2020-07-25 18:02:00', NULL, '2020-07-25 18:02:00'),
-(19, 'Kalshi', NULL, 1, NULL, 4, '2020-07-25 18:03:37', NULL, '2020-07-25 18:03:37'),
-(20, 'Mirpur DOHS', NULL, 1, NULL, 4, '2020-07-25 18:12:13', NULL, '2020-07-25 18:12:13'),
-(21, 'Matikata', NULL, 1, NULL, 4, '2020-07-25 18:12:39', NULL, '2020-07-25 18:12:39'),
-(22, 'Balighat', NULL, 1, NULL, 4, '2020-07-25 18:13:06', NULL, '2020-07-25 18:13:06'),
-(23, 'Kochukhat', NULL, 1, NULL, 4, '2020-07-25 18:14:55', NULL, '2020-07-25 18:14:55'),
-(24, 'ভাসানটেক', NULL, 1, NULL, 4, '2020-07-25 18:17:41', NULL, '2020-07-25 18:17:41'),
-(25, 'কাফ্রুল', NULL, 1, NULL, 4, '2020-07-25 18:18:03', NULL, '2020-07-25 18:18:03'),
-(26, 'গাবতলী, মাজার রোড', NULL, 1, NULL, 4, '2020-07-25 18:18:27', NULL, '2020-07-25 18:18:27'),
-(27, 'জিগাতলা', NULL, 1, NULL, 4, '2020-07-25 18:20:22', NULL, '2020-07-25 18:20:22'),
-(28, 'বসিলা', NULL, 1, NULL, 4, '2020-07-25 18:20:49', NULL, '2020-07-25 18:20:49'),
-(29, 'মোহাম্মদপুর', NULL, 1, NULL, 4, '2020-07-25 18:27:51', NULL, '2020-07-25 18:27:51'),
-(30, 'শ্যামলী', NULL, 1, NULL, 4, '2020-07-25 18:28:08', NULL, '2020-07-25 18:28:08'),
-(31, 'কল্যানপুর', NULL, 1, NULL, 4, '2020-07-25 18:28:27', NULL, '2020-07-25 18:28:27'),
-(32, 'হাজারিবাগ', NULL, 1, NULL, 4, '2020-07-25 18:31:09', NULL, '2020-07-25 18:31:09'),
-(33, 'নিউমার্কেট', NULL, 1, NULL, 4, '2020-07-25 18:36:04', NULL, '2020-07-25 18:36:04'),
-(34, 'এলিফেন্ট রোড', NULL, 1, NULL, 4, '2020-07-25 18:36:28', NULL, '2020-07-25 18:36:28'),
-(35, 'কাঁঠালবাগান', NULL, 1, NULL, 4, '2020-07-25 18:36:48', NULL, '2020-07-25 18:36:48'),
-(36, 'কলাবাগান', NULL, 1, NULL, 4, '2020-07-25 18:37:05', NULL, '2020-07-25 18:37:05'),
-(37, 'হাতির পুল', NULL, 1, NULL, 4, '2020-07-25 18:37:19', NULL, '2020-07-25 18:37:19'),
-(38, 'কাওরানবাজার', NULL, 1, NULL, 4, '2020-07-25 18:37:37', NULL, '2020-07-25 18:37:37'),
-(39, 'শংকর', NULL, 1, NULL, 4, '2020-07-25 18:38:13', NULL, '2020-07-25 18:38:13'),
-(40, 'রাজাবাজার', NULL, 1, NULL, 4, '2020-07-25 18:38:44', NULL, '2020-07-25 18:38:44'),
-(41, 'ঢাকা ইউনিভার্সিটি', NULL, 1, NULL, 4, '2020-07-25 18:38:58', NULL, '2020-07-25 18:38:58'),
-(42, 'আজিমপুর', NULL, 1, NULL, 4, '2020-07-25 18:39:25', NULL, '2020-07-25 18:39:25'),
-(43, 'বাড্ডা', NULL, 1, NULL, 4, '2020-07-25 18:39:41', NULL, '2020-07-25 18:39:41'),
-(44, 'গুলশান', NULL, 1, NULL, 4, '2020-07-25 18:39:58', NULL, '2020-07-25 18:39:58'),
-(45, 'বনানী', NULL, 1, NULL, 4, '2020-07-25 18:40:22', NULL, '2020-07-25 18:40:22'),
-(46, 'বারিধারা', NULL, 1, NULL, 4, '2020-07-25 18:40:45', NULL, '2020-07-25 18:40:45');
+INSERT INTO `tbl_area` (`id`, `hub_id`, `name`, `description`, `status`, `order_by`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 'Uttara', NULL, 1, 1, NULL, NULL, 4, '2020-08-17 17:04:36'),
+(2, 1, 'Badda', NULL, 1, 2, NULL, NULL, 4, '2020-08-04 04:10:36'),
+(3, 1, 'Rampura', NULL, 1, 3, 4, '2020-07-13 22:08:09', 4, '2020-08-04 04:16:01'),
+(4, 1, 'Gulshan', NULL, 1, 4, 4, '2020-07-13 22:08:52', 4, '2020-08-04 04:10:44'),
+(5, 1, 'Jatrabari', NULL, 1, 5, 4, '2020-07-13 22:09:25', 4, '2020-08-17 17:07:06'),
+(6, 1, 'Dhanmondi', NULL, 1, 6, 4, '2020-07-13 22:11:55', 4, '2020-08-04 04:05:00'),
+(7, 1, 'Banasree', NULL, 1, 7, 4, '2020-07-13 22:12:54', 4, '2020-08-04 04:14:58'),
+(8, 1, 'Kazi Para', NULL, 1, 2, 4, '2020-07-25 17:57:45', 4, '2020-08-04 03:58:37'),
+(9, 1, 'Shawra Para', NULL, 1, 3, 4, '2020-07-25 17:58:17', 4, '2020-08-04 03:59:19'),
+(10, 1, 'Mirpur 1', NULL, 1, 3, 4, '2020-07-25 17:58:43', 4, '2020-08-04 03:59:28'),
+(11, 1, 'Mirpur 2', NULL, 1, 5, 4, '2020-07-25 17:58:58', 4, '2020-08-04 03:59:43'),
+(12, 1, 'Mirpur 6', NULL, 1, 4, 4, '2020-07-25 17:59:23', 4, '2020-08-04 03:59:53'),
+(13, 1, 'Mirpur 7', NULL, 1, NULL, 4, '2020-07-25 17:59:56', 4, '2020-08-04 03:59:59'),
+(14, 1, 'Mirpur 10', NULL, 1, NULL, 4, '2020-07-25 18:00:12', 4, '2020-08-04 04:00:07'),
+(15, 1, 'Mirpur 11', NULL, 1, NULL, 4, '2020-07-25 18:00:29', 4, '2020-08-04 04:00:25'),
+(16, 1, 'Mirpur 12', NULL, 1, NULL, 4, '2020-07-25 18:01:12', 4, '2020-08-04 04:00:31'),
+(17, 1, 'Mirpur 13', NULL, 1, NULL, 4, '2020-07-25 18:01:45', 4, '2020-08-04 04:00:37'),
+(18, 1, 'Mirpur 14', NULL, 1, NULL, 4, '2020-07-25 18:02:00', 4, '2020-08-04 04:00:43'),
+(19, 1, 'Kalshi', NULL, 1, NULL, 4, '2020-07-25 18:03:37', 4, '2020-08-04 04:01:07'),
+(20, 1, 'Mirpur DOHS', NULL, 1, NULL, 4, '2020-07-25 18:12:13', 4, '2020-08-04 04:00:54'),
+(21, 1, 'Matikata', NULL, 1, NULL, 4, '2020-07-25 18:12:39', 4, '2020-08-04 04:01:17'),
+(22, 1, 'Balughat', NULL, 1, NULL, 4, '2020-07-25 18:13:06', 4, '2020-08-04 04:01:33'),
+(23, 1, 'Kochukhat', NULL, 1, NULL, 4, '2020-07-25 18:14:55', 4, '2020-08-04 04:01:42'),
+(24, 1, 'ভাসানটেক', NULL, 1, NULL, 4, '2020-07-25 18:17:41', 4, '2020-08-04 04:02:11'),
+(25, 1, 'কাফ্রুল', NULL, 1, NULL, 4, '2020-07-25 18:18:03', 4, '2020-08-04 04:02:25'),
+(26, 1, 'গাবতলী, মাজার রোড', NULL, 1, NULL, 4, '2020-07-25 18:18:27', 4, '2020-08-04 04:03:03'),
+(27, 1, 'জিগাতলা', NULL, 1, NULL, 4, '2020-07-25 18:20:22', 4, '2020-08-04 04:05:09'),
+(28, 1, 'বসিলা', NULL, 1, NULL, 4, '2020-07-25 18:20:49', 4, '2020-08-04 04:05:20'),
+(29, 1, 'মোহাম্মদপুর', NULL, 1, NULL, 4, '2020-07-25 18:27:51', 4, '2020-08-04 04:05:32'),
+(30, 1, 'শ্যামলী', NULL, 1, NULL, 4, '2020-07-25 18:28:08', 4, '2020-08-04 04:05:45'),
+(31, 1, 'কল্যানপুর', NULL, 1, NULL, 4, '2020-07-25 18:28:27', 4, '2020-08-04 04:05:54'),
+(32, 1, 'হাজারিবাগ', NULL, 1, NULL, 4, '2020-07-25 18:31:09', 4, '2020-08-04 04:06:09'),
+(33, 1, 'নিউমার্কেট', NULL, 1, NULL, 4, '2020-07-25 18:36:04', 4, '2020-08-04 04:06:31'),
+(34, 1, 'এলিফেন্ট রোড', NULL, 1, NULL, 4, '2020-07-25 18:36:28', 4, '2020-08-04 04:06:58'),
+(35, 1, 'কাঁঠালবাগান', NULL, 1, NULL, 4, '2020-07-25 18:36:48', 4, '2020-08-04 04:08:38'),
+(36, 1, 'কলাবাগান', NULL, 1, NULL, 4, '2020-07-25 18:37:05', 4, '2020-08-04 04:08:47'),
+(37, 1, 'হাতির পুল', NULL, 1, NULL, 4, '2020-07-25 18:37:19', 4, '2020-08-04 04:09:09'),
+(38, 1, 'কাওরানবাজার', NULL, 1, NULL, 4, '2020-07-25 18:37:37', 4, '2020-08-04 04:09:17'),
+(39, 1, 'শংকর', NULL, 1, NULL, 4, '2020-07-25 18:38:13', 4, '2020-08-04 04:09:43'),
+(40, 1, 'রাজাবাজার', NULL, 1, NULL, 4, '2020-07-25 18:38:44', 4, '2020-08-04 04:09:28'),
+(41, 1, 'ঢাকা ইউনিভার্সিটি', NULL, 1, NULL, 4, '2020-07-25 18:38:58', 4, '2020-08-04 04:09:54'),
+(42, 1, 'আজিমপুর', NULL, 1, NULL, 4, '2020-07-25 18:39:25', 4, '2020-08-04 04:10:13'),
+(43, 1, 'বাড্ডা', NULL, 1, NULL, 4, '2020-07-25 18:39:41', 4, '2020-08-07 19:58:28'),
+(45, 1, 'বনানী', NULL, 1, NULL, 4, '2020-07-25 18:40:22', 4, '2020-08-04 04:11:00'),
+(46, 1, 'বারিধারা', NULL, 1, NULL, 4, '2020-07-25 18:40:45', 4, '2020-08-04 04:11:20'),
+(49, 5, 'খিলগাঁও', NULL, 1, NULL, 4, '2020-07-25 18:51:53', 4, '2020-10-01 07:47:24'),
+(50, 1, 'Bashundhara', NULL, 1, NULL, 4, '2020-08-04 04:14:00', NULL, '2020-08-04 04:14:00'),
+(51, 1, 'Basabo', NULL, 1, NULL, 4, '2020-08-04 04:17:01', NULL, '2020-08-04 04:17:01'),
+(52, 1, 'Mugda', NULL, 1, NULL, 4, '2020-08-04 04:17:28', NULL, '2020-08-04 04:17:28'),
+(53, 1, 'Maniknagar', NULL, 1, NULL, 4, '2020-08-04 04:17:51', NULL, '2020-08-04 04:17:51'),
+(54, 5, 'Malibagh', NULL, 1, NULL, 4, '2020-08-04 04:18:28', 4, '2020-10-01 07:46:52'),
+(55, 5, 'Magbazar', NULL, 1, NULL, 4, '2020-08-04 04:18:41', 4, '2020-10-01 07:46:44'),
+(56, 1, 'Baili Road', NULL, 1, NULL, 4, '2020-08-04 04:19:07', NULL, '2020-08-04 04:19:07'),
+(57, 1, 'Shantinagar', NULL, 1, NULL, 4, '2020-08-04 04:19:27', NULL, '2020-08-04 04:19:27'),
+(58, 1, 'Shajahanpur', NULL, 1, NULL, 4, '2020-08-04 04:19:43', NULL, '2020-08-04 04:19:43'),
+(59, 1, 'Bissho Road', NULL, 1, NULL, 4, '2020-08-04 04:20:11', NULL, '2020-08-04 04:20:11'),
+(60, 1, 'Kamlapur', NULL, 1, NULL, 4, '2020-08-04 04:20:24', NULL, '2020-08-04 04:20:24'),
+(61, 1, 'Motijhil', NULL, 1, NULL, 4, '2020-08-04 04:20:41', NULL, '2020-08-04 04:20:41'),
+(62, 1, 'Paltan', NULL, 1, NULL, 4, '2020-08-04 04:20:50', NULL, '2020-08-04 04:20:50'),
+(63, 1, 'Shahabagh', NULL, 1, NULL, 4, '2020-08-04 04:21:06', NULL, '2020-08-04 04:21:06'),
+(65, 1, 'Eskaton', NULL, 1, NULL, 4, '2020-08-04 04:21:27', NULL, '2020-08-04 04:21:27'),
+(66, 1, 'Uttara Model Town', NULL, 1, NULL, 4, '2020-08-04 04:25:31', NULL, '2020-08-04 04:25:31'),
+(67, 1, 'Airport', NULL, 1, NULL, 4, '2020-08-04 04:25:49', NULL, '2020-08-04 04:25:49'),
+(68, 1, 'Ashkona', NULL, 1, NULL, 4, '2020-08-04 04:26:04', NULL, '2020-08-04 04:26:04'),
+(69, 1, 'Kaula', NULL, 1, NULL, 4, '2020-08-04 04:26:32', 4, '2020-08-04 04:26:42'),
+(70, 1, 'Khilkhet', NULL, 1, NULL, 4, '2020-08-04 04:27:11', NULL, '2020-08-04 04:27:11'),
+(71, 1, 'Nikunja', NULL, 1, NULL, 4, '2020-08-04 04:27:24', NULL, '2020-08-04 04:27:24'),
+(72, 1, 'Uttar Khan', NULL, 1, NULL, 4, '2020-08-04 04:27:48', NULL, '2020-08-04 04:27:48'),
+(73, 1, 'Dakkhin Khan', NULL, 1, NULL, 4, '2020-08-04 04:28:00', NULL, '2020-08-04 04:28:00'),
+(74, 1, 'Tongi', NULL, 1, NULL, 4, '2020-08-04 04:29:12', NULL, '2020-08-04 04:29:12'),
+(76, 5, 'Shonir Akhra', NULL, 1, NULL, 4, '2020-08-04 04:31:01', 4, '2020-10-01 07:47:17'),
+(77, 1, 'Demra', NULL, 1, NULL, 4, '2020-08-04 04:31:15', NULL, '2020-08-04 04:31:15'),
+(78, 1, 'Wari', NULL, 1, NULL, 4, '2020-08-04 04:31:26', NULL, '2020-08-04 04:31:26'),
+(79, 1, 'Zurain', NULL, 1, NULL, 4, '2020-08-04 04:31:37', NULL, '2020-08-04 04:31:37'),
+(80, 1, 'Saidabad', NULL, 1, NULL, 4, '2020-08-04 04:31:47', NULL, '2020-08-04 04:31:47'),
+(81, 1, 'Puran Dhaka', NULL, 1, NULL, 4, '2020-08-04 04:31:59', NULL, '2020-08-04 04:31:59');
 
 -- --------------------------------------------------------
 
@@ -337,13 +363,18 @@ CREATE TABLE `tbl_booking_orders` (
   `id` int(11) NOT NULL,
   `order_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `booked_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sender_id` int(11) DEFAULT NULL,
+  `sender_hub_id` int(11) DEFAULT NULL,
+  `sender_area_id` int(11) DEFAULT NULL,
   `sender_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sender_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sender_zone_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sender_zone_id` int(11) DEFAULT NULL,
   `sender_address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `receiver_hub_id` int(11) DEFAULT NULL,
+  `receiver_area_id` int(11) DEFAULT NULL,
   `receiver_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `receiver_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `receiver_zone_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -354,10 +385,13 @@ CREATE TABLE `tbl_booking_orders` (
   `delivery_type_id` int(11) DEFAULT NULL,
   `charge_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delivery_charge_unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_charge_unit_per_uom` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `uom` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `delivery_charge` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cod` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cod_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cod_charge_percentage` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cod_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_charge` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delivery_duration_id` int(11) DEFAULT NULL,
   `collection_man_id` int(11) DEFAULT NULL,
   `collection_payment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -375,6 +409,13 @@ CREATE TABLE `tbl_booking_orders` (
   `delivery_status` tinyint(4) NOT NULL DEFAULT 0,
   `delivery_payment_status` tinyint(4) NOT NULL DEFAULT 0,
   `payment_status` tinyint(4) NOT NULL DEFAULT 0,
+  `merchant_payment_status` tinyint(4) DEFAULT 0,
+  `return_status` tinyint(4) NOT NULL DEFAULT 0,
+  `return_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `return_to_client_status` tinyint(4) NOT NULL DEFAULT 0,
+  `reschedule_status` tinyint(4) NOT NULL DEFAULT 0,
+  `reschedule_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -386,15 +427,11 @@ CREATE TABLE `tbl_booking_orders` (
 -- Dumping data for table `tbl_booking_orders`
 --
 
-INSERT INTO `tbl_booking_orders` (`id`, `order_no`, `date`, `booked_type`, `sender_id`, `sender_name`, `sender_phone`, `sender_zone_type`, `sender_zone_id`, `sender_address`, `receiver_name`, `receiver_phone`, `receiver_zone_type`, `receiver_zone_id`, `receiver_address`, `remarks`, `courier_type_id`, `delivery_type_id`, `charge_name`, `delivery_charge_unit`, `uom`, `delivery_charge`, `cod`, `cod_amount`, `delivery_duration_id`, `collection_man_id`, `collection_payment`, `collection_status`, `collection_payment_status`, `sender_goods_receieve_status`, `host_warehouse_id`, `host_warehouse_goods_receieve_status`, `destination_warehouse_id`, `destination_warehouse_goods_receieve_status`, `receiver_issue_status`, `receiver_goods_receieve_status`, `delivery_man_id`, `delivery_payment`, `delivery_status`, `delivery_payment_status`, `payment_status`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'co-200725-00001', '2020-07-25', 'Client', 1, 'Raihan Ahmed', '01418253595', 'Agent', 8, 'Mirpur -11', 'Ktubuddin', '01919283746', 'Subagent', 4, 'Gulshan', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '1200', 1, 2, '50', 1, 1, 1, 4, 1, 3, 1, 1, 1, 1, '80', 1, 1, 0, 1, 26, '2020-07-25 00:24:52', 4, '2020-07-26 23:21:21'),
-(2, 'co-200725-00002', '2020-07-25', 'Client', 1, 'Raihan Ahmed', '01418253595', 'Agent', 8, 'Mirpur -11', 'Sayed', '01818273649', 'Subagent', 4, 'Badda', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '1500', 2, 2, '50', 1, 0, 1, 4, 1, 3, 1, 1, 1, NULL, '80', 1, 0, 0, 1, 4, '2020-07-25 00:30:24', 4, '2020-07-25 03:36:20'),
-(3, 'co-200725-00003', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Irim', '01717209349', 'Subagent', 4, 'Azimpur', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '700', 3, 2, '50', 1, 1, 1, 4, 1, 3, 1, 1, 1, 1, '80', 1, 1, 0, 1, 26, '2020-07-25 00:33:01', 4, '2020-07-26 07:51:54'),
-(4, 'co-200725-00004', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Mintu', '01616230485', 'Subagent', 4, 'Dhanmondi', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'No', '0', 1, 1, '50', 1, 0, 1, 4, 1, 3, 1, 1, 1, 2, '80', 1, 0, 0, 1, 26, '2020-07-25 00:34:00', 4, '2020-07-26 23:21:20'),
-(5, 'co-200725-00005', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Sadman', '01515243048', 'Subagent', 4, 'Rampura', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '2300', 3, 1, '50', 1, 0, 1, 4, 1, 3, 1, 1, 1, 2, '80', 1, 1, 0, 1, 26, '2020-07-25 00:35:17', 4, '2020-07-26 23:21:20'),
-(6, 'co-200725-00006', '2020-07-25', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Ktubuddin', '01919283746', 'Subagent', 4, 'Gulshan', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '2900', 3, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '80', 0, 0, 0, 1, 4, '2020-07-25 03:32:54', NULL, '2020-07-25 03:32:54'),
-(7, 'co-200727-00001', '2020-07-27', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Sabbir', '01313293846', 'Subagent', 4, 'Dhanmondi', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'No', '0', 2, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '80', 0, 0, 0, 0, 2, '2020-07-27 04:32:25', NULL, '2020-07-27 04:32:25'),
-(8, 'co-200727-00002', '2020-07-27', 'Client', 2, 'Mir Hossain', '01917243493', 'Agent', 8, 'Mirpur - 11', 'Rohim', '01414293847', 'Subagent', 4, 'Gulshan', NULL, 1, 1, 'Client To Client - Document', '120', '1', '120', 'Yes', '1650', 2, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '80', 0, 0, 0, 0, 2, '2020-07-27 04:41:40', NULL, '2020-07-27 05:22:29');
+INSERT INTO `tbl_booking_orders` (`id`, `order_no`, `date`, `delivery_date`, `booked_type`, `sender_id`, `sender_hub_id`, `sender_area_id`, `sender_name`, `sender_phone`, `sender_zone_type`, `sender_zone_id`, `sender_address`, `receiver_hub_id`, `receiver_area_id`, `receiver_name`, `receiver_phone`, `receiver_zone_type`, `receiver_zone_id`, `receiver_address`, `remarks`, `courier_type_id`, `delivery_type_id`, `charge_name`, `delivery_charge_unit`, `delivery_charge_unit_per_uom`, `uom`, `cod`, `cod_amount`, `cod_charge_percentage`, `cod_charge`, `delivery_charge`, `delivery_duration_id`, `collection_man_id`, `collection_payment`, `collection_status`, `collection_payment_status`, `sender_goods_receieve_status`, `host_warehouse_id`, `host_warehouse_goods_receieve_status`, `destination_warehouse_id`, `destination_warehouse_goods_receieve_status`, `receiver_issue_status`, `receiver_goods_receieve_status`, `delivery_man_id`, `delivery_payment`, `delivery_status`, `delivery_payment_status`, `payment_status`, `merchant_payment_status`, `return_status`, `return_date`, `return_to_client_status`, `reschedule_status`, `reschedule_date`, `order_status`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(46, 'co-201001-00001', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Behind the mosque', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '20', 'Yes', '1000', NULL, '10', '370', NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Delivered', 1, 4, '2020-09-30 23:16:10', 4, '2020-10-24 09:54:17'),
+(47, 'co-201001-00002', '2020-10-01', '2020-10-03', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 55, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 00', 8, 1, 'Merchant To Customer - Document/Letter (Regular)', '55', '0', '1', 'Yes', '2000', NULL, '20', '75', NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Delivered', 1, 4, '2020-09-30 23:18:25', 4, '2020-10-24 06:35:43'),
+(48, 'co-201001-00003', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 54, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 01', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '30', 'Yes', '2500', NULL, '25', '585', NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Return', 1, 4, '2020-09-30 23:20:00', 4, '2020-10-24 06:35:46'),
+(49, 'co-201010-00001', '2020-10-10', '2020-10-10', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Parcel Over 5 Kg', 10, 1, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', '9', 'Yes', '2000', '2', '20', '100', NULL, NULL, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Pending', 1, 4, '2020-10-10 03:02:45', 4, '2020-10-24 09:54:17');
 
 -- --------------------------------------------------------
 
@@ -408,6 +445,7 @@ CREATE TABLE `tbl_charge_for_clients` (
   `service_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `charge_per_uom` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -419,10 +457,17 @@ CREATE TABLE `tbl_charge_for_clients` (
 -- Dumping data for table `tbl_charge_for_clients`
 --
 
-INSERT INTO `tbl_charge_for_clients` (`id`, `service_type_id`, `service_id`, `name`, `charge`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 1, 1, 'Client To Client - Document', '120', 1, 4, '2020-07-10 20:20:10', 4, '2020-07-10 20:38:06'),
-(2, 2, 1, 'Client To Office - Document', '100', 1, 4, '2020-07-10 20:21:18', NULL, '2020-07-10 20:21:18'),
-(3, 1, 6, 'Client To Client - Weighing Scale', '12', 1, 4, '2020-07-11 00:41:33', NULL, '2020-07-11 00:41:33');
+INSERT INTO `tbl_charge_for_clients` (`id`, `service_type_id`, `service_id`, `name`, `charge`, `charge_per_uom`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 1, 'Client To Client - Regular Business Parcels', '60', '0', 1, 4, '2020-07-10 20:20:10', 4, '2020-08-17 20:40:24'),
+(2, 1, 3, 'Client To Client - Gift/Glass Item', '100', '0', 1, 4, '2020-07-10 20:21:18', 4, '2020-08-20 02:13:53'),
+(3, 1, 2, 'Client To Client - Emergency Delivery (4 Hour Delivery)', '120', NULL, 1, 4, '2020-07-11 00:41:33', 4, '2020-08-17 20:40:45'),
+(4, 1, 4, 'Client To Client - Food (Upto 5 Km Distance From Pick Point)', '60', NULL, 1, 4, '2020-08-17 20:41:24', NULL, '2020-08-17 20:41:24'),
+(5, 1, 5, 'Client To Client - Food (Upto 10 Km Distance From Pick Point)', '120', NULL, 1, 4, '2020-08-17 20:41:42', NULL, '2020-08-17 20:41:42'),
+(6, 1, 6, 'Client To Client - Food (Over 10 Km Distance From Pick Point)', '180', NULL, 1, 4, '2020-08-17 20:41:57', NULL, '2020-08-17 20:41:57'),
+(7, 1, 8, 'Client To Client - Document/Letter (Regular)', '30', NULL, 1, 4, '2020-08-17 20:42:23', NULL, '2020-08-17 20:42:23'),
+(8, 1, 9, 'Client To Client - Document/Letter (Emergency)', '90', NULL, 1, 4, '2020-08-17 20:43:18', NULL, '2020-08-17 20:43:18'),
+(9, 1, 10, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', 1, 4, '2020-08-17 21:02:35', NULL, '2020-08-17 21:02:35'),
+(10, 1, 11, 'Client To Client - Pick & Ship (Receive Form Outside Dhaka)', '50', '0', 1, 4, '2020-08-17 21:09:23', NULL, '2020-08-17 21:09:23');
 
 -- --------------------------------------------------------
 
@@ -465,6 +510,7 @@ CREATE TABLE `tbl_charge_for_merchants` (
   `merchant_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `charge_per_uom` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -476,18 +522,37 @@ CREATE TABLE `tbl_charge_for_merchants` (
 -- Dumping data for table `tbl_charge_for_merchants`
 --
 
-INSERT INTO `tbl_charge_for_merchants` (`id`, `service_type_id`, `service_id`, `merchant_id`, `name`, `charge`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 1, 1, 5, 'Client To Client - Document', '100', 1, 4, '2020-07-10 21:01:34', 4, '2020-07-10 22:36:53'),
-(2, 1, 1, 2, 'Client To Client - Document', '90', 1, 4, '2020-07-10 21:02:00', NULL, '2020-07-10 21:05:27'),
-(3, 2, 1, 2, 'Client To Office - Document', '70', 1, 4, '2020-07-10 21:02:43', NULL, '2020-07-10 21:02:43'),
-(4, 1, 1, 5, 'Client To Client - Document', '90', 1, 4, '2020-07-11 23:26:23', NULL, '2020-07-11 23:26:23'),
-(5, 2, 1, 5, 'Client To Office - Document', '80', 1, 4, '2020-07-11 23:27:20', NULL, '2020-07-11 23:27:20'),
-(6, 3, 1, 5, 'Office To Client - Document', '100', 1, 4, '2020-07-11 23:27:43', NULL, '2020-07-11 23:27:43'),
-(7, 4, 1, 5, 'Office To Office - Document', '60', 1, 4, '2020-07-11 23:28:00', NULL, '2020-07-11 23:28:00'),
-(8, 1, 6, 5, 'Client To Client - Weighing Scale', '50', 1, 4, '2020-07-11 23:28:22', NULL, '2020-07-11 23:28:22'),
-(9, 2, 6, 5, 'Client To Office - Weighing Scale', '40', 1, 4, '2020-07-11 23:28:40', NULL, '2020-07-11 23:28:40'),
-(10, 3, 6, 5, 'Office To Client - Weighing Scale', '60', 1, 4, '2020-07-11 23:28:54', NULL, '2020-07-11 23:28:54'),
-(11, 4, 6, 5, 'Office To Office - Weighing Scale', '25', 1, 4, '2020-07-11 23:29:05', NULL, '2020-07-11 23:29:05');
+INSERT INTO `tbl_charge_for_merchants` (`id`, `service_type_id`, `service_id`, `merchant_id`, `name`, `charge`, `charge_per_uom`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 1, 7, 'Client To Client - Document', '60', NULL, 1, 4, '2020-07-12 18:16:17', 4, '2020-08-17 21:22:26'),
+(2, 1, 2, 7, 'Client To Client - Emergency Delivery (4 Hour Delivery)', '120', NULL, 1, 4, '2020-07-12 18:16:38', 4, '2020-08-17 21:23:22'),
+(3, 1, 3, 7, 'Client To Client - Gift/Glass Item', '100', NULL, 1, 4, '2020-07-12 18:16:50', 4, '2020-08-17 21:23:43'),
+(4, 1, 4, 7, 'Client To Client - Food (Upto 5 Km Distance From Pick Point)', '60', NULL, 1, 4, '2020-07-12 18:17:09', 4, '2020-08-17 21:24:04'),
+(5, 1, 5, 7, 'Client To Client - Food (Upto 10 Km Distance From Pick Point)', '120', NULL, 1, 4, '2020-07-12 18:17:57', 4, '2020-08-17 21:24:24'),
+(6, 1, 6, 7, 'Client To Client - Food (Over 10 Km Distance From Pick Point)', '180', NULL, 1, 4, '2020-07-12 18:18:10', 4, '2020-08-17 21:24:41'),
+(7, 1, 8, 16, 'Client To Client - Document/Letter (Regular)', '30', NULL, 1, 4, '2020-07-12 18:18:23', 4, '2020-10-10 02:55:32'),
+(8, 1, 9, 7, 'Client To Client - Document/Letter (Emergency)', '90', NULL, 1, 4, '2020-07-12 18:18:56', 4, '2020-08-17 21:25:31'),
+(13, 1, 1, 8, 'Client To Client - Regular Business Parcels', '60', NULL, 1, 4, NULL, 4, '2020-08-18 20:41:01'),
+(14, 1, 2, 8, 'Client To Client - Emergency Delivery (4 Hour Delivery)', '120', NULL, 1, 4, NULL, 4, '2020-08-19 15:50:32'),
+(15, 1, 3, 8, 'Client To Client - Gift/Glass Item', '100', NULL, 1, 4, NULL, 4, '2020-08-19 15:50:54'),
+(16, 1, 4, 8, 'Client To Client - Food (Upto 5 Km Distance From Pick Point)', '60', NULL, 1, 4, NULL, 4, '2020-08-19 15:51:29'),
+(17, 1, 5, 8, 'Client To Client - Food (Upto 10 Km Distance From Pick Point)', '120', NULL, 1, 4, NULL, 4, '2020-08-19 15:51:50'),
+(18, 1, 6, 8, 'Client To Client - Food (Over 10 Km Distance From Pick Point)', '180', NULL, 1, 4, NULL, 4, '2020-08-19 15:52:08'),
+(19, 1, 8, 8, 'Client To Client - Document/Letter (Regular)', '30', NULL, 1, 4, NULL, 4, '2020-08-19 15:52:30'),
+(20, 1, 9, 8, 'Client To Client - Document/Letter (Emergency)', '90', NULL, 1, 4, NULL, 4, '2020-08-19 15:52:55'),
+(21, 1, 1, 9, 'Client To Client - Regular Business Parcels', '60', NULL, 1, 4, NULL, 4, '2020-08-19 15:54:16'),
+(22, 1, 2, 9, 'Client To Client - Emergency Delivery (4 Hour Delivery)', '120', NULL, 1, 4, NULL, 4, '2020-08-19 15:54:41'),
+(23, 1, 3, 9, 'Client To Client - Gift/Glass Item', '100', NULL, 1, 4, NULL, 4, '2020-08-19 15:55:00'),
+(24, 1, 4, 9, 'Client To Client - Food (Upto 5 Km Distance From Pick Point)', '60', NULL, 1, 4, NULL, 4, '2020-08-19 15:55:24'),
+(25, 1, 5, 9, 'Client To Client - Food (Upto 10 Km Distance From Pick Point)', '120', NULL, 1, 4, NULL, 4, '2020-08-19 15:55:42'),
+(26, 1, 6, 9, 'Client To Client - Food (Over 10 Km Distance From Pick Point)', '180', NULL, 1, 4, NULL, 4, '2020-08-19 15:56:01'),
+(27, 1, 8, 9, 'Client To Client - Document/Letter (Regular)', '30', NULL, 1, 4, NULL, 4, '2020-08-19 15:56:36'),
+(28, 1, 9, 9, 'Client To Client - Document/Letter (Emergency)', '90', NULL, 1, 4, NULL, 4, '2020-08-19 15:56:51'),
+(29, 1, 10, 16, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', 1, 4, NULL, 4, '2020-10-10 03:00:10'),
+(30, 1, 11, 7, 'Client To Client - Pick & Ship (Receive Form Outside Dhaka)', '50', '0', 1, 4, NULL, NULL, NULL),
+(31, 1, 10, 8, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', 1, 4, NULL, NULL, NULL),
+(32, 1, 11, 8, 'Client To Client - Pick & Ship (Receive Form Outside Dhaka)', '50', '0', 1, 4, NULL, NULL, NULL),
+(33, 1, 10, 9, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', 1, 4, NULL, NULL, NULL),
+(34, 1, 11, 9, 'Client To Client - Pick & Ship (Receive Form Outside Dhaka)', '50', '0', 1, 4, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -515,14 +580,6 @@ CREATE TABLE `tbl_clients` (
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tbl_clients`
---
-
-INSERT INTO `tbl_clients` (`id`, `user_role_id`, `area`, `name`, `phone`, `nid`, `email`, `address`, `birth_date`, `image`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 4, 1, 'Raihan Ahmed', '01418253595', '5089768831', 'raihanahmed@gmail.com', 'Mirpur -11', '1990-01-01', 'public/uploads/profile_image/client/avatar7_80413018396.png', '$2y$10$0akJrvTLw3Spc4N0hdJZ4.jc4vftdV2B3HrwP/UyFn1rqc6uPKeL2', NULL, NULL, 1, 4, '2020-07-25 00:21:25', NULL, '2020-07-25 00:21:25'),
-(2, NULL, 1, 'Mir Hossain', '01917243493', NULL, NULL, 'Mirpur - 11', NULL, 'public/uploads/profile_image/client/avatar-cutout_9702388012.png', '$2y$10$0EVUjUdBJ4hJeM8WRD2uN.1IJzdnW6jB.OiwcoqBhtbGZJb9urB36', '', 'WoPA3neNyX7mjPicaCN9CPRDrt3uKyZCLd3bS3nB', 1, NULL, '2020-07-25 00:22:38', NULL, '2020-07-25 00:22:38');
 
 -- --------------------------------------------------------
 
@@ -641,6 +698,44 @@ INSERT INTO `tbl_coa` (`id`, `head_code`, `head_name`, `parent_head_name`, `head
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_contact_us`
+--
+
+CREATE TABLE `tbl_contact_us` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_person` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_one` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_two` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_three` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_four` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_one` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_two` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_three` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_four` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_by` int(11) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_contact_us`
+--
+
+INSERT INTO `tbl_contact_us` (`id`, `name`, `contact_person`, `phone_one`, `phone_two`, `phone_three`, `phone_four`, `email_one`, `email_two`, `email_three`, `email_four`, `address`, `order_by`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'Mirpur Branch', 'Dew Hunt', '01317243494', '01317243495', '01317243496', '01317243497', 'mirpur_branch@quickexpress.com', 'dewhunt@quickexpress.com', 'mirpur@quickexpress.com', 'mirpur@quickexpress.com', 'House #52, Road #16, Block #D, Pallabi, Mirpur, Dhaka #1216', 1, 1, 4, '2020-09-06 05:34:14', 4, '2020-09-06 06:49:26'),
+(2, 'Dhanmondi Branch', 'Sajjad', '01717243494', '01717243454', '01717243414', '01717243444', 'dhanmondi_branch@quickexpress.com', 'sajjad@quickexpress.com', 'dhanmondi@quickexpress.com', 'dhanmondi@quickexpress.com', 'Dhanmondi', 2, 1, 4, '2020-09-06 06:12:47', 4, '2020-09-06 06:49:01'),
+(3, 'Uttara Branch', 'Milon', '01617244494', '01617234494', '01617204494', '01617144494', 'uttara_branch@quickexpress.com', 'milon@quickexpress.com', 'uttara@quickexpress.com', 'uttara@quickexpress.com', 'Uttara', 3, 1, 4, '2020-09-06 06:14:15', 4, '2020-09-06 06:48:56'),
+(4, 'Zatrabari Branch', 'Kalam', '01912244494', '01912224494', '01912224484', '01912024484', 'zatrabari_branch@quickexpress.com', 'kalam@quickexpress.com', 'zatrabari@quickexpress.com', 'zatrabari@quickexpress.com', 'Zatrabari', 4, 1, 4, '2020-09-06 06:15:44', 4, '2020-09-06 06:48:50'),
+(5, 'Chittagong Branch', 'Mintu', '01517243494', '01516243494', '01516243498', '01516293498', 'chittagong_branch@quickexpress.com', 'mintu@quickexpress.com', NULL, NULL, 'Chittagong', 5, 1, 4, '2020-09-06 06:17:35', 4, '2020-09-06 06:49:43');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_delivery_man_payments`
 --
 
@@ -732,10 +827,9 @@ CREATE TABLE `tbl_delivery_men` (
 --
 
 INSERT INTO `tbl_delivery_men` (`id`, `user_id`, `user_role_id`, `area_id`, `name`, `image`, `width`, `height`, `phone`, `email`, `nid`, `address`, `driving_licence`, `bike_registration_no`, `password`, `token`, `verification_code`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 22, 14, NULL, 'Delivery Man Shihab', 'public/uploads/profile_image/delivery_man/avatar-cutout_11428319470.png', 600, 600, '01716967610', 'shihab@gmail.com', '3059962831', 'Mirpur', NULL, NULL, NULL, NULL, NULL, 1, 4, '2020-06-22 03:42:35', 4, '2020-06-22 04:06:14'),
-(2, 23, 14, NULL, 'Delivery Man Dhiman', 'public/uploads/profile_image/delivery_man/images_76654677558.jpg', NULL, NULL, '01617243491', 'dhiman@gmail.com', '30519642831', 'Road - 12', NULL, NULL, NULL, NULL, NULL, 1, 4, '2020-06-22 04:20:41', 4, '2020-07-04 01:37:27'),
-(3, 49, 14, '1', 'Habib', 'public/uploads/profile_image/delivery_man/avatar_60656706621.png', NULL, NULL, '01717298365', NULL, NULL, NULL, 'DK0867682CL0007', 'Dhaka Metro-LA-44-5760', '$2y$10$xEq7SeJ7MPd2e1qxd/53HOfPLHx2IC2ycXHtm4xmHf3mievgnSQfu', NULL, NULL, 1, NULL, '2020-07-23 06:34:07', NULL, '2020-07-23 06:34:07'),
-(4, 50, 14, '1', 'Labib', 'public/uploads/profile_image/delivery_man/images_22560855961.jpg', NULL, NULL, '01919263594', NULL, NULL, NULL, 'DK0867682CL0008', 'Dhaka Metro-LA-44-5761', '$2y$10$K68igMAtoQg6s0IX8JjXfuNwm/.XT3dZGLD7FDZ.VEdtqnIHVPWzO', NULL, NULL, 1, NULL, '2020-07-23 06:35:50', NULL, '2020-07-23 06:35:50');
+(1, 53, 14, '2,10,14,15,16,17,18,11,12,13,1', 'Dew Hunt', 'public/uploads/profile_image/delivery_man/NEW_71086828580.png', NULL, NULL, '01317243494', 'dew.fog1553@gmail.com', NULL, 'House #4, Lane #3, Road #12, Block #B, Section #11, Mirpur, Pallabi, Dhaka #1216', 'DK0867682CL0007', 'Dhaka Metro-LA-44-5760', '$2y$10$Sm0ojZLSc17Zg1f5UgDTkuSXmqAeQ.zZlLAexA50lMf0KPA1iGDO6', '5ja2IjXOlcMeSb1iBSR2f6ocdSKbjNCvoKoMFgBq', '', 1, NULL, '2020-07-06 15:52:48', 4, '2020-08-17 15:21:13'),
+(2, 72, 14, '10,14,15,16', 'Ripon', 'public/uploads/profile_image/delivery_man/avatar7_50717440257.png', NULL, NULL, '01418253567', 'ripon@gmail.com', '7889768831', NULL, NULL, NULL, NULL, NULL, NULL, 1, 4, '2020-08-24 00:18:56', NULL, '2020-08-24 00:18:56'),
+(3, 73, 14, '2,56,4', 'Raihan', 'public/uploads/profile_image/delivery_man/avatar-cutout_44516381177.png', NULL, NULL, '01713900818', 'raihan@gmail.com', '3059962831', NULL, NULL, NULL, NULL, NULL, NULL, 1, 4, '2020-08-24 00:20:05', NULL, '2020-08-24 00:20:05');
 
 -- --------------------------------------------------------
 
@@ -877,9 +971,44 @@ CREATE TABLE `tbl_frontend_menu` (
 --
 
 INSERT INTO `tbl_frontend_menu` (`id`, `parent_menu`, `menu_name`, `menu_link`, `order_by`, `status`, `menu_status`, `footer_menu_status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, NULL, 'Version', 'home.index', 1, 1, 1, 1, 4, '2020-04-18 08:48:30', 4, '2020-04-18 09:53:16'),
-(3, 1, 'Version - 1', 'Version1.add', 1, 1, 1, 1, 4, '2020-04-18 09:30:03', NULL, '2020-04-18 09:53:20'),
-(4, NULL, 'Dew Hunt', 'dewhunt.com', 2, 1, 1, 1, 4, '2020-05-10 04:56:47', 4, '2020-05-10 05:48:26');
+(5, NULL, 'Home', 'quickExpress', 1, 1, 1, 1, 4, '2020-09-05 06:07:18', 4, '2020-09-05 06:27:06'),
+(6, NULL, 'About Us', 'aboutUs', 2, 1, 1, 1, 4, '2020-09-05 06:07:31', 4, '2020-09-06 03:45:43'),
+(7, NULL, 'Our Services', 'ourService', 3, 1, 1, 1, 4, '2020-09-05 06:34:18', 4, '2020-09-06 03:45:50'),
+(8, NULL, 'Service Charge', 'serviceCharge', 4, 1, 1, 1, 4, '2020-09-05 06:34:38', 4, '2020-09-06 03:45:59'),
+(9, NULL, 'Contact Us', 'contactUs', 5, 1, 1, 1, 4, '2020-09-05 06:35:00', 4, '2020-09-06 03:46:07'),
+(10, 7, 'Parcel Delivery', 'parcelDelivery', 1, 1, 1, 1, 4, '2020-09-06 00:20:17', 4, '2020-09-06 03:46:20'),
+(11, 7, 'Document Delivery', 'documentDelivery', 2, 1, 1, 1, 4, '2020-09-06 00:54:24', 4, '2020-09-06 03:46:13'),
+(12, 7, 'Food Delivery', 'foodDelivery', 3, 1, 1, 1, 4, '2020-09-06 00:55:18', 4, '2020-09-06 03:46:28'),
+(13, 7, 'Grocery Item', 'groceryDelivery', 4, 1, 1, 1, 4, '2020-09-06 00:55:53', 4, '2020-09-06 03:46:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_hubs`
+--
+
+CREATE TABLE `tbl_hubs` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `order_by` int(11) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_hubs`
+--
+
+INSERT INTO `tbl_hubs` (`id`, `name`, `description`, `status`, `order_by`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'Mirpur Hub', NULL, 1, 1, 4, '2020-08-04 04:58:56', NULL, '2020-08-04 05:03:35'),
+(2, 'Dhanmondi Hub', NULL, 1, 2, 4, '2020-08-04 05:03:55', NULL, '2020-08-04 05:03:55'),
+(3, 'Badda Hub', NULL, 1, 3, 4, '2020-08-04 05:04:07', NULL, '2020-08-04 05:22:40'),
+(4, 'Uttara Hub', NULL, 1, 4, 4, '2020-08-04 05:04:19', NULL, '2020-08-04 05:04:19'),
+(5, 'Jatrabari Hub', NULL, 1, 5, 4, '2020-08-04 05:04:34', NULL, '2020-08-12 02:14:30');
 
 -- --------------------------------------------------------
 
@@ -897,6 +1026,9 @@ CREATE TABLE `tbl_marchants` (
   `contact_person_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contact_person_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `trade_licence_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cod_charge_percentage` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `return_charge_status` tinyint(4) NOT NULL DEFAULT 0,
+  `reschedule_charge_status` tinyint(4) NOT NULL DEFAULT 0,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -914,11 +1046,10 @@ CREATE TABLE `tbl_marchants` (
 -- Dumping data for table `tbl_marchants`
 --
 
-INSERT INTO `tbl_marchants` (`id`, `user_id`, `user_role_id`, `area`, `name`, `contact_person_name`, `contact_person_phone`, `contact_person_email`, `trade_licence_no`, `phone`, `email`, `address`, `password`, `token`, `verification_code`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(2, 53, 12, NULL, 'Mr.Hasanuzzaman Khan', 'Rakib Hasanur', '0192823823', 'rakib@gmail.com', '121231232432432', NULL, NULL, 'Dhaka', '$2y$10$3sQjq8YQkc8I/S.bjYv4feRQjejtiVjOQuQQh.vtdszZys2RI3xq2', 'MeOShyx5vGt7WNB8Bk28LVjZStOeLladfxje8j1H', '17858506992456cmFraWJAZ21haWwuY29t', 1, NULL, '2020-07-06 22:50:54', NULL, '2020-07-07 00:32:58'),
-(3, 54, 12, NULL, 'নিজের বাজার', 'মামুনুর রশিদ (ফাত্তাহ)', '01916304877', 'alfattah@gmail.com', '12345678', NULL, NULL, 'House 23, Road 9, Marul Badda, ( DIT Project )', '$2y$10$bC4bBKpoesR6OpprGVZbh..AAXOTumBZGIRzP.wrbWLvjbj9LFDbO', 'KE2ZDc80HR6eqYibT5IyTDgHCd725OohURCL1wih', '43402996237489YWxmYXR0YWhAZ21haWwuY29t', 1, NULL, '2020-07-07 17:08:21', NULL, '2020-07-07 17:09:52'),
-(5, 42, 12, NULL, 'Korim', NULL, '01324349417', NULL, NULL, NULL, NULL, 'Dhanmondi 27', NULL, NULL, NULL, 1, 4, '2020-07-09 07:39:32', NULL, '2020-07-09 07:39:32'),
-(6, 43, 12, NULL, 'Alif', NULL, '01857629384', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 4, '2020-07-11 06:59:58', NULL, '2020-07-11 06:59:58');
+INSERT INTO `tbl_marchants` (`id`, `user_id`, `user_role_id`, `area`, `name`, `contact_person_name`, `contact_person_phone`, `contact_person_email`, `trade_licence_no`, `cod_charge_percentage`, `return_charge_status`, `reschedule_charge_status`, `phone`, `email`, `address`, `password`, `token`, `verification_code`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(16, 84, 12, 16, 'Magical BD', 'Mrs. Simi', '01712781700', 'magicalbd689@gmail.com', NULL, '2', 1, 0, NULL, NULL, 'H-02, R-08, Block - D, MIrpur - 12', NULL, NULL, NULL, 1, 4, '2020-09-30 20:35:34', NULL, '2020-10-17 06:14:21'),
+(17, 53, 14, 14, 'Dew Hat', 'Dew Hunt', '01317243494', 'dew.fog1553@outlook.com', 'asd12345676', NULL, 0, 0, NULL, NULL, 'Mirpur - 10', '$2y$10$1ADDZ17SFr/z2MpKS3DtlOAzlzmG88t.vNkHa.K38ESUhFiPcGmGS', 'gKyaxdaKxQRi6mDlyFQ727DOWECJ69jEnGIbCXCz', '34943599463851ZGV3LmZvZzE1NTNAb3V0bG9vay5jb20=', 0, NULL, '2020-10-10 01:51:09', NULL, '2020-10-10 01:51:09'),
+(18, 53, 14, 14, 'Dew Hat', 'Dew Hunt', '01317243495', 'dew.fog1553@gmail.com', 'asd12345676', NULL, 0, 0, NULL, NULL, 'Mirpur - 10', '$2y$10$a/GNSuJamhVI/3jdnaA2XOkIPe0z0RG8mUYdoOcavJNHMbujmjPsa', 'gKyaxdaKxQRi6mDlyFQ727DOWECJ69jEnGIbCXCz', '97120995140561ZGV3LmZvZzE1NTNAZ21haWwuY29t', 0, NULL, '2020-10-10 01:52:24', NULL, '2020-10-10 01:52:24');
 
 -- --------------------------------------------------------
 
@@ -955,16 +1086,16 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (11, '6', 'Sliders', 'sliders.index', 'fa fa-bars', 4, '1', '2020-04-19 08:19:58', '2020-04-19 08:19:58'),
 (12, '6', 'Pages', 'page.index', 'fa fa-caret', 5, '1', '2020-05-10 05:09:10', '2020-05-10 05:09:10'),
 (13, NULL, 'Basic Setup', 'admin.index', 'fa fa-bars', 4, '1', '2020-06-10 04:33:14', '2020-07-08 07:11:27'),
-(14, '13', 'Agent Setup', 'agent.index', 'fa fa-caret', 1, '1', '2020-06-10 04:33:26', '2020-06-10 04:34:09'),
-(15, '13', 'Subagent Setup', 'subagent.index', 'fa fa-caret', 2, '1', '2020-06-10 04:33:59', '2020-06-10 04:33:59'),
-(16, '13', 'Warehouse Setup', 'warehouse.index', 'fa fa-bars', 3, '1', '2020-06-11 04:48:58', '2020-06-11 04:48:58'),
-(17, '13', 'Marchant Setup', 'marchant.index', 'fa fa-caret', 4, '1', '2020-06-11 11:38:01', '2020-06-11 11:38:37'),
-(18, '13', 'Client Setup', 'client.index', 'fa fa-caret', 5, '1', '2020-06-11 11:38:29', '2020-06-11 11:38:29'),
+(14, '13', 'Agent Setup', 'agent.index', 'fa fa-caret', 4, '1', '2020-06-10 04:33:26', '2020-08-04 04:28:43'),
+(15, '13', 'Subagent Setup', 'subagent.index', 'fa fa-caret', 5, '1', '2020-06-10 04:33:59', '2020-08-04 04:28:56'),
+(16, '13', 'Warehouse Setup', 'warehouse.index', 'fa fa-bars', 1, '1', '2020-06-11 04:48:58', '2020-08-04 04:27:04'),
+(17, '13', 'Marchant Setup', 'marchant.index', 'fa fa-caret', 6, '1', '2020-06-11 11:38:01', '2020-08-04 04:29:17'),
+(18, '13', 'Client Setup', 'client.index', 'fa fa-caret', 7, '1', '2020-06-11 11:38:29', '2020-08-04 04:29:40'),
 (21, NULL, 'Order Management', 'admin.index', 'fa fa-bars', 5, '1', '2020-06-15 04:48:14', '2020-07-08 07:11:35'),
 (22, '21', 'Booking Order', 'bookingOrder.index', NULL, 1, '1', '2020-06-15 04:54:21', '2020-06-15 04:54:21'),
 (23, '21', 'Sender Order', 'senderOrder.index', 'fa fa-bars', 2, '1', '2020-06-18 05:14:55', '2020-06-18 05:14:55'),
 (24, '21', 'Receiver Order', 'receiverOrder.index', 'fa fa-bars', 3, '1', '2020-06-18 05:15:39', '2020-06-18 05:15:39'),
-(25, '13', 'Delivery Man', 'deliveryMan.index', 'fa fa-bars', 8, '1', '2020-06-22 01:36:17', '2020-06-22 01:36:17'),
+(25, '13', 'Delivery Man', 'deliveryMan.index', 'fa fa-bars', 9, '1', '2020-06-22 01:36:17', '2020-08-04 04:30:48'),
 (26, NULL, 'Delivery Management', 'admin.index', 'fa fa-bars', 6, '1', '2020-06-23 01:05:09', '2020-07-08 07:11:41'),
 (27, '26', 'Goods Collection', 'goodsCollection.index', 'fa fa-caret', 1, '1', '2020-06-23 01:19:42', '2020-06-23 01:19:42'),
 (28, '26', 'Goods Delivery', 'goodsDelivery.index', 'fa fa-caret', 2, '1', '2020-06-23 01:20:10', '2020-06-23 01:20:10'),
@@ -973,7 +1104,7 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (33, '29', 'Issue Warehouse', 'issueToWarehouse.index', NULL, 4, '1', '2020-07-01 05:07:57', '2020-07-04 05:41:28'),
 (34, '29', 'Issue Agent', 'issueToAgent.index', NULL, 6, '1', '2020-07-01 05:50:00', '2020-07-04 05:41:41'),
 (36, '29', 'Warehouse Receive', 'receiveFromWarehouse.index', 'fa fa-caret', 5, '1', '2020-07-04 04:06:39', '2020-07-04 05:41:00'),
-(37, '13', 'Area Setup', 'areaSetup.index', NULL, 9, '1', '2020-07-06 07:04:45', '2020-07-06 07:04:45'),
+(37, '13', 'Area Setup', 'areaSetup.index', NULL, 3, '1', '2020-07-06 07:04:45', '2020-08-04 04:28:05'),
 (38, '39', 'Admin Information', 'adminPanelInformation.index', 'fa fa-bars', 5, '1', '2020-07-07 03:46:55', '2020-07-07 03:55:31'),
 (39, NULL, 'User Management', 'admin.index', 'fa fa-bars', 2, '1', NULL, '2020-07-08 07:11:13'),
 (42, NULL, 'Charge Management', 'admin.index', 'fa fa-bars', 8, '1', '2020-07-09 01:37:01', '2020-07-09 04:50:48'),
@@ -983,17 +1114,17 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (46, '45', 'For Client', 'chargeForClient.index', NULL, 1, '1', '2020-07-11 00:59:27', '2020-07-11 00:59:27'),
 (47, '45', 'For Merchant', 'chargeForMerchant.index', 'fa fa-caret', 2, '1', '2020-07-11 02:47:15', '2020-07-11 02:47:15'),
 (48, '45', 'For Delivery Man', 'chargeForDeliveryMen.index', 'fa fa-caret', 3, '1', '2020-07-11 03:55:55', '2020-07-11 03:55:55'),
-(49, '13', 'Delivery Type', 'deliveryType.index', 'fa fa-bars', 10, '1', '2020-07-11 23:30:50', '2020-07-11 23:30:50'),
+(49, '13', 'Delivery Type', 'deliveryType.index', 'fa fa-bars', 8, '1', '2020-07-11 23:30:50', '2020-08-04 04:30:38'),
 (50, NULL, 'Order Entry', 'merchantBookingOrder.index', 'fa fa-bars', 9, '1', '2020-07-12 03:48:51', '2020-07-12 04:27:37'),
 (51, NULL, 'Payment Collection', 'paymentCollection.index', NULL, 10, '1', '2020-07-20 04:07:25', '2020-07-20 04:07:25'),
 (52, NULL, 'Delivery Man Payment', 'deliveryManPayment.index', NULL, 11, '1', '2020-07-23 06:51:33', '2020-07-23 06:51:33'),
-(53, NULL, 'Accounts Management', 'admin.index', NULL, 12, '1', '2020-07-27 23:09:22', '2020-07-27 23:09:22'),
+(53, NULL, 'Accounts Management', 'admin.index', NULL, 13, '1', '2020-07-27 23:09:22', '2020-08-25 00:39:50'),
 (54, '53', 'Chart Of Accounts', 'coaSetup.index', NULL, 1, '1', '2020-07-27 23:10:20', '2020-07-27 23:10:20'),
 (55, '53', 'Journal Entry', 'journalEntry.index', NULL, 2, '1', '2020-07-27 23:40:06', '2020-07-27 23:45:57'),
 (56, '53', 'Debit Entry', 'debitEntry.index', NULL, 3, '1', '2020-07-27 23:46:21', '2020-07-27 23:46:21'),
 (57, '53', 'Credit Entry', 'creditEntry.index', NULL, 4, '1', '2020-07-27 23:49:58', '2020-07-27 23:49:58'),
 (58, '53', 'Voucher Approve', 'voucherApprove.index', NULL, 5, '1', '2020-07-27 23:55:51', '2020-07-27 23:55:51'),
-(59, NULL, 'Accounts Reports', 'admin.index', NULL, 13, '1', '2020-07-28 03:04:59', '2020-07-28 03:04:59'),
+(59, NULL, 'Accounts Reports', 'admin.index', NULL, 14, '1', '2020-07-28 03:04:59', '2020-08-25 00:40:07'),
 (61, '59', 'COA List', 'coaList.index', NULL, 1, '1', '2020-07-28 03:06:23', '2020-07-28 03:06:23'),
 (62, '59', 'Voucher List', 'voucherList.index', NULL, 2, '1', '2020-07-28 03:07:26', '2020-07-28 03:07:26'),
 (63, '59', 'General Ledger', 'generalLedger.index', NULL, 3, '1', '2020-07-28 03:07:44', '2020-07-28 03:07:44'),
@@ -1002,7 +1133,23 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (66, '59', 'Bank Book', 'bankBook.index', NULL, 6, '1', '2020-07-28 03:10:22', '2020-07-28 03:10:22'),
 (67, '59', 'Trial Balance', 'trialBalance.index', NULL, 7, '1', '2020-07-28 03:11:01', '2020-07-28 03:11:01'),
 (68, '59', 'Income Statement', 'incomeStatement.index', NULL, 8, '1', '2020-07-28 03:11:21', '2020-07-28 03:11:21'),
-(69, '59', 'Receive Payment Statement', 'receivePaymentStatement.index', NULL, 9, '1', '2020-07-28 03:12:06', '2020-07-28 03:12:06');
+(69, '59', 'Receive Payment Statement', 'receivePaymentStatement.index', NULL, 9, '1', '2020-07-28 03:12:06', '2020-07-28 03:12:06'),
+(70, '13', 'Hub Setup', 'hubSetup.index', NULL, 2, '1', '2020-08-04 04:26:34', '2020-08-04 04:27:27'),
+(71, NULL, 'Reports', 'admin.index', NULL, 15, '1', '2020-08-23 01:06:29', '2020-09-04 22:47:13'),
+(72, '71', 'Merchant History', 'merchantStatement.index', NULL, 1, '1', '2020-08-23 01:11:15', '2020-09-04 22:38:52'),
+(73, '71', 'Order History', 'orderStatement.index', NULL, 2, '1', '2020-08-24 00:57:42', '2020-09-04 22:39:22'),
+(74, NULL, 'Merchant Payment', 'merchantPayment.index', NULL, 12, '1', '2020-08-25 00:39:26', '2020-08-25 00:39:26'),
+(75, '71', 'Payment Log', 'paymentLog.index', NULL, 5, '1', '2020-08-26 05:16:21', '2020-09-04 22:48:45'),
+(76, '71', 'Collection History', 'collectionHistory.index', NULL, 3, '1', '2020-08-27 01:48:40', '2020-09-04 22:47:44'),
+(77, '71', 'Top Sheet', 'topSheet.index', NULL, 6, '1', '2020-09-02 23:39:20', '2020-09-04 22:48:33'),
+(78, '21', 'Return Delivery', 'returnDelivery.index', NULL, 4, '1', '2020-09-03 06:10:56', '2020-09-03 06:10:56'),
+(79, '71', 'Return History', 'returnHistory.index', NULL, 4, '1', '2020-09-04 22:46:56', '2020-09-04 22:48:55'),
+(80, '6', 'Contact Us', 'contactUs.index', NULL, 6, '1', '2020-09-06 03:41:56', '2020-09-06 03:41:56'),
+(81, '21', 'Assigned Delivery Man', 'assignedDeliveryMan.index', NULL, 5, '1', '2020-10-01 08:04:57', '2020-10-01 08:04:57'),
+(82, '21', 'Booking Order POS', 'bookingOrderPos.index', NULL, 6, '1', '2020-10-03 06:27:13', '2020-10-03 06:27:13'),
+(83, '21', 'Order List', 'orderList.index', NULL, 7, '1', '2020-10-03 13:45:55', '2020-10-03 13:48:03'),
+(84, '21', 'Assigned Order Status', 'assignedOrderStatus.index', NULL, 8, '1', '2020-10-10 06:45:37', '2020-10-10 06:45:37'),
+(85, '21', 'Order Status List', 'orderStatusList.index', NULL, 9, '1', '2020-10-10 08:10:47', '2020-10-10 08:10:47');
 
 -- --------------------------------------------------------
 
@@ -1165,7 +1312,25 @@ INSERT INTO `tbl_menu_actions` (`id`, `parent_menu_id`, `menu_type`, `action_nam
 (163, 57, 8, 'View Credit Entry', 'creditEntry.view', 3, 1, '2020-07-27 23:51:20', '2020-07-27 23:51:20'),
 (164, 57, 11, 'Print Credit Voucher', 'creditEntry.printCreditVoucher', 4, 1, '2020-07-27 23:52:55', '2020-07-27 23:52:55'),
 (165, 57, 4, 'Delete', 'creditEntry.delete', 5, 1, '2020-07-27 23:53:18', '2020-07-27 23:53:18'),
-(166, 57, 3, 'Publish', 'creditEntry.publish', 6, 1, '2020-07-27 23:53:45', '2020-07-27 23:53:45');
+(166, 57, 3, 'Publish', 'creditEntry.publish', 6, 1, '2020-07-27 23:53:45', '2020-07-27 23:53:45'),
+(167, 70, 1, 'Add', 'hubSetup.add', 1, 1, '2020-08-04 04:39:22', '2020-08-04 04:39:22'),
+(168, 70, 2, 'Edit', 'hubSetup.edit', 2, 1, '2020-08-04 04:39:33', '2020-08-04 04:39:33'),
+(169, 70, 3, 'Status', 'hubSetup.status', 3, 1, '2020-08-04 04:39:45', '2020-08-04 04:39:45'),
+(170, 70, 4, 'Delete', 'hubSetup.delete', 4, 1, '2020-08-04 04:39:56', '2020-08-04 04:39:56'),
+(171, 74, 1, 'Add', 'merchantPayment.add', 1, 1, '2020-08-25 00:40:52', '2020-08-25 00:40:52'),
+(172, 74, 2, 'Edit', 'merchantPayment.edit', 2, 1, '2020-08-25 00:41:38', '2020-08-25 00:41:38'),
+(173, 74, 3, 'Status', 'merchantPayment.status', 3, 1, '2020-08-25 00:41:52', '2020-08-25 00:41:52'),
+(174, 74, 8, 'View', 'merchantPayment.view', 4, 1, '2020-08-25 01:08:55', '2020-08-25 01:08:55'),
+(175, 74, 4, 'Delete', 'merchantPayment.delete', 5, 1, '2020-08-25 01:09:08', '2020-08-25 01:09:08'),
+(176, 78, 8, 'View', 'returnDelivery.view', 1, 1, '2020-09-03 06:11:23', '2020-09-03 06:11:23'),
+(177, 80, 1, 'Add', 'contactUs.add', 1, 1, '2020-09-06 03:42:16', '2020-09-06 03:42:16'),
+(178, 80, 2, 'Edit', 'contactUs.edit', 2, 1, '2020-09-06 03:42:31', '2020-09-06 03:42:31'),
+(179, 80, 3, 'Status', 'contactUs.status', 3, 1, '2020-09-06 03:42:45', '2020-09-06 03:42:45'),
+(180, 80, 4, 'Delete', 'contactUs.delete', 4, 1, '2020-09-06 03:42:55', '2020-09-06 03:42:55'),
+(181, 81, 1, 'Add', 'assignedDeliveryMan.add', 1, 1, '2020-10-01 08:05:23', '2020-10-01 08:05:23'),
+(182, 81, 8, 'View', 'assignedDeliveryMan.view', 2, 1, '2020-10-01 08:05:41', '2020-10-01 08:05:41'),
+(183, 84, 1, 'Add', 'assignedOrderStatus.add', 1, 1, '2020-10-10 06:45:56', '2020-10-10 06:45:56'),
+(184, 84, 8, 'View', 'assignedOrderStatus.view', 2, 1, '2020-10-10 06:46:28', '2020-10-10 06:46:28');
 
 -- --------------------------------------------------------
 
@@ -1202,6 +1367,64 @@ INSERT INTO `tbl_menu_action_type` (`id`, `name`, `action_id`, `status`, `create
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_merchant_payment`
+--
+
+CREATE TABLE `tbl_merchant_payment` (
+  `id` int(11) NOT NULL,
+  `date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `merchant_id` int(11) DEFAULT NULL,
+  `total_cod_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_balance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deposit_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remarks` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_merchant_payment`
+--
+
+INSERT INTO `tbl_merchant_payment` (`id`, `date`, `merchant_id`, `total_cod_amount`, `total_balance`, `deposit_type`, `remarks`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(10, '2020-09-02', 8, '5000', '4830', 'Cash Payment', 'co-200822-00004 - 4830', 1, 4, '2020-09-02 00:51:44', NULL, '2020-09-02 00:51:44'),
+(11, '2020-09-02', 8, '80000', '79080', 'Cash Payment', 'co-200822-00005 - 79080', 1, 4, '2020-09-02 00:51:57', NULL, '2020-09-02 00:51:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_merchant_payment_lists`
+--
+
+CREATE TABLE `tbl_merchant_payment_lists` (
+  `id` int(11) NOT NULL,
+  `merchant_payment_id` int(11) DEFAULT NULL,
+  `booking_order_id` int(11) DEFAULT NULL,
+  `order_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cod_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `service_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `balance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_merchant_payment_lists`
+--
+
+INSERT INTO `tbl_merchant_payment_lists` (`id`, `merchant_payment_id`, `booking_order_id`, `order_no`, `cod_amount`, `service_charge`, `balance`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(15, 10, 4, 'co-200822-00004', '5000', '170', '4830', 1, 4, '2020-09-02 00:51:44', NULL, '2020-09-02 00:51:44'),
+(16, 11, 5, 'co-200822-00005', '80000', '920', '79080', 1, 4, '2020-09-02 00:51:57', NULL, '2020-09-02 00:51:57');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_pages`
 --
 
@@ -1221,9 +1444,15 @@ CREATE TABLE `tbl_pages` (
 --
 
 INSERT INTO `tbl_pages` (`id`, `frontend_menu_id`, `page_name`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 4, 'Dew Hunt', 1, 4, '2020-05-10 04:56:47', 4, '2020-05-26 18:44:44'),
-(2, 4, 'Page One', 1, 4, '2020-05-10 05:42:32', 4, '2020-05-10 06:03:53'),
-(4, 1, 'Version Page One', 1, 4, '2020-05-10 06:08:42', NULL, '2020-05-10 06:08:42');
+(5, 5, 'Home', 1, 4, '2020-09-05 06:07:18', 4, '2020-09-05 06:27:06'),
+(6, 6, 'About Us', 1, 4, '2020-09-05 06:07:31', 4, '2020-09-06 03:45:43'),
+(7, 7, 'Our Services', 1, 4, '2020-09-05 06:34:18', 4, '2020-09-06 00:20:30'),
+(8, 8, 'Service Charge', 1, 4, '2020-09-05 06:34:39', 4, '2020-09-06 03:45:59'),
+(9, 9, 'Contact Us', 1, 4, '2020-09-05 06:35:00', 4, '2020-09-06 03:46:07'),
+(10, 10, 'Parcel Delivery', 1, 4, '2020-09-06 00:20:17', 4, '2020-09-06 03:46:20'),
+(11, 11, 'Document Delivery', 1, 4, '2020-09-06 00:54:24', 4, '2020-09-06 03:46:14'),
+(12, 12, 'Food Delivery', 1, 4, '2020-09-06 00:55:18', 4, '2020-09-06 03:46:28'),
+(13, 13, 'Grocery Item', 1, 4, '2020-09-06 00:55:53', 4, '2020-09-06 03:46:33');
 
 -- --------------------------------------------------------
 
@@ -1246,6 +1475,14 @@ CREATE TABLE `tbl_payment_collections` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `tbl_payment_collections`
+--
+
+INSERT INTO `tbl_payment_collections` (`id`, `date`, `client_type`, `client_id`, `total_cod_amount`, `total_delivery_charge_amount`, `balance`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(8, '2020-08-27', 'Merchant', 8, '85000', '1090', '83910', 1, 4, '2020-08-27 02:32:31', NULL, '2020-08-27 02:32:31'),
+(9, '2020-08-27', 'Merchant', 7, '1500', '195', '1305', 1, 4, '2020-08-27 02:34:06', NULL, '2020-08-27 02:34:06');
+
 -- --------------------------------------------------------
 
 --
@@ -1265,6 +1502,15 @@ CREATE TABLE `tbl_payment_collection_lists` (
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_payment_collection_lists`
+--
+
+INSERT INTO `tbl_payment_collection_lists` (`id`, `payment_collection_id`, `booking_order_id`, `order_no`, `cod_amount`, `delivery_charge`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(8, 8, 4, 'co-200822-00004', '5000', '170', 1, 4, '2020-08-27 02:32:31', NULL, '2020-08-27 02:32:31'),
+(9, 8, 5, 'co-200822-00005', '80000', '920', 1, 4, '2020-08-27 02:32:31', NULL, '2020-08-27 02:32:31'),
+(10, 9, 2, 'co-200822-00002', '1500', '195', 1, 4, '2020-08-27 02:34:06', NULL, '2020-08-27 02:34:06');
 
 -- --------------------------------------------------------
 
@@ -1298,15 +1544,6 @@ CREATE TABLE `tbl_posts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `tbl_posts`
---
-
-INSERT INTO `tbl_posts` (`id`, `page_id`, `post_name`, `title`, `inner_title`, `description`, `url_link`, `icon`, `image`, `width`, `height`, `inner_image`, `inner_width`, `inner_height`, `meta_title`, `meta_keyword`, `meta_description`, `order_by`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(3, 4, 'Post One', 'Post For Vision Page', 'Inner Post For Vision Page', '<h3><span style=\"font-family: &quot;Comic Sans MS&quot;;\"><b><font color=\"#ff0000\">Description for Vision Page.</font></b></span><b style=\"background-color: rgb(255, 255, 255);\"><span style=\"font-family: &quot;Comic Sans MS&quot;;\"></span></b></h3>', 'Link for Vision Page', 'Icon For Vision Page', 'public/uploads/post_images/15941214_1648336092137702_5654391025677692098_n_172610808459.jpg', NULL, NULL, 'public/uploads/post_images/91358904_2953446438056905_333599395599613952_o_19832201615.jpg', NULL, NULL, 'Meta Title for Vision Page', 'Meta,Keyaword', 'Meta Description', 1, 1, 4, '2020-05-26 18:43:20', NULL, '2020-05-26 18:43:20'),
-(4, 1, 'Dew Post', 'Dew Hunt Post', 'Dew Hunt Inner Post', '<blockquote class=\"blockquote\"><b>Dew Hunt Description.</b></blockquote>', NULL, 'Dew Hunt Icon', 'public/uploads/post_images/91349259_246886026467370_5892588859736195072_o_83553817927.jpg', 500, 400, 'public/uploads/post_images/91358904_2953446438056905_333599395599613952_o_65946152893.jpg', 600, 300, 'Dew Hunt', 'Dew Hunt', 'Description', 1, 1, 4, '2020-05-26 18:48:56', NULL, '2020-06-06 02:48:12'),
-(5, 2, 'Page One Post', 'Page One title', 'Page One Inner Title', '<p>Page One Description</p>', 'Link for Page One', 'Icon For Page One', NULL, NULL, NULL, NULL, NULL, NULL, 'Meta Title for Page One', 'Page,One', 'Meta Description for Page One', 1, 1, 4, '2020-06-06 03:27:13', NULL, '2020-06-06 03:27:13');
-
 -- --------------------------------------------------------
 
 --
@@ -1317,6 +1554,8 @@ CREATE TABLE `tbl_services` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `weighing_scale` tinyint(4) NOT NULL DEFAULT 0,
+  `upto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `order_by` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
@@ -1329,13 +1568,36 @@ CREATE TABLE `tbl_services` (
 -- Dumping data for table `tbl_services`
 --
 
-INSERT INTO `tbl_services` (`id`, `name`, `description`, `status`, `order_by`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'Document', 'Document', 1, 1, 4, '2020-07-09 05:13:39', NULL, '2020-07-09 05:15:54'),
-(2, 'Large Parcel', 'Large Parcel', 1, 2, 4, '2020-07-09 05:16:01', NULL, '2020-07-09 05:17:04'),
-(3, 'Medium Parcel', 'Medium Parcel', 1, 3, 4, '2020-07-09 05:29:48', NULL, '2020-07-09 05:29:48'),
-(4, 'Mobile/Tab', 'Mobile/Tab', 1, 4, 4, '2020-07-09 05:30:00', NULL, '2020-07-09 05:30:00'),
-(5, 'Small Parcel', 'Small Parcel', 1, 5, 4, '2020-07-09 05:31:21', NULL, '2020-07-09 05:31:21'),
-(6, 'Weighing Scale', 'Weighing Scale', 1, 6, 4, '2020-07-09 05:31:31', NULL, '2020-07-09 05:31:31');
+INSERT INTO `tbl_services` (`id`, `name`, `description`, `weighing_scale`, `upto`, `status`, `order_by`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'Regular Business Parcels', 'Regular Business Parcels', 0, '0', 1, 1, 4, '2020-07-08 23:13:39', NULL, '2020-08-17 20:21:09'),
+(2, 'Emergency Delivery (4 Hour Delivery)', 'Emergency Delivery (4 Hour Delivery)', 0, '0', 1, 2, 4, '2020-07-08 23:16:01', NULL, '2020-08-17 20:22:01'),
+(3, 'Gift/Glass Item', 'Gift/Glass Item', 0, '0', 1, 3, 4, '2020-07-08 23:29:48', NULL, '2020-08-17 20:22:48'),
+(4, 'Food (Upto 5 Km Distance From Pick Point)', 'Food (Upto 5 Km Distance From Pick Point)', 0, '0', 1, 4, 4, '2020-07-08 23:30:00', NULL, '2020-08-17 20:25:05'),
+(5, 'Food (Upto 10 Km Distance From Pick Point)', 'Food (Upto 10 Km Distance From Pick Point)', 0, '0', 1, 5, 4, '2020-07-08 23:31:21', NULL, '2020-08-17 20:25:30'),
+(6, 'Food (Over 10 Km Distance From Pick Point)', 'Food (Over 10 Km Distance From Pick Point)', 0, '0', 1, 6, 4, '2020-07-08 23:31:31', NULL, '2020-08-17 20:26:27'),
+(8, 'Document/Letter (Regular)', 'Document/Letter (Regular)', 0, '0', 1, 7, 4, '2020-08-17 20:27:38', NULL, '2020-08-17 20:27:38'),
+(9, 'Document/Letter (Emergency)', 'Document/Letter (Emergency)', 0, '0', 1, 8, 4, '2020-08-17 20:28:16', NULL, '2020-08-17 20:28:24'),
+(10, 'Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', 'Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', 1, '5', 1, 9, 4, '2020-08-17 20:37:33', NULL, '2020-10-10 05:53:27'),
+(11, 'Pick & Ship (Receive Form Outside Dhaka)', 'Pick & Ship (Receive Form Outside Dhaka)', 0, '0', 1, 10, 4, '2020-08-17 21:09:07', NULL, '2020-08-17 21:09:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_service_charges`
+--
+
+CREATE TABLE `tbl_service_charges` (
+  `id` int(11) NOT NULL,
+  `location_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `charge_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `charge` int(11) DEFAULT NULL,
+  `order_by` int(11) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1453,16 +1715,6 @@ CREATE TABLE `tbl_subagents` (
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tbl_subagents`
---
-
-INSERT INTO `tbl_subagents` (`id`, `user_id`, `user_role_id`, `agent_id`, `name`, `contact_person`, `phone`, `email`, `nid`, `address`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(4, 26, 10, 8, 'Subagnet One', NULL, '01317243494', 'subagentone@gmail.com', '5389567031', 'Road - 12', 1, 4, '2020-07-04 01:43:23', NULL, '2020-07-04 01:43:23'),
-(5, 27, 10, 9, 'Subagent Two', NULL, '01317243494', 'subagenttwo@gmail.com', '78689768831', 'Road - 12', 1, 4, '2020-07-04 01:44:46', NULL, '2020-07-04 01:44:46'),
-(6, 28, 10, 9, 'Subagent Three', NULL, '01317243494', 'subagentthree@gmail.com', '78689768831', 'Road - 12', 1, 4, '2020-07-04 01:45:41', NULL, '2020-07-04 01:45:41'),
-(9, 48, 10, 10, 'Subagent Four', 'Milon', '01726309176', 'milon@gmail.com', '3059962831', 'Badda', 1, 4, '2020-07-16 03:19:35', 4, '2020-07-16 03:23:29');
 
 -- --------------------------------------------------------
 
@@ -2002,7 +2254,7 @@ CREATE TABLE `tbl_user_roles` (
 --
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
-(2, 'Super User', NULL, 1, 1, '1,39,2,3,4,5,38,6,7,8,10,11,12,13,14,15,16,17,18,25,37,49,21,22,42,43,44,45,46,47,48,51,52,53,54,55,56,57,58,59,61,62,63,64,65,66,67,68,69', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,89,90,91,92,104,105,106,107,130,131,132,133,84,85,88,86,87,114,115,116,117,110,111,112,113,118,119,120,121,122,123,124,125,126,127,128,129,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166', '2019-04-17 00:50:05', '2020-07-28 03:14:49'),
+(2, 'Super User', NULL, 1, 1, '1,39,2,3,4,5,38,6,7,8,10,11,12,80,13,14,15,16,17,18,25,37,49,70,21,22,78,81,82,83,84,85,42,43,44,45,46,47,48,51,52,74,53,54,55,56,57,58,59,61,62,63,64,65,66,67,68,69,71,72,73,75,76,77,79', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,177,178,179,180,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,89,90,91,92,104,105,106,107,130,131,132,133,167,168,169,170,84,85,88,86,87,176,181,182,183,184,114,115,116,117,110,111,112,113,118,119,120,121,122,123,124,125,126,127,128,129,139,140,141,142,143,144,145,146,147,148,171,172,173,174,175,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166', '2019-04-17 00:50:05', '2020-10-10 08:11:02'),
 (3, 'Admin', NULL, 1, 1, '1,39,2,3,5', '2,3,4,11,12,13,14,15,21,22,23,24,25,26', '2019-04-17 00:52:54', '2020-07-08 12:49:14'),
 (4, 'Client', NULL, 1, 1, '1', '', '2020-03-07 00:49:33', '2020-07-08 12:49:35'),
 (8, 'Agent', NULL, 1, 1, '1,21,23,24', '93,94', '2020-06-10 06:39:37', '2020-07-08 12:49:25'),
@@ -2038,9 +2290,7 @@ CREATE TABLE `tbl_warehouses` (
 --
 
 INSERT INTO `tbl_warehouses` (`id`, `user_id`, `user_role_id`, `name`, `contact_person`, `phone`, `email`, `address`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(3, 29, 11, 'Dhaka South', 'Karim', '01317243494', 'dhakasouth@gmail.com', 'Road - 12', 1, 4, '2020-07-04 01:47:38', NULL, '2020-07-04 01:47:38'),
-(4, 30, 11, 'Dhaka North', 'Habib', '01317243494', 'dhakanorth@gmail.com', 'Road - 12', 1, 4, '2020-07-04 01:48:21', NULL, '2020-07-04 01:48:21'),
-(5, 31, 11, 'Mymensing Warehouse', 'Jisan', '01317243494', 'mymensingwarehoue@gmail.com', 'Road - 12', 1, 4, '2020-07-04 01:49:39', NULL, '2020-07-04 01:49:39');
+(4, 30, 11, 'Dhaka Central Warehouse', 'Hasan Mahmud Jewel', '01612742150', 'dhakacentral@quickexpress.com.bd', 'Mirpur 12', 1, 4, '2020-07-03 19:48:21', NULL, '2020-07-13 14:33:25');
 
 -- --------------------------------------------------------
 
@@ -2059,6 +2309,7 @@ CREATE TABLE `tbl_website_information` (
   `phone_one` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone_two` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone_three` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `logo_one` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `logo_two` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fav_icon` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2076,8 +2327,8 @@ CREATE TABLE `tbl_website_information` (
 -- Dumping data for table `tbl_website_information`
 --
 
-INSERT INTO `tbl_website_information` (`id`, `website_name`, `prefix_title`, `website_title`, `website_link`, `developed_by`, `developer_website_link`, `phone_one`, `phone_two`, `phone_three`, `logo_one`, `logo_two`, `fav_icon`, `meta_title`, `meta_keyword`, `meta_description`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'Quick Express', '|', 'Quick Express', 'http://www.quickexpress.com.bd/', 'Techno Park Bangladesh', 'http://www.technoparkbd.com/', '+880 1916 304 877', NULL, NULL, 'public/uploads/site_logo/logo1/105643874_571111206863795_2713819376116015751_n_8188589146.jpg', 'public/uploads/site_logo/logo2/website_logo_transparent_00_32584348296.png', 'public/uploads/site_logo/fav_icon/website_favicon_26561815396_99212463332.png', 'Courier Service', NULL, 'Courier Service.', 1, 4, '2020-04-17 08:33:15', NULL, '2020-07-07 23:05:47');
+INSERT INTO `tbl_website_information` (`id`, `website_name`, `prefix_title`, `website_title`, `website_link`, `developed_by`, `developer_website_link`, `phone_one`, `phone_two`, `phone_three`, `address`, `logo_one`, `logo_two`, `fav_icon`, `meta_title`, `meta_keyword`, `meta_description`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'Quick Express', '|', 'Quick Express', 'http://www.technoparkbd.com/', 'Techno Park Bangladesh', 'http://www.technoparkbd.com/', '+880 1916 304 877', NULL, NULL, 'House #52, Road #16, Block #D, Pallabi, Mirpur, Dhaka #1216', 'public/uploads/site_logo/logo1/105643874_571111206863795_2713819376116015751_n_8188589146.jpg', 'public/uploads/site_logo/logo2/website_logo_transparent_00_32584348296.png', 'public/uploads/site_logo/fav_icon/website_favicon_26561815396_99212463332.png', 'Courier Service', NULL, 'Courier Service.', 1, 4, '2020-04-17 08:33:15', NULL, '2020-10-03 12:57:33');
 
 -- --------------------------------------------------------
 
@@ -2120,10 +2371,49 @@ CREATE TABLE `view_account` (
 CREATE TABLE `view_clients` (
 `clientId` int(11)
 ,`clientUserRoleId` int(11)
+,`clientHubId` int(11)
+,`clientAreaId` int(11)
+,`clientAreaName` varchar(255)
 ,`clientType` varchar(8)
 ,`clientName` varchar(255)
 ,`clientPhone` varchar(255)
 ,`clientAddress` mediumtext
+,`clientCodChargePercentage` varchar(255)
+,`clientReturnChargeStatus` varchar(4)
+,`clientRescheduleChargeStatus` varchar(4)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_merchant_statement`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_merchant_statement` (
+`date` varchar(255)
+,`orderNo` varchar(255)
+,`clientType` varchar(255)
+,`statementType` varchar(7)
+,`clientId` int(11)
+,`bookingCodAmount` varchar(255)
+,`bookingDeliveryCharge` varchar(11)
+,`paymentCodAmount` varchar(255)
+,`paymentDeliveryCharge` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_top_sheet`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_top_sheet` (
+`date` varchar(255)
+,`orderno` varchar(255)
+,`orderValue` varchar(11)
+,`returnDelivery` varchar(4)
+,`paymentCollection` varchar(255)
+,`merchantPayment` varchar(255)
 );
 
 -- --------------------------------------------------------
@@ -2155,6 +2445,8 @@ CREATE TABLE `view_zones` (
 ,`zone_name` varchar(255)
 ,`zone_phone` varchar(255)
 ,`zone_address` mediumtext
+,`zone_area` varchar(255)
+,`zone_area_id` varchar(255)
 );
 
 -- --------------------------------------------------------
@@ -2173,7 +2465,25 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_clients`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_clients`  AS  select `tbl_clients`.`id` AS `clientId`,`tbl_clients`.`user_role_id` AS `clientUserRoleId`,'Client' AS `clientType`,`tbl_clients`.`name` AS `clientName`,`tbl_clients`.`phone` AS `clientPhone`,`tbl_clients`.`address` AS `clientAddress` from `tbl_clients` union all select `tbl_marchants`.`id` AS `clientId`,`tbl_marchants`.`user_role_id` AS `clientUserRoleId`,'Merchant' AS `clientType`,`tbl_marchants`.`name` AS `clientName`,`tbl_marchants`.`contact_person_phone` AS `clientPhone`,`tbl_marchants`.`address` AS `clientAddress` from `tbl_marchants` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_clients`  AS  select `tbl_clients`.`id` AS `clientId`,`tbl_clients`.`user_role_id` AS `clientUserRoleId`,`tbl_area`.`hub_id` AS `clientHubId`,`tbl_clients`.`area` AS `clientAreaId`,`tbl_area`.`name` AS `clientAreaName`,'Client' AS `clientType`,`tbl_clients`.`name` AS `clientName`,`tbl_clients`.`phone` AS `clientPhone`,`tbl_clients`.`address` AS `clientAddress`,'1' AS `clientCodChargePercentage`,'0' AS `clientReturnChargeStatus`,'0' AS `clientRescheduleChargeStatus` from (`tbl_clients` left join `tbl_area` on(`tbl_area`.`id` = `tbl_clients`.`area`)) union all select `tbl_marchants`.`id` AS `clientId`,`tbl_marchants`.`user_role_id` AS `clientUserRoleId`,`tbl_area`.`hub_id` AS `clientHubId`,`tbl_marchants`.`area` AS `clientAreaId`,`tbl_area`.`name` AS `clientAreaName`,'Merchant' AS `clientType`,`tbl_marchants`.`name` AS `clientName`,`tbl_marchants`.`contact_person_phone` AS `clientPhone`,`tbl_marchants`.`address` AS `clientAddress`,`tbl_marchants`.`cod_charge_percentage` AS `clientCodChargePercentage`,`tbl_marchants`.`return_charge_status` AS `clientReturnChargeStatus`,`tbl_marchants`.`reschedule_charge_status` AS `clientRescheduleChargeStatus` from (`tbl_marchants` left join `tbl_area` on(`tbl_area`.`id` = `tbl_marchants`.`area`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_merchant_statement`
+--
+DROP TABLE IF EXISTS `view_merchant_statement`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_merchant_statement`  AS  select `tbl_booking_orders`.`date` AS `date`,`tbl_booking_orders`.`order_no` AS `orderNo`,`tbl_booking_orders`.`booked_type` AS `clientType`,'Booking' AS `statementType`,`tbl_booking_orders`.`sender_id` AS `clientId`,`tbl_booking_orders`.`cod_amount` AS `bookingCodAmount`,`tbl_booking_orders`.`delivery_charge` AS `bookingDeliveryCharge`,0 AS `paymentCodAmount`,0 AS `paymentDeliveryCharge` from `tbl_booking_orders` union all select `tbl_payment_collections`.`date` AS `date`,`tbl_payment_collection_lists`.`order_no` AS `orderNo`,`tbl_payment_collections`.`client_type` AS `clientType`,'Payment' AS `statementType`,`tbl_payment_collections`.`client_id` AS `clientId`,0 AS `bookingCodAmount`,0 AS `bookingDeliveryCharge`,`tbl_payment_collection_lists`.`cod_amount` AS `paymentCodAmount`,`tbl_payment_collection_lists`.`delivery_charge` AS `paymentDeliveryCharge` from (`tbl_payment_collections` left join `tbl_payment_collection_lists` on(`tbl_payment_collection_lists`.`payment_collection_id` = `tbl_payment_collections`.`id`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_top_sheet`
+--
+DROP TABLE IF EXISTS `view_top_sheet`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_top_sheet`  AS  select `tbl_booking_orders`.`date` AS `date`,`tbl_booking_orders`.`order_no` AS `orderno`,`tbl_booking_orders`.`delivery_charge` AS `orderValue`,`tbl_booking_orders`.`return_status` AS `returnDelivery`,'0' AS `paymentCollection`,'0' AS `merchantPayment` from `tbl_booking_orders` union all select `tbl_payment_collections`.`date` AS `date`,NULL AS `orderNo`,'0' AS `orderValue`,'0' AS `returnDelivery`,`tbl_payment_collections`.`balance` AS `paymentCollection`,'0' AS `merchantPayment` from `tbl_payment_collections` union all select `tbl_merchant_payment`.`date` AS `date`,NULL AS `orderNo`,'0' AS `orderValue`,'0' AS `returnDelivery`,'0' AS `paymentCollection`,`tbl_merchant_payment`.`total_balance` AS `merchantPayment` from `tbl_merchant_payment` ;
 
 -- --------------------------------------------------------
 
@@ -2191,7 +2501,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_zones`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_zones`  AS  select `tbl_agents`.`id` AS `zone_id`,'Agent' AS `zone_type`,`tbl_agents`.`name` AS `zone_name`,`tbl_agents`.`phone` AS `zone_phone`,`tbl_agents`.`address` AS `zone_address` from `tbl_agents` union all select `tbl_subagents`.`id` AS `zone_id`,'Subagent' AS `zone_type`,`tbl_subagents`.`name` AS `zone_name`,`tbl_subagents`.`phone` AS `zone_phone`,`tbl_subagents`.`address` AS `zone_address` from `tbl_subagents` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_zones`  AS  select `tbl_agents`.`id` AS `zone_id`,'Agent' AS `zone_type`,`tbl_agents`.`name` AS `zone_name`,`tbl_agents`.`phone` AS `zone_phone`,`tbl_agents`.`address` AS `zone_address`,`tbl_area`.`name` AS `zone_area`,`tbl_agents`.`area` AS `zone_area_id` from (`tbl_agents` left join `tbl_area` on(`tbl_area`.`id` = `tbl_agents`.`area`)) union all select `tbl_subagents`.`id` AS `zone_id`,'Subagent' AS `zone_type`,`tbl_subagents`.`name` AS `zone_name`,`tbl_subagents`.`phone` AS `zone_phone`,`tbl_subagents`.`address` AS `zone_address`,`tbl_area`.`name` AS `zone_area`,`tbl_agents`.`area` AS `zone_area_id` from ((`tbl_subagents` left join `tbl_agents` on(`tbl_agents`.`id` = `tbl_subagents`.`agent_id`)) left join `tbl_area` on(`tbl_area`.`id` = `tbl_agents`.`area`)) ;
 
 --
 -- Indexes for dumped tables
@@ -2284,6 +2594,12 @@ ALTER TABLE `tbl_coa`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_contact_us`
+--
+ALTER TABLE `tbl_contact_us`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_delivery_man_payments`
 --
 ALTER TABLE `tbl_delivery_man_payments`
@@ -2320,6 +2636,12 @@ ALTER TABLE `tbl_frontend_menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_hubs`
+--
+ALTER TABLE `tbl_hubs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_marchants`
 --
 ALTER TABLE `tbl_marchants`
@@ -2341,6 +2663,18 @@ ALTER TABLE `tbl_menu_actions`
 -- Indexes for table `tbl_menu_action_type`
 --
 ALTER TABLE `tbl_menu_action_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_merchant_payment`
+--
+ALTER TABLE `tbl_merchant_payment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_merchant_payment_lists`
+--
+ALTER TABLE `tbl_merchant_payment_lists`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2371,6 +2705,12 @@ ALTER TABLE `tbl_posts`
 -- Indexes for table `tbl_services`
 --
 ALTER TABLE `tbl_services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_service_charges`
+--
+ALTER TABLE `tbl_service_charges`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2436,7 +2776,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -2466,25 +2806,25 @@ ALTER TABLE `tbl_admin_panel_information`
 -- AUTO_INCREMENT for table `tbl_agents`
 --
 ALTER TABLE `tbl_agents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_area`
 --
 ALTER TABLE `tbl_area`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `tbl_booking_orders`
 --
 ALTER TABLE `tbl_booking_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `tbl_charge_for_clients`
 --
 ALTER TABLE `tbl_charge_for_clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_charge_for_delivery_men`
@@ -2496,19 +2836,25 @@ ALTER TABLE `tbl_charge_for_delivery_men`
 -- AUTO_INCREMENT for table `tbl_charge_for_merchants`
 --
 ALTER TABLE `tbl_charge_for_merchants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tbl_clients`
 --
 ALTER TABLE `tbl_clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tbl_coa`
 --
 ALTER TABLE `tbl_coa`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+
+--
+-- AUTO_INCREMENT for table `tbl_contact_us`
+--
+ALTER TABLE `tbl_contact_us`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_delivery_man_payments`
@@ -2526,7 +2872,7 @@ ALTER TABLE `tbl_delivery_man_payment_lists`
 -- AUTO_INCREMENT for table `tbl_delivery_men`
 --
 ALTER TABLE `tbl_delivery_men`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_delivery_types`
@@ -2544,25 +2890,31 @@ ALTER TABLE `tbl_districts`
 -- AUTO_INCREMENT for table `tbl_frontend_menu`
 --
 ALTER TABLE `tbl_frontend_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `tbl_hubs`
+--
+ALTER TABLE `tbl_hubs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_marchants`
 --
 ALTER TABLE `tbl_marchants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_menus`
 --
 ALTER TABLE `tbl_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_actions`
 --
 ALTER TABLE `tbl_menu_actions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_action_type`
@@ -2571,22 +2923,34 @@ ALTER TABLE `tbl_menu_action_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `tbl_merchant_payment`
+--
+ALTER TABLE `tbl_merchant_payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `tbl_merchant_payment_lists`
+--
+ALTER TABLE `tbl_merchant_payment_lists`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `tbl_pages`
 --
 ALTER TABLE `tbl_pages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment_collections`
 --
 ALTER TABLE `tbl_payment_collections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment_collection_lists`
 --
 ALTER TABLE `tbl_payment_collection_lists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_posts`
@@ -2598,7 +2962,13 @@ ALTER TABLE `tbl_posts`
 -- AUTO_INCREMENT for table `tbl_services`
 --
 ALTER TABLE `tbl_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `tbl_service_charges`
+--
+ALTER TABLE `tbl_service_charges`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_service_types`

@@ -75,7 +75,9 @@
                                             @if (empty($receiverOrder->delivery_man_id))
                                                 <h5><span class="badge badge-success">Assign<br>Delivery<br>Man</span></h5>
                                             @else
-                                                @if ($receiverOrder->delivery_status == 1)
+                                                @if ($receiverOrder->status == 0)
+                                                    <h5><span class="badge badge-success">Delivery<br>Re-Scheduled</span></h5>
+                                                @elseif ($receiverOrder->delivery_status == 1)
                                                     <h5><span class="badge badge-success">Delivered<br>Without<br>Verification</span></h5>
                                                 @else
                                                     <h5><span class="badge badge-success">Wait For<br>Delivery</span></h5>

@@ -113,9 +113,9 @@ class PaymentCollectionController extends Controller
 
         $clients = DB::table('view_clients')->select('view_clients.*')->orderBy('view_clients.clientType')->get();
 
-        $paymentCollection = DeliveryManPayment::where('id',$paymentCollectionId)->first();
+        $paymentCollection = PaymentCollection::where('id',$paymentCollectionId)->first();
 
-        $paymentCollectionLists = DeliveryManPaymentList::where('delivery_man_payment_id',$paymentCollectionId)->get();
+        $paymentCollectionLists = PaymentCollectionList::where('payment_collection_id',$paymentCollectionId)->get();
 
         $orderInformations = BookingOrder::where('booked_type',$paymentCollection->client_type)
             ->where('sender_id',$paymentCollection->client_id)
@@ -152,7 +152,7 @@ class PaymentCollectionController extends Controller
         $clientId = $clients[0];
         $clientType = $clients[1];
 
-        $orderInformations = BookingOrder::where('booked_type',$clientType)->where('sender_id',$clientId)->where('payment_status',0)->get();
+        $orderInformations = BookingOrder::where('booked_type',$clientType)->where('sender_id',$clientId)->where('payment_status','=',0)->get();
 
         // dd($orderInformations);
         

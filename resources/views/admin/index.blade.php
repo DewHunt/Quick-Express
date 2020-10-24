@@ -30,4 +30,4 @@
 			@endif
 		</div>
 	</div>
-{{-- @endsection --}}
+@endsection

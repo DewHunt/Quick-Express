@@ -41,6 +41,7 @@ class ChargeForClientController extends Controller
             'service_id' => $request->serviceId,
             'name' => $request->chargeName,
             'charge' => $request->charge,
+            'charge_per_uom' => $request->chargePerUom,
             'created_by' => $this->userId,
         ]);
 
@@ -72,6 +73,7 @@ class ChargeForClientController extends Controller
             'service_id' => $request->serviceId,
             'name' => $request->chargeName,
             'charge' => $request->charge,
+            'charge_per_uom' => $request->chargePerUom,
             'updated_by' => $this->userId,
         ]);
 

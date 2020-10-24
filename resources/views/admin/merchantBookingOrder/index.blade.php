@@ -19,6 +19,7 @@
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="110px">Order No</th>
                         <th style="font-weight: bold; vertical-align: middle;" colspan="3">Receiver</th>
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="105px">Service Type</th>
+                        <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="50px">COD</th>
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="50px">Charge</th>
                         <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="70px">Action</th>
                     </tr>
@@ -41,6 +42,7 @@
                             <td>{{ $bookingOrder->receiver_phone }}</td>
                             <td>{{ $bookingOrder->receiver_address }}</td>
                             <td>{{ $bookingOrder->serviceTypeName }}</td>
+                            <td>{{ $bookingOrder->cod_amount }}</td>
                 			<td>{{ $bookingOrder->delivery_charge }}</td>
                 			<td>
                     			@php

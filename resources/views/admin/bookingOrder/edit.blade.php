@@ -9,14 +9,21 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <label for="booking-date">Booking Date</label>
                 <div class="form-group">
-                    <input  type="text" class="form-control datepicker" id="bookingDate" name="bookingDate" placeholder="Select Delivery Date" value="{{ date('d-m-Y', strtotime($bookedOrder->date)) }}">
+                    <input  type="text" class="form-control datepicker" id="bookingDate" name="bookingDate" placeholder="Select Delivery Date" value="{{ date('d-m-Y', strtotime($bookedOrder->date)) }}" required>
                 </div>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-4">
+                <label for="booking-date">Booking Date</label>
+                <div class="form-group">
+                    <input  type="text" class="form-control datepicker" id="deliveryDate" name="deliveryDate" placeholder="Select Delivery Date" value="{{ date('d-m-Y', strtotime($bookedOrder->delivery_date)) }}" required>
+                </div>
+            </div>
+
+            <div class="col-md-4">
                 <label for="order-no-name">Order No</label>
                 <div class="form-group {{ $errors->has('orderNo') ? ' has-danger' : '' }}">
                     <input type="text" class="form-control" placeholder="Order No" name="orderNo" value="{{ $bookedOrder->order_no }}" readonly>
@@ -27,8 +34,10 @@
                     @endif
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-2">
+        <div class="row">
+            <div class="col-md-4">
                 <label for="cash-on-delivery">Cash On Delivery</label>
                 <div class="form-group {{ $errors->has('cod') ? ' has-danger' : '' }}">
                     <div class="form-check-inline">
@@ -50,10 +59,11 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label for="order-no-name">Cash On Delivery Amount</label>
                 <div class="form-group {{ $errors->has('codAmount') ? ' has-danger' : '' }}">
-                    <input type="text" class="form-control" placeholder="Cash On Delivery Amount" id="codAmount" name="codAmount" value="{{ $bookedOrder->cod_amount }}" {{ $bookedOrder->cod == 'Yes' ? '' : 'readonly' }}>
+                    <input type="number" min="0" class="form-control" placeholder="Cash On Delivery Amount" id="codAmount" name="codAmount" value="{{ $bookedOrder->cod_amount }}" oninput="findDeliveryCharge()" {{ $bookedOrder->cod == 'Yes' ? '' : 'readonly' }}>
+                    <input type="hidden" class="form-control" id="codChargePercentage" name="codChargePercentage" value="{{ $bookedOrder->cod_charge_percentage }}">
                     @if ($errors->has('codAmount'))
                         @foreach($errors->get('codAmount') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -62,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label for="sender-type">Sender Type</label>
                 <div class="form-group {{ $errors->has('senderType') ? ' has-danger' : '' }}">
                     <div class="form-check-inline">
@@ -87,7 +97,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="sender-phone-number">Sender Phone Number</label>
+                <label for="sender-phone-number">Clien / Merchant Phone No.</label>
                 <div class="form-group {{ $errors->has('senderPhoneNumber') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Sender Phone Number" id="senderPhoneNumber" name="senderPhoneNumber" value="{{ $bookedOrder->sender_phone }}" readonly>
                     @if ($errors->has('senderPhoneNumber'))
@@ -114,7 +124,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="sender-name">Sender Name</label>
+                <label for="sender-name">Clien / Merchant Name</label>
                 <div class="form-group {{ $errors->has('senderName') ? ' has-danger' : '' }}">
                     <input type="text" class="form-control" placeholder="Sender Name" id="senderName" name="senderName" value="{{ $bookedOrder->sender_name }}" readonly>
                     @if ($errors->has('senderName'))
@@ -140,7 +150,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="Sender-detail-address">Sender Details Address</label>
+                <label for="Sender-detail-address">Clien / Merchant Details Address</label>
                 <div class="form-group {{ $errors->has('senderAddress') ? ' has-danger' : '' }}">
                     <textarea class="form-control" rows="3" placeholder="Sender Details Address" id="senderAddress" name="senderAddress">{{ $bookedOrder->sender_address }}</textarea>
                     @if ($errors->has('senderAddress'))
@@ -180,9 +190,9 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="sender-area">Sender Area</label>
+                <label for="sender-area">Clien / Merchant Area</label>
                 <div class="form-group {{ $errors->has('senderArea') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" id="senderArea" name="senderArea">
+                    <select class="form-control chosen-select" id="senderArea" name="senderArea" required>
                         <option value="">Select A Zone</option>
                         @foreach ($areas as $area)
                             @php
@@ -200,14 +210,15 @@
                     </select>
                 </div>
 
-                <input type="text" id="senderZoneId" name="senderZoneId" value="{{ $bookedOrder->sender_zone_id }}">
-                <input type="text" id="senderZoneType" name="senderZoneType" value="{{ $bookedOrder->sender_zone_type }}">
+                <input type="hidden" id="senderZoneId" name="senderZoneId" value="{{ $bookedOrder->sender_zone_id }}">
+                <input type="hidden" id="senderZoneType" name="senderZoneType" value="{{ $bookedOrder->sender_zone_type }}">
+                <input type="hidden" id="senderHubId" name="senderHubId" value="{{ $bookedOrder->sender_hub_id }}">
             </div>
 
             <div class="col-md-6">
                 <label for="receiver-area">Receiver Area</label>
                 <div class="form-group {{ $errors->has('receiverArea') ? ' has-danger' : '' }}">
-                    <select class="form-control chosen-select" id="receiverArea" name="receiverArea">
+                    <select class="form-control chosen-select" id="receiverArea" name="receiverArea" required>
                         <option value="">Select A Zone</option>
                         @foreach ($areas as $area)
                             @php
@@ -225,8 +236,9 @@
                     </select>
                 </div>
 
-                <input type="text" id="receiverZoneId" name="receiverZoneId" value="{{ $bookedOrder->receiver_zone_id }}">
-                <input type="text" id="receiverZoneType" name="receiverZoneType" value="{{ $bookedOrder->receiver_zone_type }}">
+                <input type="hidden" id="receiverZoneId" name="receiverZoneId" value="{{ $bookedOrder->receiver_zone_id }}">
+                <input type="hidden" id="receiverZoneType" name="receiverZoneType" value="{{ $bookedOrder->receiver_zone_type }}">
+                <input type="hidden" id="receiverHubId" name="receiverHubId" value="{{ $bookedOrder->receiver_hub_id }}">
             </div>
         </div>
 
@@ -275,7 +287,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <label for="charge-name">Charge Name</label>
                 <div class="form-group {{ $errors->has('chargeName') ? ' has-danger' : '' }}">
                     <input type="text" class="form-control" placeholder="Charge Name" id="chargeName" name="chargeName" value="{{ $bookedOrder->charge_name }}" readonly>
@@ -287,7 +299,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            {{-- <div class="col-md-3">
                 <label for="delivery-type">Delivery Type</label>
                 <div class="form-group {{ $errors->has('deliveryTypeId') ? ' has-danger' : '' }}">
                     <select class="form-control chosen-select" name="deliveryTypeId">
@@ -307,7 +319,7 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="row">
@@ -324,6 +336,19 @@
             </div>
 
             <div class="col-md-3">
+                <label for="charge-unit-per-kg">Charge Unit Per Kg/Litre</label>
+                <div class="form-group {{ $errors->has('deliveryChargeUnitPerUom') ? ' has-danger' : '' }}">
+                    <input type="number" class="form-control" placeholder="Unit Price Per Kg" id="deliveryChargeUnitPerUom" name="deliveryChargeUnitPerUom" oninput="findDeliveryCharge()" value="{{ $bookedOrder->delivery_charge_unit_per_uom }}" {{ $bookedOrder->courier_type_id == 10 ? "" : "readonly" }}>
+                    <input type="hidden" class="form-control" id="upto" name="upto">
+                    @if ($errors->has('deliveryChargeUnitPerUom'))
+                        @foreach($errors->get('deliveryChargeUnitPerUom') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-2">
                 <label for="qty-kg-lit">Kg/Litre</label>
                 <div class="form-group {{ $errors->has('uom') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Qunatity/KG/Litre" id="uom" name="uom" oninput="findDeliveryCharge()" value="{{ $bookedOrder->uom == '' ? '1' : $bookedOrder->uom }}" readonly>
@@ -335,7 +360,19 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-2">
+                <label for="cod-charge">COD Charge</label>
+                <div class="form-group {{ $errors->has('codCharge') ? ' has-danger' : '' }}">
+                    <input type="number" class="form-control" placeholder="COD Charge" id="codCharge" name="codCharge" value="{{ $bookedOrder->cod_charge }}" readonly>
+                    @if ($errors->has('codCharge'))
+                        @foreach($errors->get('codCharge') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-2">
                 <label for="delivery-charge">Delivery Charge</label>
                 <div class="form-group {{ $errors->has('deliveryCharge') ? ' has-danger' : '' }}">
                     <input type="number" class="form-control" placeholder="Delivery Charge" id="deliveryCharge" name="deliveryCharge" value="{{ $bookedOrder->delivery_charge == '' ? '0' : $bookedOrder->delivery_charge }}">
@@ -354,6 +391,44 @@
 
 @section('custom-js')
     <script type="text/javascript">
+        $(document).on('change', '#senderArea', function()
+        {
+            var areaId = $('#senderArea').val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('bookingOrder.getAgentInfo') }}',
+                data:{areaId:areaId},
+                success:function(data){
+                    $('#senderZoneId').val(data.zoneId);
+                    $('#senderZoneType').val(data.zoneType);
+                    $('#senderHubId').val(data.hubId);
+                },
+            });
+        });
+
+        $(document).on('change', '#receiverArea', function()
+        {
+            var areaId = $('#receiverArea').val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('bookingOrder.getAgentInfo') }}',
+                data:{areaId:areaId},
+                success:function(data){
+                    $('#receiverZoneId').val(data.zoneId);
+                    $('#receiverZoneType').val(data.zoneType);
+                    $('#receiverHubId').val(data.hubId);
+                },
+            });
+        });
+
         $('.cod').click(function(event) {
             var cod =  $("input[name='cod']:checked").val();
 
@@ -365,8 +440,76 @@
             {
                 $("#codAmount").val(0);
                 $("#codAmount").prop('readonly',true);
+                $("#codCharge").val(0);
+                findDeliveryCharge();
             }
         })
+
+        function getClientInfo()
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var senderPhoneNumber = $('#senderPhoneNumber').val();
+
+            $.ajax({
+                type:'post',
+                url:'{{ route('bookingOrder.getClientInfo') }}',
+                data:{senderPhoneNumber:senderPhoneNumber},
+                success:function(data){
+                    $('#senderName').val(data.senderName);
+                    $('#senderAddress').val(data.senderAddress);
+                    $('#clientId').val(data.clientId);
+                    $('#clientUserRoleId').val(data.clientUserRoleId);
+                    $('#senderZoneId').val(data.zoneId);
+                    $('#senderZoneType').val(data.zoneType);
+                    $('#codChargePercentage').val(data.senderCodChargePercentage);
+                    $('#parcelReturnable').val(data.senderParcelReturnable);
+                    $('#senderHubId').val(data.senderHubId);
+
+                    if (data.clientType == '')
+                    {
+                        $( ".senderType" ).prop( "checked", false );
+                    }
+                    else
+                    {
+                        if (data.clientType == 'Client')
+                        {
+                            $("#Client").prop("checked",true);
+                        }
+                        else
+                        {
+                            $("#Merchant").prop("checked",true);
+                        }
+                    }
+
+                    if (data.senderAreaId)
+                    {
+                        $('#senderArea option').filter(function () {
+                            return $(this).val() == "";
+                        }).attr('selected', false).trigger('chosen:updated');
+
+                        $('#senderArea option').filter(function () {
+                            return $(this).val() == data.senderAreaId;
+                        }).attr('selected', true).trigger('chosen:updated');
+                    }
+                    else
+                    {
+                        $('#senderArea option').filter(function () {
+                            return $(this).val() == $('#senderArea').val();
+                        }).attr('selected', false).trigger('chosen:updated');
+
+                        $('#senderArea option').filter(function () {
+                            return $(this).val() == "";
+                        }).attr('selected', true).trigger('chosen:updated');
+                    }
+                    findDeliveryCharge();
+                }
+            });
+        }
 
         function getReceiverInfo()
         {
@@ -385,6 +528,9 @@
                 success:function(data){
                     $('#receiverName').val(data.receiverName);
                     $('#receiverAddress').val(data.receiverAddress);
+                    $('#receiverZoneId').val(data.zoneId);
+                    $('#receiverZoneType').val(data.zoneType);
+                    $('#receiverHubId').val(data.receiverHubId);
 
                     if (data.receiverName)
                     {
@@ -444,7 +590,23 @@
                         clientId:clientId
                     },
                     success:function(data){
-                        $('#deliveryChargeUnit').val(data.charge);
+                        if (data.charge)
+                        {
+                            $('#deliveryChargeUnit').val(data.charge);
+                        }
+                        else
+                        {
+                            $('#deliveryChargeUnit').val(0);
+                        }
+
+                        if (data.chargePerUom)
+                        {
+                            $('#deliveryChargeUnitPerUom').val(data.chargePerUom);
+                        }
+                        else
+                        {
+                            $('#deliveryChargeUnitPerUom').val(0);
+                        }
                         $('#chargeName').val(data.chargeName);
                         $('#collectionPayment').val(data.collectionPayment);
                         $('#deliveryPayment').val(data.deliveryPayment);
@@ -464,35 +626,68 @@
 
         $(document).on('change', '#service', function()
         {
-            var serviceTypeName = $('#service option:selected').text();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             var serviceTypeId = $('#service').val();
 
-            if (serviceTypeName == 'Weighing Scale' || serviceTypeId == 6)
-            {
-                $("#uom").prop("readonly",false);
-            }
-            else
-            {
-                $("#uom").prop("readonly",true);
-                $("#uom").val(1);
-            }
+            $.ajax({
+                type:'post',
+                url:'{{ route('bookingOrder.getServiceInfo') }}',
+                data:{serviceTypeId:serviceTypeId},
+                success:function(data){
+                    var serviceInfo = data.serviceInfo;
+                    $("#upto").val(serviceInfo.upto);
+                    
+                    if (serviceInfo.weighing_scale == 1)
+                    {
+                        $("#uom").prop("readonly",false);
+                        $("#deliveryChargeUnitPerUom").prop("readonly",false);
+                    }
+                    else
+                    {
+                        $("#uom").prop("readonly",true);
+                        $("#deliveryChargeUnitPerUom").prop("readonly",true);
+                        $("#uom").val(1);
+                        $("#deliveryChargeUnitPerUom").val(0);z
+                    }
+                }
+            });
         });
 
         function findDeliveryCharge()
         {
             var deliveryCharge;
 
+            var codAmount = parseFloat($("#codAmount").val());
+            var codChargePercentage = parseFloat($("#codChargePercentage").val());
+            var codCharge = (codAmount * codChargePercentage) / 100;
+            $("#codCharge").val(codCharge);
+
             var deliveryChargeUnit = parseFloat($("#deliveryChargeUnit").val());
             var uom = parseFloat($("#uom").val());
+            var upto = parseFloat($("#upto").val());
 
             if (uom <= 0)
             {
                 $("#uom").val('1')
-                deliveryCharge = deliveryChargeUnit;
+                deliveryCharge = deliveryChargeUnit + codCharge;
             }
             else
             {
-                deliveryCharge = deliveryChargeUnit * uom;
+                var deliveryChargeUnitPerUom = parseFloat($("#deliveryChargeUnitPerUom").val());
+
+                if (uom <= upto)
+                {
+                    deliveryCharge = deliveryChargeUnit + codCharge;
+                }
+                else
+                {
+                    deliveryCharge = (deliveryChargeUnitPerUom * (uom - upto)) + deliveryChargeUnit + codCharge;
+                }
             }
 
             $("#deliveryCharge").val(Math.round(deliveryCharge));

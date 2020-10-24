@@ -17,6 +17,8 @@
                         <th width="20px">SL</th>
                         <th width="200px">Name</th>
                         <th>Description</th>
+                        <th width="120px">Weighing Scale</th>
+                        <th width="60px">Upto</th>
                         <th width="90px">Order By</th>
                         <th width="20px">Status</th>
                         <th width="80px">Action</th>
@@ -31,6 +33,8 @@
                 			<td>{{ $sl++ }}</td>
                 			<td>{{ $service->name }}</td>
                             <td>{{ $service->description }}</td>
+                            <td>{{ $service->weighing_scale == 1 ? 'Yes' : 'No' }}</td>
+                            <td>{{ $service->upto }}</td>
                 			<td>{{ $service->order_by }}</td>
                 			<td>
                                 @php
