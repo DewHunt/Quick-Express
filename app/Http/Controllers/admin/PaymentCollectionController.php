@@ -10,6 +10,7 @@ use App\PaymentCollection;
 use App\PaymentCollectionList;
 use App\Client;
 use App\Marchant;
+use App\DeliveryMan;
 
 use DB;
 
@@ -36,9 +37,11 @@ class PaymentCollectionController extends Controller
     	$formLink = "paymentCollection.save";
     	$buttonName = "Save";
 
+        $deliveryMen = DeliveryMan::where('status',1)->orderBy('name','asc')->get();
+
     	$clients = DB::table('view_clients')->select('view_clients.*')->orderBy('view_clients.clientType')->get();
 
-    	return view('admin.paymentCollection.add')->with(compact('title','formLink','buttonName','clients'));
+    	return view('admin.paymentCollection.add')->with(compact('title','formLink','buttonName','clients','deliveryMen'));
     }
 
     public function save(Request $request)
@@ -69,6 +72,7 @@ class PaymentCollectionController extends Controller
         ]);
 
         $countOrderId = count($request->orderId);
+        
         if($request->orderId)
         {
         	for ($i=0; $i < $countOrderId; $i++)
@@ -153,6 +157,20 @@ class PaymentCollectionController extends Controller
         $clientType = $clients[1];
 
         $orderInformations = BookingOrder::where('booked_type',$clientType)->where('sender_id',$clientId)->where('payment_status','=',0)->get();
+
+        // dd($orderInformations);
+        
+        if($request->ajax())
+        {
+            return response()->json([
+                'orderInformations' => $orderInformations,
+            ]);
+        }
+    }
+
+    public function deliveryManWiseOrder(Request $request)
+    {
+        $orderInformations = BookingOrder::where('delivery_man_id',$request->deliveryManId)->where('order_status','Delivered')->get();
 
         // dd($orderInformations);
         

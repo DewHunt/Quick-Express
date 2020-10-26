@@ -170,6 +170,18 @@
 
 @section('custom-js')
     <script type="text/javascript">
+        $("#formAddEdit").submit(function(e) {
+            if($('.selectAllColumn').is(':checked'))
+            {
+                return true;
+            }
+            else
+            {
+                swal("Please! Select Order", "", "warning");
+                return false;
+            }
+        });
+        
         $('.select_all').click(function(event){
             if(this.checked)
             {
@@ -190,6 +202,7 @@
                         // console.log(stval);
                         total_charge += isNaN(charge) ? 0 : charge;
                     });
+
                     $('.bookingOrderId').remove();
 
                     $(".orderId").each(function () {
@@ -287,9 +300,7 @@
                 var total = parseFloat(order.cod_amount) + parseFloat(order.delivery_charge);
                 $(".orderInfo tbody").append(
                     '<tr class="orderInfoRow" id="orderInfoRow_'+order.id+'">'+
-                        '<td>'+
-                            order.date+
-                        '</td>'+
+                        '<td>'+order.date+'</td>'+
                         '<td align="left">'+
                             order.order_no+
                             '<input type="hidden" style="text-align: right;" class="orderId" id="orderId_'+order.id+'" value="'+order.id+'">'+

@@ -337,7 +337,6 @@
 @section('custom-js')
     <script type="text/javascript">
         $("#formAddEdit").submit(function(e) {
-
             var senderAreaId = $('#senderArea').val();
             var receiverAreaId = $('#receiverArea').val();
             

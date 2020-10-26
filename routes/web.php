@@ -422,6 +422,7 @@ Route::prefix('admin')->group(function()
 			Route::get('/paymentCollection-view/{id}','Admin\PaymentCollectionController@view')->name('paymentCollection.view');
 			Route::post('/paymentCollection-delete','Admin\PaymentCollectionController@delete')->name('paymentCollection.delete');
 			Route::post('/paymentCollection-get-order-info','Admin\PaymentCollectionController@getOrderInfo')->name('paymentCollection.getOrderInfo');
+			Route::post('/paymentCollection-delivery-man-wise-order','Admin\PaymentCollectionController@deliveryManWiseOrder')->name('paymentCollection.deliveryManWiseOrder');
 
 			// Delivery Man Payment 
 			Route::get('/deliveryManPayment','Admin\DeliveryManPaymentController@index')->name('deliveryManPayment.index');

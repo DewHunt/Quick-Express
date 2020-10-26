@@ -34,7 +34,7 @@ class AssignedDeliveryManController extends Controller
     {
         $title = "Add Booking Order";
         $formLink = "assignedDeliveryMan.save";
-        $buttonName = "Save";        
+        $buttonName = "Save";       
 
         $deliveryMen = DeliveryMan::where('status',1)->orderBy('name','asc')->get();
         $hubs = HubSetup::where('status',1)->orderBy('name','asc')->get();
@@ -56,6 +56,7 @@ class AssignedDeliveryManController extends Controller
 
 		        $bookedOrder->update([
 		        	'delivery_man_id' => $request->deliveryManId,
+                    'order_status' => 'On Going',
 		            'updated_by' => $this->userId,
 		        ]);
         	}
@@ -127,6 +128,7 @@ class AssignedDeliveryManController extends Controller
 
     	$bookingOrder->update([
     		'delivery_man_id' => null,
+            'order_status' => null,
     		'updated_by' => $this->userId,
     	]);
     }

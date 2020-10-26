@@ -9,7 +9,7 @@ class MerchantPayment extends Model
 	protected $table = "tbl_merchant_payment";
 
     protected $fillable = [
-    	'date','merchant_id','total_cod_amount','total_balance','deposit_type','remarks','status','created_by','updated_by'
+    	'date','merchant_id','total_bill_amount','total_recieve_amount','total_service_charge','total_balance','deposit_type','remarks','status','created_by','updated_by'
     ];
 
 	protected $hidden = [

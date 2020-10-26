@@ -67,7 +67,9 @@ class MerchantPaymentController extends Controller
         $merchantPayment = MerchantPayment::create([
             'date' => $paymentDate,
             'merchant_id' => $merchantId,
-            'total_cod_amount' => $request->totalCodAmount,
+            'total_bill_amount' => $request->totalBillAmount,
+            'total_recieve_amount' => $request->totalRecieveAmount,
+            'total_service_charge' => $request->totalDeliveryCharge,
             'total_balance' => $request->totalBalance,
             'deposit_type' => $request->depositType,
             'remarks' => $request->remarks,
@@ -83,7 +85,8 @@ class MerchantPaymentController extends Controller
 		            'merchant_payment_id' => $merchantPayment->id,
 		            'booking_order_id' => $request->orderId[$i],
 		            'order_no' => $request->orderNo[$i],
-		            'cod_amount' => $request->codAmount[$i],
+		            'bill_amount' => $request->billAmount[$i],
+                    'recieve_amount' => $request->recieveAmount[$i],
 		            'service_charge' => $request->deliveryCharge[$i],
 		            'balance' => $request->balance[$i],
 		            'created_by' => $this->userId,
@@ -238,8 +241,9 @@ class MerchantPaymentController extends Controller
         
         $orderInformations = BookingOrder::where('booked_type','Merchant')
         	->where('sender_id',$merchant)
-        	->where('cod_amount','>',0)
-        	->where('merchant_payment_status','=','0')
+            ->where('merchant_payment_status','=','0')
+        	->where('order_status','<>','On Going')
+            ->where('order_status','<>','Pending')
         	->get();
 
         // dd($orderInformations);

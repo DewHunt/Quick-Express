@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2020 at 05:55 PM
+-- Generation Time: Oct 26, 2020 at 04:40 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -392,6 +392,7 @@ CREATE TABLE `tbl_booking_orders` (
   `cod_charge_percentage` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cod_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delivery_charge` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `recieve_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delivery_duration_id` int(11) DEFAULT NULL,
   `collection_man_id` int(11) DEFAULT NULL,
   `collection_payment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -416,6 +417,7 @@ CREATE TABLE `tbl_booking_orders` (
   `reschedule_status` tinyint(4) NOT NULL DEFAULT 0,
   `reschedule_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_status_remarks` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -427,11 +429,11 @@ CREATE TABLE `tbl_booking_orders` (
 -- Dumping data for table `tbl_booking_orders`
 --
 
-INSERT INTO `tbl_booking_orders` (`id`, `order_no`, `date`, `delivery_date`, `booked_type`, `sender_id`, `sender_hub_id`, `sender_area_id`, `sender_name`, `sender_phone`, `sender_zone_type`, `sender_zone_id`, `sender_address`, `receiver_hub_id`, `receiver_area_id`, `receiver_name`, `receiver_phone`, `receiver_zone_type`, `receiver_zone_id`, `receiver_address`, `remarks`, `courier_type_id`, `delivery_type_id`, `charge_name`, `delivery_charge_unit`, `delivery_charge_unit_per_uom`, `uom`, `cod`, `cod_amount`, `cod_charge_percentage`, `cod_charge`, `delivery_charge`, `delivery_duration_id`, `collection_man_id`, `collection_payment`, `collection_status`, `collection_payment_status`, `sender_goods_receieve_status`, `host_warehouse_id`, `host_warehouse_goods_receieve_status`, `destination_warehouse_id`, `destination_warehouse_goods_receieve_status`, `receiver_issue_status`, `receiver_goods_receieve_status`, `delivery_man_id`, `delivery_payment`, `delivery_status`, `delivery_payment_status`, `payment_status`, `merchant_payment_status`, `return_status`, `return_date`, `return_to_client_status`, `reschedule_status`, `reschedule_date`, `order_status`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(46, 'co-201001-00001', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Behind the mosque', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '20', 'Yes', '1000', NULL, '10', '370', NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Delivered', 1, 4, '2020-09-30 23:16:10', 4, '2020-10-24 09:54:17'),
-(47, 'co-201001-00002', '2020-10-01', '2020-10-03', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 55, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 00', 8, 1, 'Merchant To Customer - Document/Letter (Regular)', '55', '0', '1', 'Yes', '2000', NULL, '20', '75', NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Delivered', 1, 4, '2020-09-30 23:18:25', 4, '2020-10-24 06:35:43'),
-(48, 'co-201001-00003', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 54, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 01', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '30', 'Yes', '2500', NULL, '25', '585', NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Return', 1, 4, '2020-09-30 23:20:00', 4, '2020-10-24 06:35:46'),
-(49, 'co-201010-00001', '2020-10-10', '2020-10-10', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Parcel Over 5 Kg', 10, 1, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', '9', 'Yes', '2000', '2', '20', '100', NULL, NULL, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Pending', 1, 4, '2020-10-10 03:02:45', 4, '2020-10-24 09:54:17');
+INSERT INTO `tbl_booking_orders` (`id`, `order_no`, `date`, `delivery_date`, `booked_type`, `sender_id`, `sender_hub_id`, `sender_area_id`, `sender_name`, `sender_phone`, `sender_zone_type`, `sender_zone_id`, `sender_address`, `receiver_hub_id`, `receiver_area_id`, `receiver_name`, `receiver_phone`, `receiver_zone_type`, `receiver_zone_id`, `receiver_address`, `remarks`, `courier_type_id`, `delivery_type_id`, `charge_name`, `delivery_charge_unit`, `delivery_charge_unit_per_uom`, `uom`, `cod`, `cod_amount`, `cod_charge_percentage`, `cod_charge`, `delivery_charge`, `recieve_amount`, `delivery_duration_id`, `collection_man_id`, `collection_payment`, `collection_status`, `collection_payment_status`, `sender_goods_receieve_status`, `host_warehouse_id`, `host_warehouse_goods_receieve_status`, `destination_warehouse_id`, `destination_warehouse_goods_receieve_status`, `receiver_issue_status`, `receiver_goods_receieve_status`, `delivery_man_id`, `delivery_payment`, `delivery_status`, `delivery_payment_status`, `payment_status`, `merchant_payment_status`, `return_status`, `return_date`, `return_to_client_status`, `reschedule_status`, `reschedule_date`, `order_status`, `order_status_remarks`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(46, 'co-201001-00001', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Behind the mosque', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '20', 'Yes', '1000', NULL, '10', '370', '800', NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 'Delivred', 1, 4, '2020-09-30 23:16:10', 4, '2020-10-26 09:37:19'),
+(47, 'co-201001-00002', '2020-10-01', '2020-10-03', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 55, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 00', 8, 1, 'Merchant To Customer - Document/Letter (Regular)', '55', '0', '1', 'Yes', '2000', NULL, '20', '75', NULL, NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, NULL, 1, 4, '2020-09-30 23:18:25', 4, '2020-10-26 03:08:30'),
+(48, 'co-201001-00003', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 54, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 01', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '30', 'Yes', '2500', NULL, '25', '585', NULL, NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, NULL, 1, 4, '2020-09-30 23:20:00', 4, '2020-10-26 03:08:33'),
+(49, 'co-201010-00001', '2020-10-10', '2020-10-10', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Parcel Over 5 Kg', 10, 1, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', '9', 'Yes', '2000', '2', '20', '100', '60', NULL, NULL, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 'Returned', 1, 4, '2020-10-10 03:02:45', 4, '2020-10-26 09:37:21');
 
 -- --------------------------------------------------------
 
@@ -1374,7 +1376,9 @@ CREATE TABLE `tbl_merchant_payment` (
   `id` int(11) NOT NULL,
   `date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `merchant_id` int(11) DEFAULT NULL,
-  `total_cod_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_bill_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_recieve_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_service_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_balance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deposit_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remarks` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1384,14 +1388,6 @@ CREATE TABLE `tbl_merchant_payment` (
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tbl_merchant_payment`
---
-
-INSERT INTO `tbl_merchant_payment` (`id`, `date`, `merchant_id`, `total_cod_amount`, `total_balance`, `deposit_type`, `remarks`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(10, '2020-09-02', 8, '5000', '4830', 'Cash Payment', 'co-200822-00004 - 4830', 1, 4, '2020-09-02 00:51:44', NULL, '2020-09-02 00:51:44'),
-(11, '2020-09-02', 8, '80000', '79080', 'Cash Payment', 'co-200822-00005 - 79080', 1, 4, '2020-09-02 00:51:57', NULL, '2020-09-02 00:51:57');
 
 -- --------------------------------------------------------
 
@@ -1404,7 +1400,8 @@ CREATE TABLE `tbl_merchant_payment_lists` (
   `merchant_payment_id` int(11) DEFAULT NULL,
   `booking_order_id` int(11) DEFAULT NULL,
   `order_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cod_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bill_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `recieve_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `service_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `balance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
@@ -1413,14 +1410,6 @@ CREATE TABLE `tbl_merchant_payment_lists` (
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tbl_merchant_payment_lists`
---
-
-INSERT INTO `tbl_merchant_payment_lists` (`id`, `merchant_payment_id`, `booking_order_id`, `order_no`, `cod_amount`, `service_charge`, `balance`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(15, 10, 4, 'co-200822-00004', '5000', '170', '4830', 1, 4, '2020-09-02 00:51:44', NULL, '2020-09-02 00:51:44'),
-(16, 11, 5, 'co-200822-00005', '80000', '920', '79080', 1, 4, '2020-09-02 00:51:57', NULL, '2020-09-02 00:51:57');
 
 -- --------------------------------------------------------
 
@@ -1463,6 +1452,7 @@ INSERT INTO `tbl_pages` (`id`, `frontend_menu_id`, `page_name`, `status`, `creat
 CREATE TABLE `tbl_payment_collections` (
   `id` int(11) NOT NULL,
   `date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_man_id` int(11) DEFAULT NULL,
   `client_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL,
   `total_cod_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1474,14 +1464,6 @@ CREATE TABLE `tbl_payment_collections` (
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tbl_payment_collections`
---
-
-INSERT INTO `tbl_payment_collections` (`id`, `date`, `client_type`, `client_id`, `total_cod_amount`, `total_delivery_charge_amount`, `balance`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(8, '2020-08-27', 'Merchant', 8, '85000', '1090', '83910', 1, 4, '2020-08-27 02:32:31', NULL, '2020-08-27 02:32:31'),
-(9, '2020-08-27', 'Merchant', 7, '1500', '195', '1305', 1, 4, '2020-08-27 02:34:06', NULL, '2020-08-27 02:34:06');
 
 -- --------------------------------------------------------
 
@@ -1502,15 +1484,6 @@ CREATE TABLE `tbl_payment_collection_lists` (
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tbl_payment_collection_lists`
---
-
-INSERT INTO `tbl_payment_collection_lists` (`id`, `payment_collection_id`, `booking_order_id`, `order_no`, `cod_amount`, `delivery_charge`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(8, 8, 4, 'co-200822-00004', '5000', '170', 1, 4, '2020-08-27 02:32:31', NULL, '2020-08-27 02:32:31'),
-(9, 8, 5, 'co-200822-00005', '80000', '920', 1, 4, '2020-08-27 02:32:31', NULL, '2020-08-27 02:32:31'),
-(10, 9, 2, 'co-200822-00002', '1500', '195', 1, 4, '2020-08-27 02:34:06', NULL, '2020-08-27 02:34:06');
 
 -- --------------------------------------------------------
 
@@ -2254,7 +2227,7 @@ CREATE TABLE `tbl_user_roles` (
 --
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
-(2, 'Super User', NULL, 1, 1, '1,39,2,3,4,5,38,6,7,8,10,11,12,80,13,14,15,16,17,18,25,37,49,70,21,22,78,81,82,83,84,85,42,43,44,45,46,47,48,51,52,74,53,54,55,56,57,58,59,61,62,63,64,65,66,67,68,69,71,72,73,75,76,77,79', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,177,178,179,180,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,89,90,91,92,104,105,106,107,130,131,132,133,167,168,169,170,84,85,88,86,87,176,181,182,183,184,114,115,116,117,110,111,112,113,118,119,120,121,122,123,124,125,126,127,128,129,139,140,141,142,143,144,145,146,147,148,171,172,173,174,175,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166', '2019-04-17 00:50:05', '2020-10-10 08:11:02'),
+(2, 'Super User', NULL, 1, 1, '1,39,2,3,4,5,38,6,7,8,10,11,12,80,13,14,15,16,17,18,25,37,49,70,21,22,81,83,84,85,42,43,44,45,46,47,48,51,52,74,53,54,55,56,57,58,59,61,62,63,64,65,66,67,68,69,71,72,73,75,76,77,79', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,177,178,179,180,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,89,90,91,92,104,105,106,107,130,131,132,133,167,168,169,170,84,85,88,86,87,181,182,183,184,114,115,116,117,110,111,112,113,118,119,120,121,122,123,124,125,126,127,128,129,139,140,141,142,143,144,145,146,147,148,171,172,173,174,175,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166', '2019-04-17 00:50:05', '2020-10-26 00:38:09'),
 (3, 'Admin', NULL, 1, 1, '1,39,2,3,5', '2,3,4,11,12,13,14,15,21,22,23,24,25,26', '2019-04-17 00:52:54', '2020-07-08 12:49:14'),
 (4, 'Client', NULL, 1, 1, '1', '', '2020-03-07 00:49:33', '2020-07-08 12:49:35'),
 (8, 'Agent', NULL, 1, 1, '1,21,23,24', '93,94', '2020-06-10 06:39:37', '2020-07-08 12:49:25'),
@@ -2926,13 +2899,13 @@ ALTER TABLE `tbl_menu_action_type`
 -- AUTO_INCREMENT for table `tbl_merchant_payment`
 --
 ALTER TABLE `tbl_merchant_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_merchant_payment_lists`
 --
 ALTER TABLE `tbl_merchant_payment_lists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_pages`
@@ -2944,13 +2917,13 @@ ALTER TABLE `tbl_pages`
 -- AUTO_INCREMENT for table `tbl_payment_collections`
 --
 ALTER TABLE `tbl_payment_collections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment_collection_lists`
 --
 ALTER TABLE `tbl_payment_collection_lists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_posts`

@@ -57,6 +57,8 @@ class AssignedOrderStatusController extends Controller
 
 		        $bookedOrder->update([
 		        	'order_status' => $request->orderStatus[$i],
+                    'recieve_amount' => $request->recieveAmount[$i],
+                    'order_status_remarks' => $request->remarks[$i],
 		            'updated_by' => $this->userId,
 		        ]);
         	}
@@ -92,7 +94,7 @@ class AssignedOrderStatusController extends Controller
 
     public function hubWiseOrder(Request $request)
     {
-    	$allOrders = BookingOrder::where('receiver_hub_id',$request->hubId)->whereNull('order_status')->get();
+    	$allOrders = BookingOrder::where('receiver_hub_id',$request->hubId)->where('order_status','On Going')->get();
         
         if($request->ajax())
         {
@@ -107,7 +109,7 @@ class AssignedOrderStatusController extends Controller
     	// dd($request->areaId);
     	$allOrders = BookingOrder::where('receiver_hub_id',$request->hubId)
     		->whereIn('receiver_area_id',$request->areaId)
-    		->whereNull('order_status')
+    		->where('order_status','On Going')
     		->get();
         
         if($request->ajax())
@@ -120,7 +122,7 @@ class AssignedOrderStatusController extends Controller
 
     public function deliveryManWiseOrder(Request $request)
     {
-    	$allOrders = BookingOrder::where('delivery_man_id',$request->deliveryManId)->whereNull('order_status')->get();
+    	$allOrders = BookingOrder::where('delivery_man_id',$request->deliveryManId)->where('order_status','On Going')->get();
         
         if($request->ajax())
         {
@@ -135,7 +137,9 @@ class AssignedOrderStatusController extends Controller
     	$bookingOrder = BookingOrder::find($request->orderId);
 
     	$bookingOrder->update([
-    		'order_status' => null,
+    		'order_status' => 'On Going',
+            'recieve_amount' => null,
+            'order_status_remarks' => null,
     		'updated_by' => $this->userId,
     	]);
     }

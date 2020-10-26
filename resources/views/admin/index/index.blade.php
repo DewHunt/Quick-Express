@@ -239,7 +239,7 @@
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="80px">Date</th>
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="130px">Order No</th>
 	                                    <th style="font-weight: bold; vertical-align: middle;" colspan="3">Receiver</th>
-	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="140px">Delivery Type</th>
+	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="140px">Delivery Status</th>
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="50px">Charge</th>
 	                                </tr>
 	                                <tr>
@@ -260,7 +260,7 @@
 				                            <td>{{ $new_order->receiver_name }}</td>
 				                            <td>{{ $new_order->receiver_phone }}</td>
 				                            <td>{{ $new_order->receiver_address }}</td>
-				                            <td>{{ $new_order->deliveryTypeName }}</td>
+				                            <td>New Order</td>
 				                			<td>{{ $new_order->delivery_charge }}</td>
 				                		</tr>
 				                	@endforeach
@@ -282,7 +282,7 @@
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="80px">Date</th>
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="130px">Order No</th>
 	                                    <th style="font-weight: bold; vertical-align: middle;" colspan="3">Receiver</th>
-	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="100px">Delivery Type</th>
+	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="100px">Delivery Status</th>
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="50px">Charge</th>
 	                                </tr>
 	                                <tr>
@@ -303,7 +303,7 @@
 				                            <td>{{ $running_order->receiver_name }}</td>
 				                            <td>{{ $running_order->receiver_phone }}</td>
 				                            <td>{{ $running_order->receiver_address }}</td>
-				                            <td>{{ $running_order->deliveryTypeName }}</td>
+				                            <td>{{ $running_order->order_status }}</td>
 				                			<td>{{ $running_order->delivery_charge }}</td>
 				                		</tr>
 				                	@endforeach
@@ -325,7 +325,7 @@
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="80px">Date</th>
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="130px">Order No</th>
 	                                    <th style="font-weight: bold; vertical-align: middle;" colspan="3">Receiver</th>
-	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="100px">Delivery Type</th>
+	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="100px">Delivery Status</th>
 	                                    <th style="font-weight: bold; vertical-align: middle;" rowspan="2" width="50px">Charge</th>
 	                                </tr>
 	                                <tr>
@@ -346,7 +346,7 @@
 				                            <td>{{ $complete_order->receiver_name }}</td>
 				                            <td>{{ $complete_order->receiver_phone }}</td>
 				                            <td>{{ $complete_order->receiver_address }}</td>
-				                            <td>{{ $complete_order->deliveryTypeName }}</td>
+				                            <td>{{ $complete_order->order_status }}</td>
 				                			<td>{{ $complete_order->delivery_charge }}</td>
 				                		</tr>
 				                	@endforeach

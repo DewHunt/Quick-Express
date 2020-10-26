@@ -32,21 +32,21 @@ class HomeController extends Controller
 
             $new_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName')
             ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
-            ->where('collection_status',0)
+            ->whereNull('order_status')
             ->orderBy('id','desc')
             ->get();
 
             $running_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName')
             ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
-            ->where('collection_status',1)
-            ->where('delivery_status',0)
+            ->where('order_status','On Going')
+            // ->where('delivery_status',0)
             ->orderBy('id','desc')
             ->get();
 
             $complete_order_list = BookingOrder::select('tbl_booking_orders.*','tbl_delivery_types.name as deliveryTypeName')
             ->leftJoin('tbl_delivery_types','tbl_delivery_types.id','=','tbl_booking_orders.delivery_type_id')
-            ->where('collection_status',1)
-            ->where('delivery_status',1)
+            ->where('order_status','Delivered')
+            // ->where('delivery_status',1)
             ->orderBy('id','desc')
             ->get();
 
