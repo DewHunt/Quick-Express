@@ -14,27 +14,75 @@ use DB;
 
 class AssignedDeliveryManController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        // dd($request->all());
         $title = "Assigned Delivery Man";
 
-        $assignedDeliveryMen = BookingOrder::select('tbl_booking_orders.*','tbl_hubs.name as hubName','tbl_area.name as areaName','tbl_delivery_men.name as deliveryManName')
-            ->leftJoin('tbl_hubs','tbl_hubs.id','=','tbl_booking_orders.receiver_hub_id')
-            ->leftJoin('tbl_area','tbl_area.id','=','tbl_booking_orders.receiver_area_id')
-            ->leftJoin('tbl_delivery_men','tbl_delivery_men.id','=','tbl_booking_orders.delivery_man_id')
-            ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
-            ->whereNotNull('tbl_booking_orders.delivery_man_id')
-            ->orderBy('id','desc')
-            ->get();
+        $deliveryMen = DeliveryMan::where('status',1)->orderBy('name','asc')->get();
+        $hubs = HubSetup::where('status',1)->orderBy('name','asc')->get();
 
-        return view('admin.assignedDeliveryMan.index')->with(compact('title','assignedDeliveryMen'));
+        if ($request->hubId == "") {
+            $hubId = "";
+        } else {
+            $hubId = $request->hubId;
+        }
+
+        if ($request->areaId == "") {
+            $areaId = "";
+        } else {
+            $areaId = $request->areaId;
+        }
+
+        if ($request->deliveryManId == "") {
+            $deliveryManId = "";
+        } else {
+            $deliveryManId = $request->deliveryManId;
+        }
+
+        if ($hubId == "" && $areaId == "" && $deliveryManId == "") {
+            $assignedDeliveryMen = BookingOrder::select('tbl_booking_orders.*','tbl_hubs.name as hubName','tbl_area.name as areaName','tbl_delivery_men.name as deliveryManName')
+                ->leftJoin('tbl_hubs','tbl_hubs.id','=','tbl_booking_orders.receiver_hub_id')
+                ->leftJoin('tbl_area','tbl_area.id','=','tbl_booking_orders.receiver_area_id')
+                ->leftJoin('tbl_delivery_men','tbl_delivery_men.id','=','tbl_booking_orders.delivery_man_id')
+                ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
+                ->whereNotNull('tbl_booking_orders.delivery_man_id')
+                ->orderBy('id','desc')
+                ->get();
+        } else {
+            $assignedDeliveryMen = BookingOrder::select('tbl_booking_orders.*','tbl_hubs.name as hubName','tbl_area.name as areaName','tbl_delivery_men.name as deliveryManName')
+                ->leftJoin('tbl_hubs','tbl_hubs.id','=','tbl_booking_orders.receiver_hub_id')
+                ->leftJoin('tbl_area','tbl_area.id','=','tbl_booking_orders.receiver_area_id')
+                ->leftJoin('tbl_delivery_men','tbl_delivery_men.id','=','tbl_booking_orders.delivery_man_id')
+                ->where(function($query) use($hubId,$areaId,$deliveryManId) {
+                    if ($hubId)
+                    {
+                        $query->where('tbl_booking_orders.receiver_hub_id',$hubId);
+                    }
+
+                    if ($areaId)
+                    {
+                        $query->where('tbl_booking_orders.receiver_area_id',$areaId);
+                    }
+                    if ($deliveryManId)
+                    {
+                        $query->where('tbl_booking_orders.delivery_man_id',$deliveryManId);
+                    }
+                })
+                ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
+                ->whereNotNull('tbl_booking_orders.delivery_man_id')
+                ->orderBy('id','desc')
+                ->get();
+        }
+
+        return view('admin.assignedDeliveryMan.index')->with(compact('title','assignedDeliveryMen','deliveryMen','hubs'));
     }
 
     public function add()
     {
         $title = "Add Booking Order";
         $formLink = "assignedDeliveryMan.save";
-        $buttonName = "Save";       
+        $buttonName = "Save";
 
         $deliveryMen = DeliveryMan::where('status',1)->orderBy('name','asc')->get();
         $hubs = HubSetup::where('status',1)->orderBy('name','asc')->get();

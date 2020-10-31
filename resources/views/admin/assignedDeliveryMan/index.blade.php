@@ -2,6 +2,53 @@
 
 @section('card_body')
     <div class="card-body">
+        <form class="form-horizontal" action="{{ route('assignedDeliveryMan.index') }}" id="search" method="POST" enctype="multipart/form-data" name="form">
+            {{ csrf_field() }}
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="hubs">Hubs</label>
+                    <div class="form-group {{ $errors->has('hubId') ? ' has-danger' : '' }}">
+                        <select class="form-control select2 hubId" id="hubId" name="hubId">
+                            <option value="">Select Hub</option>
+                            @foreach ($hubs as $hub)
+                                <option value="{{ $hub->id }}">{{ $hub->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="areas">Areas</label>
+                    <div class="form-group">
+                        <div class="form-group" id="area-select-menu">
+                            <select class="form-control select2 select2-multiple areaId" id="areaId" name="areaId" multiple>
+                                <option value="">Select Area</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="delivery-men">Delivery Men</label>
+                    <div class="form-group {{ $errors->has('deliveryManId') ? ' has-danger' : '' }}">
+                        <select class="form-control select2 deliveryManId" id="deliveryManId" name="deliveryManId">
+                            <option value="">Select Delivery Man</option>
+                            @foreach ($deliveryMen as $deliveryMan)
+                                <option value="{{ $deliveryMan->id }}">{{ $deliveryMan->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-1">
+                    <label for=""></label>
+                    <div class="form-group {{ $errors->has('deliveryManId') ? ' has-danger' : '' }}">
+                        <button type="submit" class="btn btn-outline-info btn-md waves-effect buttonSearch" name="buttonSearch" value="Search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
         <div class="table-responsive">
             @php
                 $sl = 0;
@@ -51,7 +98,24 @@
 @endsection
 
 @section('custom-js')
-    <script>                
+    <script>
+        $(document).on('change', '#hubId', function(){                
+            var hubId = $('#hubId').val();
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url:'{{ route('assignedDeliveryMan.getAllAreas') }}',
+                data:{hubId:hubId},
+                success:function(data){
+                    $('#area-select-menu').html(data);
+                    $(".select2").select2();
+                }
+            });
+        });
+
         //ajax status change code
         function reject(orderId) {
             $.ajax({

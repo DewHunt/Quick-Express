@@ -61,20 +61,18 @@ class AssignedOrderStatusController extends Controller
                 ->leftJoin('tbl_delivery_men','tbl_delivery_men.id','=','tbl_booking_orders.delivery_man_id')
                 ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
                 ->where(function($query) use($hubId,$areaId,$deliveryManId) {
+                    if ($hubId)
+                    {
+                        $query->where('tbl_booking_orders.receiver_hub_id',$hubId);
+                    }
+
+                    if ($areaId)
+                    {
+                        $query->where('tbl_booking_orders.receiver_area_id',$areaId);
+                    }
                     if ($deliveryManId)
                     {
                         $query->where('tbl_booking_orders.delivery_man_id',$deliveryManId);
-                    }
-                    else {
-                        if ($hubId)
-                        {
-                            $query->where('tbl_booking_orders.receiver_hub_id',$hubId);
-                        }
-
-                        if ($areaId)
-                        {
-                            $query->where('tbl_booking_orders.receiver_area_id',$areaId);
-                        }
                     }
                 })
                 ->where('tbl_booking_orders.order_status','<>','On Going')

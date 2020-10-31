@@ -301,6 +301,7 @@ Route::prefix('admin')->group(function()
 
 			// Assigned Delivery Man
 			Route::get('/assignedDeliveryMan','Admin\AssignedDeliveryManController@index')->name('assignedDeliveryMan.index');
+			Route::post('/assignedDeliveryMan','Admin\AssignedDeliveryManController@index')->name('assignedDeliveryMan.index');
 			Route::get('/assignedDeliveryMan-add','Admin\AssignedDeliveryManController@add')->name('assignedDeliveryMan.add');
 			Route::post('/assignedDeliveryMan-save','Admin\AssignedDeliveryManController@save')->name('assignedDeliveryMan.save');
 			Route::get('/assignedDeliveryMan-view/{id}','Admin\AssignedDeliveryManController@view')->name('assignedDeliveryMan.view');
