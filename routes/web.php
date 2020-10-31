@@ -311,6 +311,7 @@ Route::prefix('admin')->group(function()
 
 			// Assign Order Status
 			Route::get('/assignedOrderStatus','Admin\AssignedOrderStatusController@index')->name('assignedOrderStatus.index');
+			Route::post('/assignedOrderStatus','Admin\AssignedOrderStatusController@index')->name('assignedOrderStatus.index');
 			Route::get('/assignedOrderStatus-add','Admin\AssignedOrderStatusController@add')->name('assignedOrderStatus.add');
 			Route::post('/assignedOrderStatus-save','Admin\AssignedOrderStatusController@save')->name('assignedOrderStatus.save');
 			Route::get('/assignedOrderStatus-view/{id}','Admin\AssignedOrderStatusController@view')->name('assignedOrderStatus.view');

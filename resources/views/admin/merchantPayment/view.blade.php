@@ -49,10 +49,13 @@
                                     <thead>
                                         <tr>
                                             <th width="50px" class="text-center">#</th>
-                                            <th>Order No</th>
-                                            <th width="100px" class="text-center">COD Amount</th>
+                                            <th width="130px">Order No</th>
+                                            <th width="150px">Name</th>
+                                            <th>Address</th>
+                                            <th width="115px" class="text-center">Recieve Amount</th>
+                                            <th width="110px" class="text-center">Return Charge</th>
                                             <th width="120px" class="text-center">Service Charge</th>
-                                            <th width="100px" class="text-right">balance</th>
+                                            <th width="80px" class="text-right">balance</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,7 +66,10 @@
                                             <tr>
                                                 <td class="text-center">{{ $sl++ }}</td>
                                                 <td>{{ $merchantPaymentList->order_no }}</td>
-                                                <td class="text-right">{{ $merchantPaymentList->cod_amount }}</td>
+                                                <td>{{ $merchantPaymentList->recieverName }}</td>
+                                                <td>{{ $merchantPaymentList->recieverAddress }}</td>
+                                                <td class="text-right">{{ $merchantPaymentList->recieve_amount }}</td>
+                                                <td class="text-right">{{ $merchantPaymentList->return_charge }}</td>
                                                 <td class="text-right">{{ $merchantPaymentList->service_charge }}</td>
                                                 <td class="text-right">{{ $merchantPaymentList->balance }}</td>
                                             </tr>

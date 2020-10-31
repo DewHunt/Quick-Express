@@ -69,6 +69,7 @@ class MerchantPaymentController extends Controller
             'merchant_id' => $merchantId,
             'total_bill_amount' => $request->totalBillAmount,
             'total_recieve_amount' => $request->totalRecieveAmount,
+            'total_return_charge' => $request->totalReturnCharge,
             'total_service_charge' => $request->totalDeliveryCharge,
             'total_balance' => $request->totalBalance,
             'deposit_type' => $request->depositType,
@@ -87,6 +88,7 @@ class MerchantPaymentController extends Controller
 		            'order_no' => $request->orderNo[$i],
 		            'bill_amount' => $request->billAmount[$i],
                     'recieve_amount' => $request->recieveAmount[$i],
+                    'return_charge' => $request->returnCharge[$i],
 		            'service_charge' => $request->deliveryCharge[$i],
 		            'balance' => $request->balance[$i],
 		            'created_by' => $this->userId,
@@ -228,7 +230,10 @@ class MerchantPaymentController extends Controller
     		->where('tbl_merchant_payment.id',$merchantPaymentId)
     		->first();
 
-    	$merchantPaymentLists = MerchantPaymentList::where('merchant_payment_id',$merchantPaymentId)->get();
+    	$merchantPaymentLists = MerchantPaymentList::select('tbl_merchant_payment_lists.*','tbl_booking_orders.receiver_name as recieverName','tbl_booking_orders.receiver_address as recieverAddress')
+            ->leftJoin('tbl_booking_orders','tbl_booking_orders.id','=','tbl_merchant_payment_lists.booking_order_id')
+            ->where('merchant_payment_id',$merchantPaymentId)
+            ->get();
 
     	// dd($paymentCollection);
 

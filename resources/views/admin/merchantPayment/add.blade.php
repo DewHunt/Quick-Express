@@ -64,6 +64,7 @@
                                     <input type="text" class="form-control" id="totalBalance" name="totalBalance" value="0" required readonly />
                                     <input type="hidden" class="form-control" id="totalBillAmount" name="totalBillAmount" value="0" required readonly />
                                     <input type="hidden" class="form-control" id="totalRecieveAmount" name="totalRecieveAmount" value="0" required readonly />
+                                    <input type="hidden" class="form-control" id="totalReturnCharge" name="totalReturnCharge" value="0" required readonly />
                                     <input type="hidden" class="form-control" id="totalDeliveryCharge" name="totalDeliveryCharge" value="0" required readonly />
                                     @if ($errors->has('totalBalance'))
                                         @foreach($errors->get('totalBalance') as $error)
@@ -155,18 +156,23 @@
                 <table class="table table-bordered table-md color-bordered-table success-bordered-table orderInfo">
                     <thead>
                         <tr>
-                            <th width="90px">Date</th>
-                            <th width="130px">Order No.</th>
-                            <th width="150px">Name</th>
-                            <th width="100px">Phone</th>
-                            <th>Address</th>
-                            <th width="100px">Bill Amount</th>
-                            <th width="120px">Recieve Amount</th>
-                            <th width="120px">Service Charge</th>
-                            <th width="70x">Balance</th>
-                            <th width="30px" style="text-align: center;">
+                            <th rowspan="2" width="90px" style="vertical-align: middle; text-align: center;">Date</th>
+                            <th rowspan="2" width="130px" style="vertical-align: middle; text-align: center;">Order No.</th>
+                            <th rowspan="2" width="150px" style="vertical-align: middle; text-align: center;">Name</th>
+                            <th rowspan="2" width="100px" style="vertical-align: middle; text-align: center;">Phone</th>
+                            <th rowspan="2" style="vertical-align: middle; text-align: center;">Address</th>
+                            <th colspan="3" width="100px" style="vertical-align: middle; text-align: center;">Amount</th>
+                            <th rowspan="2" width="120px" style="vertical-align: middle; text-align: center;">Service Charge</th>
+                            <th rowspan="2" width="70x" style="vertical-align: middle; text-align: center;">Balance</th>
+                            <th rowspan="2" width="30px" style="text-align: center;">
                                 <input type="checkbox" class="select_all" name="select_all">
                             </th>
+                        </tr>
+
+                        <tr>
+                            <th width="80px" style="vertical-align: middle; text-align: center;">Bill</th>
+                            <th width="80px" style="vertical-align: middle; text-align: center;">Recieve</th>
+                            <th width="80px" style="vertical-align: middle; text-align: center;">Return</th>
                         </tr>
                     </thead>
 
@@ -201,6 +207,7 @@
 
                     var totalBillAmount = 0;
                     var totalRecieveAmount = 0;
+                    var totalReturnCharge = 0;
                     var totalDeliveryCharge = 0;
                     var totalBalance = 0;
 
@@ -212,19 +219,21 @@
 
                     $(".recieveAmount").each(function () {
                         var recieveAmount = parseFloat($(this).val());
-                        // console.log(stval);
                         totalRecieveAmount += isNaN(recieveAmount) ? 0 : recieveAmount;
+                    });
+
+                    $(".returnCharge").each(function () {
+                        var returnCharge = parseFloat($(this).val());
+                        totalReturnCharge += isNaN(returnCharge) ? 0 : returnCharge;
                     });
 
                     $(".deliveryCharge").each(function () {
                         var deliveryCharge = parseFloat($(this).val());
-                        // console.log(stval);
                         totalDeliveryCharge += isNaN(deliveryCharge) ? 0 : deliveryCharge;
                     });
 
                     $(".balance").each(function () {
                         var balance = parseFloat($(this).val());
-                        // console.log(stval);
                         totalBalance += isNaN(balance) ? 0 : balance;
                     });
 
@@ -236,6 +245,7 @@
 
                     $('#totalBillAmount').val(totalBillAmount);
                     $('#totalRecieveAmount').val(totalRecieveAmount);
+                    $('#totalReturnCharge').val(totalReturnCharge);
                     $('#totalDeliveryCharge').val(totalDeliveryCharge);
                     $('#totalBalance').val(totalBalance);
                 });
@@ -247,6 +257,7 @@
 
                     $('#totalBillAmount').val(0);
                     $('#totalRecieveAmount').val(0);
+                    $('#totalReturnCharge').val(0);
                     $('#totalDeliveryCharge').val(0);
                     $('#totalBalance').val(0);
 
@@ -297,7 +308,16 @@
                     for (var orderInformation of orderInformations)
                     {
                         var total = parseFloat(orderInformation.cod_amount) + parseFloat(orderInformation.delivery_charge);
-                        var balance = orderInformation.recieve_amount - orderInformation.delivery_charge;
+
+                        if (orderInformation.order_status == "Return") {
+                            var balance = 0 - orderInformation.return_charge;
+                            var delivery_charge = 0;
+                        }
+                        else {
+                            var balance = orderInformation.recieve_amount - orderInformation.delivery_charge;
+                            var delivery_charge = orderInformation.delivery_charge;
+                        }
+
                         $(".orderInfo tbody").append(
                             '<tr class="orderInfoRow" id="orderInfoRow_'+orderInformation.id+'">'+
                                 '<td>'+orderInformation.date+'</td>'+
@@ -322,8 +342,13 @@
                                 '</td>'+
 
                                 '<td align="right">'+
-                                    orderInformation.delivery_charge+
-                                    '<input type="hidden" style="text-align: right;" class="deliveryCharge" id="deliveryCharge_'+orderInformation.id+'" value="'+orderInformation.delivery_charge+'" readonly>'+
+                                    orderInformation.return_charge+
+                                    '<input type="hidden" style="text-align: right;" class="returnCharge" id="returnCharge_'+orderInformation.id+'" value="'+orderInformation.return_charge+'" readonly>'+
+                                '</td>'+
+
+                                '<td align="right">'+
+                                    delivery_charge+
+                                    '<input type="hidden" style="text-align: right;" class="deliveryCharge" id="deliveryCharge_'+orderInformation.id+'" value="'+delivery_charge+'" readonly>'+
                                 '</td>'+
 
                                 '<td align="right">'+
@@ -352,6 +377,9 @@
             var recieveAmount = parseInt($('#recieveAmount_'+bookingOrderId).val());
             var totalRecieveAmount = parseInt($('#totalRecieveAmount').val());
 
+            var returnCharge = parseInt($('#returnCharge_'+bookingOrderId).val());
+            var totalReturnCharge = parseInt($('#totalReturnCharge').val());
+
             var deliveryCharge = parseInt($('#deliveryCharge_'+bookingOrderId).val());
             var totalDeliveryCharge = parseInt($('#totalDeliveryCharge').val());
 
@@ -364,6 +392,7 @@
 
                 totalBillAmount = totalBillAmount + billAmount;
                 totalRecieveAmount = totalRecieveAmount + recieveAmount;
+                totalReturnCharge = totalReturnCharge + returnCharge;
                 totalDeliveryCharge = totalDeliveryCharge + deliveryCharge;
 
                 totalBalance = totalBalance + balance;
@@ -377,6 +406,7 @@
 
                 $('#totalBillAmount').val(totalBillAmount);
                 $('#totalRecieveAmount').val(totalRecieveAmount);
+                $('#totalReturnCharge').val(totalReturnCharge);
                 $('#totalDeliveryCharge').val(totalDeliveryCharge);
                 $('#totalBalance').val(totalBalance);
                 $('#remarks').val(remarks);
@@ -388,6 +418,7 @@
 
                     '<input type="hidden" name="billAmount[]" value="'+billAmount+'">'+
                     '<input type="hidden" name="recieveAmount[]" value="'+recieveAmount+'">'+
+                    '<input type="hidden" name="returnCharge[]" value="'+returnCharge+'">'+
                     '<input type="hidden" name="deliveryCharge[]" value="'+deliveryCharge+'">'+
                     '<input type="hidden" name="balance[]" value="'+balance+'">'+
                     '</div>'
@@ -405,12 +436,14 @@
 
                 totalBillAmount = totalBillAmount - billAmount;
                 totalRecieveAmount = totalRecieveAmount - recieveAmount;
+                totalReturnCharge = totalReturnCharge - returnCharge;
                 totalDeliveryCharge = totalDeliveryCharge - deliveryCharge;
 
                 totalBalance = totalBalance - balance;
 
                 $('#totalBillAmount').val(totalBillAmount);
                 $('#totalRecieveAmount').val(totalRecieveAmount);
+                $('#totalReturnCharge').val(totalReturnCharge);
                 $('#totalDeliveryCharge').val(totalDeliveryCharge);
                 $('#totalBalance').val(totalBalance);
                 $('#remarks').val(remarksArray.toString());
@@ -426,6 +459,8 @@
             var billAmount = parseInt($('#billAmount_'+bookingOrderId).val());
 
             var recieveAmount = parseInt($('#recieveAmount_'+bookingOrderId).val());
+
+            var returnCharge = parseInt($('#returnCharge_'+bookingOrderId).val());
 
             var deliveryCharge = parseInt($('#deliveryCharge_'+bookingOrderId).val());
 
@@ -450,6 +485,7 @@
 
                     '<input type="hidden" name="billAmount[]" value="'+billAmount+'">'+
                     '<input type="hidden" name="recieveAmount[]" value="'+recieveAmount+'">'+
+                    '<input type="hidden" name="returnCharge[]" value="'+returnCharge+'">'+
                     '<input type="hidden" name="deliveryCharge[]" value="'+deliveryCharge+'">'+
                     '<input type="hidden" name="balance[]" value="'+balance+'">'+
                     '</div>'

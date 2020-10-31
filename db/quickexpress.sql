@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2020 at 04:40 PM
+-- Generation Time: Oct 31, 2020 at 05:05 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -48,7 +48,7 @@ CREATE TABLE `admins` (
 INSERT INTO `admins` (`id`, `name`, `phone`, `email`, `username`, `role`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (4, 'Admin', NULL, 'admin@gmail.com', 'Admin', 2, '$2y$10$KSdee7hzr.8uJB89YOyV7eKvQG6uXyD45P0Fpf.FNHv9q46VCXM0i', 1, 'HftBsS0WaFhNaeki9GEnbTOdo99h14G9dS1WtBq9AJJkzUuSyNKsUxMufhEx', '2019-04-17 01:04:35', '2020-01-20 13:33:35'),
 (7, 'Jisan Ahmed', NULL, 'jisanahmed06@gmail.com', 'jisan', 3, '$2y$10$KSdee7hzr.8uJB89YOyV7eKvQG6uXyD45P0Fpf.FNHv9q46VCXM0i', 1, NULL, '2019-08-30 21:43:55', '2019-11-26 22:25:40'),
-(30, 'Dhaka Central Warehouse', '01612742150', 'dhakacentral@quickexpress.com.bd', NULL, 11, '$2y$10$6oDOraHJJiqdDdkhKgBP7eZn0K0DlxGhh2LVLaCbtJrXD/y8RHRvS', 1, NULL, '2020-07-03 19:48:21', '2020-08-15 17:22:43'),
+(30, 'Dhaka Central Warehouse', '01612742155', 'dhakacentral@quickexpress.com.bd', NULL, 11, '$2y$10$6oDOraHJJiqdDdkhKgBP7eZn0K0DlxGhh2LVLaCbtJrXD/y8RHRvS', 1, NULL, '2020-07-03 19:48:21', '2020-08-15 17:22:43'),
 (53, 'Dew Hunt', '01317243494', 'dew.fog1553@gmail.com', NULL, 14, '$2y$10$EW.MaumpvLEKiEFj1VNrPOUYyic3KV/7GGwfW8UO/cs0FRgIAA3D2', 1, NULL, '2020-07-06 15:52:48', '2020-08-17 15:21:13'),
 (56, 'Badda', '01713900802', 'agent_badda@gmail.com', NULL, 8, '$2y$10$wdmwPD9LZ9XD3UP/aNCFzebuRumTO/hBDptsUcFJnZovkPwK299hq', 1, NULL, '2020-07-13 22:07:25', '2020-08-15 17:20:34'),
 (58, 'Mirpur', '01713900800', 'agent_mirpur@gmail.com', NULL, 8, '$2y$10$kt3rL4.MyUnmZ8RWjN2Tg.VeFbmWBJ5vUze62dJkFIjdl3lQnh/mW', 1, NULL, '2020-07-25 17:57:06', '2020-08-15 17:20:08'),
@@ -59,7 +59,8 @@ INSERT INTO `admins` (`id`, `name`, `phone`, `email`, `username`, `role`, `passw
 (73, 'Raihan', '01713900818', 'raihan@gmail.com', NULL, 14, '$2y$10$1PFmi8VvFwvUrOA4NIx9sOXZO6GrjmPfLRyxObYvmBuIp8zIGjhou', 1, NULL, '2020-08-24 00:20:05', '2020-08-24 00:20:05'),
 (82, 'Jatrabari', '01880208040', 'sojol@quickexpress.com.bd', NULL, 8, '$2y$10$3BuJ5e0X8Y8lqIvpIVgwau8hSrLSygF0OMj1y/aNyrTEWIJgUEJ3S', 1, NULL, '2020-09-30 20:28:04', '2020-09-30 20:28:04'),
 (84, 'Magical BD', '01712781700', 'magicalbd689@gmail.com', NULL, 12, '$2y$10$8iQA19JFpsZprt8m/uM1zO7xiwh9JpkO7lWd5aPzqGjoOpkMFKYKm', 1, NULL, '2020-09-30 20:35:34', '2020-09-30 20:35:34'),
-(87, 'Mamunur Rashid', NULL, 'alfattah@gmail.com', 'alfattah@gmail.com', 3, '$2y$10$4yRiBpOoufotSAcD5KUXzOV.bXde6RPmZpJikckQE1B7hcQtNX9OS', 1, NULL, '2020-10-24 02:07:20', '2020-10-24 02:07:20');
+(87, 'Mamunur Rashid', NULL, 'alfattah@gmail.com', 'alfattah@gmail.com', 3, '$2y$10$4yRiBpOoufotSAcD5KUXzOV.bXde6RPmZpJikckQE1B7hcQtNX9OS', 1, NULL, '2020-10-24 02:07:20', '2020-10-24 02:07:20'),
+(89, 'Unique Distribution', '01612742150', 'mahmud.bpf@gmail.com', NULL, 12, '$2y$10$rE9Z.j7VAE4xGN.jRNldgeMEyChFmB65e9JNlD5bug3N96bZfwGgi', 1, NULL, '2020-10-31 04:41:12', '2020-10-31 04:41:12');
 
 -- --------------------------------------------------------
 
@@ -393,6 +394,7 @@ CREATE TABLE `tbl_booking_orders` (
   `cod_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delivery_charge` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `recieve_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `return_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delivery_duration_id` int(11) DEFAULT NULL,
   `collection_man_id` int(11) DEFAULT NULL,
   `collection_payment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -429,11 +431,15 @@ CREATE TABLE `tbl_booking_orders` (
 -- Dumping data for table `tbl_booking_orders`
 --
 
-INSERT INTO `tbl_booking_orders` (`id`, `order_no`, `date`, `delivery_date`, `booked_type`, `sender_id`, `sender_hub_id`, `sender_area_id`, `sender_name`, `sender_phone`, `sender_zone_type`, `sender_zone_id`, `sender_address`, `receiver_hub_id`, `receiver_area_id`, `receiver_name`, `receiver_phone`, `receiver_zone_type`, `receiver_zone_id`, `receiver_address`, `remarks`, `courier_type_id`, `delivery_type_id`, `charge_name`, `delivery_charge_unit`, `delivery_charge_unit_per_uom`, `uom`, `cod`, `cod_amount`, `cod_charge_percentage`, `cod_charge`, `delivery_charge`, `recieve_amount`, `delivery_duration_id`, `collection_man_id`, `collection_payment`, `collection_status`, `collection_payment_status`, `sender_goods_receieve_status`, `host_warehouse_id`, `host_warehouse_goods_receieve_status`, `destination_warehouse_id`, `destination_warehouse_goods_receieve_status`, `receiver_issue_status`, `receiver_goods_receieve_status`, `delivery_man_id`, `delivery_payment`, `delivery_status`, `delivery_payment_status`, `payment_status`, `merchant_payment_status`, `return_status`, `return_date`, `return_to_client_status`, `reschedule_status`, `reschedule_date`, `order_status`, `order_status_remarks`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(46, 'co-201001-00001', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Behind the mosque', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '20', 'Yes', '1000', NULL, '10', '370', '800', NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 'Delivred', 1, 4, '2020-09-30 23:16:10', 4, '2020-10-26 09:37:19'),
-(47, 'co-201001-00002', '2020-10-01', '2020-10-03', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 55, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 00', 8, 1, 'Merchant To Customer - Document/Letter (Regular)', '55', '0', '1', 'Yes', '2000', NULL, '20', '75', NULL, NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, NULL, 1, 4, '2020-09-30 23:18:25', 4, '2020-10-26 03:08:30'),
-(48, 'co-201001-00003', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 54, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 01', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '30', 'Yes', '2500', NULL, '25', '585', NULL, NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, NULL, 1, 4, '2020-09-30 23:20:00', 4, '2020-10-26 03:08:33'),
-(49, 'co-201010-00001', '2020-10-10', '2020-10-10', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Parcel Over 5 Kg', 10, 1, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', '9', 'Yes', '2000', '2', '20', '100', '60', NULL, NULL, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, NULL, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 'Returned', 1, 4, '2020-10-10 03:02:45', 4, '2020-10-26 09:37:21');
+INSERT INTO `tbl_booking_orders` (`id`, `order_no`, `date`, `delivery_date`, `booked_type`, `sender_id`, `sender_hub_id`, `sender_area_id`, `sender_name`, `sender_phone`, `sender_zone_type`, `sender_zone_id`, `sender_address`, `receiver_hub_id`, `receiver_area_id`, `receiver_name`, `receiver_phone`, `receiver_zone_type`, `receiver_zone_id`, `receiver_address`, `remarks`, `courier_type_id`, `delivery_type_id`, `charge_name`, `delivery_charge_unit`, `delivery_charge_unit_per_uom`, `uom`, `cod`, `cod_amount`, `cod_charge_percentage`, `cod_charge`, `delivery_charge`, `recieve_amount`, `return_charge`, `delivery_duration_id`, `collection_man_id`, `collection_payment`, `collection_status`, `collection_payment_status`, `sender_goods_receieve_status`, `host_warehouse_id`, `host_warehouse_goods_receieve_status`, `destination_warehouse_id`, `destination_warehouse_goods_receieve_status`, `receiver_issue_status`, `receiver_goods_receieve_status`, `delivery_man_id`, `delivery_payment`, `delivery_status`, `delivery_payment_status`, `payment_status`, `merchant_payment_status`, `return_status`, `return_date`, `return_to_client_status`, `reschedule_status`, `reschedule_date`, `order_status`, `order_status_remarks`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(46, 'co-201001-00001', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Behind the mosque', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '20', 'Yes', '1000', NULL, '10', '370', '800', NULL, NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'On Going', 'Delivred', 1, 4, '2020-09-30 23:16:10', 4, '2020-10-31 00:46:36'),
+(47, 'co-201001-00002', '2020-10-01', '2020-10-03', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 55, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 00', 8, 1, 'Merchant To Customer - Document/Letter (Regular)', '55', '0', '1', 'Yes', '2000', NULL, '20', '75', '2000', NULL, NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 2, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Delivered', NULL, 1, 4, '2020-09-30 23:18:25', 4, '2020-10-31 04:33:06'),
+(48, 'co-201001-00003', '2020-10-01', '2020-10-02', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 5, 54, 'Salman Sabbir', '01317243488', 'Agent', 17, 'Magbazar', 'Remarks - 01', 10, 1, 'Merchant To Customer - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '20', '30', 'Yes', '2500', NULL, '25', '585', '3085', NULL, NULL, 1, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 2, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Delivered', NULL, 1, 4, '2020-09-30 23:20:00', 4, '2020-10-31 04:33:06'),
+(49, 'co-201010-00001', '2020-10-10', '2020-10-10', 'Merchant', 16, 1, 16, 'Magical BD', '01712781700', 'Agent', 11, 'H-02, R-08, Block - D, MIrpur - 12', 1, 15, 'Dew Hunt', '01317243494', 'Agent', 11, 'Mirpur - 11', 'Parcel Over 5 Kg', 10, 1, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', '9', 'Yes', '2000', '2', '20', '100', '60', NULL, NULL, NULL, '0', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '0', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'On Going', 'Returned', 1, 4, '2020-10-10 03:02:45', 4, '2020-10-31 00:46:36'),
+(50, 'QE-201031-00001', '2020-10-31', '2020-10-31', 'Merchant', 19, 1, 11, 'Unique Distribution', '01612742150', 'Agent', 11, '2/1 Borobag, Mirpur-2', 1, 11, 'EMA', '01515283449', 'Agent', 11, '562 Monipur', NULL, 1, 1, 'Client To Client - Regular Business Parcels', '100', '0', '1', 'Yes', '530', '1', '5.3', '105', '0', '50', NULL, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '80', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Return', NULL, 1, 4, '2020-10-31 04:50:51', 4, '2020-10-31 08:48:01'),
+(51, 'QE-201031-00002', '2020-10-31', '2020-10-31', 'Merchant', 19, 1, 11, 'Unique Distribution', '01612742150', 'Agent', 11, '2/1 Borobag, Mirpur-2', 1, 73, 'Farzana', '01877425207', 'Agent', 11, 'Dakkhin Khan', NULL, 1, 1, 'Client To Client - Regular Business Parcels', '60', '0', '1', 'Yes', '430', '1', '4.3', '64', '450', '0', NULL, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '80', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Delivered', NULL, 1, 4, '2020-10-31 04:53:18', 4, '2020-10-31 08:48:01'),
+(52, 'QE-201031-00003', '2020-10-31', '2020-10-31', 'Merchant', 19, 1, 11, 'Unique Distribution', '01612742150', 'Agent', 11, '2/1 Borobag, Mirpur-2', 1, 29, 'Mamun', '01817531605', 'Agent', 11, 'Mohammadpur', NULL, 1, 1, 'Client To Client - Regular Business Parcels', '120', '0', '1', 'No', '0', '1', '0', '120', '0', '0', NULL, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '80', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Pending', NULL, 1, 4, '2020-10-31 04:56:21', 4, '2020-10-31 08:45:03'),
+(53, 'QE-201031-00004', '2020-10-31', '2020-10-31', 'Merchant', 19, 1, 11, 'Unique Distribution', '01612742150', 'Agent', 11, '2/1 Borobag, Mirpur-2', 1, 29, 'Jashir', '01780010787', 'Agent', 11, 'Mohammadpur', NULL, 1, 1, 'Client To Client - Regular Business Parcels', '60', '0', '1', 'No', '0', '1', '0', '60', '0', '0', NULL, NULL, '50', 0, 0, 0, NULL, 0, NULL, 0, 0, 0, 1, '80', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 'Delivered', NULL, 1, 4, '2020-10-31 04:57:59', 4, '2020-10-31 08:48:01');
 
 -- --------------------------------------------------------
 
@@ -554,7 +560,8 @@ INSERT INTO `tbl_charge_for_merchants` (`id`, `service_type_id`, `service_id`, `
 (31, 1, 10, 8, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', 1, 4, NULL, NULL, NULL),
 (32, 1, 11, 8, 'Client To Client - Pick & Ship (Receive Form Outside Dhaka)', '50', '0', 1, 4, NULL, NULL, NULL),
 (33, 1, 10, 9, 'Client To Client - Parcel Weight Up To 5 Kg (Per Kg 5 BDT For Over 5 Kg)', '60', '5', 1, 4, NULL, NULL, NULL),
-(34, 1, 11, 9, 'Client To Client - Pick & Ship (Receive Form Outside Dhaka)', '50', '0', 1, 4, NULL, NULL, NULL);
+(34, 1, 11, 9, 'Client To Client - Pick & Ship (Receive Form Outside Dhaka)', '50', '0', 1, 4, NULL, NULL, NULL),
+(35, 1, 1, 19, 'Client To Client - Regular Business Parcels', '60', '0', 1, 4, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1051,7 +1058,8 @@ CREATE TABLE `tbl_marchants` (
 INSERT INTO `tbl_marchants` (`id`, `user_id`, `user_role_id`, `area`, `name`, `contact_person_name`, `contact_person_phone`, `contact_person_email`, `trade_licence_no`, `cod_charge_percentage`, `return_charge_status`, `reschedule_charge_status`, `phone`, `email`, `address`, `password`, `token`, `verification_code`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (16, 84, 12, 16, 'Magical BD', 'Mrs. Simi', '01712781700', 'magicalbd689@gmail.com', NULL, '2', 1, 0, NULL, NULL, 'H-02, R-08, Block - D, MIrpur - 12', NULL, NULL, NULL, 1, 4, '2020-09-30 20:35:34', NULL, '2020-10-17 06:14:21'),
 (17, 53, 14, 14, 'Dew Hat', 'Dew Hunt', '01317243494', 'dew.fog1553@outlook.com', 'asd12345676', NULL, 0, 0, NULL, NULL, 'Mirpur - 10', '$2y$10$1ADDZ17SFr/z2MpKS3DtlOAzlzmG88t.vNkHa.K38ESUhFiPcGmGS', 'gKyaxdaKxQRi6mDlyFQ727DOWECJ69jEnGIbCXCz', '34943599463851ZGV3LmZvZzE1NTNAb3V0bG9vay5jb20=', 0, NULL, '2020-10-10 01:51:09', NULL, '2020-10-10 01:51:09'),
-(18, 53, 14, 14, 'Dew Hat', 'Dew Hunt', '01317243495', 'dew.fog1553@gmail.com', 'asd12345676', NULL, 0, 0, NULL, NULL, 'Mirpur - 10', '$2y$10$a/GNSuJamhVI/3jdnaA2XOkIPe0z0RG8mUYdoOcavJNHMbujmjPsa', 'gKyaxdaKxQRi6mDlyFQ727DOWECJ69jEnGIbCXCz', '97120995140561ZGV3LmZvZzE1NTNAZ21haWwuY29t', 0, NULL, '2020-10-10 01:52:24', NULL, '2020-10-10 01:52:24');
+(18, 53, 14, 14, 'Dew Hat', 'Dew Hunt', '01317243495', 'dew.fog1553@gmail.com', 'asd12345676', NULL, 0, 0, NULL, NULL, 'Mirpur - 10', '$2y$10$a/GNSuJamhVI/3jdnaA2XOkIPe0z0RG8mUYdoOcavJNHMbujmjPsa', 'gKyaxdaKxQRi6mDlyFQ727DOWECJ69jEnGIbCXCz', '97120995140561ZGV3LmZvZzE1NTNAZ21haWwuY29t', 0, NULL, '2020-10-10 01:52:24', NULL, '2020-10-10 01:52:24'),
+(19, 89, 12, 11, 'Unique Distribution', 'Hasan Mahmud Jewel', '01612742150', 'mahmud.bpf@gmail.com', NULL, '1', 1, 0, NULL, NULL, '2/1 Borobag, Mirpur-2', NULL, NULL, NULL, 1, 4, '2020-10-31 04:41:12', NULL, '2020-10-31 04:41:12');
 
 -- --------------------------------------------------------
 
@@ -1378,6 +1386,7 @@ CREATE TABLE `tbl_merchant_payment` (
   `merchant_id` int(11) DEFAULT NULL,
   `total_bill_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_recieve_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_return_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_service_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_balance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deposit_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1402,6 +1411,7 @@ CREATE TABLE `tbl_merchant_payment_lists` (
   `order_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bill_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `recieve_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `return_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `service_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `balance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
@@ -2227,7 +2237,7 @@ CREATE TABLE `tbl_user_roles` (
 --
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
-(2, 'Super User', NULL, 1, 1, '1,39,2,3,4,5,38,6,7,8,10,11,12,80,13,14,15,16,17,18,25,37,49,70,21,22,81,83,84,85,42,43,44,45,46,47,48,51,52,74,53,54,55,56,57,58,59,61,62,63,64,65,66,67,68,69,71,72,73,75,76,77,79', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,177,178,179,180,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,89,90,91,92,104,105,106,107,130,131,132,133,167,168,169,170,84,85,88,86,87,181,182,183,184,114,115,116,117,110,111,112,113,118,119,120,121,122,123,124,125,126,127,128,129,139,140,141,142,143,144,145,146,147,148,171,172,173,174,175,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166', '2019-04-17 00:50:05', '2020-10-26 00:38:09'),
+(2, 'Super User', NULL, 1, 1, '1,39,2,3,4,5,38,6,7,8,10,11,12,80,13,14,15,16,17,18,25,37,49,70,21,22,81,83,84,85,42,43,44,45,46,47,48,52,74,53,54,55,56,57,58,59,61,62,63,64,65,66,67,68,69,71,72,73,75,76,77,79', '2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,177,178,179,180,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,89,90,91,92,104,105,106,107,130,131,132,133,167,168,169,170,84,85,88,86,87,181,182,183,184,114,115,116,117,110,111,112,113,118,119,120,121,122,123,124,125,126,127,128,129,144,145,146,147,148,171,172,173,174,175,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166', '2019-04-17 00:50:05', '2020-10-31 04:20:16'),
 (3, 'Admin', NULL, 1, 1, '1,39,2,3,5', '2,3,4,11,12,13,14,15,21,22,23,24,25,26', '2019-04-17 00:52:54', '2020-07-08 12:49:14'),
 (4, 'Client', NULL, 1, 1, '1', '', '2020-03-07 00:49:33', '2020-07-08 12:49:35'),
 (8, 'Agent', NULL, 1, 1, '1,21,23,24', '93,94', '2020-06-10 06:39:37', '2020-07-08 12:49:25'),
@@ -2749,7 +2759,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -2791,7 +2801,7 @@ ALTER TABLE `tbl_area`
 -- AUTO_INCREMENT for table `tbl_booking_orders`
 --
 ALTER TABLE `tbl_booking_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `tbl_charge_for_clients`
@@ -2809,7 +2819,7 @@ ALTER TABLE `tbl_charge_for_delivery_men`
 -- AUTO_INCREMENT for table `tbl_charge_for_merchants`
 --
 ALTER TABLE `tbl_charge_for_merchants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tbl_clients`
@@ -2875,7 +2885,7 @@ ALTER TABLE `tbl_hubs`
 -- AUTO_INCREMENT for table `tbl_marchants`
 --
 ALTER TABLE `tbl_marchants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tbl_menus`
@@ -2899,13 +2909,13 @@ ALTER TABLE `tbl_menu_action_type`
 -- AUTO_INCREMENT for table `tbl_merchant_payment`
 --
 ALTER TABLE `tbl_merchant_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_merchant_payment_lists`
 --
 ALTER TABLE `tbl_merchant_payment_lists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_pages`

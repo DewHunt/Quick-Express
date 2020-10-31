@@ -53,7 +53,7 @@ class ChargeForMerchantController extends Controller
                     'merchant_id' => $request->merchant,
                     'name' => $request->chargeName[$i],
                     'charge' => $request->charge[$i],
-                    'charge_per_uom' => $request->chargePerKg[$i],
+                    'charge_per_uom' => $request->chargePerUom[$i],
                     'created_by' => $this->userId,
                 ];
             }                
@@ -90,7 +90,7 @@ class ChargeForMerchantController extends Controller
             'merchant_id' => $request->merchant,
             'name' => $request->chargeName,
             'charge' => $request->charge,
-            'charge_per_uom' => $request->chargePerKg,
+            'charge_per_uom' => $request->chargePerUom,
             'updated_by' => $this->userId,
         ]);
 

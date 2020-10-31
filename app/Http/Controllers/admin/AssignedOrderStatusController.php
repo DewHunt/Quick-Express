@@ -14,20 +14,74 @@ use DB;
 
 class AssignedOrderStatusController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        // dd($request->all());
         $title = "Assigned Order Status";
 
-        $allAssignedOrderStatus = BookingOrder::select('tbl_booking_orders.*','tbl_hubs.name as hubName','tbl_area.name as areaName','tbl_delivery_men.name as deliveryManName')
-            ->leftJoin('tbl_hubs','tbl_hubs.id','=','tbl_booking_orders.receiver_hub_id')
-            ->leftJoin('tbl_area','tbl_area.id','=','tbl_booking_orders.receiver_area_id')
-            ->leftJoin('tbl_delivery_men','tbl_delivery_men.id','=','tbl_booking_orders.delivery_man_id')
-            ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
-            ->whereNotNull('tbl_booking_orders.delivery_man_id')
-            ->orderBy('id','desc')
-            ->get();
+        $deliveryMen = DeliveryMan::where('status',1)->orderBy('name','asc')->get();
+        $hubs = HubSetup::where('status',1)->orderBy('name','asc')->get();
 
-        return view('admin.assignedOrderStatus.index')->with(compact('title','allAssignedOrderStatus'));
+        if ($request->hubId == "") {
+            $hubId = "";
+        } else {
+            $hubId = $request->hubId;
+        }
+
+        if ($request->areaId == "") {
+            $areaId = "";
+        } else {
+            $areaId = $request->areaId;
+        }
+
+        if ($request->deliveryManId == "") {
+            $deliveryManId = "";
+        } else {
+            $deliveryManId = $request->deliveryManId;
+        }        
+
+        if ($hubId == "" && $areaId == "" && $deliveryManId == "") {
+            $allAssignedOrderStatus = BookingOrder::select('tbl_booking_orders.*','tbl_hubs.name as hubName','tbl_area.name as areaName','tbl_delivery_men.name as deliveryManName')
+                ->leftJoin('tbl_hubs','tbl_hubs.id','=','tbl_booking_orders.receiver_hub_id')
+                ->leftJoin('tbl_area','tbl_area.id','=','tbl_booking_orders.receiver_area_id')
+                ->leftJoin('tbl_delivery_men','tbl_delivery_men.id','=','tbl_booking_orders.delivery_man_id')
+                ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
+                ->whereNotNull('tbl_booking_orders.delivery_man_id')
+                ->orderBy('id','desc')
+                ->get();
+        }
+        else {
+            $hubId = $request->hubId;
+            $areaId = $request->areaId;
+            $deliveryManId = $request->deliveryManId;
+
+            $allAssignedOrderStatus = BookingOrder::select('tbl_booking_orders.*','tbl_hubs.name as hubName','tbl_area.name as areaName','tbl_delivery_men.name as deliveryManName')
+                ->leftJoin('tbl_hubs','tbl_hubs.id','=','tbl_booking_orders.receiver_hub_id')
+                ->leftJoin('tbl_area','tbl_area.id','=','tbl_booking_orders.receiver_area_id')
+                ->leftJoin('tbl_delivery_men','tbl_delivery_men.id','=','tbl_booking_orders.delivery_man_id')
+                ->leftJoin('tbl_service_types','tbl_service_types.id','=','tbl_booking_orders.delivery_type_id')
+                ->where(function($query) use($hubId,$areaId,$deliveryManId) {
+                    if ($deliveryManId)
+                    {
+                        $query->where('tbl_booking_orders.delivery_man_id',$deliveryManId);
+                    }
+                    else {
+                        if ($hubId)
+                        {
+                            $query->where('tbl_booking_orders.receiver_hub_id',$hubId);
+                        }
+
+                        if ($areaId)
+                        {
+                            $query->where('tbl_booking_orders.receiver_area_id',$areaId);
+                        }
+                    }
+                })
+                ->where('tbl_booking_orders.order_status','<>','On Going')
+                ->get();
+        }
+
+        return view('admin.assignedOrderStatus.index')->with(compact('title','allAssignedOrderStatus','deliveryMen','hubs','hubId','areaId','deliveryManId'));
     }
 
     public function add()
@@ -55,12 +109,23 @@ class AssignedOrderStatusController extends Controller
         	{
 		        $bookedOrder = BookingOrder::find($request->orderId[$i]);
 
-		        $bookedOrder->update([
-		        	'order_status' => $request->orderStatus[$i],
-                    'recieve_amount' => $request->recieveAmount[$i],
-                    'order_status_remarks' => $request->remarks[$i],
-		            'updated_by' => $this->userId,
-		        ]);
+                if ($request->orderStatus[$i] == 'Return') {
+                    $bookedOrder->update([
+                        'order_status' => $request->orderStatus[$i],
+                        'recieve_amount' => 0,
+                        'return_charge' => $request->recieveAmount[$i],
+                        'order_status_remarks' => $request->remarks[$i],
+                        'updated_by' => $this->userId,
+                    ]);
+                } else {
+                    $bookedOrder->update([
+                        'order_status' => $request->orderStatus[$i],
+                        'recieve_amount' => $request->recieveAmount[$i],
+                        'return_charge' => 0,
+                        'order_status_remarks' => $request->remarks[$i],
+                        'updated_by' => $this->userId,
+                    ]);
+                }
         	}
         }
 
@@ -139,6 +204,7 @@ class AssignedOrderStatusController extends Controller
     	$bookingOrder->update([
     		'order_status' => 'On Going',
             'recieve_amount' => null,
+            'return_charge' => null,
             'order_status_remarks' => null,
     		'updated_by' => $this->userId,
     	]);

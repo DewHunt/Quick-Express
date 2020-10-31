@@ -16,13 +16,9 @@
 
         .tableFixHead {
             overflow-y: auto;
+            /*overflow-x: hidden;*/
             height: 380px;
-            /*border: 1px solid #00c292;*/
-        }
-
-        .tableFixHead thead th {
-            position: sticky;
-            top: 0;
+            border: 1px solid #00c292;
         }
     </style>
 @endsection
@@ -119,15 +115,18 @@
                 <table class="table table-bordered table-md color-bordered-table success-bordered-table orderInfo">
                     <thead>
                         <tr>
-                            <th width="100px">Date</th>
-                            <th width="130px">Order No.</th>
-                            <th width="120px">Name</th>
-                            <th width="100px">Phone</th>
-                            <th width="80px" style="text-align: center;">Bill Amount</th>
-                            <th width="110px" style="text-align: center;">Receive Amount</th>
-                            <th width="150px" style="text-align: center;">Remarks</th>
-                            <th width="130px">Status</th>
-                            <th width="30px" style="text-align: center;"></th>
+                            <th rowspan="2" width="100px" style="vertical-align: middle; text-align: center;">Date</th>
+                            <th rowspan="2" width="130px" style="vertical-align: middle; text-align: center;">Order No.</th>
+                            <th rowspan="2" width="120px" style="vertical-align: middle; text-align: center;">Name</th>
+                            <th rowspan="2" width="100px" style="vertical-align: middle; text-align: center;">Phone</th>
+                            <th colspan="2" style="vertical-align: middle; text-align: center;">Amount</th>
+                            <th rowspan="2" width="150px" style="vertical-align: middle; text-align: center;">Remarks</th>
+                            <th rowspan="2" width="130px" style="vertical-align: middle; text-align: center;">Status</th>
+                            <th rowspan="2" width="30px" style="vertical-align: middle; text-align: center;"></th>
+                        </tr>
+                        <tr>
+                            <th width="80px" style="vertical-align: middle; text-align: center;">Bill</th>
+                            <th width="150px" style="vertical-align: middle; text-align: center;">Receive / Return</th>
                         </tr>
                     </thead>
 
@@ -181,7 +180,7 @@
                 },
                 type:'post',
                 url:'{{ route('assignedOrderStatus.hubWiseOrder') }}',
-                data:{hubId:hubId},
+                data:{hubId:hubId,orderStatus:'Yes'},
                 success:function(data){
                     $('.orderInfoRow').remove();
                     var allOrders = data.allOrders;
@@ -207,7 +206,7 @@
                     },
                     type:'post',
                     url:'{{ route('assignedOrderStatus.areaWiseOrder') }}',
-                    data:{hubId:hubId,areaId:areaId},
+                    data:{hubId:hubId,areaId:areaId,orderStatus:'Yes'},
                     success:function(data){
                         $('.orderInfoRow').remove();
                         var allOrders = data.allOrders;
@@ -250,7 +249,7 @@
                     },
                     type:'post',
                     url:'{{ route('assignedOrderStatus.deliveryManWiseOrder') }}',
-                    data:{deliveryManId:deliveryManId},
+                    data:{deliveryManId:deliveryManId,orderStatus:'Yes'},
                     success:function(data){
                         $('.orderInfoRow').remove();
                         var allOrders = data.allOrders;
@@ -319,6 +318,8 @@
 
             $('#bookingOrderId_'+bookingOrderId).remove();
             $('#bookingOrderStatus_'+bookingOrderId).remove();
+            $('#bookingOrderRecieveAmount_'+bookingOrderId).remove();
+            $('#bookingOrderRemarks_'+bookingOrderId).remove();
 
             $('#orderCheck_'+bookingOrderId).prop('checked', true);
             getOrderInfo(bookingOrderId);
@@ -333,10 +334,10 @@
                 var remarks = $('#remarks_'+bookingOrderId).val();
 
                 $("#orderIdDiv").append(
-                    '<input type="text" class="bookingOrderId" id="bookingOrderId_'+bookingOrderId+'" value="'+bookingOrderId+'" name="orderId[]">'+
-                    '<input type="text" class="bookingOrderStatus" id="bookingOrderStatus_'+bookingOrderId+'" value="'+orderStatus+'" name="orderStatus[]">'+
-                    '<input type="text" class="bookingOrderRecieveAmount" id="bookingOrderRecieveAmount_'+bookingOrderId+'" value="'+recieveAmount+'" name="recieveAmount[]">'+
-                    '<input type="text" class="bookingOrderRemarks" id="bookingOrderRemarks_'+bookingOrderId+'" value="'+remarks+'" name="remarks[]">'
+                    '<input type="hidden" class="bookingOrderId" id="bookingOrderId_'+bookingOrderId+'" value="'+bookingOrderId+'" name="orderId[]">'+
+                    '<input type="hidden" class="bookingOrderStatus" id="bookingOrderStatus_'+bookingOrderId+'" value="'+orderStatus+'" name="orderStatus[]">'+
+                    '<input type="hidden" class="bookingOrderRecieveAmount" id="bookingOrderRecieveAmount_'+bookingOrderId+'" value="'+recieveAmount+'" name="recieveAmount[]">'+
+                    '<input type="hidden" class="bookingOrderRemarks" id="bookingOrderRemarks_'+bookingOrderId+'" value="'+remarks+'" name="remarks[]">'
                 );
             }
             else
